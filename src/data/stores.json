@@ -15,6 +15,75 @@
     ]
   },
   {
+    "key": "accentgamingdunferml",
+    "name": "Accent Gaming",
+    "base": "https://accentgamingdunfermline.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "citadel-layer",
+      "citadel-base-paints",
+      "citadel-accessories",
+      "citadel-dry-paints"
+    ]
+  },
+  {
+    "key": "accessmodels",
+    "name": "Access Models",
+    "base": "https://accessmodels.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "warhammer",
+      "citadel",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "horus-heresy"
+    ]
+  },
+  {
+    "key": "archerongames",
+    "name": "Archeron",
+    "base": "https://archerongames.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "warhammer",
+      "all-warhammer",
+      "horus-heresy",
+      "kill-team",
+      "blood-bowl"
+    ]
+  },
+  {
+    "key": "ashdowngaming",
+    "name": "Ashdown Gaming",
+    "base": "https://ashdowngaming.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "citadel-contrast",
+      "horus-heresy"
+    ]
+  },
+  {
+    "key": "athenagames",
+    "name": "Athena Games Ltd",
+    "base": "https://athenagames.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar",
+      "warhammer-the-old-world",
+      "the-horus-heresy"
+    ]
+  },
+  {
     "key": "axionnow",
     "name": "Axion Now",
     "base": "https://axionnow.com",
@@ -25,6 +94,18 @@
       "warhammer-40-000-commander",
       "tales-of-middle-earth-commander",
       "tales-of-middle-earth-promos"
+    ]
+  },
+  {
+    "key": "badwolfgaming",
+    "name": "Bad Wolf Gaming",
+    "base": "https://badwolfgaming.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "warhammer-30k"
     ]
   },
   {
@@ -146,6 +227,39 @@
     ]
   },
   {
+    "key": "crypticcabin",
+    "name": "Cryptic Cabin",
+    "base": "https://crypticcabin.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "kill-team",
+      "gw-sprays"
+    ]
+  },
+  {
+    "key": "curiousminds",
+    "name": "Curious Minds",
+    "base": "https://curiousminds.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "warhammer-age-of-sigmar",
+      "citadel-paints",
+      "warhammer-the-horus-heresy"
+    ]
+  },
+  {
+    "key": "diceanddestiny",
+    "name": "Dice & Destiny",
+    "base": "https://diceanddestiny.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
     "key": "dicesaloon",
     "name": "Dice Saloon",
     "base": "https://dicesaloonsingles.co.uk",
@@ -208,6 +322,21 @@
     ]
   },
   {
+    "key": "fonefunshop",
+    "name": "FoneFunShop",
+    "base": "https://www.fonefunshop.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop-warhammer-40000",
+      "new-warhammer-products",
+      "games-workshop-citadel-paints",
+      "warhammer-age-of-sigmar",
+      "gw-black-library",
+      "horus-heresy"
+    ]
+  },
+  {
     "key": "shop",
     "name": "Forbidden Planet",
     "base": "https://shop.forbiddenplanet.co.uk",
@@ -232,6 +361,16 @@
     ]
   },
   {
+    "key": "gameguru",
+    "name": "Game Guru (Touchwood Solihull)",
+    "base": "https://gameguru.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "warhammer-40k"
+    ]
+  },
+  {
     "key": "gatheringgames",
     "name": "Gathering Games",
     "base": "https://gatheringgames.co.uk",
@@ -243,6 +382,19 @@
       "warhammer-40k",
       "blood-bowl",
       "necromunda"
+    ]
+  },
+  {
+    "key": "gigante",
+    "name": "Gigante Computers",
+    "base": "https://gigante.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "citadel-paints",
+      "gw-boxed-games-models",
+      "gw-hobby-accessories"
     ]
   },
   {
@@ -298,6 +450,32 @@
     ]
   },
   {
+    "key": "hullpops",
+    "name": "Hull Pops Ltd",
+    "base": "https://hullpops.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "all-warhammer",
+      "warhammer-paints-accessories",
+      "warhammer-tone-pro-collection",
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "huntsbookshop",
+    "name": "Hunt's Bookshop",
+    "base": "https://huntsbookshop.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "40k-miniatures",
+      "40k-1"
+    ]
+  },
+  {
     "key": "impactleague",
     "name": "Impact League TCG",
     "base": "https://impactleaguetcg.co.uk",
@@ -305,6 +483,18 @@
     "country": "GB",
     "collections": [
       "games-workshop"
+    ]
+  },
+  {
+    "key": "inperspectiveart",
+    "name": "In Perspective Hobby Shop",
+    "base": "https://inperspectiveart.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "warhammer",
+      "warhammer-tau-empire"
     ]
   },
   {
@@ -319,6 +509,20 @@
       "necromunda",
       "blood-bowl",
       "kill-team"
+    ]
+  },
+  {
+    "key": "jacstores",
+    "name": "JAC Stores IOM",
+    "base": "https://shop.jacstores.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "warhammer-the-horus-heresy",
+      "warhammer-age-of-sigmar",
+      "necromunda"
     ]
   },
   {
@@ -362,6 +566,43 @@
     ]
   },
   {
+    "key": "leisuregames",
+    "name": "Leisure Games",
+    "base": "https://leisuregames.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "gw-paint",
+      "warhammer-paints",
+      "reduced-gw-paints"
+    ]
+  },
+  {
+    "key": "livingrealms",
+    "name": "Living Realms",
+    "base": "https://livingrealms.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
+    "key": "loadeddice",
+    "name": "Loaded Dice",
+    "base": "https://www.loadeddice.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "warhammer",
+      "cheap-warhammer",
+      "warhammer-40k-xenos",
+      "warhammer-40k-chaos",
+      "cities-of-sigmar"
+    ]
+  },
+  {
     "key": "lvlup",
     "name": "Lvl Up Gaming",
     "base": "https://lvlupgaming.co.uk",
@@ -384,6 +625,20 @@
     "collections": [
       "warhammer",
       "lord-of-the-rings-tales-of-middle-earth"
+    ]
+  },
+  {
+    "key": "marionvillemodels",
+    "name": "Marionville Models",
+    "base": "https://www.marionvillemodels.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "warhammer",
+      "warhammer-all",
+      "warhammer-40k",
+      "game-warhammer",
+      "horus-heresy-all"
     ]
   },
   {
@@ -422,6 +677,34 @@
       "necromunda",
       "blood-bowl",
       "kill-team-1"
+    ]
+  },
+  {
+    "key": "northumbriantinsoldi",
+    "name": "Northumbrian Tin Soldier Limited",
+    "base": "https://northumbriantinsoldier.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "games-workshop-1",
+      "citadel-colour",
+      "warhammer-40000",
+      "warhammer-the-old-world"
+    ]
+  },
+  {
+    "key": "oeshop",
+    "name": "OEShop",
+    "base": "https://oeshop.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "warhamme-age-of-sigmar",
+      "warhammer-40-000-rules",
+      "games-workshop-tools"
     ]
   },
   {
@@ -478,6 +761,31 @@
     ]
   },
   {
+    "key": "rollthedicecornwall",
+    "name": "Roll The Dice",
+    "base": "https://rollthedicecornwall.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "warhammer-40000",
+      "necromunda",
+      "kill-team",
+      "middle-earth-generic"
+    ]
+  },
+  {
+    "key": "sidequestgames",
+    "name": "Side Quest Games",
+    "base": "https://www.sidequestgames.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "warhammer-40k",
+      "age-of-sigmar"
+    ]
+  },
+  {
     "key": "stylecreep",
     "name": "stylecreep.com",
     "base": "https://www.stylecreep.com",
@@ -501,6 +809,17 @@
     ]
   },
   {
+    "key": "nortontcg",
+    "name": "TCG Group",
+    "base": "https://nortontcg.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "blood-bowl"
+    ]
+  },
+  {
     "key": "theboardgamehut",
     "name": "The Board Game Hut",
     "base": "https://theboardgamehut.co.uk",
@@ -512,6 +831,34 @@
       "40000-40k",
       "age-of-sigmar-1",
       "blood-bowl-1"
+    ]
+  },
+  {
+    "key": "thegameroom",
+    "name": "The Game Room",
+    "base": "https://www.thegameroom.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "citadel-colour",
+      "warhammer-40k",
+      "warhammer-40k-copy",
+      "new-warhammer-releases"
+    ]
+  },
+  {
+    "key": "thegamerslodge",
+    "name": "The Gamers Lodge",
+    "base": "https://thegamerslodge.com",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "warhammer-miniatures",
+      "warhammer",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "the-horus-heresy"
     ]
   },
   {
@@ -671,6 +1018,20 @@
     "collections": [
       "warhammer",
       "citadel-paints"
+    ]
+  },
+  {
+    "key": "diablosvault",
+    "name": "Diablo's Vault",
+    "base": "https://diablosvault.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "warhammer",
+      "warhammer-40000",
+      "citadel-layer",
+      "citadel-base",
+      "kill-team"
     ]
   },
   {
@@ -841,6 +1202,31 @@
     ]
   },
   {
+    "key": "gumnut",
+    "name": "Gumnut",
+    "base": "https://gumnut.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "warhammer-age-of-sigmar",
+      "warhammer-40k"
+    ]
+  },
+  {
+    "key": "hobbishack",
+    "name": "HobbiShack",
+    "base": "https://hobbishack.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "games-workshop",
+      "gw-miniatures",
+      "gw-paints",
+      "warhammer-tone-pro",
+      "warhammer-40k"
+    ]
+  },
+  {
     "key": "hobbycollectorsaustralia",
     "name": "Hobby Collectors Australia",
     "base": "https://hobbycollectorsaustralia.com.au",
@@ -851,6 +1237,16 @@
       "warhammer-40k",
       "warhammer-misc",
       "kill-team"
+    ]
+  },
+  {
+    "key": "hobbykitz",
+    "name": "Hobby Kitz",
+    "base": "https://hobbykitz.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "warhammer"
     ]
   },
   {
@@ -876,6 +1272,37 @@
     "collections": [
       "gw-new",
       "kill-team"
+    ]
+  },
+  {
+    "key": "irresistibleforce",
+    "name": "Irresistible Force",
+    "base": "https://irresistibleforce.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "citadel-layer",
+      "necromunda",
+      "citadel-base",
+      "mesbg",
+      "citadel_air",
+      "kill-team",
+      "citadel-dry",
+      "blood-bowl"
+    ]
+  },
+  {
+    "key": "jajascollectables",
+    "name": "Ja Ja's Collectables",
+    "base": "https://jajascollectables.com",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "warhammer",
+      "warhammer-40-000",
+      "citadel-paints-tools",
+      "warhammer-colour-tone-pro",
+      "warhammer-age-of-sigmar"
     ]
   },
   {
@@ -954,6 +1381,32 @@
     ]
   },
   {
+    "key": "omegagames",
+    "name": "Omega Games Busselton",
+    "base": "https://omegagames.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "citadel",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "warhammer-the-old-world"
+    ]
+  },
+  {
+    "key": "onlinecoinsandcollec",
+    "name": "Online Coins and Collectables",
+    "base": "https://www.onlinecoinsandcollectables.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "warhammer-40k",
+      "warhammer-age-of-sigmar",
+      "warhammer-black-library",
+      "other-games-workshop"
+    ]
+  },
+  {
     "key": "playmantis",
     "name": "Playmantis",
     "base": "https://playmantis.com.au",
@@ -988,6 +1441,20 @@
       "warhammer-40k",
       "kill-team",
       "necromunda"
+    ]
+  },
+  {
+    "key": "prohobbies",
+    "name": "ProHobbies",
+    "base": "https://prohobbies.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "games-workshop-1",
+      "all-warhammer",
+      "games-workshop",
+      "citadel-paint",
+      "warhammer-40k"
     ]
   },
   {
@@ -1077,6 +1544,31 @@
     ]
   },
   {
+    "key": "thedragonsbeard",
+    "name": "The Dragon's Beard",
+    "base": "https://thedragonsbeard.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "citadel-paints",
+      "horus-heresy"
+    ]
+  },
+  {
+    "key": "gamescapital",
+    "name": "The Games Capital",
+    "base": "https://www.thegamescapital.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "citadel",
+      "warhammer-40k"
+    ]
+  },
+  {
     "key": "thehallofheroes",
     "name": "The Hall of Heroes",
     "base": "https://thehallofheroes.com.au",
@@ -1132,6 +1624,31 @@
     ]
   },
   {
+    "key": "cardmerchantnelson",
+    "name": "Card Merchant Nelson",
+    "base": "https://cardmerchantnelson.co.nz",
+    "market": "NZ",
+    "country": "NZ",
+    "collections": [
+      "warhammer",
+      "warhammer-paints"
+    ]
+  },
+  {
+    "key": "gameroost",
+    "name": "Game Roost - Games Hobbies Collectibles",
+    "base": "https://www.gameroost.co.nz",
+    "market": "NZ",
+    "country": "NZ",
+    "collections": [
+      "citadel-paints",
+      "warhammer-40-000",
+      "age-of-sigmar",
+      "blood-bowl",
+      "kill-team"
+    ]
+  },
+  {
     "key": "goblingames",
     "name": "Goblin Games NZ",
     "base": "https://goblingames.nz",
@@ -1141,6 +1658,20 @@
       "games-workshop",
       "warhammer-40-000",
       "kill-team"
+    ]
+  },
+  {
+    "key": "ironhorsehobbies",
+    "name": "Ironhorse Hobbies",
+    "base": "https://ironhorsehobbies.co.nz",
+    "market": "NZ",
+    "country": "NZ",
+    "collections": [
+      "citadel",
+      "warhammer-40k",
+      "the-old-world",
+      "kill-team",
+      "middle-earth"
     ]
   },
   {
@@ -1232,6 +1763,73 @@
     ]
   },
   {
+    "key": "abyssgamestore2",
+    "name": "Abyss",
+    "base": "https://abyssgamestore.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-1",
+      "warhammer-2",
+      "necromunda-1",
+      "kill-team-1",
+      "blood-bowl-1"
+    ]
+  },
+  {
+    "key": "bdcosmos",
+    "name": "BD Cosmos",
+    "base": "https://bdcosmos.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop-all",
+      "age-of-sigmar",
+      "citadel-paint",
+      "warhammer-40-000",
+      "bloodbowl"
+    ]
+  },
+  {
+    "key": "blackknightgames",
+    "name": "Black Knight Games",
+    "base": "https://blackknightgames.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "new-gw",
+      "citadel-paint",
+      "age-of-sigmar",
+      "horus-heresy",
+      "necromunda",
+      "blood-bowl",
+      "kill-team"
+    ]
+  },
+  {
+    "key": "abbyboardwalk",
+    "name": "Boardwalk Cafe & Games",
+    "base": "https://abbyboardwalk.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "citadel-1",
+      "games-workshop"
+    ]
+  },
+  {
+    "key": "bootownsgamesandhobb",
+    "name": "Bootown's Games and Hobbies",
+    "base": "https://bootownsgamesandhobbies.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40k",
+      "kill-team",
+      "gw-sprays"
+    ]
+  },
+  {
     "key": "boutiquefdb",
     "name": "Boutique FDB",
     "base": "https://boutiquefdb.com",
@@ -1241,6 +1839,16 @@
       "age-of-sigmar",
       "the-old-world",
       "blood-bowl"
+    ]
+  },
+  {
+    "key": "boutiqueartefact",
+    "name": "Boutique L'Artefact",
+    "base": "https://boutiqueartefact.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40-000"
     ]
   },
   {
@@ -1317,6 +1925,17 @@
     ]
   },
   {
+    "key": "cardboardmemories",
+    "name": "Cardboard Memories Inc.",
+    "base": "https://cardboardmemories.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "citadel-paints",
+      "citadel-sprays"
+    ]
+  },
+  {
     "key": "carlitosgamecafe",
     "name": "Carlito's Boardgame Cafe",
     "base": "https://carlitosgamecafe.ca",
@@ -1348,6 +1967,18 @@
     "country": "CA",
     "collections": [
       "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "criticalhitgaminglou",
+    "name": "Critical Hit Gaming Lounge",
+    "base": "https://criticalhitgaminglounge.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer",
+      "warhammer-40k",
+      "warhammer-aos"
     ]
   },
   {
@@ -1390,6 +2021,26 @@
     ]
   },
   {
+    "key": "dejouer",
+    "name": "DéJouer",
+    "base": "https://dejouer.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "miniatures-warhammer"
+    ]
+  },
+  {
+    "key": "empiretradings",
+    "name": "Empire Trading",
+    "base": "https://www.empiretradings.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-kits"
+    ]
+  },
+  {
     "key": "enterthebattlefield",
     "name": "Enter The Battlefield",
     "base": "https://enterthebattlefield.ca",
@@ -1423,6 +2074,16 @@
       "necromunda",
       "blood-bowl",
       "kill-team"
+    ]
+  },
+  {
+    "key": "exorgames",
+    "name": "Exor Games Charlottetown",
+    "base": "https://exorgames.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "gamesworkshop"
     ]
   },
   {
@@ -1511,6 +2172,17 @@
     ]
   },
   {
+    "key": "itsgametime",
+    "name": "Game Time Collectibles",
+    "base": "https://itsgametime.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer",
+      "age-of-sigmar"
+    ]
+  },
+  {
     "key": "gameknight",
     "name": "GameKnight Games",
     "base": "https://gameknight.ca",
@@ -1545,6 +2217,29 @@
     ]
   },
   {
+    "key": "gamezilla",
+    "name": "GameZilla",
+    "base": "https://gamezilla.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40k",
+      "kill-team-1"
+    ]
+  },
+  {
+    "key": "goforgame",
+    "name": "Go For Game",
+    "base": "https://goforgame.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40-000k",
+      "warhammer-paints-accessories",
+      "warhammer-age-of-sigma"
+    ]
+  },
+  {
     "key": "gotitemgames",
     "name": "Got Item! Games",
     "base": "https://gotitemgames.ca",
@@ -1567,6 +2262,30 @@
       "age-of-sigmar",
       "kill-team",
       "blood-bowl"
+    ]
+  },
+  {
+    "key": "hairyt",
+    "name": "Hairy Tarantula",
+    "base": "https://hairyt.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "necromunda",
+      "blood-bowl",
+      "kill-team"
+    ]
+  },
+  {
+    "key": "heroesworld",
+    "name": "Heroes World",
+    "base": "https://heroesworld.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer",
+      "warhammer-40-000",
+      "necromunda"
     ]
   },
   {
@@ -1595,6 +2314,17 @@
       "gamesworkshop",
       "warhammer-40000",
       "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "impulsegames",
+    "name": "Impulse Games and Hobbies",
+    "base": "https://impulsegames.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "citadel-dry",
+      "gw-terrain"
     ]
   },
   {
@@ -1711,6 +2441,29 @@
     ]
   },
   {
+    "key": "skafexpress",
+    "name": "Let's Play! Cards and Games!",
+    "base": "https://www.skafexpress.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop",
+      "citadel-paints",
+      "warhammer-trade-range"
+    ]
+  },
+  {
+    "key": "lotuspetalgaming",
+    "name": "Lotus Petal Gaming",
+    "base": "https://lotuspetalgaming.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40k",
+      "age-of-sigmar"
+    ]
+  },
+  {
     "key": "lvlupgames",
     "name": "LVLUP GAMES",
     "base": "https://lvlupgames.ca",
@@ -1718,6 +2471,31 @@
     "country": "CA",
     "collections": [
       "games-workshop-1"
+    ]
+  },
+  {
+    "key": "manaconfluence",
+    "name": "Mana Confluence",
+    "base": "https://manaconfluence.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer",
+      "40k-orks",
+      "warhammer-aos",
+      "40k-tau-empire",
+      "40k-tyranids"
+    ]
+  },
+  {
+    "key": "mechagames",
+    "name": "Mecha Games",
+    "base": "https://mechagames.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "killteam",
+      "gw-paint"
     ]
   },
   {
@@ -1746,6 +2524,27 @@
       "citadel-paints",
       "warhammer-age-of-sigmar",
       "warhammer-the-horus-heresy"
+    ]
+  },
+  {
+    "key": "nerdvanacardsandgame",
+    "name": "Nerdvana Cards & Games",
+    "base": "https://nerdvanacardsandgames.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "all-warhammer-40-000"
+    ]
+  },
+  {
+    "key": "northernwartable",
+    "name": "Northern War Table",
+    "base": "https://northernwartable.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40k-copy",
+      "age-of-sigmar-copy"
     ]
   },
   {
@@ -1799,6 +2598,31 @@
     ]
   },
   {
+    "key": "playntradewpg",
+    "name": "Play N Trade Winnipeg",
+    "base": "https://playntradewpg.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
+    "key": "raincity",
+    "name": "Rain City Games - New West",
+    "base": "https://www.raincity.games",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40-1",
+      "warhammer-40-000",
+      "necromunda",
+      "blood-bowl",
+      "warhammer-age-of-sigmar",
+      "warhammer-the-horus-heresy"
+    ]
+  },
+  {
     "key": "reddragon",
     "name": "Red-DragonCA",
     "base": "https://red-dragon.ca",
@@ -1808,6 +2632,20 @@
       "citadel",
       "40k",
       "old-world"
+    ]
+  },
+  {
+    "key": "retronorthgames",
+    "name": "Retro North Games",
+    "base": "https://retronorthgames.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "the-horus-heresy",
+      "kill-team"
     ]
   },
   {
@@ -1869,6 +2707,30 @@
     ]
   },
   {
+    "key": "theswordandboardtoro",
+    "name": "The Sword & Board",
+    "base": "https://theswordandboardtoronto.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "gw-specialist-boxed-games",
+      "games-workshop-specialist-games"
+    ]
+  },
+  {
+    "key": "tistaminis",
+    "name": "Tistaminis",
+    "base": "https://tistaminis.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "blood-bowl"
+    ]
+  },
+  {
     "key": "topshelf",
     "name": "Top Shelf Co",
     "base": "https://topshelfco.ca",
@@ -1910,6 +2772,16 @@
     ]
   },
   {
+    "key": "upnorthgames",
+    "name": "Up North Games",
+    "base": "https://upnorthgames.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
     "key": "vortex",
     "name": "Vortex Games",
     "base": "https://vortexgames.ca",
@@ -1936,6 +2808,16 @@
     ]
   },
   {
+    "key": "waypointgames",
+    "name": "Waypoint Games CA",
+    "base": "https://waypointgames.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40k"
+    ]
+  },
+  {
     "key": "wizardtower",
     "name": "Wizard's Tower",
     "base": "https://store.wizardtower.com",
@@ -1943,6 +2825,68 @@
     "country": "CA",
     "collections": [
       "universes-beyond-warhammer-40-000"
+    ]
+  },
+  {
+    "key": "1stcapitalgaming",
+    "name": "1st Capital Gaming",
+    "base": "https://1stcapitalgaming.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "4gsgames",
+    "name": "4GS Games",
+    "base": "https://4gsgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k",
+      "warhammer-age-of-sigmar",
+      "kill-team"
+    ]
+  },
+  {
+    "key": "aztoyhobby",
+    "name": "A-Z Toy Hobby",
+    "base": "https://aztoyhobby.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "citadel-colour-paints",
+      "new-arrival-warhammer",
+      "warhammer-40-000",
+      "warhammer-40-000-in-stock"
+    ]
+  },
+  {
+    "key": "accidentallycoolgame",
+    "name": "Accidentally Cool Games",
+    "base": "https://accidentallycoolgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000",
+      "40k-codex",
+      "citadel-spray-paint"
+    ]
+  },
+  {
+    "key": "afk",
+    "name": "AFK Games",
+    "base": "https://shop.afk.games",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "games-workshop-1",
+      "games-workshop-paints",
+      "warhammer-40k",
+      "necromunda"
     ]
   },
   {
@@ -1988,6 +2932,17 @@
     ]
   },
   {
+    "key": "cobbco",
+    "name": "Arena Games",
+    "base": "https://cobbco.store",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop-citadel-acrylic-paints",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
     "key": "armada",
     "name": "Armada Games",
     "base": "https://shoparmada.com",
@@ -2014,6 +2969,42 @@
     ]
   },
   {
+    "key": "atlantiscomics",
+    "name": "Atlantis Games & Comics",
+    "base": "https://atlantis-comics.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "general-gw",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "the-horus-heresy"
+    ]
+  },
+  {
+    "key": "bamcards",
+    "name": "BAM Cards",
+    "base": "https://bamcards.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-1"
+    ]
+  },
+  {
+    "key": "bardsandcards",
+    "name": "Bards & Cards",
+    "base": "https://bardsandcards.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-age-of-sigmar-the-ultimate-fantasy-miniatures-game",
+      "citadel-paints-and-accessories"
+    ]
+  },
+  {
     "key": "baxtersrealm",
     "name": "Baxter's Cards & Games",
     "base": "https://baxtersrealm.com",
@@ -2028,6 +3019,21 @@
     ]
   },
   {
+    "key": "bazookagamestore",
+    "name": "Bazooka Games",
+    "base": "https://bazookagamestore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel-hobbies-paint",
+      "warhammer-40k-orks",
+      "warhammer-40k-necrons",
+      "age-of-sigmar-ogors",
+      "age-of-sigmar-skaven",
+      "age-of-sigmar-daemons"
+    ]
+  },
+  {
     "key": "blackvaultgaming",
     "name": "Black Vault Gaming",
     "base": "https://blackvaultgaming.com",
@@ -2037,6 +3043,63 @@
       "universes-beyond-the-lord-of-the-rings-tales-of-middle-earth",
       "universes-beyond-warhammer-40-000",
       "commander-the-lord-of-the-rings-tales-of-middle-earth"
+    ]
+  },
+  {
+    "key": "bluejayscauldron",
+    "name": "Blue Jay's Cauldron",
+    "base": "https://bluejayscauldron.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k"
+    ]
+  },
+  {
+    "key": "bonafidecomicstore",
+    "name": "Bona Fide Comics",
+    "base": "https://bonafidecomicstore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
+    "key": "brazosvalleyhobbyand",
+    "name": "Brazos Valley Hobby & Games",
+    "base": "https://brazosvalleyhobbyandgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar",
+      "warhammer-the-old-world",
+      "necromunda",
+      "kill-team",
+      "cities-of-sigmar",
+      "blood-bowl"
+    ]
+  },
+  {
+    "key": "brickandboardgames",
+    "name": "Brick & Board Games and Cards",
+    "base": "https://brickandboardgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "bytheboardgames",
+    "name": "By The Board Games & Entertainment",
+    "base": "https://bytheboardgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000"
     ]
   },
   {
@@ -2054,6 +3117,17 @@
     ]
   },
   {
+    "key": "capesandcrepes",
+    "name": "Capes and Crepes Board Game Cafe",
+    "base": "https://capesandcrepes.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
     "key": "championcardcollector",
     "name": "Champion Card Collector",
     "base": "https://championcardcollector.com",
@@ -2065,6 +3139,40 @@
       "necromunda",
       "kill-team",
       "blood-bowl"
+    ]
+  },
+  {
+    "key": "coldfoilheroes",
+    "name": "Cold Foil Heroes",
+    "base": "https://coldfoilheroes.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel-colour",
+      "warhammer-age-of-sigmar",
+      "warhammer-40k-kill-teams"
+    ]
+  },
+  {
+    "key": "collectbinghamton",
+    "name": "Collect Binghamton",
+    "base": "https://collectbinghamton.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000",
+      "warhammer-40k"
+    ]
+  },
+  {
+    "key": "collectorstore",
+    "name": "Collector Store",
+    "base": "https://collectorstore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-warhammer",
+      "warhammer-tone-pro-paint"
     ]
   },
   {
@@ -2094,6 +3202,20 @@
     ]
   },
   {
+    "key": "cosmicgames",
+    "name": "Cosmic Games",
+    "base": "https://cosmicgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel-1",
+      "warhammer",
+      "gw",
+      "warhammer-1",
+      "new-warhammer"
+    ]
+  },
+  {
     "key": "cosmicbham",
     "name": "Cosmic Games Birmingham",
     "base": "https://cosmicbham.com",
@@ -2105,6 +3227,16 @@
       "citadel-1",
       "new-warhammer",
       "warhammer-1"
+    ]
+  },
+  {
+    "key": "creatorpultgames",
+    "name": "Creatorpult Games",
+    "base": "https://creatorpultgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
     ]
   },
   {
@@ -2132,6 +3264,64 @@
     ]
   },
   {
+    "key": "dicehead",
+    "name": "DICEHEAD.COM",
+    "base": "https://www.dicehead.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k",
+      "necromunda",
+      "40k-orks",
+      "40k-necrons",
+      "kill-team",
+      "40k-tyranids",
+      "40k-tau-empire",
+      "40k-core-items"
+    ]
+  },
+  {
+    "key": "digitalheroes",
+    "name": "Digital Heroes",
+    "base": "https://digitalheroes.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "diostreasures",
+    "name": "Dio's Treasures",
+    "base": "https://diostreasures.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "envycardstore",
+    "name": "Envy Cards",
+    "base": "https://envycardstore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "epictradingcollectib",
+    "name": "Epic Trading Collectibles",
+    "base": "https://epictradingcollectibles.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
     "key": "ettingames",
     "name": "Ettin Games",
     "base": "https://ettingames.com",
@@ -2145,6 +3335,29 @@
     ]
   },
   {
+    "key": "expresstcg",
+    "name": "EXPRESS TCG",
+    "base": "https://expresstcg.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40000",
+      "warhammer-age-of-sigmar",
+      "warhammer-supplies"
+    ]
+  },
+  {
+    "key": "five6gaming",
+    "name": "FIVE6 Gaming",
+    "base": "https://five6gaming.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "all-warhammer"
+    ]
+  },
+  {
     "key": "flipsidegaming",
     "name": "Flipside Gaming",
     "base": "https://flipsidegaming.com",
@@ -2155,6 +3368,40 @@
       "age-of-sigmar",
       "warhammer-40k",
       "warhammer-40-000-commander"
+    ]
+  },
+  {
+    "key": "shop2",
+    "name": "Four Horsemen Comics and Gaming of Morgantown",
+    "base": "https://shop.fourhorsemencomics.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k"
+    ]
+  },
+  {
+    "key": "foxfablehaven",
+    "name": "Fox Fable Haven",
+    "base": "https://foxfablehaven.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "frontlinegaming",
+    "name": "Frontline Gaming",
+    "base": "https://store.frontlinegaming.org",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "citadel-1",
+      "necromunda",
+      "blood-bowl",
+      "citadel-dry"
     ]
   },
   {
@@ -2183,6 +3430,38 @@
     ]
   },
   {
+    "key": "gambitgames",
+    "name": "Gambit Games",
+    "base": "https://gambit-games.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k"
+    ]
+  },
+  {
+    "key": "gglayton",
+    "name": "Game Grid Layton",
+    "base": "https://gglayton.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
+    "key": "gameonarizona",
+    "name": "Game On Cottonwood",
+    "base": "https://gameonarizona.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "kill-team",
+      "citadel-air"
+    ]
+  },
+  {
     "key": "gamerealm",
     "name": "Game Realm",
     "base": "https://gamerealm.com",
@@ -2192,6 +3471,18 @@
       "warhammer",
       "warhammer-40k",
       "age-of-sigmar-1"
+    ]
+  },
+  {
+    "key": "gamecraftgamestore",
+    "name": "GameCraft",
+    "base": "https://gamecraftgamestore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel-paints-and-supplies",
+      "citadel-pot-paints",
+      "warhammer-40k"
     ]
   },
   {
@@ -2206,6 +3497,18 @@
       "kill-team",
       "blood-bowl",
       "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "gamersgauntlet",
+    "name": "Gamer's Gauntlet",
+    "base": "https://gamersgauntlet.net",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop-minis",
+      "citadel-brushes",
+      "citadel-essentials"
     ]
   },
   {
@@ -2263,6 +3566,30 @@
     ]
   },
   {
+    "key": "gclegion",
+    "name": "Gamers-Corps",
+    "base": "https://gclegion.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "40k",
+      "bloodbowl",
+      "necromunda",
+      "kill-team"
+    ]
+  },
+  {
+    "key": "gameskingstore",
+    "name": "Games King",
+    "base": "https://gameskingstore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "black-library-by-games-workshop"
+    ]
+  },
+  {
     "key": "gamescape",
     "name": "Gamescape",
     "base": "https://gamescape.com",
@@ -2277,6 +3604,68 @@
     ]
   },
   {
+    "key": "gamezenter",
+    "name": "Gamezenter",
+    "base": "https://gamezenter.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel-paint",
+      "games-workshop-titles",
+      "universe-warhammer-40k",
+      "product-line-warhammer-40-1",
+      "product-line-warhammer-40-000",
+      "universe_warhammer-40k",
+      "warhammer-fantasy-the-old-world",
+      "necromunda"
+    ]
+  },
+  {
+    "key": "gaminggiant",
+    "name": "Gaming Giant",
+    "base": "https://gaminggiant.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel-and-foundation-paints",
+      "warhammer-sealed",
+      "citadel-contrast-paints"
+    ]
+  },
+  {
+    "key": "gatorscardden",
+    "name": "Gator's Card Den",
+    "base": "https://gatorscardden.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
+    "key": "bentonville",
+    "name": "Gear Gaming Bentonville",
+    "base": "https://bentonville.geargamingstore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k",
+      "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "fayetteville",
+    "name": "Gear Gaming Fayetteville",
+    "base": "https://fayetteville.geargamingstore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "discounted-warhammer",
+      "warhammer-start-here"
+    ]
+  },
+  {
     "key": "geekerygames",
     "name": "Geekery Games",
     "base": "https://geekerygames.com",
@@ -2287,6 +3676,79 @@
       "warhammer-in-stock",
       "warhammer-age-of-sigmar",
       "horus-heresy"
+    ]
+  },
+  {
+    "key": "store",
+    "name": "GG Legends",
+    "base": "https://store.gglehi.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "kill-team",
+      "necromunda"
+    ]
+  },
+  {
+    "key": "gnomegames",
+    "name": "Gnome Games",
+    "base": "https://gnomegames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-40k",
+      "40k",
+      "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "goldengategames",
+    "name": "Golden Gate Games",
+    "base": "https://golden-gate-games.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "gongaii",
+    "name": "Gongaii Games, Inc",
+    "base": "https://gongaii.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "graygauntletgames",
+    "name": "Gray Gauntlet Games",
+    "base": "https://graygauntletgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel-paint",
+      "warhammer-40-000",
+      "warhammer-aos",
+      "citadel-brushes",
+      "citadel-tools"
+    ]
+  },
+  {
+    "key": "greendoorcollectible",
+    "name": "Green Door Collectibles",
+    "base": "https://greendoorcollectibles.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "warhammer-blood-bowl"
     ]
   },
   {
@@ -2333,6 +3795,18 @@
     ]
   },
   {
+    "key": "holohaven",
+    "name": "Holo Haven",
+    "base": "https://holohaven.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop-products",
+      "warhammer-models",
+      "warhammer-supplemental"
+    ]
+  },
+  {
     "key": "impactgamingcenter",
     "name": "Impact Gaming Center",
     "base": "https://impactgamingcenter.gg",
@@ -2345,8 +3819,44 @@
     ]
   },
   {
+    "key": "jandjgamingfactory",
+    "name": "J and J Gaming Factory",
+    "base": "https://jandjgamingfactory.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "black-friday-2025-warhammer-deals-copy-1"
+    ]
+  },
+  {
+    "key": "j2games",
+    "name": "J2Games",
+    "base": "https://j2games.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-1",
+      "warhammer-board-games"
+    ]
+  },
+  {
+    "key": "jnstoys",
+    "name": "Jnstoys",
+    "base": "https://jnstoys.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "citadel-paints",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
     "key": "journeysendgames",
-    "name": "Journey\u2019s End Games",
+    "name": "Journey’s End Games",
     "base": "https://journeysendgames.com",
     "market": "US",
     "country": "US",
@@ -2355,6 +3865,52 @@
       "magic-the-gathering-commander-the-lord-of-the-rings-tales-of-middle-earth",
       "magic-the-gathering-universes-beyond-the-lord-of-the-rings-tales-of-middle-earth",
       "art-series-universes-beyond-the-lord-of-the-rings-tales-of-middle-earth-magic-the-gathering"
+    ]
+  },
+  {
+    "key": "kingstablegames",
+    "name": "King's Table Games",
+    "base": "https://kingstablegames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "krakendice",
+    "name": "Kraken Dice",
+    "base": "https://krakendice.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-40k",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "kryptonitekollectibl",
+    "name": "Kryptonite Kollectibles",
+    "base": "https://kryptonitekollectibles.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "blood-bowl"
+    ]
+  },
+  {
+    "key": "lthobbies",
+    "name": "L.T.'s Hobbies & Games",
+    "base": "https://lthobbies.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop-40-000",
+      "games-workshop-citadel"
     ]
   },
   {
@@ -2399,6 +3955,41 @@
     ]
   },
   {
+    "key": "shopofmagic",
+    "name": "Little Shop of Magic",
+    "base": "https://shop.shopofmagic.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-tone-pro",
+      "games-workshop-new-releases"
+    ]
+  },
+  {
+    "key": "mainephasehobbies",
+    "name": "Maine Phase Hobbies & Games",
+    "base": "https://mainephasehobbies.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-accessories"
+    ]
+  },
+  {
+    "key": "manathril",
+    "name": "Manathril Cards and Collectibles",
+    "base": "https://manathril.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "age-of-sigmar",
+      "warhammer-the-horus-heresy",
+      "warhammer-blood-bowl"
+    ]
+  },
+  {
     "key": "manyrealms",
     "name": "Many Realms",
     "base": "https://manyrealms.com",
@@ -2412,6 +4003,19 @@
     ]
   },
   {
+    "key": "maziply",
+    "name": "Maziply Toys",
+    "base": "https://maziply.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "citadel",
+      "citadel-paints",
+      "warhammer-40k"
+    ]
+  },
+  {
     "key": "metagames",
     "name": "MetaGames.toys",
     "base": "https://metagames.toys",
@@ -2422,6 +4026,21 @@
       "warhammer",
       "gamesworkshop",
       "warhammer-40-000"
+    ]
+  },
+  {
+    "key": "millenniumgames",
+    "name": "Millennium Games",
+    "base": "https://shop.millenniumgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel-paints",
+      "age-of-sigmar",
+      "warhammer-40-000",
+      "necromunda",
+      "kill-team",
+      "the-old-world"
     ]
   },
   {
@@ -2448,6 +4067,113 @@
       "games-workshop",
       "warhammer-40-000",
       "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "motorcitygaming",
+    "name": "Motor City Gaming",
+    "base": "https://motorcitygaming.net",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-40k",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "moxboardinghouse",
+    "name": "Mox Boarding House",
+    "base": "https://moxboardinghouse.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "moxvalleygames",
+    "name": "Mox Valley Games",
+    "base": "https://moxvalleygames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k",
+      "age-of-sigmar",
+      "warhammer-the-horus-heresy",
+      "kill-team"
+    ]
+  },
+  {
+    "key": "mrmuffinstrains",
+    "name": "MrMuffin'sTrains",
+    "base": "https://mrmuffinstrains.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "in-stock-warhammer",
+      "necromunda",
+      "kill-team"
+    ]
+  },
+  {
+    "key": "mythicos",
+    "name": "Mythicos",
+    "base": "https://www.mythicos.store",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "necromunda"
+    ]
+  },
+  {
+    "key": "nerdzoic",
+    "name": "Nerdzoic",
+    "base": "https://nerdzoic.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "nexuslgs",
+    "name": "NEXUS Games & Collectibles",
+    "base": "https://nexuslgs.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "nexustabletopgames",
+    "name": "Nexus Tabletop Games",
+    "base": "https://nexustabletopgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "kill-team",
+      "gw-spray-can"
+    ]
+  },
+  {
+    "key": "nutmeggames",
+    "name": "Nutmeg Games",
+    "base": "https://nutmeggames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-40k",
+      "paint-citadel"
     ]
   },
   {
@@ -2491,6 +4217,51 @@
     ]
   },
   {
+    "key": "phatcatzgaming",
+    "name": "Phat Catz Gaming",
+    "base": "https://phatcatzgaming.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40000",
+      "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "planetcomicsdirect",
+    "name": "Planet Comics Greenville",
+    "base": "https://www.planetcomicsdirect.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "all-warhammer",
+      "warhammer-40k",
+      "warhammer-paint",
+      "blood-bowl"
+    ]
+  },
+  {
+    "key": "portalsshop",
+    "name": "Portals Games & Comics - Easton",
+    "base": "https://portalsshop.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
+    "key": "progressccg",
+    "name": "Progress CCG",
+    "base": "https://progressccg.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop-warhammer"
+    ]
+  },
+  {
     "key": "prosoulgames",
     "name": "ProSoul Games",
     "base": "https://prosoulgames.com",
@@ -2504,6 +4275,46 @@
     ]
   },
   {
+    "key": "pfcomics",
+    "name": "Pulp Fiction Comics & Games",
+    "base": "https://pfcomics.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "all-games-workshop",
+      "warhammer-40-000",
+      "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "reapergamestore",
+    "name": "Reaper Game Store",
+    "base": "https://reapergamestore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "warhammer-40k-1",
+      "warhammer-40k",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "recessgames",
+    "name": "Recess Games",
+    "base": "https://recessgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-1",
+      "age-of-sigmar",
+      "warhammer-40-000",
+      "necromunda",
+      "kill-team"
+    ]
+  },
+  {
     "key": "redfoxgamingonline",
     "name": "Red Fox Gaming",
     "base": "https://redfoxgamingonline.com",
@@ -2512,6 +4323,26 @@
     "collections": [
       "warhammer-40-000",
       "the-lord-of-the-rings-tales-of-middle-earth"
+    ]
+  },
+  {
+    "key": "redraccoongames",
+    "name": "Red Raccoon Games",
+    "base": "https://redraccoongames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel"
+    ]
+  },
+  {
+    "key": "retrogamingofdenver",
+    "name": "Retro Gaming of Denver",
+    "base": "https://retrogamingofdenver.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k"
     ]
   },
   {
@@ -2543,6 +4374,136 @@
     ]
   },
   {
+    "key": "sagaconcepts",
+    "name": "Saga Concepts",
+    "base": "https://sagaconcepts.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "40k-army",
+      "gw-tools"
+    ]
+  },
+  {
+    "key": "saltcitygames",
+    "name": "Salt City Games",
+    "base": "https://saltcitygames.shop",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "shallweplaygames",
+    "name": "Shall We Play? The Games and More Store",
+    "base": "https://shallweplaygames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "age-of-sigmar",
+      "warhammer-40k-kill-team"
+    ]
+  },
+  {
+    "key": "shufflenroll",
+    "name": "Shuffle N Roll",
+    "base": "https://shufflenroll.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "gw-best-sellers"
+    ]
+  },
+  {
+    "key": "sleevedupcollectible",
+    "name": "Sleeved Up Collectibles",
+    "base": "https://sleevedupcollectibles.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-40000",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "southtexastcg",
+    "name": "South Texas TCG",
+    "base": "https://southtexastcg.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "horus-heresy",
+      "old-world",
+      "wh40k-codex"
+    ]
+  },
+  {
+    "key": "spacecoast",
+    "name": "Space Coast Games",
+    "base": "https://spacecoast.games",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "40k-miniatures",
+      "citadel-accessories",
+      "age-of-sigmar-miniatures-sets"
+    ]
+  },
+  {
+    "key": "spraygunner",
+    "name": "SprayGunner",
+    "base": "https://spraygunner.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "games-workshop",
+      "warhammer-models",
+      "citadel-paint",
+      "warhammer-40k"
+    ]
+  },
+  {
+    "key": "stateofcomics",
+    "name": "State of Comics",
+    "base": "https://stateofcomics.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop"
+    ]
+  },
+  {
+    "key": "stevensongames",
+    "name": "Stevenson Games",
+    "base": "https://stevensongames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar",
+      "citadel-paints",
+      "citadel-tools"
+    ]
+  },
+  {
+    "key": "superanimestore",
+    "name": "Super Anime Store",
+    "base": "https://superanimestore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
     "key": "sweetsandgeeks",
     "name": "Sweets and Geeks",
     "base": "https://sweetsandgeeks.com",
@@ -2553,6 +4514,17 @@
       "warhammer-40k",
       "kill-team",
       "blood-bowl-1"
+    ]
+  },
+  {
+    "key": "swordsandspoons",
+    "name": "Swords and Spoons",
+    "base": "https://swordsandspoons.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k",
+      "age-of-sigmar"
     ]
   },
   {
@@ -2568,6 +4540,58 @@
       "necromunda-inv",
       "kill-team-inv",
       "blood-bowl-inv"
+    ]
+  },
+  {
+    "key": "tcwarroom",
+    "name": "TC War Room",
+    "base": "https://tc-warroom.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40kl",
+      "citadel-colour",
+      "kill-team",
+      "necromunda"
+    ]
+  },
+  {
+    "key": "arcanumsanctorum",
+    "name": "The Arcanum Sanctorum",
+    "base": "https://arcanumsanctorum.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "warhammer-40-1",
+      "warhammer-40-000",
+      "citadel-colour",
+      "horus-heresy"
+    ]
+  },
+  {
+    "key": "cardcooptcg",
+    "name": "The Card Coop",
+    "base": "https://cardcooptcg.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer"
+    ]
+  },
+  {
+    "key": "dragonstrove",
+    "name": "The Dragons Trove",
+    "base": "https://www.dragonstrove.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "games-workshop-1",
+      "warhammer-40k",
+      "warhammer-40k-1",
+      "warhammer-fantasy"
     ]
   },
   {
@@ -2598,6 +4622,20 @@
     ]
   },
   {
+    "key": "thegamersden",
+    "name": "The Gamers Den MN",
+    "base": "https://thegamersden.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "age-of-sigmar",
+      "warhammer-40-000",
+      "games-workshop-stockist",
+      "games-workshop-stockist-b200b"
+    ]
+  },
+  {
     "key": "evvgamingguild",
     "name": "The Gaming Guild",
     "base": "https://evvgamingguild.com",
@@ -2608,6 +4646,17 @@
       "40k-xeno",
       "40k-chaos",
       "kill-team"
+    ]
+  },
+  {
+    "key": "theguardtower",
+    "name": "The Guardtower",
+    "base": "https://theguardtower.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "age-of-sigmar"
     ]
   },
   {
@@ -2624,6 +4673,171 @@
     ]
   },
   {
+    "key": "themightyhobby",
+    "name": "The Mighty Hobby LLC",
+    "base": "https://themightyhobby.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "theportalcomicsandga",
+    "name": "The Portal Comics and Gaming",
+    "base": "https://theportalcomicsandgaming.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40k",
+      "paints-supplies-citadel",
+      "warhammer-other"
+    ]
+  },
+  {
+    "key": "totalescapegames",
+    "name": "Total Escape Games",
+    "base": "https://totalescapegames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "kill-team",
+      "horus-heresy-30k"
+    ]
+  },
+  {
+    "key": "toysoldiergames",
+    "name": "Toy Soldier Games",
+    "base": "https://toysoldiergames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "citadel",
+      "game_warhammer",
+      "series_40k",
+      "starting-40k"
+    ]
+  },
+  {
+    "key": "undiscoveredrealm",
+    "name": "Undiscovered Realm",
+    "base": "https://undiscoveredrealm.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-all",
+      "warhammer",
+      "warhammer-40k",
+      "kill-team"
+    ]
+  },
+  {
+    "key": "unpluggedgamestore",
+    "name": "Unplugged Gaming",
+    "base": "https://unpluggedgamestore.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40-000k"
+    ]
+  },
+  {
+    "key": "untappedmarket",
+    "name": "Untapped Market",
+    "base": "https://untappedmarket.games",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-40k",
+      "age-of-sigmar"
+    ]
+  },
+  {
+    "key": "uppercrust",
+    "name": "Upper Crust Games",
+    "base": "https://uppercrust.games",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "warhammer-40k",
+      "warhammer-age-of-sigmar"
+    ]
+  },
+  {
+    "key": "upscalehobbies",
+    "name": "UpScale Hobbies & Gaming",
+    "base": "https://upscalehobbies.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "citadel-colour",
+      "necromunda",
+      "citadel-tools"
+    ]
+  },
+  {
+    "key": "wargamesusa",
+    "name": "War Games USA",
+    "base": "https://www.wargamesusa.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "citadel",
+      "new-warhammer",
+      "horus-heresy",
+      "citadel-base-paints",
+      "kill-team"
+    ]
+  },
+  {
+    "key": "wargameportal",
+    "name": "Wargame Portal",
+    "base": "https://wargameportal.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "age-of-sigmar",
+      "citadel-paint",
+      "warhammer-40-000",
+      "the-old-world"
+    ]
+  },
+  {
+    "key": "warsen",
+    "name": "Warsenal",
+    "base": "https://warsen.al",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "games-workshop",
+      "warhammer-colour",
+      "warhammer-tone-pro",
+      "warhammer-40k"
+    ]
+  },
+  {
+    "key": "wolfdentcg",
+    "name": "Wolf Den Gaming",
+    "base": "https://wolfdentcg.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "games-workshop"
+    ]
+  },
+  {
     "key": "wulfgaming",
     "name": "Wulf Gaming",
     "base": "https://wulfgaming.com",
@@ -2635,6 +4849,30 @@
       "warhammer-40-000",
       "warhammer-age-of-sigmar",
       "warhammer-the-old-world"
+    ]
+  },
+  {
+    "key": "zeroedingames",
+    "name": "Zeroed In Games",
+    "base": "https://zeroedingames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer",
+      "citadel-miniatures",
+      "warhammer-40-000"
+    ]
+  },
+  {
+    "key": "zulusgames",
+    "name": "Zulus Games",
+    "base": "https://zulusgames.com",
+    "market": "US",
+    "country": "US",
+    "collections": [
+      "warhammer-40000",
+      "age-of-sigmar",
+      "kill-team"
     ]
   }
 ]
