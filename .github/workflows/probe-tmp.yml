@@ -1,0 +1,21 @@
+name: Store probe (temporary)
+on:
+  push:
+    branches: [claude/project-thread-7av3np]
+permissions:
+  contents: write
+jobs:
+  probe:
+    if: contains(github.event.head_commit.message, 'store probe')
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node probe/probe3.mjs > probe/probe3.log 2>&1 || true
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f probe/results3.json probe/probe3.log && git commit -q -m "Probe results" && git push origin HEAD:claude/project-thread-7av3np
