@@ -111,3 +111,15 @@ the home, army, game, type and deals pages carry their eBay strip above their fi
 "Cheapest" badge; eBay is never counted as a store, never the "Best price", never in deals or the share image, and
 nothing is behind a toggle or a pop-up. Amazon and Wayland stay under the stores until they earn. Each surface has
 its own customid (`product-ebay`, `product-best-ebay`, `browse-ebay`) so the EPN report shows which earn.
+
+## 2026-10-28 — 392 stores, the US first
+
+**Decided (owner).** Before the launch posts, read every Warhammer stockist we can. A wide search (search engines for
+stores' Games Workshop collection pages, the r/Warhammer40k retailer list, the sister sites' registries) gave 395 new
+candidate shops; probed with the first 711, 184 more carry 40+ Games Workshop products in a readable Shopify feed
+in one of our five currencies: 113 US, 30 CA, 27 UK, 11 AU, 3 NZ. The registry is now 392 stores (US 165, CA 90, UK 78,
+AU 50, NZ 9). The first registry kept only the 50 biggest US stores; that cap is gone. The import's timeout is 300
+minutes, still two stores at a time (Shopify throttles by IP).
+
+Still unreadable, so still missing: Element Games, Firestorm, Wayland, Miniature Market, Noble Knight and the other
+custom-built big discounters. The same identity rules apply to every new store: a wrong merge is worse than a gap.
