@@ -70,3 +70,12 @@ test("a code-less listing joins only by an exact cleaned title held by one produ
   assert.equal(g[1], g[0]);
   assert.equal(g[2], -1);
 });
+
+test("bare box codes at a title's start or end, or after #, never in the middle", () => {
+  const short = (t: string) => codesOf(t, []).find((c) => c.kind === "short")?.value ?? null;
+  assert.equal(short("21-04 Warhammer Colour Base: Khorne Red"), "21-4");
+  assert.equal(short("Citadel Base: Khorne Red 21-04"), "21-4");
+  assert.equal(short("Citadel Base #21-53 Wraithbone"), "21-53");
+  assert.equal(short("Round Bases 25-32 mm adapters"), null);
+  assert.equal(short("Kill Team 2024-25 season"), null);
+});

@@ -23,8 +23,8 @@ export interface Offer {
   s: string; // store key
   p: number; // price, cents
   in: boolean; // orderable now
-  u: string; // product URL at the store
-  t: string; // the store's own title
+  u: string; // product path at the store ("/products/…"; offersFor() adds the store's base), or a full URL
+  t: string; // the store's own title (up to 100 characters)
   w?: number; // the store's own "was" (compare-at) price, cents, when it shows one
 }
 

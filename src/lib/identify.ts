@@ -4,7 +4,7 @@
 // buyer to the wrong box. So identity comes from the product codes the stores themselves carry, never from a fuzzy title:
 //
 //   • the short product code printed on every box, "48-75", "20-331", "301-85" (most stores' SKU, or in the title as
-//     "(46-51)" / "[48-75]"), compared as numbers so "20-052" and "20-52" agree;
+//     "(46-51)" / "[48-75]", or bare at the title's start or end), compared as numbers so "20-052" and "20-52" agree;
 //   • the 11-digit item number, "99120101498" / "60010205001" (some stores' SKU, a few put it in the title), and the
 //     13-digit "99189961221" + "06" form some stores use for paints;
 //   • the barcode, EAN-13 starting 5011921 (Games Workshop's prefix), or an ISBN for books.
@@ -22,6 +22,9 @@ export interface Code {
 
 const SHORT = /^(\d{2,3})-(\d{1,3})$/;
 const SHORT_IN_TITLE = /[([]\s*(\d{2,3})-(\d{1,3})\s*[)\]]/;
+// Paints and many stores put the code bare at the start or end of the title, or after "#": "21-04 Base: Khorne Red",
+// "Citadel Base: Leadbelcher 21-28", "Citadel Base #21-53 Wraithbone". Only there: inside a title "25-32" may be a size.
+const SHORT_BARE = /^(\d{2,3})-(\d{2,3})\s|\s(\d{2,3})-(\d{2,3})$|#\s?(\d{2,3})-(\d{2,3})\b/;
 const ITEM = /^(?:99|60)\d{9}$/;
 const ITEM_IN_TITLE = /[([]\s*((?:99|60)\d{9})\s*[)\]]/;
 const EAN_GW = /^5011921\d{6}$/;
@@ -55,6 +58,7 @@ export function codesOf(title: string, skus: (string | null | undefined)[]): Cod
   }
   let m: RegExpMatchArray | null;
   if ((m = title.match(SHORT_IN_TITLE))) add(shortCode(m[1], m[2]));
+  else if ((m = title.trim().match(SHORT_BARE))) add(shortCode(m[1] ?? m[3] ?? m[5], m[2] ?? m[4] ?? m[6]));
   if ((m = title.match(ITEM_IN_TITLE))) add({ kind: "item", value: m[1] });
   return out;
 }

@@ -51,8 +51,11 @@ export function product(id: string): Product | null {
 }
 
 /** A product's offers in a market, in stock first, then cheapest; only stores still in the registry. */
+/** A market's offers for a product, from registered stores only, with each URL made absolute (the file stores the path). */
 export function offersFor(id: string, region: Region): Offer[] {
-  return (data().offers[REGIONS[region].market]?.[id] ?? []).filter((o) => STORE_BY_KEY.has(o.s));
+  return (data().offers[REGIONS[region].market]?.[id] ?? [])
+    .filter((o) => STORE_BY_KEY.has(o.s))
+    .map((o) => (o.u.startsWith("/") ? { ...o, u: `${STORE_BY_KEY.get(o.s)!.base}${o.u}` } : o));
 }
 export function rrpFor(id: string, region: Region): number | null {
   return data().rrp[REGIONS[region].market]?.[id] ?? null;

@@ -103,6 +103,16 @@ export function plausible(offers: Offer[], rrp: number | null): Offer[] {
   return out;
 }
 
+/** The path of a store URL: the data files hold "/products/…", and the site adds the store's base (a smaller file). */
+function relativeUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    return `${u.pathname}${u.search}`;
+  } catch {
+    return url;
+  }
+}
+
 export interface BuildResult {
   products: Product[];
   offers: OffersFile;
@@ -167,7 +177,7 @@ export function build(listings: StoreListing[], previous: Product[], today: stri
     for (const l of ls) {
       const list = byMarket.get(l.market) ?? [];
       // One offer per store: in stock first, then cheapest.
-      const o: Offer = { s: l.store, p: l.cents, in: l.inStock, u: l.url, t: l.title, ...(l.wasCents && l.wasCents > l.cents ? { w: l.wasCents } : {}) };
+      const o: Offer = { s: l.store, p: l.cents, in: l.inStock, u: relativeUrl(l.url), t: l.title.slice(0, 100), ...(l.wasCents && l.wasCents > l.cents ? { w: l.wasCents } : {}) };
       const at = list.findIndex((x) => x.s === l.store);
       if (at < 0) list.push(o);
       else if ((o.in && !list[at].in) || (o.in === list[at].in && o.p < list[at].p)) list[at] = o;
