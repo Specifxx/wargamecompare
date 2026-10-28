@@ -26,7 +26,7 @@ export function generateMetadata({ params }: { params: { region: string; faction
     description,
     alternates: regionAlternates(r.region, `/faction/${f.slug}`, REGION_LIST.map((x) => x.region).filter((x) => hubIndexable(summariesFor(x).filter((y) => y.product.faction === f.slug)))),
     robots: hubIndexable(items) ? undefined : { index: false, follow: true },
-    openGraph: ogFor(`/${r.region}/faction/${f.slug}`, title, description),
+    openGraph: ogFor(`/${r.region}/faction/${f.slug}`, title, description, `/${r.region}/faction/${f.slug}/opengraph-image`),
   };
 }
 

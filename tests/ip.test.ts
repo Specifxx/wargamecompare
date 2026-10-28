@@ -23,3 +23,13 @@ test("the footer carries the not-affiliated line", () => {
 test("the share image is text only (no product or GW art)", () => {
   assert.doesNotMatch(read("src/app/opengraph-image.tsx"), /<img|src=\{?["']https?:/);
 });
+
+test("the hub share cards are text only, force-dynamic and CDN-held, never ISR", () => {
+  assert.doesNotMatch(read("src/lib/og/hub-image.tsx"), /<img|src=\{?["']https?:|\.image\b/);
+  for (const r of ["type/[type]", "faction/[faction]", "game/[system]"]) {
+    const f = read(`src/app/[region]/${r}/opengraph-image.tsx`);
+    assert.match(f, /export const dynamic = "force-dynamic"/);
+    assert.doesNotMatch(f, /revalidate/);
+    assert.match(read(`src/app/[region]/${r}/page.tsx`), /\/opengraph-image`\)/, `${r} page points og:image at its own card`);
+  }
+});
