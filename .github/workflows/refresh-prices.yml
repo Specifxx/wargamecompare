@@ -1,0 +1,86 @@
+name: Refresh prices
+
+# The daily import: every store in src/data/stores.json → data/ → then the eBay pass → one commit to main whose
+# SUBJECT carries [deploy]: the day's one production build (scripts/vercel-ignore-build.sh). No database anywhere.
+# 19:20 UTC is early morning in Australia and New Zealand and evening in the UK.
+#
+# Secrets (Settings → Secrets and variables → Actions), all optional until eBay is set up:
+#   EBAY_CLIENT_ID, EBAY_CLIENT_SECRET   WargameCompare's own eBay developer keyset (the owner's second eBay account)
+#   EBAY_CAMPAIGN_ID                     WargameCompare's EPN campaign id (the listing links' affiliate tag)
+# Variable: EBAY_DAILY_CAP (default 4000 of the app's 5,000 a day).
+
+on:
+  schedule:
+    - cron: "20 19 * * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Only these stores or markets, comma-separated (blank = all)"
+        required: false
+        default: ""
+      ebay:
+        description: "Run the eBay pass"
+        type: boolean
+        default: true
+
+concurrency:
+  group: refresh-prices
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      # Each store's last good read (data/cache, git-ignored: binary churn has no place in the history), kept between
+      # runs in the Actions cache so a store that fails today keeps yesterday's listings for 72 hours.
+      - name: Restore the store reads
+        uses: actions/cache/restore@v4
+        with:
+          path: data/cache
+          key: store-reads-${{ github.run_id }}
+          restore-keys: store-reads-
+      - name: Import store prices
+        env:
+          ONLY: ${{ inputs.only }}
+        # Two stores at a time: Shopify throttles by IP across all of its storefronts.
+        run: |
+          if [ -n "$ONLY" ]; then npx tsx scripts/import.ts --concurrency 2 --only "$ONLY"; else npx tsx scripts/import.ts --concurrency 2; fi
+      - name: eBay listings
+        if: github.event_name == 'schedule' || inputs.ebay
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          EBAY_CAMPAIGN_ID: ${{ secrets.EBAY_CAMPAIGN_ID }}
+          EBAY_DAILY_CAP: ${{ vars.EBAY_DAILY_CAP }}
+        run: npx tsx scripts/ebay.ts
+      - name: Save the store reads
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/cache
+          key: store-reads-${{ github.run_id }}
+      - name: Commit the data (this commit is the daily release)
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then echo "No data changes."; exit 0; fi
+          git commit -q -m "data: daily prices $(date -u +%F) [deploy]" -m "Written by refresh-prices.yml run ${{ github.run_id }}. This is the one scheduled production build a day."
+          for i in 1 2 3 4; do
+            git push origin HEAD:main && exit 0
+            sleep $((2 ** i)); git pull --rebase origin main
+          done
+          exit 1

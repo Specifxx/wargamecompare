@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* WargameCompare palette: forge-dark by default (dark is the default theme, as on the sister sites), brass for the brand,
+   parchment light theme. Every pair used for text is WCAG AA (4.5:1) at the sizes the site uses it. */
+:root {
+  --bg: 245 242 235;
+  --surface: 255 255 255;
+  --raised: 250 248 243;
+  --line: 226 221 210;
+  --ink: 24 22 20;
+  --muted: 92 88 80;
+  --faint: 104 99 90;
+  --brand: 138 82 14; /* bronze: white on it 5.6:1 */
+  --brand-ink: 255 255 255;
+  --brand-soft: 247 236 214;
+  --brand-strong: 112 64 8;
+  --spark: 178 34 34; /* crimson, highlights only */
+  --open: 20 118 56;
+  --open-soft: 226 245 232;
+  --sold: 100 104 115;
+  --sold-soft: 238 238 240;
+  --stale: 143 88 0;
+  --stale-soft: 253 243 219;
+  --ad: 243 246 252;
+  --ad-line: 120 128 148;
+  --shadow: 24 22 18;
+  --hdr: 60px;
+  color-scheme: light;
+}
+
+:root:not([data-theme="light"]) {
+  --bg: 14 14 15;
+  --surface: 23 22 22;
+  --raised: 30 29 28;
+  --line: 48 45 42;
+  --ink: 240 236 228;
+  --muted: 172 166 156;
+  --faint: 146 140 131;
+  --brand: 226 172 82; /* brass: 9.6:1 on --bg */
+  --brand-ink: 26 18 6;
+  --brand-soft: 56 42 18;
+  --brand-strong: 240 200 130;
+  --spark: 230 90 80;
+  --open: 74 206 120;
+  --open-soft: 20 48 30;
+  --sold: 150 154 164;
+  --sold-soft: 38 40 46;
+  --stale: 240 180 60;
+  --stale-soft: 52 40 14;
+  --ad: 26 31 45;
+  --ad-line: 120 130 156;
+  --shadow: 0 0 0;
+  color-scheme: dark;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --hdr: 64px;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--hdr) + 8px);
+}
+body {
+  @apply bg-bg text-ink antialiased;
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+:focus-visible {
+  outline: 2px solid rgb(var(--brand));
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@layer components {
+  .page {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6;
+  }
+  .card {
+    @apply rounded-xl border border-line bg-surface shadow-card;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-brand-ink hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-surface text-ink hover:bg-raised;
+  }
+  .btn-soft {
+    @apply btn bg-brand-soft text-brand-strong hover:brightness-105;
+  }
+  /* eBay's own button blue: never passes for the site's own actions; every unit with one carries an "Ad" label. */
+  .btn-ad {
+    @apply btn border border-transparent bg-[#3665f3] text-white hover:bg-[#2a50c8];
+  }
+  /* Amazon's orange with dark text (8.6:1). */
+  .btn-amazon {
+    @apply btn border border-transparent bg-[#ffa41c] text-[#0f1111] hover:bg-[#fa8900];
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink/40;
+  }
+  .ad-box {
+    @apply rounded-xl border border-dashed border-ad-line bg-ad;
+  }
+  .ad-pill {
+    @apply inline-flex shrink-0 items-center rounded border border-ad-line px-1.5 text-[11px] font-bold leading-[18px] text-muted;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.12em] text-muted;
+  }
+  .plate {
+    @apply isolate overflow-hidden rounded-lg bg-white ring-1 ring-line;
+  }
+  :root:not([data-theme="light"]) .plate {
+    background-color: #f3f3f1;
+  }
+  .prose-wg p {
+    @apply mb-4 leading-7 text-muted;
+  }
+  .prose-wg h2 {
+    @apply mb-3 mt-8 font-display text-xl font-bold text-ink;
+  }
+  .prose-wg a {
+    @apply font-medium text-brand underline underline-offset-2;
+  }
+  .prose-wg ul {
+    @apply mb-4 list-disc space-y-1 pl-5 text-muted;
+  }
+}
+
+/* Theme toggle: both icons are drawn; CSS shows the one for the current theme (no hydration mismatch). */
+:root:not([data-theme="light"]) .theme-icon-dark,
+:root[data-theme="light"] .theme-icon-light {
+  display: none;
+}
