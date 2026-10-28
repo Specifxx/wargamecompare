@@ -15,7 +15,7 @@ The full step-by-step prompt is `/mnt/project-files/wargame-compare/setup-prompt
      the encoded Wayland search URL with `{q}` in it); unset hides Wayland
    - `EBAY_VERIFICATION_TOKEN` = 32–80 characters, the same value given to eBay for account-deletion notices
    - `GOOGLE_SITE_VERIFICATION` = Search Console's HTML-tag token (optional if verified by DNS)
-   - `NEXT_PUBLIC_CONTACT_EMAIL` (optional)
+   - `NEXT_PUBLIC_CONTACT_EMAIL` (optional; the site uses compareempire@gmail.com without it)
 2. **Domain**: add `wargamecompare.com` (the bare domain only) in Vercel; at the registrar ADD the records Vercel asks
    for. Never redirect the apex to www, and never change or delete an existing record (the 2026-10-26 outage on the
    sister sites came from www switches).

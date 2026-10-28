@@ -5,7 +5,7 @@ export const SITE_NAME = "WargameCompare";
 export const SITE_DOMAIN = "wargamecompare.com";
 export const SITE_URL = normaliseOrigin(process.env.NEXT_PUBLIC_SITE_URL) ?? `https://${SITE_DOMAIN}`;
 export const SITE_TAGLINE = "Miniature wargaming prices and stock, compared across independent stores in the UK, Australia, New Zealand, Canada and the US.";
-export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "riftcompare@gmail.com";
+export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "compareempire@gmail.com";
 
 // Games Workshop's IP rules (DECISIONS.md, "Name, logo and Games Workshop's trademarks"): the brand never contains
 // their marks, no GW artwork is ever hosted here (product photos are the stores' own, hotlinked), and every page
