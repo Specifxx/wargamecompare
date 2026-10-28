@@ -35,3 +35,16 @@ test("eBay strips: above every region page's footer, labelled Ad, never a store'
   assert.doesNotMatch(strip, /product\.image|p\.image/);
   for (const f of ["src/app/[region]/page.tsx", "src/components/HubPage.tsx", "src/app/[region]/p/[slug]/page.tsx", "src/app/[region]/deals/page.tsx"]) assert.match(read(f), /<EbayStrip/, f);
 });
+
+test("eBay goes first: pinned above the store rows and beside the best price, never the Cheapest badge", () => {
+  const page = read("src/app/[region]/p/[slug]/page.tsx");
+  assert.ok(page.indexOf('placement="product-ebay"') < page.indexOf("offers.map("), "eBay row before the store rows");
+  assert.match(page, /Shown first/);
+  assert.match(page, /placement="product-best-ebay"/);
+  assert.match(page, /o\.in && i === 0 && <span[^>]*>Cheapest</);
+  assert.match(read("src/components/Search.tsx"), /placement="browse-ebay"/);
+  for (const [f, grid] of [["src/app/[region]/page.tsx", "<ProductGrid"], ["src/components/HubPage.tsx", "<ProductGrid"], ["src/app/[region]/deals/page.tsx", "list.map("]]) {
+    const s = read(f);
+    assert.ok(s.indexOf("<EbayStrip") < s.indexOf(grid), `${f}: eBay strip above the first list`);
+  }
+});

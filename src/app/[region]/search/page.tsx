@@ -25,6 +25,7 @@ export default function SearchPage({ params }: { params: { region: string } }) {
         factions={FACTIONS.map((f) => [f.slug, f.name])}
         types={TYPES.map((t) => [t.slug, t.name])}
         ebayBase={ebaySearchUrl("QUERY", r.region, "browse-empty")}
+        ebayBrowse={ebaySearchUrl("QUERY", r.region, "browse-ebay")}
       />
     </div>
   );

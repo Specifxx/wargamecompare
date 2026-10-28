@@ -5,7 +5,7 @@
 // day, nothing shared with the card-game sites. The run spends at most EBAY_DAILY_CAP (default 4,000) and never more
 // than the app's own remaining count minus a reserve.
 //
-// THE ROWS are display only: shown as a labelled marketplace row under the stores, never counted as a store, never
+// THE ROWS are display only: shown as a labelled marketplace row pinned above the stores, never counted as a store, never
 // the "best price", never in deals.
 import { titleTokens } from "@/lib/identify";
 import { refuse } from "@/lib/listing-filter";

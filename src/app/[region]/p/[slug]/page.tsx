@@ -10,6 +10,7 @@ import {
   amazonLabel,
   amazonSearchUrl,
   EBAY_DISCLOSURE,
+  ebayAffiliateUrl,
   ebayLabel,
   ebaySearchUrl,
   REL_PAID,
@@ -76,6 +77,14 @@ export default function ProductPage({ params }: { params: { region: string; slug
   const storeName = (k: string) => STORE_BY_KEY.get(k)?.name ?? k;
   const photoStore = offers.find((o) => o.u && p.image)?.s;
   const ebayCurrencyRegion: Region = region === "nz" ? "au" : region;
+  const ebayVsBest =
+    ebay && best && ebayCurrencyRegion === region
+      ? ebay.p > best.p
+        ? `+${Math.round(((ebay.p - best.p) / best.p) * 100)}% vs cheapest store`
+        : ebay.p < best.p
+          ? `${Math.round(((best.p - ebay.p) / best.p) * 100)}% under the cheapest store`
+          : "same as the cheapest store"
+      : null;
 
   const ld =
     productIndexable(s) && offers.some((o) => o.in)
@@ -156,6 +165,10 @@ export default function ProductPage({ params }: { params: { region: string; slug
                   <OutboundLink href={storeUrl(best.u, dealForHost(new URL(best.u).hostname)?.ref)} rel={REL_STORE} retailer={storeName(best.s)} placement="product-best" className="btn-primary px-6 py-3 text-base">
                     Buy at {storeName(best.s)}
                   </OutboundLink>
+                  <OutboundLink href={ebay ? ebayAffiliateUrl(ebay.u, region, "product-best-ebay") : ebaySearchUrl(p.name, region, "product-best-ebay")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-best-ebay" className="btn-ad px-5 py-3 text-base">
+                    {ebay ? `Or ${formatPrice(ebay.p, ebayCurrencyRegion)} on eBay` : "Compare on eBay"}
+                  </OutboundLink>
+                  <span className="ad-pill">Ad</span>
                   <StoreCode code={activeStoreCode(best.u)} />
                 </div>
                 <p className="mt-3 text-xs text-faint">Item price only; shipping is added at the store&rsquo;s checkout. {r.taxNote}</p>
@@ -188,12 +201,37 @@ export default function ProductPage({ params }: { params: { region: string; slug
           {offers.length ? `${p.name} prices at ${offers.length} ${offers.length === 1 ? "store" : "stores"} in ${r.inName}` : `Where to look for ${p.name} in ${r.inName}`}
         </h2>
         <div className="card divide-y divide-line overflow-hidden">
+          {/* eBay is pinned FIRST (owner, 2026-10-28), tagged "Shown first" and "Ad": never counted as a store, never the
+              "Cheapest" badge, and the store rows under it stay sorted by price. */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-ad px-4 py-3">
+            <div className="min-w-0 flex-1">
+              <p className="flex flex-wrap items-center gap-2 font-semibold">
+                {ebayLabel(region)} <span className="ad-pill">Ad</span> <span className="rounded-full bg-raised px-2 py-0.5 text-xs font-semibold text-muted">Shown first</span>
+              </p>
+              <p className="truncate text-xs text-faint">{ebay ? ebay.t : "New, Buy It Now listings"}</p>
+            </div>
+            {ebay && (
+              <div className="text-right">
+                <span className="tabular font-bold">{formatPrice(ebay.p, ebayCurrencyRegion)}</span>
+                <p className="text-xs text-faint">
+                  {ebay.sh === 0 ? "Free shipping" : ebay.sh ? `+ ${formatPrice(ebay.sh, ebayCurrencyRegion)} shipping` : "plus shipping"}
+                  {ebayVsBest && ` · ${ebayVsBest}`}
+                </p>
+              </div>
+            )}
+            <OutboundLink href={ebay ? ebayAffiliateUrl(ebay.u, region, "product-ebay") : ebaySearchUrl(p.name, region, "product-ebay")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-ebay" className="btn-ad">
+              {ebay ? "View on eBay" : "Search eBay"}
+            </OutboundLink>
+          </div>
           {offers.map((o, i) => {
             const code = activeStoreCode(o.u);
             return (
               <div key={o.s} className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
                 <div className="min-w-0 flex-1">
-                  <p className="font-semibold">{storeName(o.s)}</p>
+                  <p className="flex flex-wrap items-center gap-2 font-semibold">
+                    {storeName(o.s)}
+                    {o.in && i === 0 && <span className="rounded-full bg-open-soft px-2 py-0.5 text-xs font-bold text-open">Cheapest</span>}
+                  </p>
                   <p className="truncate text-xs text-faint" title={o.t}>{o.t}</p>
                 </div>
                 <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${o.in ? "bg-open-soft text-open" : "bg-sold-soft text-sold"}`}>{o.in ? "In stock" : "Sold out"}</span>
@@ -210,24 +248,6 @@ export default function ProductPage({ params }: { params: { region: string; slug
               </div>
             );
           })}
-          {/* Marketplaces: pinned under the stores, labelled, never counted as a store or ranked with them. */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-ad px-4 py-3">
-            <div className="min-w-0 flex-1">
-              <p className="flex items-center gap-2 font-semibold">
-                {ebayLabel(region)} <span className="ad-pill">Ad</span>
-              </p>
-              <p className="truncate text-xs text-faint">{ebay ? ebay.t : "New, Buy It Now listings"}</p>
-            </div>
-            {ebay && (
-              <div className="text-right">
-                <span className="tabular font-bold">{formatPrice(ebay.p, ebayCurrencyRegion)}</span>
-                <p className="text-xs text-faint">{ebay.sh === 0 ? "Free shipping" : ebay.sh ? `+ ${formatPrice(ebay.sh, ebayCurrencyRegion)} shipping` : "plus shipping"}</p>
-              </div>
-            )}
-            <OutboundLink href={ebay ? ebay.u : ebaySearchUrl(p.name, region, "product-ebay")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-ebay" className="btn-ad">
-              {ebay ? "View on eBay" : "Search eBay"}
-            </OutboundLink>
-          </div>
           {amazon && (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-ad px-4 py-3">
               <div className="min-w-0 flex-1">
@@ -256,7 +276,7 @@ export default function ProductPage({ params }: { params: { region: string; slug
           )}
         </div>
         <p className="mt-2 text-xs text-faint">
-          Sorted by price, in stock first; never by what we earn. {EBAY_DISCLOSURE} {amazon ? AMAZON_DISCLOSURE : ""}
+          eBay is pinned first as a labelled ad; the stores under it are sorted by price, in stock first, never by what we earn. {EBAY_DISCLOSURE} {amazon ? AMAZON_DISCLOSURE : ""}
           {updated && ` Store prices checked ${new Date(updated).toUTCString().slice(5, 22)} UTC.`}
         </p>
       </section>

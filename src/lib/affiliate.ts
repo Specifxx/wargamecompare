@@ -15,12 +15,14 @@ import type { Region } from "./regions";
 export const PLACEMENTS = [
   "product-best", // product page: the best-price card's button
   "product-table", // product page: the store price table
-  "product-ebay", // product page: the eBay row under the stores
+  "product-ebay", // product page: the eBay row pinned first in the price list
+  "product-best-ebay", // product page: the eBay button beside the best price
   "product-amazon", // product page: the Amazon row
   "product-wayland", // product page: the Wayland Games row
   "product-sticky", // product page, phones: the buy bar
   "product-soldout", // product page, sold out everywhere: the eBay / Amazon box
   "browse-empty", // browse with no results: eBay search
+  "browse-ebay", // browse with a query: the eBay row above the results
   "deals", // deals page rows
   "header", // the eBay item in the header
   "store-page", // a store page's visit link

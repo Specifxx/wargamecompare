@@ -46,6 +46,9 @@ export function HubPage({
           ))}
         </div>
       )}
+      <div className="mt-8">
+        <EbayStrip region={r.region} items={inStock} placement="ebay-strip-hub" heading={`${ebayQuery} on eBay`} />
+      </div>
       <section className="mt-8">
         <h2 className="mb-4 font-display text-xl font-bold">In stock ({inStock.length.toLocaleString("en")})</h2>
         {inStock.length ? <ProductGrid items={inStock.slice(0, SHOWN)} region={r.region} /> : <p className="text-muted">Nothing in stock at the stores we compare today.</p>}
@@ -55,9 +58,6 @@ export function HubPage({
           </p>
         )}
       </section>
-      <div className="mt-10">
-        <EbayStrip region={r.region} items={inStock} placement="ebay-strip-hub" heading={`${ebayQuery} on eBay`} />
-      </div>
       <div className="my-10">
         <EbayBox region={r.region} query={ebayQuery} heading={`${ebayQuery} on eBay`} placement={placement} />
       </div>

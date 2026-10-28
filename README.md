@@ -16,7 +16,7 @@ DexCompare, built on what they learned about cost.
   (`scripts/vercel-ignore-build.sh`). `claude/*` branches never deploy.
 - **Pages are cached by Vercel's CDN for a day** (`next.config.js`), not ISR, and no page reads a cookie or header.
 - **eBay** (`scripts/ebay.ts`, same workflow): the cheapest new Buy It Now listing that is really the product, through
-  WargameCompare's own eBay keyset. Shown as a labelled ad row under the stores, never as a store.
+  WargameCompare's own eBay keyset. Pinned first in the price list as a labelled ad row, never as a store.
 - **Self-monitoring**: `.github/workflows/ops-monitor.yml` runs `scripts/ops-monitor.ts` every six hours; a failing check
   fails the run and GitHub emails the owner.
 
