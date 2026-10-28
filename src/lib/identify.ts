@@ -1,3 +1,5 @@
+import { FACTIONS, SYSTEMS } from "./catalog";
+
 // Which store listings are the SAME product. Pure and tested (tests/identify.test.ts).
 //
 // A wrong merge is worse than a missed one (the rule every Compare site runs on): two different kits on one page send a
@@ -13,6 +15,14 @@
 // (a second-hand shop that reuses "06-09" for two different kits loses that code), and a listing whose title shares
 // almost no words with the product's other titles is dropped from it (a typo'd code). A listing with no code joins a
 // product only when its cleaned title equals one of that product's cleaned titles AND no other product has that title.
+
+// Words that name a faction, a game or a kind of product: shared by many kits, so they never prove two titles are the
+// same kit (step 4b of groupListings).
+const GENERIC = new Set(
+  [...FACTIONS.map((f) => f.name), ...SYSTEMS.map((x) => x.name), "Warhammer 40,000 Age of Sigmar Militarum Auxilla Astartes Chaos Imperium Xenos Grand Alliance Order Death Destruction Legiones Mechanicum Squad Team Unit Units Upgrades Upgrade Pack"]
+    .flatMap((n) => n.toLowerCase().split(/[^a-z0-9']+/))
+    .filter((t) => t.length > 2),
+);
 
 export type CodeKind = "short" | "item" | "ean";
 export interface Code {
@@ -186,6 +196,19 @@ export function groupListings(listings: Listing[]): number[] {
       const agree = others.filter((j) => overlap(mine, titleTokens(listings[j].title)) >= 0.5).length;
       if (agree === 0) out[i] = -1;
     }
+    // 4b. In a group of four or more stores, the words most of them use for the kit itself (not the faction or the game:
+    // "bullgryns", "brayherds", "dice") must appear in each listing. "Astra Militarum: Kasrkin" filed under the
+    // Bullgryns' code agrees with them on "astra militarum" alone, and is dropped here.
+    const live = idx.filter((i) => out[i] >= 0);
+    if (new Set(live.map((i) => listings[i].store)).size < 4) continue;
+    const toks = live.map((i) => new Set(titleTokens(listings[i].title).filter((t) => !GENERIC.has(t))));
+    const freq = new Map<string, number>();
+    for (const ts of toks) for (const t of ts) freq.set(t, (freq.get(t) ?? 0) + 1);
+    const core = [...freq].filter(([, n]) => n >= live.length * 0.5).map(([t]) => t);
+    if (!core.length) continue;
+    live.forEach((i, k) => {
+      if (!core.some((t) => toks[k].has(t))) out[i] = -1;
+    });
   }
 
   // 5. Code-less listings: attach by exact cleaned title, only when exactly one group has that title.

@@ -79,3 +79,17 @@ test("bare box codes at a title's start or end, or after #, never in the middle"
   assert.equal(short("Round Bases 25-32 mm adapters"), null);
   assert.equal(short("Kill Team 2024-25 season"), null);
 });
+
+test("a listing filed under another kit's code is dropped when it lacks the kit's own words", () => {
+  const L = (store: string, title: string) => ({ store, title, codes: codesOf(title, ["47-14"]) });
+  const g = groupListings([
+    L("a", "Astra Militarum: Bullgryns"),
+    L("b", "Warhammer 40k Astra Militarum Bullgryns / Ogryns"),
+    L("c", "Militarum Auxilla Bullgryns"),
+    L("d", "Bullgryns"),
+    L("e", "47-14 Warhammer 40K - Astra Militarum: Kasrkin"),
+  ]);
+  assert.equal(new Set(g.slice(0, 4)).size, 1);
+  assert.ok(g[0] >= 0);
+  assert.equal(g[4], -1);
+});

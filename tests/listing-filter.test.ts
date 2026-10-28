@@ -35,3 +35,10 @@ test("a code-less title from the store's own GW collection counts as Games Works
   assert.equal(refuse({ ...base, title: "Goliath Gang", gwCollection: true }), null);
   assert.equal(refuse({ ...base, title: "Goliath Gang - painted", gwCollection: true }), "not-new");
 });
+
+test("Magic cards from Warhammer collections are never Games Workshop product", () => {
+  const card = { productType: "", tags: [], hasCode: false, gwCollection: true };
+  assert.equal(refuse({ ...card, vendor: "Magic: The Gathering", title: "Celestine, the Living Saint (10) [Warhammer 40,000 Commander] Non Foil / Near Mint" }), "not-gw");
+  assert.equal(refuse({ ...card, vendor: "Games Workshop", title: "The Swarmlord - Surge Foil [40K-4] SP / Foil" }), "not-gw");
+  assert.equal(refuse({ ...card, vendor: "Games Workshop", title: "Lord Commander Solar (Horus Heresy)" }), null);
+});
