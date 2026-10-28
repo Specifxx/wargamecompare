@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { VercelPageViews } from "@/components/VercelPageViews";
 import { jsonLd, siteJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { SEASON_BOOT_SCRIPT } from "@/lib/season";
 import { THEME_BOOT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
@@ -31,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={display.variable} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT + SEASON_BOOT_SCRIPT }} />
         <link rel="preconnect" href="https://cdn.shopify.com" />
       </head>
       <body className="flex min-h-screen flex-col">
