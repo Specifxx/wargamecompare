@@ -1,3 +1,5 @@
+import { Pumpkin } from "./Pumpkin";
+
 // The WargameCompare mark: a hex (the tabletop's hex grid) with two opposing arrows (compare). Deliberately nothing that
 // resembles any Games Workshop mark or artwork; the name is plain text, and never contains their trademarks.
 export function LogoMark({ size = 28 }: { size?: number }) {
@@ -16,6 +18,7 @@ export function Logo() {
       <span className="font-display text-lg font-extrabold tracking-tight text-ink sm:text-xl">
         Wargame<span className="text-brand">Compare</span>
       </span>
+      <Pumpkin />
     </span>
   );
 }

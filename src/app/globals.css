@@ -141,3 +141,33 @@ body {
 :root[data-theme="light"] .theme-icon-light {
   display: none;
 }
+
+/* Halloween, 29–31 October 2026 (src/lib/season.ts): the brass turns pumpkin, highlights turn purple, a slim stripe runs
+   under the header and a pumpkin sits by the logo. Prices, store rows and the eBay/Amazon buttons keep their own colours,
+   and every text pair stays WCAG AA. Nothing moves and nothing covers the page. */
+.season-halloween {
+  display: none;
+}
+/* The pumpkin only where the header has room (a phone's header is already full; the stripe still shows there). */
+@media (min-width: 640px) {
+  html[data-season="halloween"] .season-halloween {
+    display: inline-block;
+  }
+}
+html[data-season="halloween"] {
+  --brand: 176 72 0; /* white on it 5.6:1, 5.0:1 as text on --bg */
+  --brand-soft: 253 232 210;
+  --brand-strong: 140 52 0;
+  --spark: 110 60 180;
+}
+html[data-season="halloween"]:not([data-theme="light"]) {
+  --brand: 255 140 40; /* 8.3:1 on --bg */
+  --brand-ink: 26 14 4;
+  --brand-soft: 60 32 12;
+  --brand-strong: 255 186 120;
+  --spark: 184 130 255;
+}
+html[data-season="halloween"] header.sticky {
+  border-bottom-color: transparent;
+  box-shadow: 0 3px 0 0 rgb(var(--brand)), 0 6px 0 0 rgb(var(--spark) / 0.85);
+}
