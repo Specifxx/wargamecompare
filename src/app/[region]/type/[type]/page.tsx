@@ -26,7 +26,7 @@ export function generateMetadata({ params }: { params: { region: string; type: s
     description,
     alternates: regionAlternates(r.region, `/type/${t.slug}`, REGION_LIST.map((x) => x.region).filter((x) => hubIndexable(summariesFor(x).filter((y) => y.product.type === t.slug)))),
     robots: hubIndexable(items) ? undefined : { index: false, follow: true },
-    openGraph: ogFor(`/${r.region}/type/${t.slug}`, title, description),
+    openGraph: ogFor(`/${r.region}/type/${t.slug}`, title, description, `/${r.region}/type/${t.slug}/opengraph-image`),
   };
 }
 

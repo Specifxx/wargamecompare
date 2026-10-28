@@ -27,6 +27,7 @@ export function regionAlternates(region: Region, rest: string, regions: Region[]
   return { canonical: `${SITE_URL}/${region}${rest}`, languages: regions.length > 1 ? languages : undefined };
 }
 
-export function ogFor(path: string, title: string, description: string): Metadata["openGraph"] {
-  return { type: "website", siteName: SITE_NAME, url: `${SITE_URL}${path}`, title, description, images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630 }] };
+/** `image` is a page's own share card (a hub's `opengraph-image` route); without one, the site's card. */
+export function ogFor(path: string, title: string, description: string, image = "/opengraph-image"): Metadata["openGraph"] {
+  return { type: "website", siteName: SITE_NAME, url: `${SITE_URL}${path}`, title, description, images: [{ url: `${SITE_URL}${image}`, width: 1200, height: 630 }] };
 }
