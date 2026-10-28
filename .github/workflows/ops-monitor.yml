@@ -1,0 +1,30 @@
+name: Ops monitor
+
+# Every six hours: is the import fresh, are the stores being read, is eBay within its budget, is the live site up?
+# A failing check fails this run and GitHub emails the owner (src/lib/ops.ts, docs in DEPLOY.md "Monitoring").
+on:
+  schedule:
+    - cron: "40 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          EBAY_ENABLED: ${{ secrets.EBAY_CLIENT_ID != '' && 'true' || 'false' }}
+          EBAY_DAILY_CAP: ${{ vars.EBAY_DAILY_CAP }}
+        run: npx tsx scripts/ops-monitor.ts
