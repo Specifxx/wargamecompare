@@ -98,3 +98,16 @@ in the sidebar and phone menu. A tile is the cheapest matching new listing when 
 price), else a tagged search for that product: never a store's photo and never a price we did not see. Each placement
 has its own customid (`ebay-strip-*`, `menu-ebay`, `landing-ebay`) so the EPN report shows which earn. Labelled Ad,
 outside the store comparison, never a pop-up.
+
+## 2026-10-28 — eBay shown first, never hidden
+
+**Decided (owner).** Until Wayland and the other programmes approve us, eBay is the commission that pays, so it goes
+first, as on the card sites: every product price list starts with the eBay row (the cheapest matching new listing, or
+a tagged search when the eBay pass has none), tagged "Ad" and "Shown first", with "+N% vs cheapest store" when it is
+dearer. The best price card gets an eBay button beside "Buy at", the search page an eBay row above the results, and
+the home, army, game, type and deals pages carry their eBay strip above their first grid instead of under it.
+
+**What did not change.** The store rows under eBay stay sorted by price, in stock first, and the cheapest keeps its
+"Cheapest" badge; eBay is never counted as a store, never the "Best price", never in deals or the share image, and
+nothing is behind a toggle or a pop-up. Amazon and Wayland stay under the stores until they earn. Each surface has
+its own customid (`product-ebay`, `product-best-ebay`, `browse-ebay`) so the EPN report shows which earn.

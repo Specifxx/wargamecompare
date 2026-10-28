@@ -43,8 +43,10 @@ every rule you change.
 ## Affiliates (how the site earns)
 
 - Every paid link goes through `src/lib/affiliate.ts` with a `wgc-<region>-<placement>` tag, and is `rel="sponsored"`.
-- eBay, Amazon and Wayland rows are labelled "Ad", pinned under the store rows, never counted as a store, never the
-  best price, never in deals. Store rows are sorted by price; commission never decides order.
+- eBay (owner, 2026-10-28) is pinned FIRST in every product price list, tagged "Ad" and "Shown first", with an eBay
+  button beside the best price and an eBay row above search results and the lists' first grid. Amazon and Wayland
+  rows stay under the stores. None is ever counted as a store, given the "Cheapest" badge, the best price or a deal;
+  the store rows stay sorted by price and the real cheapest keeps its badge.
 - Store partner codes (`src/lib/store-partner-deals.ts`) are a label beside a price, never a re-rank.
 
 ## eBay

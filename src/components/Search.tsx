@@ -23,12 +23,14 @@ export function Search({
   factions,
   types,
   ebayBase,
+  ebayBrowse,
 }: {
   region: Region;
   systems: [string, string][];
   factions: [string, string][];
   types: [string, string][];
   ebayBase: string;
+  ebayBrowse: string;
 }) {
   const [rows, setRows] = useState<Row[] | null>(null);
   const [q, setQ] = useState("");
@@ -107,6 +109,16 @@ export function Search({
         </label>
       </div>
       <p className="mt-4 text-sm text-faint">{rows ? `${results.length.toLocaleString("en")} results` : "Loading…"}</p>
+      {q && (results.length > 0 || !rows) && (
+        <div className="ad-box mt-3 flex flex-wrap items-center gap-3 px-4 py-3">
+          <p className="flex min-w-0 flex-1 items-center gap-2 text-sm font-semibold">
+            <span className="ad-pill">Ad</span> <span className="truncate">“{q}” on eBay, new and Buy It Now</span>
+          </p>
+          <OutboundLink href={ebayBrowse.replace("QUERY", encodeURIComponent(q))} rel="sponsored nofollow noopener" retailer="eBay" placement="browse-ebay" className="btn-ad">
+            Search eBay
+          </OutboundLink>
+        </div>
+      )}
       <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {results.slice(0, shown).map((r) => (
           <Link key={r[0]} href={`/${region}/p/${r[0]}`} className="card group flex flex-col overflow-hidden hover:shadow-lift">
