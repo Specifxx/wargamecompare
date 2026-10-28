@@ -26,6 +26,13 @@ export const PLACEMENTS = [
   "store-page", // a store page's visit link
   "home-ebay", // region home: the eBay block
   "category-ebay", // game / faction / type pages: the eBay line
+  "ebay-strip-home", // region home: the eBay strip
+  "ebay-strip-hub", // game / faction / type pages: the eBay strip
+  "ebay-strip-product", // product page: this kit and related kits on eBay
+  "ebay-strip-deals", // deals page: the eBay strip
+  "ebay-strip-footer", // every region page: the strip above the footer
+  "landing-ebay", // the landing page and pages with no region: the eBay block
+  "menu-ebay", // the sidebar and the phone menu: the eBay link
 ] as const;
 export type Placement = (typeof PLACEMENTS)[number];
 

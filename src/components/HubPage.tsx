@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EbayStrip } from "@/components/EbayStrip";
 import type { Summary } from "@/lib/data";
 import type { Placement } from "@/lib/affiliate";
 import type { RegionInfo } from "@/lib/regions";
@@ -54,6 +55,9 @@ export function HubPage({
           </p>
         )}
       </section>
+      <div className="mt-10">
+        <EbayStrip region={r.region} items={inStock} placement="ebay-strip-hub" heading={`${ebayQuery} on eBay`} />
+      </div>
       <div className="my-10">
         <EbayBox region={r.region} query={ebayQuery} heading={`${ebayQuery} on eBay`} placement={placement} />
       </div>

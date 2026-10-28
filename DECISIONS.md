@@ -83,3 +83,18 @@ file in their "Warhammer" collections (about 110,000 listings), and other langua
 **Known limit.** Codexes and battletomes keep their box code across editions (48-01 is every Space Marines codex), so
 a store still listing an old edition joins the current one. Few do, and none in stock at scale; revisit if a report
 comes in.
+
+## 2026-10-28 — Navigation from the first page, and eBay strips across the site
+
+**Decided (owner).** As on MTG Compare and DexCompare: no "Compare prices in <country>" step on the landing page. Every
+page, the landing page included, has the full header, a phone menu listing every game, product type, popular army and
+deal page plus the countries, and from xl a sticky left sidebar with the same list (`lib/nav.ts`). Pages with no region
+are built for the UK and moved to the visitor's region in the browser from the time zone (`SoftRegion.tsx`): one CDN
+copy, no redirect, nothing sent.
+
+eBay is the main commission until Wayland approves us, so eBay strips (`EbayStrip.tsx`) sit on the region home, every
+game, army and type page, every product page, the deals page and above every region page's footer, with an eBay link
+in the sidebar and phone menu. A tile is the cheapest matching new listing when the eBay pass has one (its photo and
+price), else a tagged search for that product: never a store's photo and never a price we did not see. Each placement
+has its own customid (`ebay-strip-*`, `menu-ebay`, `landing-ebay`) so the EPN report shows which earn. Labelled Ad,
+outside the store comparison, never a pop-up.
