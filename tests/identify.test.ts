@@ -93,3 +93,19 @@ test("a listing filed under another kit's code is dropped when it lacks the kit'
   assert.ok(g[0] >= 0);
   assert.equal(g[4], -1);
 });
+
+test("code groups of one product join by exact title, never across two box codes", () => {
+  const g = groupListings([
+    { store: "a", title: "Citadel Base: Dryad Bark", codes: codesOf("x", ["5011921187690"]) },
+    { store: "b", title: "Base: Dryad Bark", codes: codesOf("x", ["99189950287"]) },
+    { store: "c", title: "Warhammer Colour - Base: Dryad Bark", codes: codesOf("x", ["5011921234479"]) },
+    { store: "d", title: "Combat Patrol: Space Marines", codes: codesOf("x", ["48-11"]) },
+    { store: "e", title: "Combat Patrol: Space Marines", codes: codesOf("x", ["48-50"]) },
+    { store: "f", title: "Combat Patrol: Space Marines", codes: codesOf("x", ["99120101420"]) },
+  ]);
+  assert.equal(g[0], g[1]);
+  assert.equal(g[1], g[2]);
+  assert.notEqual(g[3], g[4]);
+  assert.notEqual(g[5], g[3]);
+  assert.notEqual(g[5], g[4]);
+});

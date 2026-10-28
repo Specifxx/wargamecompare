@@ -63,3 +63,23 @@ share another). A separate account keeps one site from silently spending another
 
 **Why.** Committing tens of MB of gzip a day would bloat the repository and every clone (Vercel clones on each build).
 Losing the cache only means one day where a failing store's rows drop out, which the ops monitor reports.
+
+## 2026-10-28 — One product, several codes: join code groups by exact title (trial import)
+
+**Decided.** After the code join, groups whose listings share an exact cleaned title (two words or more) become one
+product, unless that would put two different box codes in it. In a group of three or more stores, a listing must use
+at least one of the words most stores use for the kit itself (not faction or game words), else it is dropped.
+
+**Why.** The first trial import of all 208 stores (347,700 listings) made 10,888 products, of which about 4,600 were
+the same product split by code generation: stores carry different barcodes and item numbers for one paint or kit (a
+Citadel paint has had three pots and four barcodes). Joining by exact title brought it to 6,141 products with the
+comparisons whole (Bullgryns: 11 UK stores, 17 AU, 19 CA, 22 US). Box codes still keep editions apart ("Combat Patrol:
+Space Marines" exists with several box codes). The core-word check drops a store's mis-coded listing ("Astra
+Militarum: Kasrkin" filed under the Bullgryns' code).
+
+**Also refused** from that run: Magic: The Gathering's Warhammer 40,000 and Lord of the Rings cards, which many stores
+file in their "Warhammer" collections (about 110,000 listings), and other languages' editions ("(FR)", "Usagé").
+
+**Known limit.** Codexes and battletomes keep their box code across editions (48-01 is every Space Marines codex), so
+a store still listing an old edition joins the current one. Few do, and none in stock at scale; revisit if a report
+comes in.

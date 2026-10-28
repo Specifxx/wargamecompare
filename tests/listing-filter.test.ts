@@ -42,3 +42,12 @@ test("Magic cards from Warhammer collections are never Games Workshop product", 
   assert.equal(refuse({ ...card, vendor: "Games Workshop", title: "The Swarmlord - Surge Foil [40K-4] SP / Foil" }), "not-gw");
   assert.equal(refuse({ ...card, vendor: "Games Workshop", title: "Lord Commander Solar (Horus Heresy)" }), null);
 });
+
+test("other languages' editions are refused; GW's multilingual paint sets are not", () => {
+  const b = { vendor: "Games Workshop", productType: "", tags: [], hasCode: true };
+  assert.equal(refuse({ ...b, title: "Codex: Space Marines (FR)" }), "foreign");
+  assert.equal(refuse({ ...b, title: "Codex: Space Marines 5e Édition (FR) (Usagé)" }), "foreign");
+  assert.equal(refuse({ ...b, title: "Kill Team: Starter Set (German)" }), "foreign");
+  assert.equal(refuse({ ...b, title: "40k Paints + Tools Eng/Spa/Port/Latv/Rom" }), null);
+  assert.equal(refuse({ ...b, title: "Codex: Space Marines" }), null);
+});

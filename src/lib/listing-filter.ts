@@ -8,6 +8,8 @@ const NOT_NEW = /\bused\b|pre-?owned|second[\s-]?hand|\bpainted\b|on sprues?\b|\
 const OTHER_BRANDS = /q[\s-]?workshop|ultra[\s-]?pro|joy\s*toys|let'?s\s*play\s*games|\blpg\b|kraken|aetherworks|cubicle\s*7|chaosium|wizards|asmodee|hasbro|gamegenic|army\s*painter|vallejo|mantic|warlord|green\s*stuff\s*world|baneblade\s*studio|gale\s*force|tt\s*combat|loot\s*studios|modiphius|monster\s*fight\s*club|funko|mcfarlane|steamforged|para\s*bellum|atomic\s*mass|corvus\s*belli|battlefront|gf9|magic:?\s*the\s*gathering|\bmtg\b|universes\s*beyond/i;
 // Trading cards: Magic's Warhammer 40,000 and Lord of the Rings sets sit in many stores' "Warhammer" collections.
 const CARD = /\bnear mint\b|\b(?:lightly|moderately|heavily) played\b|\bnon[\s-]?foil\b|\bsurge foil\b|\bborderless\b|\[[^\]]*\bcommander\]|\[(?:40k|ltr|ltc)\b/i;
+// Another language's edition (Canadian and Australian stores carry French, German and Japanese books and boxes).
+const FOREIGN = /\((?:fr|de|es|it|jp|ja|cn|zh|pt|pl|ru)\)|\[(?:fr|de|es|it|jp)\]|\b(?:french|fran[cç]ais|fran[cç]aise|deutsch|german|espa[nñ]ol|spanish|italiano|italian|japanese|chinese|polish|russian)\b(?!\s*\/)|[ée]dition fran|usag[ée]|\bversion (?:fr|fran)/i;
 const MERCH = /\bhoodie\b|\bt-?shirt\b|\bmug\b|\bposter\b|\bdesk\s*mat\b|\bplaymat\b|\bfigurine\b|\bstatue\b|\b1\/\d+ scale\b|\bkeyring\b|\bplush\b|\bgift card\b|\bvoucher\b|\bmagazine\b|\bissue \d+\b/i;
 const STORE_BUNDLE = /\bbundle\b|\bcombo\b|\bdeal\b|\boffer\b|\bmega pack\b|\bcollection of\b|\bx\s?\d+\s*(?:boxes|kits)\b|\b\d+\s*x\s*boxes\b/i;
 
@@ -38,6 +40,7 @@ export function isGamesWorkshop(l: RawListing): boolean {
 export function refuse(l: RawListing): string | null {
   const text = `${l.title} ${l.vendor} ${l.productType}`;
   if (NOT_NEW.test(text)) return "not-new";
+  if (FOREIGN.test(l.title)) return "foreign";
   if (MERCH.test(l.title)) return "merch";
   if (!isGamesWorkshop(l)) return "not-gw";
   if (!l.hasCode && STORE_BUNDLE.test(l.title)) return "store-bundle";

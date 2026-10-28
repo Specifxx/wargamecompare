@@ -196,11 +196,11 @@ export function groupListings(listings: Listing[]): number[] {
       const agree = others.filter((j) => overlap(mine, titleTokens(listings[j].title)) >= 0.5).length;
       if (agree === 0) out[i] = -1;
     }
-    // 4b. In a group of four or more stores, the words most of them use for the kit itself (not the faction or the game:
+    // 4b. In a group of three or more stores, the words most of them use for the kit itself (not the faction or the game:
     // "bullgryns", "brayherds", "dice") must appear in each listing. "Astra Militarum: Kasrkin" filed under the
     // Bullgryns' code agrees with them on "astra militarum" alone, and is dropped here.
     const live = idx.filter((i) => out[i] >= 0);
-    if (new Set(live.map((i) => listings[i].store)).size < 4) continue;
+    if (new Set(live.map((i) => listings[i].store)).size < 3) continue;
     const toks = live.map((i) => new Set(titleTokens(listings[i].title).filter((t) => !GENERIC.has(t))));
     const freq = new Map<string, number>();
     for (const ts of toks) for (const t of ts) freq.set(t, (freq.get(t) ?? 0) + 1);
@@ -208,6 +208,51 @@ export function groupListings(listings: Listing[]): number[] {
     if (!core.length) continue;
     live.forEach((i, k) => {
       if (!core.some((t) => toks[k].has(t))) out[i] = -1;
+    });
+  }
+
+  // 4c. One product, several codes: stores carry different generations of a product's barcode and item number (a paint
+  // has had three pots), so the same kit can form two or three code groups. Groups whose listings share an exact cleaned
+  // title (two words or more) are one product, unless that would put two different box codes in one product: "Combat
+  // Patrol: Space Marines" exists in several editions, each with its own box code, and those stay apart.
+  {
+    const gParent = new Map<number, number>();
+    const gFind = (g: number): number => {
+      const p = gParent.get(g) ?? g;
+      if (p === g) return g;
+      const r = gFind(p);
+      gParent.set(g, r);
+      return r;
+    };
+    const shorts = new Map<number, Set<string>>();
+    out.forEach((g, i) => {
+      if (g < 0) return;
+      const set = shorts.get(g) ?? new Set<string>();
+      for (const c of usable[i]) if (c.startsWith("short:")) set.add(c);
+      shorts.set(g, set);
+    });
+    const groupsByKey = new Map<string, Set<number>>();
+    out.forEach((g, i) => {
+      if (g < 0) return;
+      const k = titleKey(listings[i].title);
+      if (k.split(" ").length < 2) return;
+      const set = groupsByKey.get(k) ?? new Set<number>();
+      set.add(g);
+      groupsByKey.set(k, set);
+    });
+    for (const gs of groupsByKey.values()) {
+      if (gs.size < 2) continue;
+      const all = new Set([...gs].flatMap((g) => [...(shorts.get(gFind(g)) ?? [])]));
+      if (all.size > 1) continue;
+      const [first, ...rest] = [...gs].map(gFind);
+      for (const g of rest) {
+        if (g === first) continue;
+        gParent.set(g, first);
+        shorts.set(first, new Set([...(shorts.get(first) ?? []), ...(shorts.get(g) ?? [])]));
+      }
+    }
+    out.forEach((g, i) => {
+      if (g >= 0) out[i] = gFind(g);
     });
   }
 
