@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EbayBox } from "@/components/EbayBox";
+import { EbayStrip } from "@/components/EbayStrip";
 import { mediansFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
 import { thumb } from "@/lib/images";
@@ -47,6 +48,9 @@ export default function DealsPage({ params }: { params: { region: string } }) {
         {!list.length && <p className="p-4 text-muted">No deals today.</p>}
       </div>
       <div className="mt-10">
+        <EbayStrip region={r.region} items={list.map((d) => d.s)} placement="ebay-strip-deals" heading="These kits on eBay" />
+      </div>
+      <div className="mt-6">
         <EbayBox region={r.region} query="Warhammer" heading="More deals on eBay" placement="deals" />
       </div>
     </div>

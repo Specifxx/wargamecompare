@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EbayStrip } from "@/components/EbayStrip";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { OutboundLink } from "@/components/OutboundLink";
@@ -280,6 +281,15 @@ export default function ProductPage({ params }: { params: { region: string; slug
           <ProductGrid items={related} region={region} />
         </section>
       )}
+
+      <div className="mt-10">
+        <EbayStrip
+          region={region}
+          items={[...(s ? [s] : []), ...related, ...summariesFor(region).filter((x) => x.product.id !== p.id && x.product.system === p.system && x.inStock > 0).slice(0, 12)]}
+          placement="ebay-strip-product"
+          heading="This kit and similar on eBay"
+        />
+      </div>
 
       {ld && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ld) }} />}
     </div>

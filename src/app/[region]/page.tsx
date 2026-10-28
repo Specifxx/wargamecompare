@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EbayStrip } from "@/components/EbayStrip";
 import Link from "next/link";
 import { EbayBox } from "@/components/EbayBox";
 import { ProductGrid } from "@/components/ProductCard";
@@ -68,6 +69,10 @@ export default function RegionHome({ params }: { params: { region: string } }) {
           <ProductGrid items={top.map((d) => d.s)} region={r.region} />
         </section>
       )}
+
+      <div className="mb-12">
+        <EbayStrip region={r.region} items={[...top.map((d) => d.s), ...popular]} placement="ebay-strip-home" heading="Today's top kits on eBay" />
+      </div>
 
       <section className="mb-12">
         <h2 className="mb-4 font-display text-2xl font-bold">Browse by game</h2>
