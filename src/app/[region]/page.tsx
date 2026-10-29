@@ -43,19 +43,20 @@ export default function RegionHome({ params }: { params: { region: string } }) {
 
   return (
     <div className="page py-8">
-      <section className="mb-10">
+      <section className="hero mb-10">
         <p className="eyebrow">{r.name}</p>
-        <h1 className="mt-2 max-w-3xl font-display text-3xl font-extrabold leading-tight sm:text-4xl">
+        <h1 className="mt-2 max-w-3xl font-display text-[26px] font-extrabold leading-tight sm:text-4xl">
           Warhammer prices in {r.inName}, compared across {stores.length} independent stores
         </h1>
+        <div className="rule" />
         <p className="mt-3 max-w-2xl text-muted">
           {all.length.toLocaleString("en")} products tracked, {inStock.toLocaleString("en")} in stock somewhere today. Every price is the store&rsquo;s own, in{" "}
           {r.currency}, cheapest first. {r.taxNote}
           {updated && <> Prices checked {new Date(updated).toUTCString().slice(5, 16)}.</>}
         </p>
-        <form action={`/${r.region}/search`} className="mt-5 flex max-w-xl gap-2">
+        <form action={`/${r.region}/search`} className="relative z-10 mt-5 flex max-w-xl gap-2">
           <label htmlFor="home-q" className="sr-only">Search</label>
-          <input id="home-q" name="q" type="search" placeholder="Combat Patrol, Intercessors, Contrast paint…" className="h-12 min-w-0 flex-1 rounded-full border border-line bg-surface px-5 text-base" />
+          <input id="home-q" name="q" type="search" placeholder="Combat Patrol, Intercessors, Contrast paint…" className="h-12 min-w-0 flex-1 rounded-md border border-line bg-bg px-4 text-base" />
           <button className="btn-primary h-12 px-6">Search</button>
         </form>
       </section>

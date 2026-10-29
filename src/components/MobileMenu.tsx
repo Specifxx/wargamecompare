@@ -19,7 +19,7 @@ export function MobileMenu({ region, groups }: { region: Region; groups: NavGrou
         <div className="page grid gap-6 py-5 sm:grid-cols-2 lg:grid-cols-4">
           <form action={`/${region}/search`} role="search" className="flex gap-2 sm:hidden">
             <label htmlFor="menu-q" className="sr-only">Search products</label>
-            <input id="menu-q" name="q" type="search" placeholder="Search kits, paints, codexes…" className="h-11 min-w-0 flex-1 rounded-full border border-line bg-bg px-4 text-base" />
+            <input id="menu-q" name="q" type="search" placeholder="Search kits, paints, codexes…" className="h-11 min-w-0 flex-1 rounded-md border border-line bg-bg px-4 text-base" />
             <button className="btn-primary h-11 px-4">Search</button>
           </form>
           {groups.map((g) => (

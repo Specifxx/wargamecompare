@@ -7,14 +7,16 @@ import { SEASON_BOOT_SCRIPT } from "@/lib/season";
 import { THEME_BOOT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
-// The display face is bundled (OFL, src/app/fonts): no font request at build or at runtime. Body text is the system stack.
+// The display face is Cinzel (OFL, bundled in src/app/fonts): carved-stone capitals for the logo and headings. No font
+// request at build or at runtime. "swap", not "optional": the wordmark is the brand. Body text and prices stay on the
+// system stack.
 const display = localFont({
   src: [
-    { path: "./fonts/BricolageGrotesque-SemiBold.ttf", weight: "600" },
-    { path: "./fonts/BricolageGrotesque-ExtraBold.ttf", weight: "800" },
+    { path: "./fonts/Cinzel-700.ttf", weight: "700" },
+    { path: "./fonts/Cinzel-900.ttf", weight: "900" },
   ],
   variable: "--font-display",
-  display: "optional",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
   ...(process.env.GOOGLE_SITE_VERIFICATION ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } } : {}),
 };
 
-export const viewport: Viewport = { themeColor: "#171616" };
+export const viewport: Viewport = { themeColor: "#0b0b0d" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -147,12 +147,12 @@ export default function ProductPage({ params }: { params: { region: string; slug
             {p.code && <span className="chip py-1 text-xs">Box code {p.code}</span>}
           </div>
 
-          <section className="card mt-5 p-5" aria-label="Best price">
+          <section className="card mt-5 border-brand/50 p-5" aria-label="Best price">
             {best ? (
               <>
                 <p className="eyebrow">Best price in {r.inName}</p>
                 <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="tabular font-display text-4xl font-extrabold">{formatPrice(best.p, region)}</span>
+                  <span className="tabular text-4xl font-extrabold">{formatPrice(best.p, region)}</span>
                   <span className="text-muted">at {storeName(best.s)}</span>
                 </div>
                 {rrp && rrp > best.p && (

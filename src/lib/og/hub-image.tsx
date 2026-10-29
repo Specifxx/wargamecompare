@@ -2,16 +2,12 @@ import { ImageResponse } from "next/og";
 import { offersFor, type Summary } from "@/lib/data";
 import { formatPrice, REGIONS, type Region } from "@/lib/regions";
 import { STORES } from "@/lib/stores";
+import { DISPLAY, OG, OG_BACKDROP, OgWordmark, SANS, ogFonts } from "@/lib/og/brand";
 
 // The share card of a game, army or product type page: its four kits most stores have in stock, each with the RRP the
 // stores state, the typical (median) in stock store price and the cheapest. Text only, like the root share card: no
 // product photo and nothing of Games Workshop's. Real data or no rows: a hub with no RRP'd kits draws its title alone.
-const BG = "#0e0e0f";
-const INK = "#f0ece4";
-const MUTED = "#aca69c";
-const GOLD = "#e2ac52";
-const LINE = "#2c2c2f";
-const GREEN = "#7fc98a";
+const { ink: INK, muted: MUTED, gold: GOLD, line: LINE, green: GREEN } = OG;
 export const HUB_IMAGE_SIZE = { width: 1200, height: 630 };
 
 function median(xs: number[]): number {
@@ -37,17 +33,9 @@ export function hubImage(region: Region, title: string, items: Summary[]) {
   const cell = { display: "flex", justifyContent: "flex-end", width: 170 } as const;
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "44px 64px 56px", background: BG, color: INK }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 28, fontWeight: 800 }}>
-          <svg viewBox="0 0 64 64" width="40" height="40">
-            <path d="M32 6 54.5 19v26L32 58 9.5 45V19z" fill="none" stroke={GOLD} strokeWidth="5" strokeLinejoin="round" />
-            <path d="M21 27h17l-5-5M43 37H26l5 5" fill="none" stroke={GOLD} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <div style={{ display: "flex" }}>
-            Wargame<span style={{ color: GOLD }}>Compare</span>
-          </div>
-        </div>
-        <div style={{ marginTop: 26, fontSize: 46, fontWeight: 800, lineHeight: 1.1, display: "flex" }}>{title}</div>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", padding: "44px 64px 56px", color: INK, fontFamily: SANS, ...OG_BACKDROP }}>
+        <OgWordmark size={26} />
+        <div style={{ marginTop: 26, fontFamily: DISPLAY, fontSize: 44, fontWeight: 900, lineHeight: 1.1, display: "flex" }}>{title}</div>
         <div style={{ marginTop: 10, fontSize: 26, color: MUTED, display: "flex" }}>{`RRP, the typical store and the cheapest of ${stores} stores in ${r.inName}`}</div>
         {rows.length > 0 && (
           <div style={{ marginTop: 26, display: "flex", flexDirection: "column" }}>
@@ -74,6 +62,6 @@ export function hubImage(region: Region, title: string, items: Summary[]) {
         )}
       </div>
     ),
-    HUB_IMAGE_SIZE,
+    { ...HUB_IMAGE_SIZE, fonts: ogFonts() },
   );
 }

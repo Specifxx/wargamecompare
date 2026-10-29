@@ -23,7 +23,7 @@ export function RegionSuggest() {
     <div className="mt-6">
       <form action={`/${region}/search`} role="search" className="mb-4 flex max-w-xl gap-2">
         <label htmlFor="landing-q" className="sr-only">Search</label>
-        <input id="landing-q" name="q" type="search" placeholder="Combat Patrol, Intercessors, Contrast paint…" className="h-12 min-w-0 flex-1 rounded-full border border-line bg-surface px-5 text-base" />
+        <input id="landing-q" name="q" type="search" placeholder="Combat Patrol, Intercessors, Contrast paint…" className="h-12 min-w-0 flex-1 rounded-md border border-line bg-surface px-5 text-base" />
         <button className="btn-primary h-12 px-6">Search</button>
       </form>
       <div className="flex flex-wrap gap-2">

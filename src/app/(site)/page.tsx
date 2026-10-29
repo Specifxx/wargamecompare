@@ -18,21 +18,24 @@ export const metadata: Metadata = {
 
 export default function Landing() {
   return (
-    <div className="page py-12">
-      <h1 className="max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl">
+    <div className="page py-8 sm:py-12">
+      <section className="hero">
+      <h1 className="max-w-3xl font-display text-[26px] font-extrabold leading-tight sm:text-5xl">
         Stop paying full price for plastic. Compare Warhammer prices across the discount stores.
       </h1>
+      <div className="rule" />
       <p className="mt-4 max-w-2xl text-lg text-muted">
         Warhammer 40,000, Age of Sigmar, Kill Team, The Horus Heresy, The Old World and Citadel paints: every kit matched by its box code across independent stores,
         cheapest in stock first, with the saving on RRP. Free, and no account needed.
       </p>
       <RegionSuggest />
+      </section>
       <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {REGION_LIST.map((r) => {
           const n = storesInMarket(r.market).length;
           const products = summariesFor(r.region).filter((s) => s.inStock > 0).length;
           return (
-            <Link key={r.region} href={`/${r.region}`} className="card p-5 transition-shadow hover:shadow-lift">
+            <Link key={r.region} href={`/${r.region}`} className="card p-5 transition-colors hover:border-brand/70">
               <p className="font-display text-xl font-bold">{r.name}</p>
               <p className="mt-1 text-sm text-muted">
                 {n} stores · {products.toLocaleString("en")} in stock · {REGIONS[r.region].currency}

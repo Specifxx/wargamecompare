@@ -3,6 +3,7 @@ import { summariesFor, offersFor } from "@/lib/data";
 import { formatPrice, REGION_LIST, type Region } from "@/lib/regions";
 import { SITE_NAME } from "@/lib/site";
 import { STORES, STORE_BY_KEY } from "@/lib/stores";
+import { DISPLAY, OG, OG_BACKDROP, OgWordmark, SANS, ogFonts } from "@/lib/og/brand";
 
 // The one share card (link previews on Reddit, Discord, X): drawn once a day at most, from nothing but text.
 // No artwork: product photos are the stores', and nothing of Games Workshop's is drawn here. The right half is a real
@@ -13,13 +14,7 @@ export const alt = `${SITE_NAME}: Warhammer prices compared across discount stor
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const BG = "#0e0e0f";
-const INK = "#f0ece4";
-const MUTED = "#aca69c";
-const GOLD = "#e2ac52";
-const PANEL = "#1a1a1c";
-const LINE = "#2c2c2f";
-const GREEN = "#7fc98a";
+const { ink: INK, muted: MUTED, gold: GOLD, panel: PANEL, line: LINE, green: GREEN } = OG;
 
 interface Example {
   region: Region;
@@ -54,18 +49,10 @@ export default function Image() {
   const regions = REGION_LIST.map((r) => r.short).join("   ");
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", padding: "0 64px", gap: 48, background: BG, color: INK }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", padding: "0 64px", gap: 48, color: INK, fontFamily: SANS, ...OG_BACKDROP }}>
         <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-            <svg viewBox="0 0 64 64" width="64" height="64">
-              <path d="M32 6 54.5 19v26L32 58 9.5 45V19z" fill="none" stroke={GOLD} strokeWidth="5" strokeLinejoin="round" />
-              <path d="M21 27h17l-5-5M43 37H26l5 5" fill="none" stroke={GOLD} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <div style={{ fontSize: 48, fontWeight: 800, display: "flex" }}>
-              Wargame<span style={{ color: GOLD }}>Compare</span>
-            </div>
-          </div>
-          <div style={{ marginTop: 36, fontSize: 52, fontWeight: 800, lineHeight: 1.12, display: "flex" }}>
+          <OgWordmark size={38} />
+          <div style={{ marginTop: 36, fontFamily: DISPLAY, fontSize: 50, fontWeight: 900, lineHeight: 1.12, display: "flex" }}>
             Find the cheapest store for any Warhammer kit.
           </div>
           <div style={{ marginTop: 24, fontSize: 28, lineHeight: 1.35, color: MUTED, display: "flex" }}>
@@ -74,7 +61,7 @@ export default function Image() {
           <div style={{ marginTop: 28, fontSize: 26, fontWeight: 700, color: GOLD, letterSpacing: 2, display: "flex" }}>{regions}</div>
         </div>
         {ex && (
-          <div style={{ width: 470, display: "flex", flexDirection: "column", background: PANEL, border: `2px solid ${LINE}`, borderRadius: 24, padding: "30px 32px" }}>
+          <div style={{ width: 470, display: "flex", flexDirection: "column", background: PANEL, border: `2px solid ${GOLD}`, borderRadius: 14, padding: "30px 32px" }}>
             <div style={{ fontSize: 18, color: MUTED, letterSpacing: 2, display: "flex" }}>TODAY IN THE UK</div>
             <div style={{ marginTop: 10, fontSize: 30, fontWeight: 800, lineHeight: 1.15, display: "flex" }}>{ex.name}</div>
             <div style={{ marginTop: 10, fontSize: 22, color: MUTED, display: "flex", gap: 10 }}>
@@ -96,6 +83,6 @@ export default function Image() {
         )}
       </div>
     ),
-    size,
+    { ...size, fonts: ogFonts() },
   );
 }

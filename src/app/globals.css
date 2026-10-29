@@ -2,51 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* WargameCompare palette: forge-dark by default (dark is the default theme, as on the sister sites), brass for the brand,
-   parchment light theme. Every pair used for text is WCAG AA (4.5:1) at the sizes the site uses it. */
+/* WargameCompare palette (owner, 2026-10-29: "it must look like the game"): grimdark by default. Near-black iron, bone
+   text, aged gold for the brand and links, blood red for the main buttons; the light theme is old parchment with the
+   same gold and blood, darkened. Every pair used for text is WCAG AA (4.5:1) at the sizes the site uses it. */
 :root {
-  --bg: 245 242 235;
-  --surface: 255 255 255;
-  --raised: 250 248 243;
-  --line: 226 221 210;
-  --ink: 24 22 20;
-  --muted: 92 88 80;
-  --faint: 104 99 90;
-  --brand: 138 82 14; /* bronze: white on it 5.6:1 */
+  --bg: 241 235 222; /* parchment */
+  --surface: 252 249 242;
+  --raised: 246 240 228;
+  --line: 219 207 184;
+  --ink: 30 22 17;
+  --muted: 92 80 66;
+  --faint: 104 92 77;
+  --brand: 122 80 6; /* dark gold: 5.9:1 as text on --bg, white on it 7.1:1 */
   --brand-ink: 255 255 255;
-  --brand-soft: 247 236 214;
-  --brand-strong: 112 64 8;
-  --spark: 178 34 34; /* crimson, highlights only */
-  --open: 20 118 56;
-  --open-soft: 226 245 232;
-  --sold: 100 104 115;
-  --sold-soft: 238 238 240;
-  --stale: 143 88 0;
-  --stale-soft: 253 243 219;
-  --ad: 243 246 252;
+  --brand-soft: 244 228 192;
+  --brand-strong: 96 60 0;
+  --blood: 150 20 30; /* button red: white on it 8.7:1 */
+  --blood-ink: 255 255 255;
+  --spark: 160 24 34;
+  --open: 20 112 52;
+  --open-soft: 224 242 226;
+  --sold: 100 98 104;
+  --sold-soft: 236 232 226;
+  --stale: 138 84 0;
+  --stale-soft: 250 238 210;
+  --ad: 240 243 250;
   --ad-line: 120 128 148;
-  --shadow: 24 22 18;
+  --shadow: 40 24 12;
   --hdr: 60px;
   color-scheme: light;
 }
 
 :root:not([data-theme="light"]) {
-  --bg: 14 14 15;
-  --surface: 23 22 22;
-  --raised: 30 29 28;
-  --line: 48 45 42;
-  --ink: 240 236 228;
-  --muted: 172 166 156;
-  --faint: 146 140 131;
-  --brand: 226 172 82; /* brass: 9.6:1 on --bg */
-  --brand-ink: 26 18 6;
-  --brand-soft: 56 42 18;
-  --brand-strong: 240 200 130;
-  --spark: 230 90 80;
-  --open: 74 206 120;
-  --open-soft: 20 48 30;
-  --sold: 150 154 164;
-  --sold-soft: 38 40 46;
+  --bg: 11 11 13; /* iron black */
+  --surface: 22 20 22;
+  --raised: 31 28 30;
+  --line: 56 48 46;
+  --ink: 242 234 219; /* bone */
+  --muted: 182 172 157;
+  --faint: 152 143 130;
+  --brand: 224 178 82; /* aged gold: 10:1 on --bg */
+  --brand-ink: 24 15 4;
+  --brand-soft: 54 38 16;
+  --brand-strong: 242 208 140;
+  --blood: 176 24 36; /* white on it 6.6:1 */
+  --blood-ink: 255 248 238;
+  --spark: 232 84 84;
+  --open: 92 204 126;
+  --open-soft: 20 46 30;
+  --sold: 150 150 158;
+  --sold-soft: 38 37 42;
   --stale: 240 180 60;
   --stale-soft: 52 40 14;
   --ad: 26 31 45;
@@ -67,6 +72,25 @@ html {
 }
 body {
   @apply bg-bg text-ink antialiased;
+  /* The battlefield: a faint hex grid (the tabletop's) under a red glow at the top. Fixed, so it never scrolls with the
+     price lists; every card and row sits on a solid surface above it. */
+  background-image: radial-gradient(120% 60% at 50% -10%, rgb(var(--blood) / 0.22), transparent 60%), var(--hexes);
+  background-attachment: fixed;
+}
+:root {
+  --hexes: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 1 55 16.5v31L28 63 1 47.5v-31zM28 63v34M1 16.5 -26 1M55 16.5 82 1' fill='none' stroke='%23785a28' stroke-opacity='.10'/%3E%3C/svg%3E");
+}
+:root:not([data-theme="light"]) {
+  --hexes: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 1 55 16.5v31L28 63 1 47.5v-31zM28 63v34M1 16.5 -26 1M55 16.5 82 1' fill='none' stroke='%23e0b252' stroke-opacity='.055'/%3E%3C/svg%3E");
+}
+/* Headings are carved capitals (Cinzel): a little tracking, no negative letter-spacing. */
+.font-display {
+  letter-spacing: 0.01em;
+}
+/* The header: dark iron, a gold rule and a blood-red line under it, in both themes. */
+header.sticky {
+  border-bottom-color: rgb(var(--brand) / 0.55);
+  box-shadow: 0 2px 0 0 rgb(var(--blood) / 0.9);
 }
 .tabular {
   font-variant-numeric: tabular-nums;
@@ -82,13 +106,14 @@ body {
     @apply mx-auto w-full max-w-page px-4 sm:px-6;
   }
   .card {
-    @apply rounded-xl border border-line bg-surface shadow-card;
+    @apply rounded-lg border border-line bg-surface shadow-card;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition-colors;
   }
+  /* The main action: blood red with a gold edge. */
   .btn-primary {
-    @apply btn bg-brand text-brand-ink hover:brightness-110;
+    @apply btn border border-brand/60 bg-blood text-blood-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] hover:brightness-110;
   }
   .btn-ghost {
     @apply btn border border-line bg-surface text-ink hover:bg-raised;
@@ -105,7 +130,7 @@ body {
     @apply btn border border-transparent bg-[#ffa41c] text-[#0f1111] hover:bg-[#fa8900];
   }
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink/40;
+    @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-brand/70;
   }
   .ad-box {
     @apply rounded-xl border border-dashed border-ad-line bg-ad;
@@ -113,8 +138,20 @@ body {
   .ad-pill {
     @apply inline-flex shrink-0 items-center rounded border border-ad-line px-1.5 text-[11px] font-bold leading-[18px] text-muted;
   }
+  /* The page's opening panel: a gold-rimmed iron plate lit red from one corner, with a gold rule under the heading. */
+  .hero {
+    @apply relative overflow-hidden rounded-lg border border-brand/45 bg-surface p-5 shadow-lift sm:p-8;
+    background-image: linear-gradient(135deg, rgb(var(--blood) / 0.2), transparent 55%), var(--hexes);
+  }
+  .hero::after {
+    content: "";
+    @apply pointer-events-none absolute inset-1.5 rounded-md border border-brand/20;
+  }
+  .rule {
+    @apply mt-4 h-0.5 w-24 bg-gradient-to-r from-brand to-blood;
+  }
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.12em] text-muted;
+    @apply text-xs font-bold uppercase tracking-[0.16em] text-brand;
   }
   .plate {
     @apply isolate overflow-hidden rounded-lg bg-white ring-1 ring-line;
@@ -155,7 +192,7 @@ body {
   }
 }
 html[data-season="halloween"] {
-  --brand: 176 72 0; /* white on it 5.6:1, 5.0:1 as text on --bg */
+  --brand: 176 72 0; /* white on it 5.6:1, 4.7:1 as text on --bg */
   --brand-soft: 253 232 210;
   --brand-strong: 140 52 0;
   --spark: 110 60 180;
@@ -167,7 +204,8 @@ html[data-season="halloween"]:not([data-theme="light"]) {
   --brand-strong: 255 186 120;
   --spark: 184 130 255;
 }
-html[data-season="halloween"] header.sticky {
+html[data-season="halloween"] header.sticky,
+html[data-season="halloween"]:not([data-theme="light"]) header.sticky {
   border-bottom-color: transparent;
   box-shadow: 0 3px 0 0 rgb(var(--brand)), 0 6px 0 0 rgb(var(--spark) / 0.85);
 }

@@ -23,7 +23,8 @@ module.exports = {
   images: { unoptimized: true },
   // The public data files ride with every server function, which reads them instead of a database. The per-store cache
   // (data/cache) is the importer's alone and is NOT bundled.
-  experimental: { outputFileTracingIncludes: { "/**": ["./data/*.json"] } },
+  // The share images' two fonts (src/lib/og/brand.tsx) ride along too: 110 KB.
+  experimental: { outputFileTracingIncludes: { "/**": ["./data/*.json", "./src/app/fonts/Cinzel-900.ttf", "./src/app/fonts/Inter-700.ttf"] } },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }, ...CDN_PAGES.map((source) => ({ source, headers: [{ key: "Vercel-CDN-Cache-Control", value: CDN_CACHE }] }))];
   },

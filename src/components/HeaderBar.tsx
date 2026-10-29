@@ -25,17 +25,17 @@ export function HeaderBar({ region: r, home }: { region: Region; home: string })
             name="q"
             type="search"
             placeholder="Search kits, paints, codexes…"
-            className="h-10 w-full min-w-0 rounded-full border border-line bg-surface px-4 text-base text-ink placeholder:text-faint sm:text-sm"
+            className="h-10 w-full min-w-0 rounded-md border border-line bg-surface px-4 text-base text-ink placeholder:text-faint sm:text-sm"
           />
         </form>
         <nav className="hidden items-center gap-1 text-sm font-semibold lg:flex" aria-label="Sections">
-          <Link href={`/${r}/deals`} className="rounded-full px-3 py-2 hover:bg-raised">
+          <Link href={`/${r}/deals`} className="rounded-md px-3 py-2 hover:bg-raised">
             Deals
           </Link>
-          <Link href={`/${r}/stores`} className="rounded-full px-3 py-2 hover:bg-raised">
+          <Link href={`/${r}/stores`} className="rounded-md px-3 py-2 hover:bg-raised">
             Stores
           </Link>
-          <OutboundLink href={ebaySearchUrl("Warhammer", r, "header")} rel={REL_PAID} retailer="eBay" placement="header" className="rounded-full px-3 py-2 hover:bg-raised">
+          <OutboundLink href={ebaySearchUrl("Warhammer", r, "header")} rel={REL_PAID} retailer="eBay" placement="header" className="rounded-md px-3 py-2 hover:bg-raised">
             eBay
           </OutboundLink>
         </nav>

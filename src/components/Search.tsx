@@ -81,12 +81,12 @@ export function Search({
     return out;
   }, [rows, q, system, faction, type, stock, sort]);
 
-  const sel = "h-10 rounded-full border border-line bg-surface px-3 text-sm";
+  const sel = "h-10 rounded-md border border-line bg-surface px-3 text-sm";
   return (
     <div>
       <div className="mt-4 flex flex-wrap gap-2">
         <label className="sr-only" htmlFor="sq">Search</label>
-        <input id="sq" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search…" className="h-10 min-w-0 flex-1 rounded-full border border-line bg-surface px-4 text-base sm:text-sm" />
+        <input id="sq" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search…" className="h-10 min-w-0 flex-1 rounded-md border border-line bg-surface px-4 text-base sm:text-sm" />
         <select aria-label="Game" value={system} onChange={(e) => setSystem(e.target.value)} className={sel}>
           <option value="">All games</option>
           {systems.map(([v, l]) => <option key={v} value={v}>{l}</option>)}

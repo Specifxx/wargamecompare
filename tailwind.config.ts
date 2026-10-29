@@ -17,6 +17,7 @@ const config: Config = {
         muted: v("muted"),
         faint: v("faint"),
         brand: { DEFAULT: v("brand"), ink: v("brand-ink"), soft: v("brand-soft"), strong: v("brand-strong") },
+        blood: { DEFAULT: v("blood"), ink: v("blood-ink") },
         spark: v("spark"),
         open: { DEFAULT: v("open"), soft: v("open-soft") },
         sold: { DEFAULT: v("sold"), soft: v("sold-soft") },
@@ -25,9 +26,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
-        display: ["var(--font-display)", "var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // No var(--font-sans) here: it is never defined, and an undefined var() voids the whole font-family (the display
+        // face never showed before 2026-10-29 because of it).
+        display: ["var(--font-display)", "Georgia", "serif"],
       },
-      borderRadius: { xl: "14px", "2xl": "20px" },
+      borderRadius: { xl: "10px", "2xl": "14px" },
       boxShadow: {
         card: "0 1px 2px rgb(var(--shadow) / 0.06), 0 1px 0 rgb(var(--shadow) / 0.02)",
         lift: "0 10px 30px -12px rgb(var(--shadow) / 0.25), 0 2px 6px rgb(var(--shadow) / 0.06)",

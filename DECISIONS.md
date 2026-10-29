@@ -131,3 +131,23 @@ WargameCompare and FigureCompare, 2,500 a day each: `EBAY_DAILY_CAP` now default
 the ops monitor. The run still never spends past the app's own remaining count minus 300, so a sister's spend is
 respected. One app has one Marketplace Account Deletion endpoint; both sites keep theirs deployed and answer the same
 way, and whichever is registered on eBay must stay deployed while the keyset exists.
+
+## 2026-10-29 — A grimdark look: shield-and-die mark, iron, gold and blood, Cinzel headings
+
+**Decided (owner: "it must look like the actual game").** The hex-and-arrows mark and brass-on-grey palette read as a
+generic tool, not as tabletop wargaming. The new look:
+
+- **Mark:** a gold-rimmed blood-red battle shield bearing a bone die showing five, with two crossed swords behind it
+  (`components/Logo.tsx`; `icon.svg` and `favicon.ico` are the shield and die alone on iron black, legible at 16 px).
+  An original heraldic drawing: no skull, eagle, cog or anything shaped like a Games Workshop mark, and the wordmark
+  stays plain text (`tests/ip.test.ts`).
+- **Palette:** iron black, bone text, aged gold for the brand and links, blood red for main buttons (`--blood`); the
+  light theme is parchment with the same gold and red darkened. A faint hex grid and a red glow sit behind the pages,
+  fixed, under solid cards. Every text pair is AA. Prices, store rows, "In stock" and the eBay/Amazon buttons keep
+  their own colours; prices are set in the body face, never the display face.
+- **Type:** Cinzel (OFL, bundled, weights 700/900) for the logo and headings. The display face had never actually
+  shown: Tailwind's `font-display` stack named an undefined `var(--font-sans)`, which voids the whole declaration.
+- **Share images:** the same mark, palette and Cinzel wordmark, with Inter 700 (OFL, Latin subset) for the data
+  (`lib/og/brand.tsx`; both fonts are traced into the functions, 110 KB).
+- **Halloween** (29–31 Oct) is unchanged: it still swaps the gold for pumpkin and adds the purple stripe, and switches
+  itself off on 1 November.

@@ -36,6 +36,7 @@ export function HubPage({
         <Link href={`/${r.region}`} className="hover:text-ink">{r.name}</Link>
       </nav>
       <h1 className="font-display text-3xl font-extrabold leading-tight">{title}</h1>
+      <div className="rule" />
       <p className="mt-2 max-w-3xl text-muted">{intro}</p>
       {chips && chips.length > 0 && (
         <div className="mt-5 flex flex-wrap gap-2">
