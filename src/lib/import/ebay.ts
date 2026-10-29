@@ -1,9 +1,9 @@
 // eBay Browse API: the cheapest NEW Buy It Now listing that is really this product, per eBay site, for the products
 // worth a call. GitHub Actions only (scripts/ebay.ts); the website never calls eBay and holds no eBay credential.
 //
-// THE KEYSET is WargameCompare's own, on the owner's second eBay account (owner, 2026-10-28): 5,000 Browse calls a
-// day, nothing shared with the card-game sites. The run spends at most EBAY_DAILY_CAP (default 4,000) and never more
-// than the app's own remaining count minus a reserve.
+// THE KEYSET is the owner's second eBay account's app, shared with FigureCompare and nothing else (owner, 2026-10-29):
+// 5,000 Browse calls a day, 2,500 each. The run spends at most EBAY_DAILY_CAP (default 2,500) and never more than the
+// app's own remaining count minus a reserve.
 //
 // THE ROWS are display only: shown as a labelled marketplace row pinned above the stores, never counted as a store, never
 // the "best price", never in deals.

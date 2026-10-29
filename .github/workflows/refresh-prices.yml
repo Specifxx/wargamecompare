@@ -5,9 +5,9 @@ name: Refresh prices
 # 19:20 UTC is early morning in Australia and New Zealand and evening in the UK.
 #
 # Secrets (Settings → Secrets and variables → Actions), all optional until eBay is set up:
-#   EBAY_CLIENT_ID, EBAY_CLIENT_SECRET   WargameCompare's own eBay developer keyset (the owner's second eBay account)
+#   EBAY_CLIENT_ID, EBAY_CLIENT_SECRET   the owner's second eBay account's keyset, shared with FigureCompare
 #   EBAY_CAMPAIGN_ID                     WargameCompare's EPN campaign id (the listing links' affiliate tag)
-# Variable: EBAY_DAILY_CAP (default 4000 of the app's 5,000 a day).
+# Variable: EBAY_DAILY_CAP (default 2500: half the app's 5,000 a day; FigureCompare has the other half).
 
 on:
   schedule:

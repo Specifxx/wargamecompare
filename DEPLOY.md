@@ -24,7 +24,7 @@ The full step-by-step prompt is `/mnt/project-files/wargame-compare/setup-prompt
    WargameCompare. GitHub → Settings → Secrets and variables → Actions: secrets `EBAY_CLIENT_ID`,
    `EBAY_CLIENT_SECRET`, `EBAY_CAMPAIGN_ID`.
 4. **GitHub variables**: `SITE_URL` = `https://wargamecompare.com` (the ops monitor checks it), optionally
-   `EBAY_DAILY_CAP` (default 4000 of 5,000).
+   `EBAY_DAILY_CAP` (default 2500: the app's 5,000 a day are split with FigureCompare).
 5. **Search Console**: add the domain property, submit `https://wargamecompare.com/sitemap.xml`.
 
 ## Daily operation

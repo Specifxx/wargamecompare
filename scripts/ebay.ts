@@ -49,7 +49,7 @@ async function main() {
     return;
   }
   const campaign = process.env.EBAY_CAMPAIGN_ID?.trim() || process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID?.trim() || "";
-  const cap = Math.max(0, Number(process.env.EBAY_DAILY_CAP || 4000));
+  const cap = Math.max(0, Number(process.env.EBAY_DAILY_CAP || 2500));
   const products = read<Product[]>("products.json", []);
   const offers = read<OffersFile>("offers.json", {});
   const rrp = read<RrpFile>("rrp.json", {});
