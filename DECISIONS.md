@@ -123,3 +123,11 @@ minutes, still two stores at a time (Shopify throttles by IP).
 
 Still unreadable, so still missing: Element Games, Firestorm, Wayland, Miniature Market, Noble Knight and the other
 custom-built big discounters. The same identity rules apply to every new store: a wrong merge is worse than a gap.
+
+## 2026-10-29 — The eBay keyset is shared with FigureCompare, 2,500 calls each
+
+**Decided (owner).** The production keyset on the owner's second eBay account (5,000 Browse calls a day) serves
+WargameCompare and FigureCompare, 2,500 a day each: `EBAY_DAILY_CAP` now defaults to 2,500 (was 4,000) here and in
+the ops monitor. The run still never spends past the app's own remaining count minus 300, so a sister's spend is
+respected. One app has one Marketplace Account Deletion endpoint; both sites keep theirs deployed and answer the same
+way, and whichever is registered on eBay must stay deployed while the keyset exists.

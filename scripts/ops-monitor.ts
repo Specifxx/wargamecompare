@@ -19,7 +19,7 @@ async function main() {
   const checks: Check[] = [];
   checks.push(...checkImport(read<Meta>("meta.json"), STORES.length, now));
   const pacific = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Los_Angeles" }).format(now);
-  checks.push(...checkEbay(read<EbayFile>("ebay.json"), process.env.EBAY_ENABLED === "true", Number(process.env.EBAY_DAILY_CAP || 4000), now, pacific));
+  checks.push(...checkEbay(read<EbayFile>("ebay.json"), process.env.EBAY_ENABLED === "true", Number(process.env.EBAY_DAILY_CAP || 2500), now, pacific));
   const site = process.env.SITE_URL?.trim();
   if (site) {
     try {

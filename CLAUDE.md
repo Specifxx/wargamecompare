@@ -51,9 +51,9 @@ every rule you change.
 
 ## eBay
 
-Only `scripts/ebay.ts` (GitHub Actions) calls eBay. The keyset is WargameCompare's own (the owner's second eBay
-account, 5,000 calls a day), capped by `EBAY_DAILY_CAP` (default 4,000). Never raise it on your own initiative, and
-never use a sister site's keyset. The website holds no eBay credential. `/api/ebay/account-deletion` must stay
+Only `scripts/ebay.ts` (GitHub Actions) calls eBay. The keyset is on the owner's second eBay account (5,000 calls a
+day), shared with FigureCompare and no other site: 2,500 each, capped by `EBAY_DAILY_CAP` (default 2,500). Never raise
+it on your own initiative, and never use a card site's keyset. The website holds no eBay credential. `/api/ebay/account-deletion` must stay
 deployed while the keyset exists.
 
 ## The site watches itself
