@@ -3,7 +3,7 @@
 // EBAY_CLIENT_ID and EBAY_CLIENT_SECRET exist; keys that are set but refused fail the run red.
 import fs from "node:fs";
 import path from "node:path";
-import { affiliateSubId } from "@/lib/affiliate";
+import { EBAY_CAMPAIGN_ID, affiliateSubId } from "@/lib/affiliate";
 import { EBAY_SITES, pickBest, plan, searchQuery, type Candidate } from "@/lib/import/ebay";
 import { REGIONS, type Market, type Region } from "@/lib/regions";
 import type { EbayFile, OffersFile, Product, RrpFile } from "@/lib/types";
@@ -48,7 +48,7 @@ async function main() {
     console.log("eBay is off: EBAY_CLIENT_ID / EBAY_CLIENT_SECRET are not set. Nothing to do.");
     return;
   }
-  const campaign = process.env.EBAY_CAMPAIGN_ID?.trim() || process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID?.trim() || "";
+  const campaign = process.env.EBAY_CAMPAIGN_ID?.trim() || process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID?.trim() || EBAY_CAMPAIGN_ID;
   const cap = Math.max(0, Number(process.env.EBAY_DAILY_CAP || 2500));
   const products = read<Product[]>("products.json", []);
   const offers = read<OffersFile>("offers.json", {});

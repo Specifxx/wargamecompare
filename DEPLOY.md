@@ -7,7 +7,7 @@ The full step-by-step prompt is `/mnt/project-files/wargame-compare/setup-prompt
 1. **Vercel**: import `Specifxx/wargamecompare` as a new project (framework Next.js, root `/`). Environment variables
    (Production):
    - `NEXT_PUBLIC_SITE_URL` = `https://wargamecompare.com` (the bare domain is canonical)
-   - `NEXT_PUBLIC_EBAY_CAMPAIGN_ID` = the new EPN campaign's id
+   - `NEXT_PUBLIC_EBAY_CAMPAIGN_ID` = `5339155911` (optional: it is the code default)
    - `AMAZON_TAG_US`, `AMAZON_TAG_UK`, `AMAZON_TAG_CA`, `AMAZON_TAG_AU` = Amazon Associates tags (US falls back to
      `riftcompare-20`, AU/NZ to `compareempire-22`; UK and CA show no Amazon link until set)
    - `WAYLAND_SEARCH_TEMPLATE` = Wayland Games' affiliate search link with `{q}` where the search words go

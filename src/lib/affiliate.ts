@@ -1,6 +1,6 @@
 // Outbound links: how WargameCompare earns. Pure (no data imports), so client components can use it.
 //
-//   • eBay Partner Network: Buy It Now SEARCH links on each market's eBay site, tagged with WargameCompare's own EPN
+//   • eBay Partner Network: Buy It Now SEARCH links on each market's eBay site, tagged with the EPN
 //     campaign (NEXT_PUBLIC_EBAY_CAMPAIGN_ID) and a per-surface customid, `wgc-<region>-<placement>`, so EPN's report
 //     says which site and which surface earned.
 //   • Amazon Associates: one tag per Amazon store (US, UK, CA, AU), each from env; a market whose tag is not set shows
@@ -69,9 +69,9 @@ export function searchTerms(name: string): string {
 }
 
 // ─── eBay ──────────────────────────────────────────────────────────────────────
-// Placeholder until the owner creates WargameCompare's own EPN campaign (setup prompt, step "eBay Partner Network");
-// the shared Compare Empire campaign keeps links paid meanwhile, and the customid prefix still says "wgc".
-export const EBAY_CAMPAIGN_ID = process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID || "5339155912";
+// The owner's EPN campaign for WargameCompare and FigureCompare (owner, 2026-10-29); the customid prefix "wgc" tells
+// the two sites apart in EPN's report.
+export const EBAY_CAMPAIGN_ID = process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID || "5339155911";
 
 const EPN: Record<string, { mkrid: string; siteid: string }> = {
   "www.ebay.com.au": { mkrid: "705-53470-19255-0", siteid: "15" },

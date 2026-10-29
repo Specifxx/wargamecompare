@@ -131,3 +131,9 @@ WargameCompare and FigureCompare, 2,500 a day each: `EBAY_DAILY_CAP` now default
 the ops monitor. The run still never spends past the app's own remaining count minus 300, so a sister's spend is
 respected. One app has one Marketplace Account Deletion endpoint; both sites keep theirs deployed and answer the same
 way, and whichever is registered on eBay must stay deployed while the keyset exists.
+
+## 2026-10-29 — One EPN campaign for WargameCompare and FigureCompare
+
+**Decided (owner).** Both sites use EPN campaign 5339155911, now the code default here (`src/lib/affiliate.ts`, also
+used by the eBay import's affiliate header) and in FigureCompare. The customid (`wgc-…` / `figure-…`) tells the sites
+apart in EPN's report, so no second campaign is needed.
