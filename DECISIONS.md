@@ -137,3 +137,13 @@ way, and whichever is registered on eBay must stay deployed while the keyset exi
 **Decided (owner).** Both sites use EPN campaign 5339155911, now the code default here (`src/lib/affiliate.ts`, also
 used by the eBay import's affiliate header) and in FigureCompare. The customid (`wgc-…` / `figure-…`) tells the sites
 apart in EPN's report, so no second campaign is needed.
+
+## 2026-10-30 — One eBay campaign for every Compare site, hard-coded
+
+**Decided (owner).** Every Compare site now sends eBay clicks to ONE EPN campaign, 5339155912 (RiftCompare's,
+already set up), hard-coded in the code: no variable overrides it any more, so a forgotten secret or Vercel
+value can't split the sites again. The sites are told apart by the `customid` prefix alone, which comes first
+in every tag; this site's is `wgc-<region>`. Supersedes "One EPN campaign for WargameCompare and FigureCompare" (2026-10-29). Stored listings are re-tagged at render.
+Replaced: 5339155911 (WargameCompare, FigureCompare, Compare Empire, K Young), 5339231473 (Lorcana),
+5339231474 (Gundam), 5339234013 (YGO). Old secrets/variables (`EBAY_AFFILIATE_CAMPAIGN`,
+`NEXT_PUBLIC_EBAY_CAMPAIGN_ID`, `EBAY_CAMPAIGN_ID`) are no longer read and can be deleted.

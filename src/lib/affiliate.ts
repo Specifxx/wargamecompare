@@ -1,7 +1,7 @@
 // Outbound links: how WargameCompare earns. Pure (no data imports), so client components can use it.
 //
 //   • eBay Partner Network: Buy It Now SEARCH links on each market's eBay site, tagged with the EPN
-//     campaign (NEXT_PUBLIC_EBAY_CAMPAIGN_ID) and a per-surface customid, `wgc-<region>-<placement>`, so EPN's report
+//     campaign (EBAY_CAMPAIGN_ID, hard-coded) and a per-surface customid, `wgc-<region>-<placement>`, so EPN's report
 //     says which site and which surface earned.
 //   • Amazon Associates: one tag per Amazon store (US, UK, CA, AU), each from env; a market whose tag is not set shows
 //     no Amazon link at all (an untagged link earns nothing and only takes the click). The subtag (ascsubtag) carries
@@ -69,9 +69,9 @@ export function searchTerms(name: string): string {
 }
 
 // ─── eBay ──────────────────────────────────────────────────────────────────────
-// The owner's EPN campaign for WargameCompare and FigureCompare (owner, 2026-10-29); the customid prefix "wgc" tells
-// the two sites apart in EPN's report.
-export const EBAY_CAMPAIGN_ID = process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID || "5339155911";
+// One EPN campaign for every Compare site, hard-coded (owner, 2026-10-30: "make all of them use this exact campaign");
+// no variable overrides it, and the customid prefix "wgc" tells this site apart in EPN's report.
+export const EBAY_CAMPAIGN_ID = "5339155912";
 
 const EPN: Record<string, { mkrid: string; siteid: string }> = {
   "www.ebay.com.au": { mkrid: "705-53470-19255-0", siteid: "15" },
