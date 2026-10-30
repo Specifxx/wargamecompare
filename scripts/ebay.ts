@@ -48,7 +48,7 @@ async function main() {
     console.log("eBay is off: EBAY_CLIENT_ID / EBAY_CLIENT_SECRET are not set. Nothing to do.");
     return;
   }
-  const campaign = process.env.EBAY_CAMPAIGN_ID?.trim() || process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID?.trim() || EBAY_CAMPAIGN_ID;
+  const campaign = EBAY_CAMPAIGN_ID;
   const cap = Math.max(0, Number(process.env.EBAY_DAILY_CAP || 2500));
   const products = read<Product[]>("products.json", []);
   const offers = read<OffersFile>("offers.json", {});

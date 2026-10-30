@@ -7,7 +7,6 @@ The full step-by-step prompt is `/mnt/project-files/wargame-compare/setup-prompt
 1. **Vercel**: import `Specifxx/wargamecompare` as a new project (framework Next.js, root `/`). Environment variables
    (Production):
    - `NEXT_PUBLIC_SITE_URL` = `https://wargamecompare.com` (the bare domain is canonical)
-   - `NEXT_PUBLIC_EBAY_CAMPAIGN_ID` = `5339155911` (optional: it is the code default)
    - `AMAZON_TAG_US`, `AMAZON_TAG_UK`, `AMAZON_TAG_CA`, `AMAZON_TAG_AU` = Amazon Associates tags (US falls back to
      `riftcompare-20`, AU/NZ to `compareempire-22`; UK and CA show no Amazon link until set)
    - `WAYLAND_SEARCH_TEMPLATE` = Wayland Games' affiliate search link with `{q}` where the search words go
@@ -20,9 +19,9 @@ The full step-by-step prompt is `/mnt/project-files/wargame-compare/setup-prompt
    for. Never redirect the apex to www, and never change or delete an existing record (the 2026-10-26 outage on the
    sister sites came from www switches).
 3. **eBay** (the owner's second eBay account): a developer keyset at developer.ebay.com, with the account-deletion
-   endpoint `https://wargamecompare.com/api/ebay/account-deletion` and the token above; an EPN campaign named
-   WargameCompare. GitHub → Settings → Secrets and variables → Actions: secrets `EBAY_CLIENT_ID`,
-   `EBAY_CLIENT_SECRET`, `EBAY_CAMPAIGN_ID`.
+   endpoint `https://wargamecompare.com/api/ebay/account-deletion` and the token above; no campaign to create
+   (every Compare site uses EPN campaign 5339155912, hard-coded). GitHub → Settings → Secrets and variables → Actions:
+   secrets `EBAY_CLIENT_ID`, `EBAY_CLIENT_SECRET`.
 4. **GitHub variables**: `SITE_URL` = `https://wargamecompare.com` (the ops monitor checks it), optionally
    `EBAY_DAILY_CAP` (default 2500: the app's 5,000 a day are split with FigureCompare).
 5. **Search Console**: add the domain property, submit `https://wargamecompare.com/sitemap.xml`.
