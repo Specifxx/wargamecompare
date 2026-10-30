@@ -44,8 +44,9 @@ every rule you change.
 
 - Every paid link goes through `src/lib/affiliate.ts` with a `wgc-<region>-<placement>` tag, and is `rel="sponsored"`.
 - eBay (owner, 2026-10-28) is pinned FIRST in every product price list, tagged "Ad" (no "Shown first" wording, owner 2026-10-30), with an eBay
-  button beside the best price and an eBay row above search results and the lists' first grid. Amazon and Wayland
-  rows stay under the stores. None is ever counted as a store, given the "Cheapest" badge, the best price or a deal;
+  button beside the best price and an eBay row above search results and the lists' first grid. Amazon is pinned second
+  (owner, 2026-10-30), Wayland stays under the stores. The rows live in `src/lib/price-rows.ts` / `PriceList.tsx`,
+  shared by the product page and the tile quick view (`QuickView.tsx`, `/api/quick/<region>/<id>`, CDN-cached). None is ever counted as a store, given the "Cheapest" badge, the best price or a deal;
   the store rows stay sorted by price and the real cheapest keeps its badge.
 - Store partner codes (`src/lib/store-partner-deals.ts`) are a label beside a price, never a re-rank.
 

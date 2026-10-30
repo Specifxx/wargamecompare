@@ -35,6 +35,10 @@ export const PLACEMENTS = [
   "ebay-strip-footer", // every region page: the strip above the footer
   "landing-ebay", // the landing page and pages with no region: the eBay block
   "menu-ebay", // the sidebar and the phone menu: the eBay link
+  "quickview-ebay", // the quick view (a tile click): the eBay row pinned first
+  "quickview-amazon", // the quick view: the Amazon row, second
+  "quickview-table", // the quick view: the store rows
+  "quickview-wayland", // the quick view: the Wayland Games row
 ] as const;
 export type Placement = (typeof PLACEMENTS)[number];
 

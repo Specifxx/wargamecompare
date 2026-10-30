@@ -7,7 +7,14 @@ import { formatPrice, type Region } from "@/lib/regions";
 export function ProductCard({ s, region }: { s: Summary; region: Region }) {
   const p = s.product;
   return (
-    <Link href={`/${region}/p/${p.id}`} className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
+    <Link
+      href={`/${region}/p/${p.id}`}
+      // A plain click opens the quick view (QuickView.tsx); the link itself stays for crawlers and new tabs.
+      data-qv={p.id}
+      data-qv-region={region}
+      data-qv-name={p.name}
+      data-qv-img={thumb(p.image, 400) ?? undefined}
+      className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
       <div className="plate m-2 aspect-square">
         {p.image ? (
           <img src={thumb(p.image, 400) ?? undefined} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain p-2" />

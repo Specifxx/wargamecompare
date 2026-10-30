@@ -147,3 +147,14 @@ in every tag; this site's is `wgc-<region>`. Supersedes "One EPN campaign for Wa
 Replaced: 5339155911 (WargameCompare, FigureCompare, Compare Empire, K Young), 5339231473 (Lorcana),
 5339231474 (Gundam), 5339234013 (YGO). Old secrets/variables (`EBAY_AFFILIATE_CAMPAIGN`,
 `NEXT_PUBLIC_EBAY_CAMPAIGN_ID`, `EBAY_CAMPAIGN_ID`) are no longer read and can be deleted.
+
+## 2026-10-30: quick view on every product tile (from K Young), Amazon pinned second
+
+Owner: "I really like the kaeyoung quick view pop ups, can we do that for … all the other sites". A plain click on a
+product tile now opens K Young's quick view at once with what the tile shows (photo, name), and the region's price
+rows load from `/api/quick/<region>/<id>`, a function response Vercel's CDN keeps for a day like every page (the data
+only changes with a release); it is fetched ahead when a mouse rests on a tile. The rows are the product page's own
+(`lib/price-rows.ts`, drawn by `PriceList.tsx`), so the two cannot drift. Amazon moves up to the second row, under
+eBay, as on every sister site (owner, 2026-10-30: eBay first, Amazon second); Wayland stays under the stores. The tile
+is still a real link, so crawlers, new tabs and modified clicks reach the product page, whose server HTML keeps every
+price.

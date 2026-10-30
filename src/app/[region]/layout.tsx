@@ -3,6 +3,7 @@ import { EbayStrip } from "@/components/EbayStrip";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { SideNav } from "@/components/SideNav";
+import { QuickView } from "@/components/QuickView";
 import { summariesFor } from "@/lib/data";
 import { navGroups } from "@/lib/nav";
 import { isRegion, REGIONS } from "@/lib/regions";
@@ -26,6 +27,7 @@ export default function RegionLayout({ children, params }: { children: React.Rea
         </main>
       </div>
       <Footer region={region} />
+      <QuickView />
     </>
   );
 }

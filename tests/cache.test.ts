@@ -69,3 +69,8 @@ test("the importer's per-store cache is never bundled into a function", () => {
   assert.match(includes, /"\.\/data\/\*\.json"/);
   assert.doesNotMatch(includes.replace(`"/**"`, ""), /cache|\*\*/);
 });
+
+test("the quick view API is held by the CDN for a day", () => {
+  const r = SOURCES.find((s) => s.path === "src/app/api/quick/[region]/[slug]/route.ts")!;
+  assert.match(r.text, /vercel-cdn-cache-control["']:\s*["']public, s-maxage=86400/);
+});
