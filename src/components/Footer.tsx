@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AMAZON_DISCLOSURE, EBAY_DISCLOSURE } from "@/lib/affiliate";
 import { SYSTEMS } from "@/lib/catalog";
 import { REGION_LIST, type Region } from "@/lib/regions";
-import { GW_DISCLAIMER, SISTER_SITES, SITE_NAME } from "@/lib/site";
+import { CONTACT_EMAIL, GW_DISCLAIMER, SISTER_SITES, SITE_NAME } from "@/lib/site";
 
 export function Footer({ region }: { region: Region | null }) {
   const r = region ?? "uk";
@@ -57,6 +57,7 @@ export function Footer({ region }: { region: Region | null }) {
             <li><Link href="/privacy" className="text-muted hover:text-ink">Privacy</Link></li>
             <li><Link href="/terms" className="text-muted hover:text-ink">Terms</Link></li>
             <li><Link href="/contact" className="text-muted hover:text-ink">Contact and store listings</Link></li>
+            <li><a href={`mailto:${CONTACT_EMAIL}`} className="text-muted hover:text-ink">{CONTACT_EMAIL}</a></li>
           </ul>
         </div>
         <div>
