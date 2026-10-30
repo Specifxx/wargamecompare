@@ -18,6 +18,9 @@ test("factions are never guessed for paints or novels", () => {
   assert.equal(factionOf("Citadel Base: Kasrkin Fur", "citadel"), null);
   assert.equal(factionOf("Dark Imperium (Paperback)", "black-library"), null);
   assert.equal(factionOf("Combat Patrol: Space Marines", "warhammer-40k")?.slug, "space-marines");
+  // Chaos Space Marines titles also say "Space Marines" (2026-10-30: the UK hub had 1 product).
+  assert.equal(factionOf("Chaos Space Marines: Legionaries", "warhammer-40k")?.slug, "chaos-space-marines");
+  assert.equal(factionOf("Combat Patrol: Chaos Space Marines", "warhammer-40k")?.slug, "chaos-space-marines");
 });
 
 test("product types", () => {

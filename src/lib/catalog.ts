@@ -53,8 +53,7 @@ export const FACTIONS: Faction[] = [
   { slug: "astra-militarum", name: "Astra Militarum", system: "warhammer-40k", re: /\bastra militarum\b|\bimperial guard\b|\bcadian\b|\bdeath korps\b|\bkasrkin\b|\bcatachan\b/i },
   { slug: "imperial-knights", name: "Imperial Knights", system: "warhammer-40k", re: /\bimperial knights?\b/i },
   { slug: "imperial-agents", name: "Imperial Agents", system: "warhammer-40k", re: /\bimperial agents\b|\binquisit/i },
-  { slug: "space-marines", name: "Space Marines", system: "warhammer-40k", re: /\bspace marines?\b|\badeptus astartes\b|\bultramarines?\b|\bprimaris\b|\bintercessors?\b|\bterminators?\b(?!.*chaos)/i },
-  // Warhammer 40,000 — Chaos
+  // Warhammer 40,000 — Chaos, before plain Space Marines: "Chaos Space Marines Legionaries" also says "Space Marines".
   { slug: "death-guard", name: "Death Guard", system: "warhammer-40k", re: /\bdeath guard\b/i },
   { slug: "thousand-sons", name: "Thousand Sons", system: "warhammer-40k", re: /\bthousand sons\b/i },
   { slug: "world-eaters", name: "World Eaters", system: "warhammer-40k", re: /\bworld eaters\b/i },
@@ -62,6 +61,8 @@ export const FACTIONS: Faction[] = [
   { slug: "chaos-knights", name: "Chaos Knights", system: "warhammer-40k", re: /\bchaos knights?\b/i },
   { slug: "chaos-daemons", name: "Chaos Daemons", system: "warhammer-40k", re: /\bchaos daemons?\b/i },
   { slug: "chaos-space-marines", name: "Chaos Space Marines", system: "warhammer-40k", re: /\bchaos space marines?\b|\bheretic astartes\b/i },
+  // Warhammer 40,000 — Imperium, continued
+  { slug: "space-marines", name: "Space Marines", system: "warhammer-40k", re: /\bspace marines?\b|\badeptus astartes\b|\bultramarines?\b|\bprimaris\b|\bintercessors?\b|\bterminators?\b(?!.*chaos)/i },
   // Warhammer 40,000 — Xenos
   { slug: "drukhari", name: "Drukhari", system: "warhammer-40k", re: /\bdrukhari\b|\bdark eldar\b/i },
   { slug: "aeldari", name: "Aeldari", system: "warhammer-40k", re: /\baeldari\b|\bcraftworlds?\b|\bharlequins?\b|\bycarnes?\b|\beldar\b/i },
