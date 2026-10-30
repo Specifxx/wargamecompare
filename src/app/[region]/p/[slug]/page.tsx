@@ -201,12 +201,12 @@ export default function ProductPage({ params }: { params: { region: string; slug
           {offers.length ? `${p.name} prices at ${offers.length} ${offers.length === 1 ? "store" : "stores"} in ${r.inName}` : `Where to look for ${p.name} in ${r.inName}`}
         </h2>
         <div className="card divide-y divide-line overflow-hidden">
-          {/* eBay is pinned FIRST (owner, 2026-10-28), tagged "Shown first" and "Ad": never counted as a store, never the
+          {/* eBay is pinned FIRST (owner, 2026-10-28), tagged "Ad" (no wording about the order: owner, 2026-10-30): never counted as a store, never the
               "Cheapest" badge, and the store rows under it stay sorted by price. */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-ad px-4 py-3">
             <div className="min-w-0 flex-1">
               <p className="flex flex-wrap items-center gap-2 font-semibold">
-                {ebayLabel(region)} <span className="ad-pill">Ad</span> <span className="rounded-full bg-raised px-2 py-0.5 text-xs font-semibold text-muted">Shown first</span>
+                {ebayLabel(region)} <span className="ad-pill">Ad</span>
               </p>
               <p className="truncate text-xs text-faint">{ebay ? ebay.t : "New, Buy It Now listings"}</p>
             </div>
