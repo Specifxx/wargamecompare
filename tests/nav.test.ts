@@ -38,10 +38,16 @@ test("eBay strips: above every region page's footer, labelled Ad, never a store'
 
 test("eBay goes first: pinned above the store rows and beside the best price, never the Cheapest badge", () => {
   const page = read("src/app/[region]/p/[slug]/page.tsx");
-  assert.ok(page.indexOf('placement="product-ebay"') < page.indexOf("offers.map("), "eBay row before the store rows");
-  assert.doesNotMatch(page, /Shown first/); // owner, 2026-10-30: no wording about the order
+  // The rows are drawn by PriceList (shared with the quick view) from lib/price-rows.ts.
+  assert.match(page, /<PriceList \{\.\.\.priceRows\(p, region, "product"\)\} \/>/);
+  const list = read("src/components/PriceList.tsx");
+  const ebayRow = list.indexOf("placement={ebay.placement}");
+  const amazonRow = list.indexOf("placement={amazon.placement}");
+  assert.ok(ebayRow > 0 && ebayRow < amazonRow && amazonRow < list.indexOf("stores.map("), "eBay first, Amazon second, then the stores");
+  for (const s of [page, list]) assert.doesNotMatch(s, /Shown first/); // owner, 2026-10-30: no wording about the order
   assert.match(page, /placement="product-best-ebay"/);
-  assert.match(page, /o\.in && i === 0 && <span[^>]*>Cheapest</);
+  assert.match(read("src/lib/price-rows.ts"), /cheapest: o\.in && i === 0/);
+  assert.match(list, /o\.cheapest && <span[^>]*>Cheapest</);
   assert.match(read("src/components/Search.tsx"), /placement="browse-ebay"/);
   for (const [f, grid] of [["src/app/[region]/page.tsx", "<ProductGrid"], ["src/components/HubPage.tsx", "<ProductGrid"], ["src/app/[region]/deals/page.tsx", "list.map("]]) {
     const s = read(f);
