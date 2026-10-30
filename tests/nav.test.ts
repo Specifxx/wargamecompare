@@ -39,7 +39,7 @@ test("eBay strips: above every region page's footer, labelled Ad, never a store'
 test("eBay goes first: pinned above the store rows and beside the best price, never the Cheapest badge", () => {
   const page = read("src/app/[region]/p/[slug]/page.tsx");
   assert.ok(page.indexOf('placement="product-ebay"') < page.indexOf("offers.map("), "eBay row before the store rows");
-  assert.match(page, /Shown first/);
+  assert.doesNotMatch(page, /Shown first/); // owner, 2026-10-30: no wording about the order
   assert.match(page, /placement="product-best-ebay"/);
   assert.match(page, /o\.in && i === 0 && <span[^>]*>Cheapest</);
   assert.match(read("src/components/Search.tsx"), /placement="browse-ebay"/);

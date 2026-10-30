@@ -43,7 +43,7 @@ every rule you change.
 ## Affiliates (how the site earns)
 
 - Every paid link goes through `src/lib/affiliate.ts` with a `wgc-<region>-<placement>` tag, and is `rel="sponsored"`.
-- eBay (owner, 2026-10-28) is pinned FIRST in every product price list, tagged "Ad" and "Shown first", with an eBay
+- eBay (owner, 2026-10-28) is pinned FIRST in every product price list, tagged "Ad" (no "Shown first" wording, owner 2026-10-30), with an eBay
   button beside the best price and an eBay row above search results and the lists' first grid. Amazon and Wayland
   rows stay under the stores. None is ever counted as a store, given the "Cheapest" badge, the best price or a deal;
   the store rows stay sorted by price and the real cheapest keeps its badge.
