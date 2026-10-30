@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { RegionSuggest } from "@/components/RegionSuggest";
 import { summariesFor } from "@/lib/data";
-import { REGION_LIST, REGIONS } from "@/lib/regions";
+import { productIndexable } from "@/lib/index-tiers";
+import { REGION_LIST, REGIONS, formatPrice } from "@/lib/regions";
 import { ogFor } from "@/lib/seo";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
@@ -41,6 +42,32 @@ export default function Landing() {
           );
         })}
       </div>
+      {/* Real prices and product links in the landing page's server HTML (crawl-audit-sites, 2026-10-30: it had
+          46 links and no price, so Google's phone crawler met the catalogue two clicks down). Plain links, no images. */}
+      <section className="mt-12">
+        <h2 className="font-display text-2xl font-bold">Most compared kits today</h2>
+        <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {REGION_LIST.map((r) => {
+            const top = summariesFor(r.region).filter((x) => productIndexable(x) && x.best != null).slice(0, 6);
+            if (!top.length) return null;
+            return (
+              <div key={r.region}>
+                <h3 className="font-semibold">
+                  <Link href={`/${r.region}`} className="hover:text-brand">{r.name}</Link>
+                </h3>
+                <ul className="mt-2 space-y-1 text-sm">
+                  {top.map((x) => (
+                    <li key={x.product.id} className="flex justify-between gap-3">
+                      <Link href={`/${r.region}/p/${x.product.id}`} className="line-clamp-1 hover:text-brand">{x.product.name}</Link>
+                      <span className="tabular shrink-0 font-semibold">{formatPrice(x.best!, r.region)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </section>
       <section className="prose-wg mt-12 max-w-3xl">
         <h2>Why compare?</h2>
         <p>
