@@ -113,6 +113,72 @@ function relativeUrl(url: string): string {
   }
 }
 
+// ---- Black Library books (visitor feedback, 2026-10-31: book prices must be prices you can actually pay) ----
+
+/** A book listing's format, from its title: limited/special edition, hardback, paperback, or null when it doesn't say. */
+export function bookFormat(title: string): "ltd" | "hb" | "pb" | null {
+  if (/\blimited edition\b|\bspecial edition\b|\bcollector'?s edition\b|\bsigned\b|\bnumbered\b|\bslipcase\b/i.test(title)) return "ltd";
+  if (/\bhard\s?(?:back|cover)\b|[([]\s*hb\s*[)\]]|\bhb\b/i.test(title)) return "hb";
+  if (/\bpaper\s?back\b|\bsoft\s?cover\b|[([]\s*pb\s*[)\]]|\bpb\b/i.test(title)) return "pb";
+  return null;
+}
+
+/**
+ * One book, one format. Stores' SKUs sometimes join a novel's paperback, hardback and limited edition into one group
+ * (a A$17 paperback "beside" a A$40 hardback). The format most STORES name wins (a tie goes to the format the product's
+ * slug already names, else the paperback); listings naming another format are dropped. Listings that name none stay,
+ * price-checked later by bookOffers. Pure.
+ */
+export function oneBookFormat<T extends { store: string; title: string }>(ls: T[], slugHint = ""): T[] {
+  const stores = new Map<string, Set<string>>();
+  for (const l of ls) {
+    const f = bookFormat(l.title);
+    if (f) stores.set(f, (stores.get(f) ?? new Set()).add(l.store));
+  }
+  if (stores.size <= 1) return ls;
+  const hint = bookFormat(slugHint.replace(/-/g, " ").replace(/\bhardcover\b/, "hardback"));
+  const ranked = [...stores].sort((a, b) => b[1].size - a[1].size || Number(b[0] === hint) - Number(a[0] === hint) || Number(b[0] === "pb") - Number(a[0] === "pb"));
+  const keep = ranked[0][0];
+  return ls.filter((l) => {
+    const f = bookFormat(l.title);
+    return f === null || f === keep;
+  });
+}
+
+/**
+ * A store that reports nearly every Games Workshop listing as available does not track stock (seen: 1,539 of 1,539).
+ * Its "in stock" says nothing about a book that went out of print years ago, so its book offers are left out.
+ */
+export function untrackedStockStores(ls: { store: string; inStock: boolean }[], minListings = 50, share = 0.97): Set<string> {
+  const by = new Map<string, { n: number; in: number }>();
+  for (const l of ls) {
+    const c = by.get(l.store) ?? { n: 0, in: 0 };
+    c.n++;
+    if (l.inStock) c.in++;
+    by.set(l.store, c);
+  }
+  return new Set([...by].filter(([, c]) => c.n >= minListings && c.in / c.n >= share).map(([s]) => s));
+}
+
+/**
+ * A book's offers in one market: never from a store that does not track stock, and a listing that names no format must
+ * sit within 0.7x–1.4x of the median of the ones that do (an unlabelled hardback beside paperbacks). Sold-out rows stay
+ * (a rare-book hunter wants to know who stocks it) but the site never shows their old price (lib/price-rows.ts). Pure.
+ */
+export function bookOffers(list: Offer[], untracked: Set<string>): Offer[] {
+  const live = list.filter((o) => !untracked.has(o.s));
+  const known = live.filter((o) => bookFormat(o.t)).map((o) => o.p);
+  if (!known.length) return live;
+  const m = median(known);
+  return live.filter((o) => bookFormat(o.t) || (o.p >= m * 0.7 && o.p <= m * 1.4));
+}
+
+/** A Black Library novel (or audio/anthology) group: most of its listings say so in the title, vendor or product type. */
+export function isNovelGroup(ls: { title: string; vendor: string; productType: string }[]): boolean {
+  const novel = ls.filter((l) => /\bblack\s*library\b|\bnovel\b/i.test(`${l.title} ${l.vendor} ${l.productType}`) || systemOf(l.title)?.slug === "black-library");
+  return novel.length * 2 > ls.length;
+}
+
 export interface BuildResult {
   products: Product[];
   offers: OffersFile;
@@ -133,6 +199,7 @@ export function build(listings: StoreListing[], previous: Product[], today: stri
     }
     kept.push({ ...l, codes });
   }
+  const untracked = untrackedStockStores(kept);
   const groups = groupListings(kept.map((l) => ({ store: l.store, title: l.title, codes: l.codes })));
 
   const members = new Map<number, number[]>();
@@ -148,7 +215,11 @@ export function build(listings: StoreListing[], previous: Product[], today: stri
   // Biggest groups first, so a contested slug goes to the product most people will look for.
   const ordered = [...members.entries()].sort((a, b) => b[1].length - a[1].length);
   for (const [, idx] of ordered) {
-    const ls = idx.map((i) => kept[i]);
+    const all = idx.map((i) => kept[i]);
+    const isBook = isNovelGroup(all);
+    const prevHint = all.flatMap((l) => l.codes.map((c) => prevByCode.get(`${c.kind}:${c.value}`)?.id ?? "")).find(Boolean) ?? "";
+    const ls = isBook ? oneBookFormat(all, prevHint) : all;
+    if (!ls.length) continue;
     const codes = [...new Set(ls.flatMap((l) => l.codes.map((c) => `${c.kind}:${c.value}`)))].sort();
     const name = pickName(ls.map((l) => l.title));
     const prev = codes.map((c) => prevByCode.get(c)).find(Boolean);
@@ -185,7 +256,7 @@ export function build(listings: StoreListing[], previous: Product[], today: stri
     }
     for (const [market, list] of byMarket) {
       const stated = statedRrp(list);
-      const ok = plausible(list, stated).sort((a, b) => Number(b.in) - Number(a.in) || a.p - b.p);
+      const ok = plausible(isBook || system === "black-library" ? bookOffers(list, untracked) : list, stated).sort((a, b) => Number(b.in) - Number(a.in) || a.p - b.p);
       if (!ok.length) continue;
       any = true;
       (offers[market] ??= {})[id] = ok;

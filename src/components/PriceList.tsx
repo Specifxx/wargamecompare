@@ -54,7 +54,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
           </div>
           <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${o.inStock ? "bg-open-soft text-open" : "bg-sold-soft text-sold"}`}>{o.inStock ? "In stock" : "Sold out"}</span>
           <div className="w-24 text-right">
-            <span className="tabular font-bold">{o.price}</span>
+            {o.price ? <span className="tabular font-bold">{o.price}</span> : <span className="text-xs text-faint">No price</span>}
             {o.was && <p className="tabular text-xs text-faint line-through">{o.was}</p>}
           </div>
           <div className="flex items-center gap-2">
@@ -124,7 +124,7 @@ function CompactList({ ebay, amazon, stores, wayland }: PriceListData) {
             </p>
           </div>
           <div className="text-right">
-            <span className="tabular font-bold">{o.price}</span>
+            {o.price ? <span className="tabular font-bold">{o.price}</span> : <span className="text-xs text-faint">No price</span>}
             {o.was && <p className="tabular text-xs text-faint line-through">{o.was}</p>}
           </div>
           <OutboundLink href={o.href} rel={REL_STORE} retailer={o.name} placement={o.placement} className={`${o.cheapest ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} shrink-0 px-3.5 py-1.5`}>

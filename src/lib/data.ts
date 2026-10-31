@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { REGIONS, type Market, type Region } from "./regions";
 import { median } from "./deals";
+import { ebayRowShown } from "./ebay-rows";
 import { STORE_BY_KEY } from "./stores";
 import type { EbayFile, Meta, Offer, OffersFile, Product, RrpFile } from "./types";
 
@@ -62,7 +63,9 @@ export function rrpFor(id: string, region: Region): number | null {
 }
 export function ebayFor(id: string, region: Region) {
   // NZ has no eBay site of its own in EPN: NZ buyers are shown eBay Australia's listing, labelled in A$.
-  return data().ebay.items[region === "nz" ? "AU" : REGIONS[region].market]?.[id] ?? null;
+  const market = region === "nz" ? "AU" : REGIONS[region].market;
+  const item = data().ebay.items[market]?.[id] ?? null;
+  return item && ebayRowShown(item, market) ? item : null;
 }
 export function ebayUpdatedAt(): string | null {
   return data().ebay.updatedAt;

@@ -51,3 +51,12 @@ test("other languages' editions are refused; GW's multilingual paint sets are no
   assert.equal(refuse({ ...b, title: "40k Paints + Tools Eng/Spa/Port/Latv/Rom" }), null);
   assert.equal(refuse({ ...b, title: "Codex: Space Marines" }), null);
 });
+
+test("audiobooks, audio dramas and e-books are not the printed book (visitor feedback, 2026-10-31)", () => {
+  assert.equal(refuse(l("Blackstone Fortress Augur of Despair (CD) (Audio Book)", "Black Library")), "digital");
+  assert.equal(refuse(l("Warhammer 40k Ragnar Blackmane, Saga of the Beast (Audio Book)", "Black Library")), "digital");
+  assert.equal(refuse(l("Black Library: The Horus Heresy - Garro: Weapon of Fate (Audio Drama)", "Black Library")), "digital");
+  assert.equal(refuse(l("Eisenhorn: Xenos (eBook)", "Black Library")), "digital");
+  assert.equal(refuse(l("Eisenhorn: Xenos (Paperback)", "Black Library")), null);
+  assert.equal(refuse(l("Codex: Space Marines (HB)")), null);
+});

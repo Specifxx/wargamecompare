@@ -38,14 +38,14 @@ export function EbayStrip({ region, items, placement, heading, max = 6 }: { regi
               <div className="flex flex-1 flex-col gap-1 px-3 pb-3">
                 <p className="line-clamp-2 text-sm font-semibold leading-snug">{t.name}</p>
                 <p className="mt-auto pt-1 text-sm">
-                  {t.price != null ? <span className="tabular font-bold">{formatPrice(t.price, priceRegion)}</span> : <span className="font-semibold text-brand">Search new listings</span>}
+                  {t.price != null ? <><span className="tabular font-bold">{formatPrice(t.price, priceRegion)}</span> <span className="text-xs text-faint">delivered</span></> : <span className="font-semibold text-brand">Search new listings</span>}
                 </p>
               </div>
             </OutboundLink>
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-xs text-faint">{EBAY_DISCLOSURE} New, Buy It Now. eBay sellers are not part of our store comparison.</p>
+      <p className="mt-3 text-xs text-faint">{EBAY_DISCLOSURE} New, Buy It Now, from sellers in this country; prices include postage. eBay sellers are not part of our store comparison.</p>
     </section>
   );
 }
@@ -70,7 +70,7 @@ export function pickTiles(region: Region, items: Summary[], max: number, placeme
     seen.add(p.id);
     const e = ebayFor(p.id, region);
     const base = { id: p.id, name: p.name, system: systemLabel(p.system) };
-    if (e) withItem.push({ ...base, href: ebayAffiliateUrl(e.u, region, placement), image: e.i, price: e.p });
+    if (e) withItem.push({ ...base, href: ebayAffiliateUrl(e.u, region, placement), image: e.i, price: e.p + (e.sh ?? 0) });
     else search.push({ ...base, href: ebaySearchUrl(p.name, region, placement), image: null, price: null });
   }
   return [...withItem, ...search].slice(0, max);
