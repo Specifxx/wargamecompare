@@ -20,6 +20,8 @@ interface Data {
   stores: number;
   inStock: number;
   rows: PriceListData;
+  name: string;
+  img: string | null;
 }
 
 const cache = new Map<string, Promise<Data | null>>();
@@ -34,7 +36,28 @@ function load(api: string): Promise<Data | null> {
   }
   return p;
 }
-const apiOf = (a: HTMLAnchorElement) => `/api/quick/${a.dataset.qvRegion}/${encodeURIComponent(a.dataset.qv!)}`;
+// Every link to a product page opens it (owner, 2026-10-31: "whenever I click on any item … a quick view open like K Young"):
+// a tile's data-qv attributes when it has them, else the region and id read from the href (/<region>/p/<id>), with the
+// link's own photo and text until the response brings the product's own. Links in the quick view, and on the product's
+// own page, navigate as usual.
+const PRODUCT_PATH = /^\/(uk|au|nz|ca|us)\/p\/([^/?#]+)\/?$/;
+function headOf(e: Event): Head | null {
+  const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+  if (!a || (a.target && a.target !== "_self") || a.hasAttribute("download") || a.closest("[role=dialog]")) return null;
+  const href = a.getAttribute("href")!;
+  let region: string, id: string, name: string, img: string | null;
+  if (a.dataset.qv && a.dataset.qvRegion) {
+    [region, id, name, img] = [a.dataset.qvRegion, a.dataset.qv, a.dataset.qvName || "", a.dataset.qvImg || null];
+  } else {
+    const m = PRODUCT_PATH.exec(href);
+    if (!m || window.location.pathname.replace(/\/$/, "") === href.replace(/\/$/, "")) return null;
+    const pic = a.querySelector("img");
+    const text = (a.textContent || "").replace(/\s+/g, " ").trim();
+    [region, id, name, img] = [m[1], decodeURIComponent(m[2]), pic?.alt || (text.length <= 140 ? text : ""), pic?.currentSrc || pic?.src || null];
+  }
+  const api = `/api/quick/${region}/${encodeURIComponent(id)}`;
+  return { key: api, href, api, name, img };
+}
 
 export function QuickView() {
   const [head, setHead] = useState<Head | null>(null);
@@ -46,18 +69,17 @@ export function QuickView() {
     // Capture phase on the document: runs before Next's Link, which then sees the click already handled.
     function onClick(e: MouseEvent) {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const a = (e.target as Element | null)?.closest?.("a[data-qv]") as HTMLAnchorElement | null;
-      if (!a) return;
+      const h = headOf(e);
+      if (!h) return;
       e.preventDefault();
-      const api = apiOf(a);
-      setHead({ key: api, href: a.getAttribute("href")!, api, name: a.dataset.qvName || "", img: a.dataset.qvImg || null });
+      setHead(h);
       setData("loading");
-      load(api).then((d) => setData((cur) => (cur === "loading" ? d : cur)));
+      load(h.api).then((d) => setData((cur) => (cur === "loading" ? d : cur)));
     }
     // Warm the response when a mouse rests on a tile, so most opens are instant.
     function onOver(e: PointerEvent) {
-      const a = (e.target as Element | null)?.closest?.("a[data-qv]") as HTMLAnchorElement | null;
-      if (a && e.pointerType === "mouse") load(apiOf(a));
+      const h = e.pointerType === "mouse" ? headOf(e) : null;
+      if (h) load(h.api);
     }
     document.addEventListener("click", onClick, true);
     document.addEventListener("pointerover", onOver, { passive: true });
@@ -81,16 +103,19 @@ export function QuickView() {
   }, [head, close]);
 
   if (!head) return null;
+  const got = data && data !== "loading" ? data : null;
+  const name = got?.name || head.name;
+  const img = head.img || got?.img || null;
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={head.name}>
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={name}>
       <button type="button" aria-label="Close" tabIndex={-1} className="qv-backdrop absolute inset-0 bg-black/50 backdrop-blur-[2px]" onClick={close} />
       <div className="qv-panel relative flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-line bg-surface shadow-2xl sm:rounded-2xl">
         <div className="flex items-start gap-4 border-b border-line p-4 sm:p-5">
           <div className="plate h-24 w-24 shrink-0">
-            {head.img ? <img src={head.img} alt="" className="h-full w-full object-contain p-1.5" /> : <div className="flex h-full items-center justify-center text-xs text-sold">No photo</div>}
+            {img ? <img src={img} alt="" className="h-full w-full object-contain p-1.5" /> : <div className="flex h-full items-center justify-center text-xs text-sold">No photo</div>}
           </div>
           <div className="min-w-0 flex-1">
-            <h2 className="font-display text-lg font-bold leading-snug">{head.name}</h2>
+            <h2 className="font-display text-lg font-bold leading-snug">{name || <span className="qv-shimmer inline-block h-5 w-48 rounded" />}</h2>
             {data && data !== "loading" && (
               <p className="mt-1 text-xs text-faint">
                 {data.inStock} of {data.stores} {data.stores === 1 ? "store" : "stores"} in stock

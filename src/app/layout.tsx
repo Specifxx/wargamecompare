@@ -5,6 +5,7 @@ import { jsonLd, siteJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import { SEASON_BOOT_SCRIPT } from "@/lib/season";
 import { THEME_BOOT_SCRIPT } from "@/lib/theme";
+import { QuickView } from "@/components/QuickView";
 import "./globals.css";
 
 // The display face is bundled (OFL, src/app/fonts): no font request at build or at runtime. Body text is the system stack.
@@ -40,6 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         {children}
+        {/* On every page, the home page included: any product link opens the quick view. */}
+        <QuickView />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(siteJsonLd()) }} />
         <VercelPageViews />
       </body>
