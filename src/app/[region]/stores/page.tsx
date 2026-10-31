@@ -5,6 +5,7 @@ import { regionOr404 } from "@/lib/page";
 import { REGION_LIST } from "@/lib/regions";
 import { ogFor, regionAlternates } from "@/lib/seo";
 import { storeHost, storesInMarket } from "@/lib/stores";
+import { SuggestStore } from "@/components/ReportForms";
 
 export const dynamic = "force-dynamic";
 
@@ -28,7 +29,7 @@ export default function StoresPage({ params }: { params: { region: string } }) {
     <div className="page py-8">
       <h1 className="font-display text-3xl font-extrabold">Where to buy Warhammer in {r.inName}</h1>
       <p className="mt-2 max-w-3xl text-muted">
-        The {stores.length} independent stores we compare in {r.inName}, by how many products they are the cheapest for today. Missing one? <Link href="/contact" className="text-brand underline">Tell us</Link>.
+        The {stores.length} independent stores we compare in {r.inName}, by how many products they are the cheapest for today. Missing one? <a href="#suggest" className="text-brand underline">Suggest it</a>.
       </p>
       <div className="card mt-6 divide-y divide-line">
         {rows.map(({ s, cheapest, ok }) => (
@@ -41,6 +42,11 @@ export default function StoresPage({ params }: { params: { region: string } }) {
           </Link>
         ))}
       </div>
+      <section id="suggest" className="mt-10">
+        <h2 className="font-display text-xl font-bold">Suggest a store</h2>
+        <p className="mt-1 max-w-3xl text-sm text-muted">An independent store we don&apos;t compare yet? We check every suggestion and add the store if we can read its prices. Store owners welcome: listing is free.</p>
+        <SuggestStore regions={REGION_LIST.map((x) => [x.short, x.name])} what="Games Workshop products" buttonClassName="btn-primary" />
+      </section>
     </div>
   );
 }

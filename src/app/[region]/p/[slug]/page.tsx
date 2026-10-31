@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { OutboundLink } from "@/components/OutboundLink";
 import { PriceList } from "@/components/PriceList";
+import { ReportPrice } from "@/components/ReportForms";
 import { ProductGrid } from "@/components/ProductCard";
 import { StoreCode } from "@/components/StoreCode";
 import {
@@ -191,6 +192,7 @@ export default function ProductPage({ params }: { params: { region: string; slug
           {offers.length ? `${p.name} prices at ${offers.length} ${offers.length === 1 ? "store" : "stores"} in ${r.inName}` : `Where to look for ${p.name} in ${r.inName}`}
         </h2>
         <PriceList {...priceRows(p, region, "product")} />
+        <ReportPrice product={`${p.name}${p.code ? ` (${p.code})` : ""}`} region={r.short} buttonClassName="btn-ghost" stores={priceRows(p, region, "product").stores.map((s) => ({ name: s.name, price: s.price }))} />
         <p className="mt-2 text-xs text-faint">
           eBay and Amazon are pinned first as labelled ads; the stores under them are sorted by price, in stock first, never by what we earn. {EBAY_DISCLOSURE} {amazon ? AMAZON_DISCLOSURE : ""}
           {updated && ` Store prices checked ${new Date(updated).toUTCString().slice(5, 22)} UTC.`}
