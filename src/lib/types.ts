@@ -55,6 +55,9 @@ export interface EbayItem {
   t: string; // listing title
   i: string | null; // listing photo
   at: string; // when it was checked
+  /** The seller's country, when the search was limited to sellers in the market's own country (from 2026-10-31). Rows
+   *  without it come from the older, worldwide search: see ebayRowShown(). */
+  l?: string;
 }
 export interface EbayFile {
   updatedAt: string | null;

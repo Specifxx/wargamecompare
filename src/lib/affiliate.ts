@@ -119,6 +119,7 @@ export function ebaySearchUrl(name: string, region: Region, placement: Placement
   u.searchParams.set("_nkw", searchTerms(name) || "Warhammer");
   u.searchParams.set("LH_BIN", "1");
   u.searchParams.set("LH_ItemCondition", "1000"); // New
+  u.searchParams.set("LH_PrefLoc", "1"); // located in that eBay site's country: no overseas postage (feedback, 2026-10-31)
   return ebayAffiliateUrl(u.toString(), region, placement);
 }
 

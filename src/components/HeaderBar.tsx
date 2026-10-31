@@ -3,11 +3,12 @@ import { ebaySearchUrl, REL_PAID } from "@/lib/affiliate";
 import { navGroups } from "@/lib/nav";
 import { REGION_LIST, REGIONS, type Region } from "@/lib/regions";
 import { Logo } from "./Logo";
+import { MenuCloser } from "./MenuCloser";
 import { MobileMenu } from "./MobileMenu";
 import { OutboundLink } from "./OutboundLink";
 import { ThemeToggle } from "./ThemeToggle";
 
-/** The header for one region. Pure (no hooks, no server reads): SoftHeader draws it in the browser too. */
+/** The header for one region. Pure (no hooks of its own, no server reads; MenuCloser is a client island): SoftHeader draws it in the browser too. */
 export function HeaderBar({ region: r, home }: { region: Region; home: string }) {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
@@ -39,7 +40,7 @@ export function HeaderBar({ region: r, home }: { region: Region; home: string })
             eBay
           </OutboundLink>
         </nav>
-        <details className="relative ml-auto shrink-0 sm:ml-0">
+        <details className="relative ml-auto shrink-0 sm:ml-0" data-menu="country">
           <summary className="chip cursor-pointer list-none" aria-label="Change country">
             {REGIONS[r].short}
           </summary>
@@ -54,6 +55,7 @@ export function HeaderBar({ region: r, home }: { region: Region; home: string })
           </ul>
         </details>
         <ThemeToggle />
+        <MenuCloser />
       </div>
     </header>
   );

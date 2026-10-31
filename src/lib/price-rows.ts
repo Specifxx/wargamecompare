@@ -30,7 +30,8 @@ export interface StoreRow {
   title: string;
   inStock: boolean;
   cheapest: boolean;
-  price: string;
+  /** null for a sold-out book: its last price is not one anyone can pay (visitor feedback, 2026-10-31). */
+  price: string | null;
   was: string | null;
   code: ActiveStoreCode | null;
   href: string;
@@ -48,17 +49,21 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
   const best = offers.find((o) => o.in) ?? null;
   const ebay = ebayFor(p.id, region);
   const ebayRegion: Region = region === "nz" ? "au" : region;
+  // eBay's row shows the DELIVERED price (item + postage; visitor feedback 2026-10-31), the stores' rows their item
+  // price, so the comparison line says which it compares.
+  const total = ebay ? ebay.p + (ebay.sh ?? 0) : 0;
   const vs =
     ebay && best && ebayRegion === region
-      ? ebay.p > best.p
-        ? `+${Math.round(((ebay.p - best.p) / best.p) * 100)}% vs cheapest store`
-        : ebay.p < best.p
-          ? `${Math.round(((best.p - ebay.p) / best.p) * 100)}% under the cheapest store`
+      ? total > best.p
+        ? `+${Math.round(((total - best.p) / best.p) * 100)}% vs cheapest store`
+        : total < best.p
+          ? `${Math.round(((best.p - total) / best.p) * 100)}% under the cheapest store`
           : "same as the cheapest store"
       : null;
   const at = <T extends string>(x: T) => `${surface}-${x}` as Placement;
   const amazon = amazonSearchUrl(p.name, region, at("amazon"));
   const wayland = WAYLAND_REGIONS.includes(region) ? waylandSearchUrl(p.name) : null;
+  const isBook = p.system === "black-library";
   const storeName = (k: string) => STORE_BY_KEY.get(k)?.name ?? k;
   return {
     ebay: {
@@ -67,8 +72,8 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       placement: at("ebay"),
       found: !!ebay,
       title: ebay ? ebay.t : null,
-      price: ebay ? formatPrice(ebay.p, ebayRegion) : null,
-      ship: ebay ? (ebay.sh === 0 ? "Free shipping" : ebay.sh ? `+ ${formatPrice(ebay.sh, ebayRegion)} shipping` : "plus shipping") : null,
+      price: ebay ? formatPrice(total, ebayRegion) : null,
+      ship: ebay ? (ebay.sh ? `Delivered, incl. ${formatPrice(ebay.sh, ebayRegion)} postage` : ebay.sh === 0 ? "Delivered, free postage" : "plus postage") : null,
       vs,
     },
     amazon: amazon ? { label: amazonLabel(region), href: amazon, placement: at("amazon") } : null,
@@ -78,8 +83,8 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       title: o.t,
       inStock: o.in,
       cheapest: o.in && i === 0,
-      price: formatPrice(o.p, region),
-      was: o.w && o.w > o.p ? formatPrice(o.w, region) : null,
+      price: o.in || !isBook ? formatPrice(o.p, region) : null,
+      was: o.w && o.w > o.p && (o.in || !isBook) ? formatPrice(o.w, region) : null,
       code: activeStoreCode(o.u),
       href: storeUrl(o.u, dealForHost(new URL(o.u).hostname)?.ref),
       placement: at("table"),

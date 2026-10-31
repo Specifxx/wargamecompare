@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { EBAY_CAMPAIGN_ID, affiliateSubId } from "@/lib/affiliate";
-import { EBAY_SITES, pickBest, plan, searchQuery, type Candidate } from "@/lib/import/ebay";
+import { EBAY_SITES, endUserContext, pickBest, plan, searchFilter, searchQuery, type Candidate } from "@/lib/import/ebay";
 import { REGIONS, type Market, type Region } from "@/lib/regions";
 import type { EbayFile, OffersFile, Product, RrpFile } from "@/lib/types";
 
@@ -94,7 +94,7 @@ async function main() {
       const q = searchQuery(c.product);
       const params = new URLSearchParams({
         q,
-        filter: `buyingOptions:{FIXED_PRICE},conditionIds:{1000},price:[${Math.floor((c.ref * 0.5) / 100)}..${Math.ceil((c.ref * 1.4) / 100)}],priceCurrency:${site.currency}`,
+        filter: searchFilter(c.market, c.ref),
         sort: "price",
         limit: "30",
       });
@@ -103,7 +103,7 @@ async function main() {
         headers: {
           Authorization: `Bearer ${tok}`,
           "X-EBAY-C-MARKETPLACE-ID": site.id,
-          ...(campaign ? { "X-EBAY-C-ENDUSERCTX": `affiliateCampaignId=${campaign},affiliateReferenceId=${ref}` } : {}),
+          "X-EBAY-C-ENDUSERCTX": endUserContext(c.market, campaign || null, ref),
         },
       });
       spent++;
@@ -117,7 +117,7 @@ async function main() {
         continue;
       }
       const d = (await res.json()) as { itemSummaries?: Parameters<typeof pickBest>[1] };
-      const best = pickBest(c.product, d.itemSummaries ?? [], site.currency, c.ref, now);
+      const best = pickBest(c.product, d.itemSummaries ?? [], site.currency, c.ref, now, site.country);
       const items = (state.items[c.market] ??= {});
       const checked = (state.checked[c.market] ??= {});
       if (best) {

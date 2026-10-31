@@ -11,6 +11,9 @@ const CARD = /\bnear mint\b|\b(?:lightly|moderately|heavily) played\b|\bnon[\s-]
 // Another language's edition (Canadian and Australian stores carry French, German and Japanese books and boxes).
 const FOREIGN = /\((?:fr|de|es|it|jp|ja|cn|zh|pt|pl|ru)\)|\[(?:fr|de|es|it|jp)\]|\b(?:french|fran[cç]ais|fran[cç]aise|deutsch|german|espa[nñ]ol|spanish|italiano|italian|japanese|chinese|polish|russian)\b(?!\s*\/)|[ée]dition fran|usag[ée]|\bversion (?:fr|fran)/i;
 const MERCH = /\bhoodie\b|\bt-?shirt\b|\bmug\b|\bposter\b|\bdesk\s*mat\b|\bplaymat\b|\bfigurine\b|\bstatue\b|\b1\/\d+ scale\b|\bkeyring\b|\bplush\b|\bgift card\b|\bvoucher\b|\bmagazine\b|\bissue \d+\b/i;
+// Not a printed book or a boxed product: audiobooks, audio dramas, e-books and other digital editions (stores list them
+// beside the novel, at a different price; visitor feedback 2026-10-31).
+const DIGITAL = /\baudio\s?-?\s?(?:book|drama|cd|edition)s?\b|\baudiobooks?\b|\baudible\b|\bmp3\b|\(cd\)|\[cd\]|\be-?books?\b|\bkindle\b|\bepub\b|\bdigital (?:edition|download|copy|code)\b|\bdownload code\b/i;
 const STORE_BUNDLE = /\bbundle\b|\bcombo\b|\bdeal\b|\boffer\b|\bmega pack\b|\bcollection of\b|\bx\s?\d+\s*(?:boxes|kits)\b|\b\d+\s*x\s*boxes\b/i;
 
 export interface RawListing {
@@ -42,6 +45,7 @@ export function refuse(l: RawListing): string | null {
   if (NOT_NEW.test(text)) return "not-new";
   if (FOREIGN.test(l.title)) return "foreign";
   if (MERCH.test(l.title)) return "merch";
+  if (DIGITAL.test(l.title)) return "digital";
   if (!isGamesWorkshop(l)) return "not-gw";
   if (!l.hasCode && STORE_BUNDLE.test(l.title)) return "store-bundle";
   return null;

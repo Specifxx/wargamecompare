@@ -209,3 +209,25 @@ results and other product links went straight to the product page. `QuickView` i
 opens for any plain click on a link to `/<region>/p/<id>`, reading the region and id from the href when the link has no
 `data-qv`; `/api/quick` also returns `name` and `img` for those. Links inside the quick view and on the product's own
 page, and modified, middle and new-tab clicks, navigate as before.
+
+## Visitor feedback: local eBay sellers, a working phone menu, honest book prices (2026-10-31)
+
+A wargamer's feedback (via the owner, Instagram): eBay rows often carried overseas postage ("a lot of wasted clicks"),
+the phone menu "doesn't work" (tapping 40K, Paints or Black Library went nowhere), and Black Library books showed
+sold-out prices from shops that never update stock, and audiobook prices.
+
+- **eBay: local sellers, delivered price.** The Browse search is limited to items located in and delivered to the
+  market's own country (`itemLocationCountry`, `deliveryCountry`), with a central postcode in `contextualLocation` so
+  eBay quotes real postage; a listing with unknown postage is never kept (`pickBest`). The row and the eBay tiles show
+  the delivered price (item + postage), and the "vs cheapest store" line compares that. New rows carry the seller's
+  country (`l`). Rows from the older worldwide search are shown only when their postage is known and local-sized
+  (`LOCAL_POSTAGE_MAX`, `src/lib/ebay-rows.ts`) and are searched again first; they age out in 96 h anyway. eBay search
+  links add `LH_PrefLoc=1` (located in that country).
+- **Phone menu.** It did navigate, but the `<details>` panel stayed open over the new page (client navigation keeps the
+  header), so it looked dead. `MenuCloser` closes every `details[data-menu]` on a route change, a link tap inside it,
+  or a tap outside it; the country picker gets the same.
+- **Books.** Audiobooks, audio dramas, e-books and other digital editions are refused (`digital`). A novel group keeps
+  one format: the format most stores name (paperback / hardback / limited), others dropped (SKUs had joined A$17
+  paperbacks with A$40 hardbacks); an unlabelled listing must sit within 0.7x-1.4x of the labelled ones. Stores that
+  report 97%+ of 50+ GW listings available do not track stock (one: 1,539 of 1,539) and are left out of book offers.
+  Sold-out book rows stay (who stocks it matters to rare-book hunters) but never show their old price ("No price").
