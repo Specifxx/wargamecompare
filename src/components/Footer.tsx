@@ -57,6 +57,7 @@ export function Footer({ region }: { region: Region | null }) {
             <li><Link href="/privacy" className="text-muted hover:text-ink">Privacy</Link></li>
             <li><Link href="/terms" className="text-muted hover:text-ink">Terms</Link></li>
             <li><Link href="/contact" className="text-muted hover:text-ink">Contact and store listings</Link></li>
+            <li><Link href="/uk/stores#suggest" className="text-muted hover:text-ink">Suggest a store</Link></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`} className="text-muted hover:text-ink">{CONTACT_EMAIL}</a></li>
           </ul>
         </div>
