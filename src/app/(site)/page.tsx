@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CreatorsTeaser } from "@/components/creators/CreatorsTeaser";
 import { RegionSuggest } from "@/components/RegionSuggest";
 import { summariesFor } from "@/lib/data";
 import { productIndexable } from "@/lib/index-tiers";
@@ -28,6 +29,7 @@ export default function Landing() {
         cheapest in stock first, with the saving on RRP. Free, and no account needed.
       </p>
       <RegionSuggest />
+      <CreatorsTeaser />
       <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {REGION_LIST.map((r) => {
           const n = storesInMarket(r.market).length;

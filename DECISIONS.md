@@ -231,3 +231,14 @@ sold-out prices from shops that never update stock, and audiobook prices.
   paperbacks with A$40 hardbacks); an unlabelled listing must sit within 0.7x-1.4x of the labelled ones. Stores that
   report 97%+ of 50+ GW listings available do not track stock (one: 1,539 of 1,539) and are left out of book offers.
   Sold-out book rows stay (who stocks it matters to rare-book hunters) but never show their old price ("No price").
+
+## Featured creators page (/creators), hobbyhaz first (2026-10-31)
+
+Owner: feature hobbyhaz (Harrison, "Bolters & Booster packs", Instagram) "just like the other websites", i.e. MTG Compare's
+and Gundam Compare's /creators. Same shape: a static list in `src/lib/creators.ts` (newest `since` is the spotlight), round
+320px webp avatars in `public/img/creators/` (never `public/creators/`, which a route could shadow), a spotlight card with
+the platform buttons, a "get featured" mailto, an FAQ, CollectionPage and FAQPage JSON-LD. Linked from the landing page
+(`CreatorsTeaser`, under the search), the footer, the menu ("Deals & more") and the sitemap. The page reads no price data:
+it prerenders as a static page and sits in `CDN_PAGES` anyway. No follower counts (owner). Creator links are followed and
+keep the referrer (`rel="noopener"` only) so their analytics see us. His spotlight mentions the book feedback he gave
+(PR #20), with his consent implied by the owner's request. To add a creator: append to `CREATORS` with a circle-cut webp.
