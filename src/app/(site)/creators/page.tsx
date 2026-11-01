@@ -22,6 +22,17 @@ export const metadata: Metadata = {
   openGraph: ogFor("/creators", `${TITLE} | ${SITE_NAME}`, DESCRIPTION),
 };
 
+// "How to work with us" (owner, 2026-11-01): creators kept asking how we'd like
+// to be promoted. Flexible on purpose: any one of these is plenty. Creators
+// call us their "partner" in their own content (we don't pay them, so not
+// "sponsor"); on this site they stay "featured creators".
+const SITE_DOMAIN = new URL(SITE_URL).host.replace(/^www\./, "");
+const WORK_WITH_US = [
+  { title: "Link us", body: `Put ${SITE_DOMAIN} in your bio, video description or a story link. That's the one thing that helps most.` },
+  { title: "Shout us out", body: `In the content you already make, a quick line: “check out our partner ${SITE_NAME}” while you open product, show your collection or plan a purchase.` },
+  { title: "Show how it works", body: `A short walkthrough or honest review of ${SITE_NAME}: look something up, compare the stores, find the cheapest. Say what you really think.` },
+];
+
 const FAQS = [
   { q: "Does it cost anything to be featured?", a: `No. A listing is free. We ask featured creators to mention ${SITE_NAME} in their content now and then, and we send our visitors their way in return.` },
   { q: "Who can be featured?", a: "Anyone who makes miniature wargaming content regularly: painting, battle reports, unboxings, lore and Black Library reviews, terrain and hobby tips, on Instagram, YouTube, TikTok, Twitch or a blog. Good hobby content matters more than audience size." },
@@ -163,6 +174,32 @@ export default function CreatorsPage() {
         <div className="mt-5 flex flex-wrap gap-2">
           <a href={`mailto:${CONTACT_EMAIL}?subject=${subject}`} className="btn-primary">Email us to get featured</a>
           <Link href="/contact" className="btn-ghost">Other ways to reach us</Link>
+        </div>
+      </section>
+
+      <section id="work-with-us" className="mt-10 scroll-mt-24" aria-labelledby="work-with-us-title">
+        <h2 id="work-with-us-title" className="font-display text-2xl font-bold">How to work with us</h2>
+        <p className="mt-2 max-w-2xl text-[15px] leading-7 text-muted">
+          Creators often ask how we&rsquo;d like {SITE_NAME} promoted. Honestly, however suits you: no contract, no script, no quota and nothing to send us first. We help you, you help us, and we keep featuring you either way.
+        </p>
+        <ol className="mt-5 grid gap-3 sm:grid-cols-3">
+          {WORK_WITH_US.map((w, i) => (
+            <li key={w.title} className="card p-5">
+              <span className="text-xs font-semibold uppercase tracking-wide text-brand">Option {i + 1}</span>
+              <h3 className="mt-1 font-bold">{w.title}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-muted">{w.body}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="card mt-3 p-5">
+          <h3 className="font-bold">Lines you can borrow</h3>
+          <ul className="mt-2 space-y-1.5 text-sm leading-6 text-muted">
+            <li>&ldquo;Prices checked on our partner {SITE_DOMAIN}. Link in my bio.&rdquo;</li>
+            <li>&ldquo;Be sure to check out our partner {SITE_NAME}: it compares miniatures prices across stores, so you find the cheapest.&rdquo;</li>
+          </ul>
+          <p className="mt-3 text-sm leading-6 text-muted">
+            Please say we&rsquo;re partners (&ldquo;our partner&rdquo;, or your platform&rsquo;s partnership label) so your followers know. Ad rules such as the FTC&rsquo;s in the US and the ASA&rsquo;s in the UK ask for that even when no money changes hands.
+          </p>
         </div>
       </section>
 
