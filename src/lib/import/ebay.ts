@@ -44,8 +44,12 @@ export function endUserContext(market: Market, campaign: string | null, ref: str
 }
 
 export { ebayRowShown, LOCAL_POSTAGE_MAX } from "@/lib/ebay-rows";
-/** Share of each run's budget per eBay site (UK first: the biggest Warhammer market we compare). */
-export const SHARE: Partial<Record<Market, number>> = { UK: 0.35, AU: 0.25, US: 0.25, CA: 0.15 };
+/**
+ * Share of each run's budget per eBay site. The US first (owner, 2026-11-01: "the eBay API for all websites should also
+ * prioritise the US"; until then the UK led with 35%): its searches run first, so a quota stop cuts another site, and
+ * the slots a site cannot use (nothing due) go to the US's remaining due products before any other site's.
+ */
+export const SHARE: Partial<Record<Market, number>> = { US: 0.35, UK: 0.3, AU: 0.2, CA: 0.15 };
 /** Under this reference price (in the site's currency units) a buyer saves pennies: no call. */
 export const MIN_REF_UNITS = 15;
 
@@ -65,7 +69,9 @@ export function intervalHours(refUnits: number, stores: number): number {
 
 export function plan(cands: Candidate[], state: EbayFile, budget: number, now: Date): Candidate[] {
   const out: Candidate[] = [];
-  for (const [market, share] of Object.entries(SHARE) as [Market, number][]) {
+  const left: { c: Candidate; score: number }[] = [];
+  const markets = (Object.entries(SHARE) as [Market, number][]).sort((a, b) => Number(b[0] === "US") - Number(a[0] === "US"));
+  for (const [market, share] of markets) {
     const slots = Math.floor(budget * share);
     const pool = cands
       .filter((c) => c.market === market && c.ref / 100 >= MIN_REF_UNITS)
@@ -81,6 +87,18 @@ export function plan(cands: Candidate[], state: EbayFile, budget: number, now: D
       .filter((x) => x.due)
       .sort((a, b) => b.score - a.score);
     out.push(...pool.slice(0, slots).map((x) => x.c));
+    left.push(...pool.slice(slots));
+  }
+  // Unused slots: the US's remaining due products first, then every other site's by score. The US's run right after
+  // its own share, before any other site.
+  const spare = Math.max(0, budget - out.length);
+  if (spare && left.length) {
+    left.sort((a, b) => Number(b.c.market === "US") - Number(a.c.market === "US") || b.score - a.score);
+    const extra = left.slice(0, spare).map((x) => x.c);
+    const us = extra.filter((c) => c.market === "US");
+    const usEnd = out.filter((c) => c.market === "US").length;
+    out.splice(usEnd, 0, ...us);
+    out.push(...extra.filter((c) => c.market !== "US"));
   }
   return out;
 }
