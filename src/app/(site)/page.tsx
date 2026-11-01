@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChristmasBanner } from "@/components/ChristmasBanner";
 import { CreatorsTeaser } from "@/components/creators/CreatorsTeaser";
 import { RegionSuggest } from "@/components/RegionSuggest";
 import { summariesFor } from "@/lib/data";
@@ -29,6 +30,15 @@ export default function Landing() {
         cheapest in stock first, with the saving on RRP. Free, and no account needed.
       </p>
       <RegionSuggest />
+      {/* Christmas only (1 November to Boxing Day; hidden by CSS otherwise). */}
+      <div className="mt-8">
+        <ChristmasBanner
+          title="Christmas gifts for the hobby"
+          text="Combat Patrols, starter sets and paints, matched by box code across the discount stores, cheapest in stock first."
+          href="/us/deals"
+          cta="See the biggest savings"
+        />
+      </div>
       <CreatorsTeaser />
       <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {REGION_LIST.map((r) => {

@@ -242,3 +242,17 @@ the platform buttons, a "get featured" mailto, an FAQ, CollectionPage and FAQPag
 it prerenders as a static page and sits in `CDN_PAGES` anyway. No follower counts (owner). Creator links are followed and
 keep the referrer (`rel="noopener"` only) so their analytics see us. His spotlight mentions the book feedback he gave
 (PR #20), with his consent implied by the owner's request. To add a creator: append to `CREATORS` with a circle-cut webp.
+
+## Christmas theme: 1 November to Boxing Day (2026-11-01)
+
+Owner, 2026-11-01: every Compare site gets a Christmas theme after the Halloween one, each its own take. No hero band here, so the home pages get a winter-night `ChristmasBanner` ("Christmas gifts for the hobby", to deals), a candy-cane stripe under the sticky header, holly-red brand colour and a Santa hat on the logo. Halloween stays year-specific; Christmas repeats every year (`CHRISTMAS_FROM`/`CHRISTMAS_TO`).
+
+The season window is fixed in `src/lib/season.ts`: 1 November to 26 December, every year, by the visitor's own
+date, stamped on `<html data-season>` by an inline boot script before first paint. `?season=christmas` previews it out
+of season and `?season=off` hides it in season. Every decoration is CSS-gated on that attribute, `aria-hidden`,
+`pointer-events: none`, painted under the content (never over a price or a button), animated with `transform`
+only, and stopped under `prefers-reduced-motion`. The page's content and links stay in the server HTML; the season
+adds no request, no script beyond the boot line and no database or data read. The shared rules sit between
+`xmas-common:start` and `xmas-common:end` in `globals.css` (identical on every sister site); this site's colours sit in
+the `xmas-site` block after it. Art is eight small SVGs in `public/xmas/`. To end it early, move the `to` date; after
+Boxing Day it switches itself off.
