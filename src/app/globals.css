@@ -550,3 +550,17 @@ html[data-season="christmas"] header.sticky::after {
   background: repeating-linear-gradient(-45deg, #dc2626 0 10px, #ffffff 10px 20px, #16a34a 20px 30px, #ffffff 30px 40px);
 }
 /* xmas-site:end */
+
+/* The beta forum (src/components/forum/forum.css) in this site's colours. */
+.fm {
+  --fm-card: rgb(var(--surface));
+  --fm-sunk: rgb(var(--raised));
+  --fm-line: rgb(var(--line));
+  --fm-ink: rgb(var(--ink));
+  --fm-muted: rgb(var(--muted));
+  --fm-accent: rgb(var(--brand));
+  --fm-on-accent: rgb(var(--brand-ink));
+  --fm-accent-soft: rgb(var(--brand-soft));
+  --fm-radius: 14px;
+  --fm-head: var(--font-display), var(--font-sans), system-ui, sans-serif;
+}
