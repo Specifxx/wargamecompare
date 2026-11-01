@@ -33,6 +33,21 @@ test("plan: shares sum to one, cheap items skipped, fresh items wait", () => {
   assert.equal(searchQuery(P("Kill Team: Death Korps (2024)")), "Kill Team Death Korps");
 });
 
+test("plan: the US searches first, has the largest share and takes the slots other sites leave", () => {
+  const now = new Date("2026-10-28T12:00:00Z");
+  assert.ok(Object.entries(SHARE).every(([m, v]) => m === "US" || v < SHARE.US!), "the US has the largest share");
+  const c = (id: string, market: "US" | "UK" | "AU" | "CA") => ({ product: P(id), market, ref: 9000, stores: 3 });
+  const cands = [...Array.from({ length: 50 }, (_, i) => c(`us${i}`, "US")), c("uk1", "UK"), c("au1", "AU"), ...Array.from({ length: 50 }, (_, i) => c(`ca${i}`, "CA"))];
+  const out = plan(cands, { updatedAt: null, items: {} } as never, 20, now);
+  assert.equal(out.length, 20);
+  assert.equal(out[0].market, "US");
+  const firstOther = out.findIndex((x) => x.market !== "US");
+  assert.ok(out.slice(firstOther).every((x) => x.market !== "US"), "every US search runs before any other site's");
+  // US 7 + UK 1 + AU 1 + CA 3 = 12 by share; the 8 spare go to the US.
+  assert.equal(out.filter((x) => x.market === "US").length, 15);
+  assert.equal(out.filter((x) => x.market === "CA").length, 3);
+});
+
 test("eBay rows come from local sellers with known postage (visitor feedback, 2026-10-31)", () => {
   const f = searchFilter("AU", 10000);
   assert.ok(f.includes("itemLocationCountry:AU") && f.includes("deliveryCountry:AU"));

@@ -333,3 +333,11 @@ their place and their "Ad"/paid-link label, but lose their brand tints and brand
 and the same button as a store. They are still never counted as a store and never re-ranked by commission. This
 reverses the 2026-10-30 "bright, catchy colour" pinned rows; eBay ad strips and panels outside the price rows keep
 their own look.
+
+## 2026-11-01 — The US comes first in the eBay plan
+
+Owner, 2026-11-01: "the eBay API for all websites should also prioritise the US." The plan led with the UK (35%, the
+biggest Warhammer market we compare), the US had 25%, and slots a site could not use (nothing due there) were not spent.
+`SHARE` is now US 35%, UK 30%, AU 20%, CA 15%; the US's searches are planned and run first, so a quota stop cuts another
+site, never the US; and spare slots go to the US's remaining due products first, then to every other site's by score.
+Floors and intervals are unchanged; the day's cap is still `EBAY_DAILY_CAP` (2,500).
