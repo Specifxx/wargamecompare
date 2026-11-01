@@ -36,6 +36,9 @@ export function HeaderBar({ region: r, home }: { region: Region; home: string })
           <Link href={`/${r}/stores`} className="rounded-full px-3 py-2 hover:bg-raised">
             Stores
           </Link>
+          <Link href="/forum" className="rounded-full px-3 py-2 hover:bg-raised">
+            Forum
+          </Link>
           <OutboundLink href={ebaySearchUrl("Warhammer", r, "header")} rel={REL_PAID} retailer="eBay" placement="header" className="rounded-full px-3 py-2 hover:bg-raised">
             eBay
           </OutboundLink>

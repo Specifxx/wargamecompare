@@ -15,7 +15,7 @@ test("every menu link is a page that exists", () => {
       if (m) {
         const map = { game: SYSTEM_BY_SLUG, faction: FACTION_BY_SLUG, type: TYPE_BY_SLUG }[m[1] as "game" | "faction" | "type"];
         assert.ok(map.has(m[2]), l.href);
-      } else assert.match(l.href, /^\/uk\/(deals|stores)$|^\/(about|contact|creators)$/, l.href);
+      } else assert.match(l.href, /^\/uk\/(deals|stores)$|^\/(about|contact|creators|forum)$/, l.href);
     }
   }
   assert.equal(retargetHref("/uk/deals", "nz"), "/nz/deals");
