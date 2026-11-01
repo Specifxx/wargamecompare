@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { AMAZON_DISCLOSURE, EBAY_DISCLOSURE } from "@/lib/affiliate";
 import { SYSTEMS } from "@/lib/catalog";
-import { REGION_LIST, type Region } from "@/lib/regions";
+import { REGION_LIST, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 import { CONTACT_EMAIL, GW_DISCLAIMER, SISTER_SITES, SITE_NAME } from "@/lib/site";
 
 export function Footer({ region }: { region: Region | null }) {
-  const r = region ?? "uk";
+  const r = region ?? X_DEFAULT_REGION;
   const year = new Date().getUTCFullYear();
   return (
     <footer className="mt-16 border-t border-line bg-surface">
@@ -32,7 +32,7 @@ export function Footer({ region }: { region: Region | null }) {
           <ul className="space-y-1.5">
             {REGION_LIST.map((x) => (
               <li key={x.region}>
-                <Link href={`/${x.region}`} className="text-muted hover:text-ink">
+                <Link href={`/${x.region}`} data-region-pick={x.region} className="text-muted hover:text-ink">
                   Warhammer prices in {x.inName}
                 </Link>
               </li>

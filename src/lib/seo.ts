@@ -1,5 +1,5 @@
 // Canonicals, hreflang and JSON-LD. Every regional page is its OWN canonical with the other regions that list the same
-// thing as hreflang alternates (never canonical to another region); x-default is the UK copy when it exists.
+// thing as hreflang alternates (never canonical to another region); x-default is the US copy when it exists.
 import type { Metadata } from "next";
 import { REGIONS, X_DEFAULT_REGION, type Region } from "./regions";
 import { GW_DISCLAIMER, SITE_NAME, SITE_URL } from "./site";

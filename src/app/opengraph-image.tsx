@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { summariesFor, offersFor } from "@/lib/data";
-import { formatPrice, REGION_LIST, type Region } from "@/lib/regions";
+import { formatPrice, REGION_LIST, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 import { SITE_NAME } from "@/lib/site";
 import { STORES, STORE_BY_KEY } from "@/lib/stores";
 
@@ -31,7 +31,7 @@ interface Example {
 
 function example(): Example | null {
   try {
-    const region: Region = "uk";
+    const region: Region = X_DEFAULT_REGION;
     const pick = summariesFor(region)
       .filter((s) => s.rrp && s.off && s.off >= 0.15 && s.inStock >= 8 && s.product.name.length <= 40)
       .sort((a, b) => b.inStock - a.inStock)[0];

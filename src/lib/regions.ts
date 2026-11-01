@@ -1,3 +1,4 @@
+import { regionBootScript } from "./region-boot";
 // The markets WargameCompare compares within. A market is a region whose stores all charge in ONE currency, so
 // "cheapest" is always a like-for-like number a buyer there is offered. Prices are never converted.
 // Launch scope (owner, 2026-10-28): UK, Australia, New Zealand and Canada first, the US second, no EU.
@@ -27,7 +28,8 @@ export const REGIONS: Record<Region, RegionInfo> = {
 };
 
 export const REGION_LIST: RegionInfo[] = (["uk", "au", "nz", "ca", "us"] as Region[]).map((r) => REGIONS[r]);
-export const X_DEFAULT_REGION: Region = "uk";
+/** The region of pages that have none (landing, About, legal) and the hreflang x-default: the US (owner, 2026-11-01). */
+export const X_DEFAULT_REGION: Region = "us";
 
 export function isRegion(v: string | null | undefined): v is Region {
   return !!v && Object.prototype.hasOwnProperty.call(REGIONS, v);
@@ -65,3 +67,19 @@ export function regionFromTimeZone(tz: string | undefined | null): Region | null
   if (/^America\//.test(tz) || /^US\//.test(tz) || tz === "Pacific/Honolulu") return "us";
   return null;
 }
+
+/** The visitor's own region on every regional page (lib/region-boot.ts); a time zone we don't cover is the US. */
+export const REGION_KEY = "wgc-region";
+export const REGION_BOOT_SCRIPT = regionBootScript({
+  key: REGION_KEY,
+  hreflang: Object.fromEntries(REGION_LIST.map((r) => [r.region, r.hreflang])),
+  zones: [
+    ["au", "^Australia/"],
+    ["nz", "^Pacific/(Auckland|Chatham)$"],
+    ["uk", "^Europe/(London|Belfast|Guernsey|Jersey|Isle_of_Man)$"],
+    ["ca", "^America/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal|Moncton|Whitehorse|Yellowknife)$"],
+    ["us", "^(America/|US/|Pacific/Honolulu$)"],
+  ],
+  fallback: "us",
+  pageRegion: `C.indexOf(s)>=0?s:null`,
+});
