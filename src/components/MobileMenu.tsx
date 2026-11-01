@@ -41,7 +41,7 @@ export function MobileMenu({ region, groups }: { region: Region; groups: NavGrou
             <ul className="space-y-0.5">
               {REGION_LIST.map((x) => (
                 <li key={x.region}>
-                  <Link href={`/${x.region}`} prefetch={false} className="block rounded-lg px-2 py-2 text-sm hover:bg-raised">
+                  <Link href={`/${x.region}`} prefetch={false} data-region-pick={x.region} className="block rounded-lg px-2 py-2 text-sm hover:bg-raised">
                     {x.name} <span className="text-faint">({x.currency})</span>
                   </Link>
                 </li>

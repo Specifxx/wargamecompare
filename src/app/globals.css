@@ -61,6 +61,9 @@
   }
 }
 
+/* lib/region-boot.ts: while a visitor is moved to their own region's copy of the page, at most 1.5 s. */
+html[data-geo="pending"] main { visibility: hidden; }
+
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: calc(var(--hdr) + 8px);

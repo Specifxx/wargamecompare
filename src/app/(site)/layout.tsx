@@ -4,7 +4,7 @@ import { SoftEbayBox } from "@/components/SoftEbayBox";
 import { SoftSideNav } from "@/components/SoftSideNav";
 
 // The pages with no region of their own (the landing page, About, the legal pages) get the whole navigation too (owner,
-// 2026-10-28): the header, the phone menu and, from xl, the sidebar, for the visitor's region (built for the UK on the server).
+// 2026-10-28): the header, the phone menu and, from xl, the sidebar, for the visitor's region (built for the US on the server).
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>

@@ -298,3 +298,18 @@ walkthrough/review of the site. They call us their **partner**, never
 section asks them to say it's a partnership (FTC/ASA), lightly. The
 owner's ready-to-send replies live in the project's creators playbook, not
 in the repo.
+
+## 2026-11-01 — The visitor's own region by default, the US when unknown
+
+Owner, 2026-11-01: "the default region is the region that the visitor is located in. And if they can't determine it,
+then the default should be the US … It's probably better for US to be on the indexing." The US has the most stores
+(160) and products, but the landing page, the region-less pages and hreflang x-default were built for the UK.
+
+* `X_DEFAULT_REGION` is now `us`: the landing page, About and the legal pages render for the US on the server (the
+  browser still moves them to the visitor's time zone), x-default points at the US copy, and the share card's
+  example is a US product.
+* `REGION_BOOT_SCRIPT` (`lib/region-boot.ts`, inline in the root layout, before paint) moves a person, never a crawler,
+  link preview or audit tool, from a regional page of another region to the same page in theirs. Their region is the
+  one they last picked (a click on any `[data-region-pick]` country link, `wgc-region` in localStorage), else their
+  time zone's, else the US. The target is the page's own hreflang alternate, so a page with no copy in their region
+  stays. `<main>` is hidden for at most 1.5 s while it decides. No request, no cookie: one CDN copy per page still.

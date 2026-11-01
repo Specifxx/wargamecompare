@@ -50,7 +50,7 @@ export function HeaderBar({ region: r, home }: { region: Region; home: string })
           <ul className="absolute right-0 mt-2 w-48 rounded-xl border border-line bg-surface p-1 shadow-lift">
             {REGION_LIST.map((x) => (
               <li key={x.region}>
-                <Link href={`/${x.region}`} className="block rounded-lg px-3 py-2 text-sm hover:bg-raised">
+                <Link href={`/${x.region}`} data-region-pick={x.region} className="block rounded-lg px-3 py-2 text-sm hover:bg-raised">
                   {x.name} <span className="text-faint">({x.currency})</span>
                 </Link>
               </li>
