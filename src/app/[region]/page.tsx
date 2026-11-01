@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { EbayStrip } from "@/components/EbayStrip";
 import Link from "next/link";
+import { ChristmasBanner } from "@/components/ChristmasBanner";
 import { EbayBox } from "@/components/EbayBox";
 import { ProductGrid } from "@/components/ProductCard";
 import { FACTIONS, SYSTEMS } from "@/lib/catalog";
@@ -59,6 +60,16 @@ export default function RegionHome({ params }: { params: { region: string } }) {
           <button className="btn-primary h-12 px-6">Search</button>
         </form>
       </section>
+
+      {/* Christmas only (1 November to Boxing Day; hidden by CSS otherwise). */}
+      <div className="mb-10">
+        <ChristmasBanner
+          title="Christmas gifts for the hobby"
+          text={`Combat Patrols, starter sets and paints, matched across ${stores.length} stores in ${r.inName}, cheapest in stock first.`}
+          href={`/${r.region}/deals`}
+          cta="Today's biggest savings"
+        />
+      </div>
 
       <div className="mb-10">
         <EbayStrip region={r.region} items={[...top.map((d) => d.s), ...popular]} placement="ebay-strip-home" heading="Today's top kits on eBay" />
