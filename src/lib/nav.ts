@@ -64,6 +64,8 @@ export function navGroups(region: Region): NavGroup[] {
       links: [
         { href: `/${region}/deals`, label: "Today's deals" },
         { href: `/${region}/stores`, label: "Stores we compare" },
+        { href: `/${region}/guides/cheapest-way-to-start`, label: "How to start for less" },
+        { href: `/${region}/guides/discount-stores-vs-rrp`, label: "Store savings vs RRP" },
         { href: "/forum", label: "Community forum (beta)" },
         { href: "/creators", label: "Creators we feature" },
         { href: "/about", label: "How it works" },
