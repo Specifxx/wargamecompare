@@ -4,13 +4,14 @@ import { OutboundLink } from "./OutboundLink";
 import { StoreCode } from "./StoreCode";
 
 /** One region's price rows (lib/price-rows.ts), drawn the same on the product page and in the quick view. eBay is pinned
- *  first and Amazon second, tagged "Ad" (no wording about the order: owner, 2026-10-30); the stores under them stay
+ *  first and Amazon second, tagged "Ad" (no wording about the order: owner, 2026-10-30), drawn exactly like a store row
+ *  (no tint, the store's own button: owner, 2026-11-01, "blend in"); the stores under them stay
  *  sorted by price and the real cheapest keeps its badge. */
 export function PriceList({ ebay, amazon, stores, wayland, compact = false }: PriceListData & { compact?: boolean }) {
   if (compact) return <CompactList ebay={ebay} amazon={amazon} stores={stores} wayland={wayland} />;
   return (
     <div className="card divide-y divide-line overflow-hidden">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-ad px-4 py-3">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
         <div className="min-w-0 flex-1">
           <p className="flex flex-wrap items-center gap-2 font-semibold">
             {ebay.label} <span className="ad-pill">Ad</span>
@@ -26,20 +27,20 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
             </p>
           </div>
         )}
-        <OutboundLink href={ebay.href} rel={REL_PAID} retailer={ebay.label} placement={ebay.placement} className="btn-ad">
-          {ebay.found ? "View on eBay" : "Search eBay"}
+        <OutboundLink href={ebay.href} rel={REL_PAID} retailer={ebay.label} placement={ebay.placement} className="btn-soft">
+          {ebay.found ? "Buy" : "Search"}
         </OutboundLink>
       </div>
       {amazon && (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-ad px-4 py-3">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-2 font-semibold">
               {amazon.label} <span className="ad-pill">Ad</span>
             </p>
             <p className="text-xs text-faint">Price and stock are Amazon&rsquo;s own; we do not check them.</p>
           </div>
-          <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className="btn-amazon">
-            Check Amazon
+          <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className="btn-soft">
+            Search
           </OutboundLink>
         </div>
       )}
@@ -66,14 +67,14 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
         </div>
       ))}
       {wayland && (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-ad px-4 py-3">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-2 font-semibold">
               Wayland Games <span className="ad-pill">Ad</span>
             </p>
             <p className="text-xs text-faint">A UK discounter we cannot read prices from; search it directly.</p>
           </div>
-          <OutboundLink href={wayland.href} rel={REL_PAID} retailer={wayland.label} placement={wayland.placement} className="btn-ghost">
+          <OutboundLink href={wayland.href} rel={REL_PAID} retailer={wayland.label} placement={wayland.placement} className="btn-soft">
             Search Wayland
           </OutboundLink>
         </div>
@@ -88,7 +89,7 @@ function CompactList({ ebay, amazon, stores, wayland }: PriceListData) {
   const row = "flex items-center gap-3 px-3.5 py-2.5";
   return (
     <div className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface">
-      <div className={`${row} bg-ad`}>
+      <div className={`${row}`}>
         <div className="min-w-0 flex-1">
           <p className="flex items-center gap-2 font-semibold">
             <span className="truncate">{ebay.label}</span> <span className="ad-pill">Ad</span>
@@ -96,20 +97,20 @@ function CompactList({ ebay, amazon, stores, wayland }: PriceListData) {
           <p className="truncate text-xs text-faint">{ebay.price ? [ebay.ship, ebay.vs].filter(Boolean).join(" · ") : "New, Buy It Now listings"}</p>
         </div>
         {ebay.price && <span className="tabular font-bold">{ebay.price}</span>}
-        <OutboundLink href={ebay.href} rel={REL_PAID} retailer={ebay.label} placement={ebay.placement} className="btn-ad shrink-0 px-3.5 py-1.5">
-          {ebay.found ? "View" : "Search"}
+        <OutboundLink href={ebay.href} rel={REL_PAID} retailer={ebay.label} placement={ebay.placement} className="btn-soft shrink-0 px-3.5 py-1.5">
+          {ebay.found ? "Buy" : "Search"}
         </OutboundLink>
       </div>
       {amazon && (
-        <div className={`${row} bg-ad`}>
+        <div className={`${row}`}>
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-2 font-semibold">
               <span className="truncate">{amazon.label}</span> <span className="ad-pill">Ad</span>
             </p>
             <p className="truncate text-xs text-faint">Amazon&rsquo;s own price and stock</p>
           </div>
-          <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className="btn-amazon shrink-0 px-3.5 py-1.5">
-            Check
+          <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className="btn-soft shrink-0 px-3.5 py-1.5">
+            Search
           </OutboundLink>
         </div>
       )}
@@ -133,14 +134,14 @@ function CompactList({ ebay, amazon, stores, wayland }: PriceListData) {
         </div>
       ))}
       {wayland && (
-        <div className={`${row} bg-ad`}>
+        <div className={`${row}`}>
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-2 font-semibold">
               Wayland Games <span className="ad-pill">Ad</span>
             </p>
             <p className="truncate text-xs text-faint">We can&rsquo;t read its prices: search it</p>
           </div>
-          <OutboundLink href={wayland.href} rel={REL_PAID} retailer={wayland.label} placement={wayland.placement} className="btn-ghost shrink-0 px-3.5 py-1.5">
+          <OutboundLink href={wayland.href} rel={REL_PAID} retailer={wayland.label} placement={wayland.placement} className="btn-soft shrink-0 px-3.5 py-1.5">
             Search
           </OutboundLink>
         </div>
