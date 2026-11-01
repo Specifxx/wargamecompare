@@ -313,3 +313,14 @@ then the default should be the US … It's probably better for US to be on the i
   one they last picked (a click on any `[data-region-pick]` country link, `wgc-region` in localStorage), else their
   time zone's, else the US. The target is the page's own hreflang alternate, so a page with no copy in their region
   stays. `<main>` is hidden for at most 1.5 s while it decides. No request, no cookie: one CDN copy per page still.
+
+## 2026-11-01 — Region guides written around today's prices
+
+Bill asked for one or two new guides per site. WargameCompare had hubs (game, faction, type, store) but no guides, so
+`/<region>/guides/cheapest-way-to-start` and `/<region>/guides/discount-stores-vs-rrp` (lib/guides.ts) answer two
+questions no hub does: which first box to buy for the least money, and how much each store typically sells under RRP.
+Every number is computed from the day's data (no typed price). Boxes that a type's regex catches but nobody starts with
+(roleplaying starter sets, the Combat Patrol companion book, Spearhead gaming packs, Battlezone terrain, a single unit
+sold "(Combat Patrol)") are left out, and starter sets need three stores so a duplicate listing doesn't make the list.
+A store's saving is the median over its in-stock products with a stated RRP, 20 products at least. Pages follow the
+cost rules (force-dynamic, CDN-cached by the existing `/:region/:path*` rule) and are in the sitemap and the menu.

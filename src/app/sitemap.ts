@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { FACTIONS, SYSTEMS, TYPES } from "@/lib/catalog";
 import { meta, summariesFor } from "@/lib/data";
+import { GUIDES } from "@/lib/guides";
 import { hubIndexable, productIndexable } from "@/lib/index-tiers";
 import { REGION_LIST } from "@/lib/regions";
 import { SITE_URL } from "@/lib/site";
@@ -18,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     at("");
     at("/deals");
     at("/stores");
+    at("/guides");
+    for (const g of GUIDES) at(`/guides/${g.slug}`);
     for (const s of storesInMarket(r.market)) if (all.filter((x) => x.bestStore === s.key && x.stores >= 2).length >= 6) at(`/stores/${s.key}`);
     for (const s of SYSTEMS) if (hubIndexable(all.filter((x) => x.product.system === s.slug))) at(`/game/${s.slug}`);
     for (const f of FACTIONS) if (hubIndexable(all.filter((x) => x.product.faction === f.slug))) at(`/faction/${f.slug}`);

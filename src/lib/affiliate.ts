@@ -39,6 +39,7 @@ export const PLACEMENTS = [
   "quickview-amazon", // the quick view: the Amazon row, second
   "quickview-table", // the quick view: the store rows
   "quickview-wayland", // the quick view: the Wayland Games row
+  "guide-ebay", // a region guide: the eBay block
 ] as const;
 export type Placement = (typeof PLACEMENTS)[number];
 

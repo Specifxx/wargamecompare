@@ -5,6 +5,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { FACTION_BY_SLUG, SYSTEM_BY_SLUG, TYPE_BY_SLUG } from "../src/lib/catalog";
 import { navGroups, retargetHref } from "../src/lib/nav";
+import { GUIDE_BY_SLUG } from "../src/lib/guides";
 
 const read = (p: string) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 
@@ -15,7 +16,8 @@ test("every menu link is a page that exists", () => {
       if (m) {
         const map = { game: SYSTEM_BY_SLUG, faction: FACTION_BY_SLUG, type: TYPE_BY_SLUG }[m[1] as "game" | "faction" | "type"];
         assert.ok(map.has(m[2]), l.href);
-      } else assert.match(l.href, /^\/uk\/(deals|stores)$|^\/(about|contact|creators|forum)$/, l.href);
+      } else if (l.href.startsWith("/uk/guides/")) assert.ok(GUIDE_BY_SLUG.has(l.href.slice("/uk/guides/".length)), l.href);
+      else assert.match(l.href, /^\/uk\/(deals|stores)$|^\/(about|contact|creators|forum)$/, l.href);
     }
   }
   assert.equal(retargetHref("/uk/deals", "nz"), "/nz/deals");
