@@ -359,6 +359,20 @@ Only `/embed/:path+` may be framed. `/embed` shows the snippet (iframe plus one 
 engines credit) with a real kit on offer, and a plain-HTML store badge. The daily outreach offers the widget instead
 of asking for a link (owner, 2026-11-02: growth must be passive). RiftCompare and the card sites have the same.
 
+## 2026-11-02: IndexNow after each daily release, with a committed key
+
+Every sister site already pinged IndexNow except this one. Bing's index also feeds ChatGPT and Copilot search, so
+the daily release now sends every sitemap URL (about 14,000, in requests of 10,000) to IndexNow
+(`scripts/indexnow-submit.ts`, last step of `refresh-prices.yml`). The key is public by design, IndexNow reads it from
+the site, so it is committed as `src/lib/indexnow.ts` plus the static file `public/<key>.txt`: no secret, no function,
+no setup step for the owner. A refusal is logged, never fatal, because the release has already landed.
+
+## 2026-11-02 — Self-updating price report
+
+`/price-report` is one page, kept at one URL, that rebuilds itself from each day's prices: per region, how many stores
+and products are in stock, the share sold under RRP and the median saving, and the most widely stocked products. It is
+the citable asset the daily outreach offers hobby writers (passive-growth plan, owner 2026-11-02), with a quote line.
+Pure numbers in `src/lib/price-report.ts` (tested); force-dynamic and CDN-cached a day like every page.
 ## 2026-11-02 — The monitor reports to Empire HQ; only red mails
 
 The owner asked for one Monday email instead of a mail per site (the control tower, approved 2026-11-02). The ops
