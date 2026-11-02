@@ -30,6 +30,8 @@ import { jsonLd, ogFor, regionAlternates } from "@/lib/seo";
 import { STORE_BY_KEY } from "@/lib/stores";
 import { activeStoreCode, dealForHost } from "@/lib/store-partner-deals";
 import { SITE_URL } from "@/lib/site";
+import { productShareText } from "@/lib/share-link";
+import { ShareButton } from "@/components/ShareButton";
 
 export const dynamic = "force-dynamic";
 
@@ -131,6 +133,7 @@ export default function ProductPage({ params }: { params: { region: string; slug
 
         <div>
           <h1 className="font-display text-2xl font-extrabold leading-tight sm:text-3xl">{p.name}</h1>
+          <ShareButton title={p.name} path={`/${region}/p/${p.id}`} text={productShareText(p.name, offers, storeName, (c) => formatPrice(c, region))} className="mt-3" />
           <div className="mt-3 flex flex-wrap gap-2 text-xs">
             {system && <Link href={`/${region}/game/${system.slug}`} className="chip py-1 text-xs">{system.name}</Link>}
             {faction && <Link href={`/${region}/faction/${faction.slug}`} className="chip py-1 text-xs">{faction.name}</Link>}

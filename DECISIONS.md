@@ -382,3 +382,15 @@ every three hours for Empire HQ (riftcompare.com/admin/hq) and the one Monday re
 the file goes quiet for a day (a stopped monitor cannot mail). Only a FAILED check fails the run, which is GitHub's
 email to the owner; warnings wait for HQ and Monday. The file carries status and the monitor's own sentences only,
 the same as the public Actions log.
+
+## 2026-11-02 — Share buttons
+
+The owner wants word of mouth to be a big growth driver on every site (RiftCompare's DECISIONS has the twelve-site
+entry). Product pages and the quick view get a Share button: the phone's share sheet, else the link and message
+copied. No pop-up, no reward. The message names the real gap in the region (`lib/share-link.ts`: cheapest and
+dearest in-stock store, never converted). Each kit's share image (`[region]/p/[slug]/opengraph-image.tsx`) draws the
+same gap and the RRP the stores state, text only like every share card here; it is force-dynamic and held by the CDN
+for a day like the page, so only shared links cost a render. Every shared link carries
+`utm_source=share&utm_medium=product`; `share` and `share_visit` join `buy_click` as the only Vercel events
+(`lib/track.ts`): the button sends one, `ShareArrival` one per tab when a shared link brings someone, and
+RiftCompare's weekly growth report counts both. No shared-list page: the site has no list to share yet.

@@ -8,6 +8,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { PriceListData } from "@/lib/price-rows";
 import { PriceList } from "./PriceList";
+import { ShareButton } from "./ShareButton";
 
 interface Head {
   key: string;
@@ -22,6 +23,9 @@ interface Data {
   rows: PriceListData;
   name: string;
   img: string | null;
+  /** the product page's path and the share message (lib/share-link.ts) */
+  path?: string;
+  share?: string;
 }
 
 const cache = new Map<string, Promise<Data | null>>();
@@ -121,6 +125,7 @@ export function QuickView() {
                 {data.inStock} of {data.stores} {data.stores === 1 ? "store" : "stores"} in stock
               </p>
             )}
+            {got?.share && got.path && <ShareButton title={name} path={got.path} text={got.share} className="mt-2" />}
           </div>
           <button ref={closeRef} type="button" onClick={close} aria-label="Close" className="-mr-1 -mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full text-muted hover:bg-raised hover:text-ink">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
