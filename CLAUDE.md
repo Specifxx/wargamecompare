@@ -6,6 +6,12 @@ CA and US. A sister site of RiftCompare (`Specifxx/TCGEmpire`), MTG Compare and 
 
 ## Deploys are gated: do not add `[deploy]` to commit subjects
 
+**One production build per 12 hours, and production only (owner, 2026-11-02: Vercel spend capped at $5–6 a
+day).** `scripts/vercel-ignore-build.sh` skips a `[deploy]` commit within 12 hours of the last production
+deployment (it rides the next release); `[urgent]` in the subject overrides that, only when the owner says
+so. `vercel.json` disables every branch except production (`"**": false`), so no preview is ever built.
+Never dispatch a manual release just to ship a merge. DECISIONS.md, 2026-11-02.
+
 Production builds only a commit whose SUBJECT carries `[deploy]` (`scripts/vercel-ignore-build.sh`,
 `tests/vercel-ignore-build.test.ts`). The daily data commit from `refresh-prices.yml` carries it: one build a day.
 Never put `[deploy]` in a code commit's subject on your own initiative; "ship it" means land on `main`. Use
