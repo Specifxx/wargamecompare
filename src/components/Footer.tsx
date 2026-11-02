@@ -4,6 +4,7 @@ import { SYSTEMS } from "@/lib/catalog";
 import { REGION_LIST, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 import { CONTACT_EMAIL, GW_DISCLAIMER, SITE_NAME } from "@/lib/site";
 import { NETWORK_PAGE, footerSisters } from "@/lib/family-network";
+import { Flag } from "./Flag";
 
 export function Footer({ region }: { region: Region | null }) {
   const r = region ?? X_DEFAULT_REGION;
@@ -33,8 +34,8 @@ export function Footer({ region }: { region: Region | null }) {
           <ul className="space-y-1.5">
             {REGION_LIST.map((x) => (
               <li key={x.region}>
-                <Link href={`/${x.region}`} data-region-pick={x.region} className="text-muted hover:text-ink">
-                  Warhammer prices in {x.inName}
+                <Link href={`/${x.region}`} data-region-pick={x.region} className="inline-flex items-center gap-1.5 text-muted hover:text-ink">
+                  <Flag code={x.region} /> Warhammer prices in {x.inName}
                 </Link>
               </li>
             ))}

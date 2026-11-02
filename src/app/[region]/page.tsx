@@ -11,6 +11,8 @@ import { regionOr404 } from "@/lib/page";
 import { REGION_LIST } from "@/lib/regions";
 import { ogFor, regionAlternates } from "@/lib/seo";
 import { storesInMarket } from "@/lib/stores";
+import { Flag } from "@/components/Flag";
+import { RegionChips } from "@/components/RegionChips";
 
 export const dynamic = "force-dynamic";
 
@@ -45,7 +47,7 @@ export default function RegionHome({ params }: { params: { region: string } }) {
   return (
     <div className="page py-8">
       <section className="mb-10">
-        <p className="eyebrow">{r.name}</p>
+        <p className="eyebrow inline-flex items-center gap-1.5"><Flag code={r.region} /> {r.name}</p>
         <h1 className="mt-2 max-w-3xl font-display text-3xl font-extrabold leading-tight sm:text-4xl">
           Warhammer prices in {r.inName}, compared across {stores.length} independent stores
         </h1>
@@ -59,6 +61,7 @@ export default function RegionHome({ params }: { params: { region: string } }) {
           <input id="home-q" name="q" type="search" placeholder="Combat Patrol, Intercessors, Contrast paint…" className="h-12 min-w-0 flex-1 rounded-full border border-line bg-surface px-5 text-base" />
           <button className="btn-primary h-12 px-6">Search</button>
         </form>
+        <RegionChips current={r.region} className="mt-4" />
       </section>
 
       {/* Christmas only (1 November to Boxing Day; hidden by CSS otherwise). */}

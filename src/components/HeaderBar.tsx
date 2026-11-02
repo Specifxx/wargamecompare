@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ebaySearchUrl, REL_PAID } from "@/lib/affiliate";
 import { navGroups } from "@/lib/nav";
 import { REGION_LIST, REGIONS, type Region } from "@/lib/regions";
+import { Flag } from "./Flag";
 import { Logo } from "./Logo";
 import { MenuCloser } from "./MenuCloser";
 import { MobileMenu } from "./MobileMenu";
@@ -44,14 +45,15 @@ export function HeaderBar({ region: r, home }: { region: Region; home: string })
           </OutboundLink>
         </nav>
         <details className="relative ml-auto shrink-0 sm:ml-0" data-menu="country">
-          <summary className="chip cursor-pointer list-none" aria-label="Change country">
+          <summary className="chip cursor-pointer list-none" aria-label={`Country: ${REGIONS[r].name}. Change country`}>
+            <Flag code={r} />
             {REGIONS[r].short}
           </summary>
           <ul className="absolute right-0 mt-2 w-48 rounded-xl border border-line bg-surface p-1 shadow-lift">
             {REGION_LIST.map((x) => (
               <li key={x.region}>
-                <Link href={`/${x.region}`} data-region-pick={x.region} className="block rounded-lg px-3 py-2 text-sm hover:bg-raised">
-                  {x.name} <span className="text-faint">({x.currency})</span>
+                <Link href={`/${x.region}`} data-region-pick={x.region} className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-raised">
+                  <Flag code={x.region} /> {x.name} <span className="text-faint">({x.currency})</span>
                 </Link>
               </li>
             ))}
