@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 // Affiliates are how the site earns: every paid link carries a per-region, per-placement tag so earnings can be
 // measured, and never changes the order of the store rows.
 import { test } from "node:test";
@@ -17,15 +18,14 @@ test("eBay links: right site per region, campaign and customid", () => {
   assert.equal(subId("au", "deals"), "wgc-au-deals");
 });
 
-test("Amazon: tag per store, hidden where none is set", () => {
-  const tags = amazonTags({ AMAZON_TAG_UK: "wgc-21" });
-  assert.equal(tags.uk, "wgc-21");
-  assert.equal(tags.ca, null);
-  assert.equal(amazonSearchUrl("x", "ca", "product-amazon", tags), null);
-  const us = new URL(amazonSearchUrl("Codex: Orks", "us", "product-amazon", amazonTags({}))!);
+test("Amazon: each store's own hard-coded tag (owner, 2026-11-02)", () => {
+  const tags = amazonTags();
+  assert.deepEqual(tags, { us: "riftcompare-20", uk: "compareempi03-21", ca: "compareempire-20", au: "compareempire-22", nz: "compareempire-22" });
+  assert.equal(amazonSearchUrl("x", "ca", "product-amazon", { ...tags, ca: null }), null, "a store with no tag shows no Amazon");
+  const us = new URL(amazonSearchUrl("Codex: Orks", "us", "product-amazon")!);
   assert.equal(us.searchParams.get("tag"), "riftcompare-20");
   assert.equal(us.searchParams.get("ascsubtag"), "wgc-us-product-amazon");
-  assert.equal(amazonTags({ AMAZON_TAG_US: "bad tag!" }).us, "riftcompare-20");
+  assert.doesNotMatch(readFileSync(new URL("../src/lib/affiliate.ts", import.meta.url), "utf8"), /AMAZON_TAG_/);
 });
 
 test("Wayland: only a waylandgames.co.uk template with {q}", () => {

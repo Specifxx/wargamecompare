@@ -132,16 +132,14 @@ const AMAZON_HOST: Record<Region, string | null> = {
   au: "www.amazon.com.au",
   nz: "www.amazon.com.au", // Amazon Australia ships to NZ; the label says so
 };
-/** Each Amazon store's tag. US and AU fall back to the owner's existing Compare Empire tags until WargameCompare's own are set. */
-export function amazonTags(env: Record<string, string | undefined> = process.env): Record<Region, string | null> {
-  const ok = (v: string | undefined) => (v && /^[A-Za-z0-9-]{1,64}$/.test(v.trim()) ? v.trim() : null);
-  const au = ok(env.AMAZON_TAG_AU) ?? "compareempire-22";
+/** Each Amazon store's tag: the owner's accounts, hard-coded (owner, 2026-11-02: no Vercel variable decides a tag). NZ uses Amazon AU. */
+export function amazonTags(): Record<Region, string | null> {
   return {
-    us: ok(env.AMAZON_TAG_US) ?? "riftcompare-20",
-    uk: ok(env.AMAZON_TAG_UK),
-    ca: ok(env.AMAZON_TAG_CA),
-    au,
-    nz: au,
+    us: "riftcompare-20",
+    uk: "compareempi03-21",
+    ca: "compareempire-20",
+    au: "compareempire-22",
+    nz: "compareempire-22",
   };
 }
 export const AMAZON_DISCLOSURE = "As an Amazon Associate WargameCompare earns from qualifying purchases.";
