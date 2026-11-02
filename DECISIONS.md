@@ -393,3 +393,20 @@ states where the day is a sale day as a fact. Dates, the year a page is about (i
 event) and the intro are pure in `src/lib/sale-seasons.ts` (`tests/sale-seasons.test.ts`); Lunar New Year is a
 published-date table to 2040 (6 February 2027). Footer and sitemap, not the nav. CDN-cached by the existing
 region rule. Never a "was" price, a countdown or an invented sale.
+
+## 2026-11-02 — Price alerts through RiftCompare's shared service
+
+The owner chose "Yes, one shared service" for email price alerts on the sister sites. The site still has no
+database, no accounts and no mail key; the product page gains an "Email me when the price drops" form.
+
+- **The form** (`components/PriceAlertForm.tsx`, the same file on every sister site) posts
+  `{site, productId, region, email, targetCents}` straight to `https://riftcompare.com/api/sister-alerts`.
+  RiftCompare keeps the address (its own Neon project, private tables), sends one confirmation email (double opt-in)
+  and checks daily. This site stores nothing and holds no key.
+- **The prices** come from this site's own static `/alert-feed.json` (`lib/alert-feed.ts`, `force-static`, built with
+  each release from the loaders the pages read): each product's `Summary.best` per region (the cheapest in-stock store
+  price, never eBay, Amazon or Wayland, never converted), with `u` = `/{r}/p/<id>` (the service fills in the region),
+  plus the deals page's top three per region (RRP or store median, labelled). Another hobby site's alert email
+  (FigureCompare) may end with one of them.
+- The privacy page says what the form sends and links to RiftCompare's. RiftCompare's `sister-alerts.yml` fails (and
+  its ops monitor reports it) when a site with alerts serves no fresh feed.
