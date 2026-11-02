@@ -103,9 +103,9 @@ body {
   .btn-ad {
     @apply btn border border-transparent bg-[#3665f3] text-white hover:bg-[#2a50c8];
   }
-  /* Amazon's orange with dark text (8.6:1). */
+  /* Never Amazon's own orange (2026-11-02): the Associates Operating Agreement forbids styling that could pass for Amazon's site. */
   .btn-amazon {
-    @apply btn border border-transparent bg-[#ffa41c] text-[#0f1111] hover:bg-[#fa8900];
+    @apply btn bg-brand-soft text-brand-strong hover:brightness-105;
   }
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink/40;

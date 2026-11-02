@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AMAZON_DISCLOSURE, EBAY_DISCLOSURE } from "@/lib/affiliate";
+import { AMAZON_DISCLOSURE, AMAZON_TRADEMARK, EBAY_DISCLOSURE } from "@/lib/affiliate";
 import { SYSTEMS } from "@/lib/catalog";
 import { REGION_LIST, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 import { CONTACT_EMAIL, GW_DISCLAIMER, SITE_NAME } from "@/lib/site";
@@ -108,7 +108,7 @@ export function Footer({ region }: { region: Region | null }) {
       </div>
       <div className="page space-y-2 border-t border-line py-6 text-xs leading-5 text-faint">
         <p>{GW_DISCLAIMER}</p>
-        <p>{EBAY_DISCLOSURE} {AMAZON_DISCLOSURE} Store links may carry a store&rsquo;s own referral code; prices are always sorted by price, never by what we earn.</p>
+        <p>{EBAY_DISCLOSURE} {AMAZON_DISCLOSURE} {AMAZON_TRADEMARK} Store links may carry a store&rsquo;s own referral code; prices are always sorted by price, never by what we earn.</p>
         <p>© {year} {SITE_NAME}</p>
       </div>
     </footer>

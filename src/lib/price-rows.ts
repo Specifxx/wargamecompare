@@ -61,7 +61,8 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
           : "same as the cheapest store"
       : null;
   const at = <T extends string>(x: T) => `${surface}-${x}` as Placement;
-  const amazon = amazonSearchUrl(p.name, region, at("amazon"));
+  // Never in the quick view (2026-11-02): Amazon's Operating Agreement allows no Amazon link in a pop-up window.
+  const amazon = surface === "quickview" ? null : amazonSearchUrl(p.name, region, at("amazon"));
   const wayland = WAYLAND_REGIONS.includes(region) ? waylandSearchUrl(p.name) : null;
   const isBook = p.system === "black-library";
   const storeName = (k: string) => STORE_BY_KEY.get(k)?.name ?? k;
