@@ -366,3 +366,10 @@ the daily release now sends every sitemap URL (about 14,000, in requests of 10,0
 (`scripts/indexnow-submit.ts`, last step of `refresh-prices.yml`). The key is public by design, IndexNow reads it from
 the site, so it is committed as `src/lib/indexnow.ts` plus the static file `public/<key>.txt`: no secret, no function,
 no setup step for the owner. A refusal is logged, never fatal, because the release has already landed.
+
+## 2026-11-02 — Self-updating price report
+
+`/price-report` is one page, kept at one URL, that rebuilds itself from each day's prices: per region, how many stores
+and products are in stock, the share sold under RRP and the median saving, and the most widely stocked products. It is
+the citable asset the daily outreach offers hobby writers (passive-growth plan, owner 2026-11-02), with a quote line.
+Pure numbers in `src/lib/price-report.ts` (tested); force-dynamic and CDN-cached a day like every page.
