@@ -349,3 +349,12 @@ at one URL kept every year so links and rankings carry over. It has to be indexe
 2026), so it ships now; the nav, footer and sitemap link it all year. Never a "was" price of our own, a countdown,
 "ends soon" or an invented sale. Dates are pure (`src/lib/black-friday.ts`, `tests/black-friday.test.ts`). Part of the
 passive-growth plan (owner, 2026-11-02: no daily Reddit posts).
+
+## 2026-11-02 — Free price widgets
+
+`/embed/p/<id>?region=` is a live kit price badge any hobby blog, club or store can put in an `<iframe>`: the
+cheapest in-stock independent store price in the region and how many stores have it. It reads
+only the public data files through `summaryOf`, is noindex, and is kept a day by the CDN like every data page.
+Only `/embed/:path+` may be framed. `/embed` shows the snippet (iframe plus one plain text link, the part search
+engines credit) with a real kit on offer, and a plain-HTML store badge. The daily outreach offers the widget instead
+of asking for a link (owner, 2026-11-02: growth must be passive). RiftCompare and the card sites have the same.
