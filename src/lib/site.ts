@@ -15,21 +15,7 @@ export const GW_DISCLAIMER =
   "Warhammer, Warhammer 40,000, Age of Sigmar, Citadel, Games Workshop and all associated names are trademarks of Games Workshop Limited, " +
   "used here only to describe the products the stores sell. Product photos belong to the stores that list them.";
 
-// The owner's other price-comparison sites, linked from the footer (every site links the whole family, 2026-10-27).
-// Plain followed links to our own sites, not affiliates.
-export const SISTER_SITES = [
-  { name: "RiftCompare", url: "https://riftcompare.com", anchor: "Riftbound card prices" },
-  { name: "OP Compare", url: "https://opcompare.app", anchor: "One Piece Card Game prices" },
-  { name: "DexCompare", url: "https://dexcompare.app", anchor: "Pokémon TCG sealed prices" },
-  { name: "MTG Compare", url: "https://mtgcompare.app", anchor: "Magic: The Gathering sealed prices" },
-  { name: "Gundam Compare", url: "https://gundamcompare.com", anchor: "Gundam Card Game prices" },
-  { name: "Lorcana Compare", url: "https://lorcanacompare.com", anchor: "Lorcana card prices" },
-  { name: "YGO Compare", url: "https://ygocompare.com", anchor: "Yu-Gi-Oh! card prices" },
-  { name: "Cyberpunk Compare", url: "https://cyberpunkcompare.com", anchor: "Cyberpunk TCG prices" },
-  { name: "CamCompare", url: "https://www.camcompare.app", anchor: "Camera and lens prices" },
-  { name: "Compare Empire", url: "https://compareempire.com", anchor: "Tech and appliance prices" },
-  { name: "FigureCompare", url: "https://figurecompare.com", anchor: "Anime figure prices" },
-] as const;
+// The owner's other sites: lib/family-network.ts (FAMILY_SITES), shared by every Compare Empire site.
 
 function normaliseOrigin(v: string | undefined): string | null {
   if (!v) return null;

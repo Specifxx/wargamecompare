@@ -1,17 +1,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { SISTER_SITES } from "../src/lib/site";
+import { readFileSync } from "node:fs";
+import { footerSisters } from "../src/lib/family-network";
 
-// The footer links the whole Compare Empire family, once each, never itself, and
-// (owner, 2026-11-02) never ties a sister site to one country: "Australian tech
-// prices" was shown to US visitors of a site that compares US stores too.
-test("family links: every sister site once, descriptive and region-neutral", () => {
-  const urls = SISTER_SITES.map((s) => s.url);
-  assert.equal(new Set(urls).size, urls.length, "no site twice");
-  assert.ok(!urls.some((u) => u.includes("wargamecompare")), "never this site itself");
-  assert.ok(urls.includes("https://cyberpunkcompare.com"));
-  for (const s of SISTER_SITES) {
-    assert.match(s.anchor, /prices$/, s.name);
-    assert.doesNotMatch(s.anchor, /\b(Australian|Aussie|American|British|Canadian|Australia only|AU only)\b/i, s.name);
-  }
+// Owner, 2026-11-02: the footer's list of every site was "convoluted". It now names the hobby sisters only,
+// then one link to the network page (lib/family-network.ts, DECISIONS.md "Sites that grow each other").
+test("footer: the hobby sisters, then the network page, never this site itself", () => {
+  assert.deepEqual(footerSisters("wargame").map((s) => s.url), ["https://gundamcompare.com", "https://figurecompare.com"]);
+  const footer = readFileSync(new URL("../src/components/Footer.tsx", import.meta.url), "utf8");
+  assert.match(footer, /footerSisters\("wargame"\)\.map/);
+  assert.match(footer, /href=\{NETWORK_PAGE\}/);
+  assert.doesNotMatch(footer, /nofollow|sponsored/);
 });

@@ -58,3 +58,15 @@ export function checkCodes(now: Date): Check {
     ? { name: "Store partner codes", status: "warn", detail: `Re-check at checkout: ${soon.map((c) => `${c.name} hides ${c.hidesOn}`).join("; ")}` }
     : { name: "Store partner codes", status: "ok", detail: "No code needs a re-check this week." };
 }
+
+/** The Compare Empire family feed (DECISIONS.md "Sites that grow each other"), written by the daily data job. Never a fail:
+ *  the sister sites only show less. Missing before the first run after it shipped. */
+export function checkFamilyFeed(generatedAt: string | null, now: Date): Check {
+  const name = "Family feed (sister sites)";
+  if (!generatedAt) return { name, status: "unknown", detail: "data/family/family-feed.json not written yet." };
+  const h = (now.getTime() - Date.parse(generatedAt)) / H;
+  if (!Number.isFinite(h)) return { name, status: "unknown", detail: "family-feed.json has no readable date." };
+  return h > 50
+    ? { name, status: "warn", detail: `Written ${Math.round(h)} hours ago: read the Family feed step of refresh-prices.yml.` }
+    : { name, status: "ok", detail: `Written ${Math.round(h)} hours ago.` };
+}

@@ -2,7 +2,8 @@ import Link from "next/link";
 import { AMAZON_DISCLOSURE, EBAY_DISCLOSURE } from "@/lib/affiliate";
 import { SYSTEMS } from "@/lib/catalog";
 import { REGION_LIST, X_DEFAULT_REGION, type Region } from "@/lib/regions";
-import { CONTACT_EMAIL, GW_DISCLAIMER, SISTER_SITES, SITE_NAME } from "@/lib/site";
+import { CONTACT_EMAIL, GW_DISCLAIMER, SITE_NAME } from "@/lib/site";
+import { NETWORK_PAGE, footerSisters } from "@/lib/family-network";
 
 export function Footer({ region }: { region: Region | null }) {
   const r = region ?? X_DEFAULT_REGION;
@@ -86,15 +87,22 @@ export function Footer({ region }: { region: Region | null }) {
           </ul>
         </div>
         <div>
-          <p className="eyebrow mb-3">More price comparison</p>
+          {/* One short list (owner, 2026-11-02: the old list of every site was "convoluted"): the hobby sisters,
+              then the network page that lists every site (lib/family-network.ts, DECISIONS.md "Sites that grow each other"). */}
+          <p className="eyebrow mb-3">Sister sites</p>
           <ul className="space-y-1.5">
-            {SISTER_SITES.map((s) => (
-              <li key={s.url}>
-                <a href={s.url} className="text-muted hover:text-ink">
-                  {s.anchor} <span className="text-faint">· {s.name}</span>
+            {footerSisters("wargame").map((s) => (
+              <li key={s.id}>
+                <a href={s.url} rel="noopener" title={s.label} className="text-muted hover:text-ink">
+                  {s.name}
                 </a>
               </li>
             ))}
+            <li>
+              <a href={NETWORK_PAGE} rel="noopener" className="text-muted hover:text-ink">
+                A Compare Empire site →
+              </a>
+            </li>
           </ul>
         </div>
       </div>

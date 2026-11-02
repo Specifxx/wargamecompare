@@ -2,7 +2,7 @@
 // emails the owner. Runs in GitHub Actions on purpose: it works when the deploy is what broke.
 import fs from "node:fs";
 import path from "node:path";
-import { checkCodes, checkEbay, checkImport, checkLive, type Check } from "@/lib/ops";
+import { checkCodes, checkEbay, checkFamilyFeed, checkImport, checkLive, type Check } from "@/lib/ops";
 import { STORES } from "@/lib/stores";
 import type { EbayFile, Meta } from "@/lib/types";
 
@@ -30,6 +30,7 @@ async function main() {
     }
   } else checks.push(checkLive(null, null));
   checks.push(checkCodes(now));
+  checks.push(checkFamilyFeed(read<{ generatedAt?: string }>("family/family-feed.json")?.generatedAt ?? null, now));
 
   const icon = { ok: "✅", warn: "⚠️", fail: "❌", unknown: "❔" };
   const lines = checks.map((c) => `| ${icon[c.status]} | ${c.name} | ${c.detail.replace(/\|/g, "/")} |`);

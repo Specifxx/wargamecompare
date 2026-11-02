@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FamilyCluster } from "@/components/FamilyCluster";
 import { meta, mediansFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
 import { blackFriday, cyberMonday, longDate, seasonYear } from "@/lib/black-friday";
@@ -54,6 +55,7 @@ export default function BlackFridayPage({ params }: { params: { region: string }
         ))}
         {!list.length && <p className="p-4 text-muted">No product is 10% under RRP or the median store price in {r.inName} today.</p>}
       </div>
+      <FamilyCluster region={r.region} />
       <p className="mt-6 text-sm">
         <Link href={`/${r.region}/deals`} className="underline">Today&rsquo;s deals</Link> · <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="underline">Store savings vs RRP</Link> ·{" "}
         <Link href={`/${r.region}/stores`} className="underline">Stores we compare</Link>
