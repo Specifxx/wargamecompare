@@ -382,3 +382,14 @@ every three hours for Empire HQ (riftcompare.com/admin/hq) and the one Monday re
 the file goes quiet for a day (a stopped monitor cannot mail). Only a FAILED check fails the run, which is GitHub's
 email to the owner; warnings wait for HQ and Monday. The file carries status and the monitor's own sentences only,
 the same as the public Actions log.
+
+## 2026-11-02 — Seasonal sale pages
+
+`/<region>/boxing-day`, `/<region>/january-sales` and `/<region>/lunar-new-year` (owner-approved growth plan,
+2026-11-02): one URL per region, kept every year like `/<region>/black-friday`, built weeks ahead so they are
+indexed before the day, with the same rows (in stock, at least 10% under RRP or the median of three or more
+stores, today) from one component, `src/components/SaleSeasonPage.tsx`. Each region has its own page; the intro
+states where the day is a sale day as a fact. Dates, the year a page is about (it rolls over a week after the
+event) and the intro are pure in `src/lib/sale-seasons.ts` (`tests/sale-seasons.test.ts`); Lunar New Year is a
+published-date table to 2040 (6 February 2027). Footer and sitemap, not the nav. CDN-cached by the existing
+region rule. Never a "was" price, a countdown or an invented sale.

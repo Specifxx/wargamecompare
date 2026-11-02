@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     at("");
     at("/deals");
     at("/black-friday");
+    for (const p of ["/boxing-day", "/january-sales", "/lunar-new-year"]) at(p);
     at("/stores");
     at("/guides");
     for (const g of GUIDES) at(`/guides/${g.slug}`);
