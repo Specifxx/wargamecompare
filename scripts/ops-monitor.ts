@@ -36,6 +36,10 @@ async function main() {
   const md = `## WargameCompare health\n\n| | Check | Detail |\n|---|---|---|\n${lines.join("\n")}\n`;
   console.log(md);
   if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, md);
+  // Empire HQ's copy (riftcompare.com/admin/hq and the one Monday report; owner, 2026-11-02): the
+  // workflow publishes it on the public `ops-status` branch. Status and our own sentences only.
+  const overall = checks.some((c) => c.status === "fail") ? "fail" : checks.some((c) => c.status === "warn") ? "warn" : "ok";
+  fs.writeFileSync(process.env.OPS_STATUS_FILE || "ops-status.json", JSON.stringify({ v: 1, site: "wargamecompare.com", at: now.toISOString(), overall, checks }, null, 1) + "\n");
   if (checks.some((c) => c.status === "fail")) {
     console.error("A check failed: see above.");
     process.exit(1);

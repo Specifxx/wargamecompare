@@ -7,7 +7,8 @@
       "claude/*": false,
       "ccr-*": false,
       "reports": false,
-      "forum": false
+      "forum": false,
+      "ops-status": false
     }
   }
 }
