@@ -43,6 +43,11 @@ export function Footer({ region }: { region: Region | null }) {
               </Link>
             </li>
             <li>
+              <Link href={`/${r}/black-friday`} className="text-muted hover:text-ink">
+                Black Friday deals
+              </Link>
+            </li>
+            <li>
               <Link href={`/${r}/stores`} className="text-muted hover:text-ink">
                 Stores we compare
               </Link>

@@ -341,3 +341,11 @@ biggest Warhammer market we compare), the US had 25%, and slots a site could not
 `SHARE` is now US 35%, UK 30%, AU 20%, CA 15%; the US's searches are planned and run first, so a quota stop cuts another
 site, never the US; and spare slots go to the US's remaining due products first, then to every other site's by score.
 Floors and intervals are unchanged; the day's cap is still `EBAY_DAILY_CAP` (2,500).
+
+## 2026-11-02 — Black Friday page
+
+`/<region>/black-friday` shows today's deals (`lib/deals.ts`, the same rows as `/deals`) under a Black Friday heading,
+at one URL kept every year so links and rankings carry over. It has to be indexed weeks before the day (27 November
+2026), so it ships now; the nav, footer and sitemap link it all year. Never a "was" price of our own, a countdown,
+"ends soon" or an invented sale. Dates are pure (`src/lib/black-friday.ts`, `tests/black-friday.test.ts`). Part of the
+passive-growth plan (owner, 2026-11-02: no daily Reddit posts).

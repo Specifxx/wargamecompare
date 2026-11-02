@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const at = (p: string) => out.push({ url: `${SITE_URL}/${r.region}${p}`, lastModified });
     at("");
     at("/deals");
+    at("/black-friday");
     at("/stores");
     at("/guides");
     for (const g of GUIDES) at(`/guides/${g.slug}`);
