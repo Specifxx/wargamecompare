@@ -83,3 +83,8 @@ jobs:
             sleep $((2 ** i)); git pull --rebase origin main
           done
           exit 1
+      # Bing, Yandex, Seznam and Naver recrawl the sitemap's URLs now (src/lib/indexnow.ts; the key is public by
+      # design and committed). Logged, never fatal: the release above has already landed.
+      - name: IndexNow
+        if: success()
+        run: npx tsx scripts/indexnow-submit.ts || true
