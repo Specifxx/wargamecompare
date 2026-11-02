@@ -62,6 +62,7 @@ export function Footer({ region }: { region: Region | null }) {
             <li><Link href="/privacy" className="text-muted hover:text-ink">Privacy</Link></li>
             <li><Link href="/terms" className="text-muted hover:text-ink">Terms</Link></li>
             <li><Link href="/creators" className="text-muted hover:text-ink">Creators we feature</Link></li>
+            <li><Link href="/price-report" className="text-muted hover:text-ink">Monthly price report</Link></li>
             <li><Link href="/embed" className="text-muted hover:text-ink">Free price widgets</Link></li>
             <li><Link href="/forum" className="text-muted hover:text-ink">Community forum (beta)</Link></li>
             <li><Link href="/contact" className="text-muted hover:text-ink">Contact and store listings</Link></li>
