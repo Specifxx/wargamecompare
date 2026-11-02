@@ -1,0 +1,43 @@
+{
+ "v": 1,
+ "site": "wargamecompare.com",
+ "at": "2026-11-02T03:15:33.866Z",
+ "overall": "warn",
+ "checks": [
+  {
+   "name": "Price import",
+   "status": "ok",
+   "detail": "Last import 4.0 h ago (daily, refresh-prices.yml)."
+  },
+  {
+   "name": "Products",
+   "status": "ok",
+   "detail": "6424 products in data/products.json."
+  },
+  {
+   "name": "Store reads",
+   "status": "warn",
+   "detail": "2 of 392 stores failed: millenniumcomics (429 from millenniumcomics.com.au); southtexastcg (page 1 of /collections/warhammer/products.json unreadable)"
+  },
+  {
+   "name": "eBay listings",
+   "status": "ok",
+   "detail": "Last eBay pass 4.0 h ago."
+  },
+  {
+   "name": "eBay calls",
+   "status": "ok",
+   "detail": "2200 of 2500 Browse calls used today (Pacific time)."
+  },
+  {
+   "name": "Live site",
+   "status": "unknown",
+   "detail": "SITE_URL not set (the domain is not live yet), or the request failed to connect."
+  },
+  {
+   "name": "Store partner codes",
+   "status": "ok",
+   "detail": "No code needs a re-check this week."
+  }
+ ]
+}
