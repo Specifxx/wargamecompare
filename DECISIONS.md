@@ -470,3 +470,16 @@ The rules we keep, on every Compare Empire site:
 - Every link tagged, rel="sponsored nofollow"; no incentive (cashback, discount) for buying through it.
 - Here: the quick view has no Amazon row; `.btn-amazon` is no longer Amazon's orange; the footer carries
   the trademark line.
+
+## 2026-11-02 — The country chooser in the hero, with drawn flags
+
+Owner: "the region switcher must be more prevalent on all sites, on the main home page hero etc … and have
+the flags as well". Every region home has a "Prices for" row of flag chips under its search, and the landing
+page has the same row above its search, marking the visitor's region (`RegionChips`: plain links to each
+region home with `data-region-pick`, so region-boot remembers the pick). The header's country menu shows
+the flag and code, its list, the phone menu, the footer and the landing grid carry flags too.
+
+- **Flags are inline SVG (`src/components/Flag.tsx`), never emoji and never image files.** Windows draws a
+  flag emoji as two letters; image files would be new requests and hosting. No ids or clip paths, so a flag
+  works inside the closed `<details>` menu. The same file is in every Compare Empire repo that has a region
+  switcher; keep the copies identical. No Games Workshop artwork is involved: flags only.

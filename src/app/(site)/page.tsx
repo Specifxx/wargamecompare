@@ -9,6 +9,7 @@ import { REGION_LIST, REGIONS, formatPrice } from "@/lib/regions";
 import { ogFor } from "@/lib/seo";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
+import { Flag } from "@/components/Flag";
 
 export const dynamic = "force-dynamic";
 
@@ -45,8 +46,8 @@ export default function Landing() {
           const n = storesInMarket(r.market).length;
           const products = summariesFor(r.region).filter((s) => s.inStock > 0).length;
           return (
-            <Link key={r.region} href={`/${r.region}`} className="card p-5 transition-shadow hover:shadow-lift">
-              <p className="font-display text-xl font-bold">{r.name}</p>
+            <Link key={r.region} href={`/${r.region}`} data-region-pick={r.region} className="card p-5 transition-shadow hover:shadow-lift">
+              <p className="flex items-center gap-2 font-display text-xl font-bold"><Flag code={r.region} /> {r.name}</p>
               <p className="mt-1 text-sm text-muted">
                 {n} stores · {products.toLocaleString("en")} in stock · {REGIONS[r.region].currency}
               </p>

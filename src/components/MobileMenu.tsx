@@ -3,6 +3,7 @@ import { ebayLabel, ebaySearchUrl, REL_PAID } from "@/lib/affiliate";
 import type { NavGroup } from "@/lib/nav";
 import { REGION_LIST, type Region } from "@/lib/regions";
 import { OutboundLink } from "./OutboundLink";
+import { Flag } from "./Flag";
 
 /**
  * The phone and tablet menu (below xl): the same groups as the sidebar (lib/nav.ts), then the countries. A <details> panel, so it
@@ -41,8 +42,8 @@ export function MobileMenu({ region, groups }: { region: Region; groups: NavGrou
             <ul className="space-y-0.5">
               {REGION_LIST.map((x) => (
                 <li key={x.region}>
-                  <Link href={`/${x.region}`} prefetch={false} data-region-pick={x.region} className="block rounded-lg px-2 py-2 text-sm hover:bg-raised">
-                    {x.name} <span className="text-faint">({x.currency})</span>
+                  <Link href={`/${x.region}`} prefetch={false} data-region-pick={x.region} className="flex items-center gap-2 rounded-lg px-2 py-2 text-sm hover:bg-raised">
+                    <Flag code={x.region} /> {x.name} <span className="text-faint">({x.currency})</span>
                   </Link>
                 </li>
               ))}

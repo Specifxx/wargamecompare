@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { REGIONS } from "@/lib/regions";
 import { useSoftRegion } from "./SoftRegion";
+import { RegionChips } from "./RegionChips";
 
 const SHORTCUTS: [string, string][] = [
   ["/deals", "Today's deals"],
@@ -21,6 +21,7 @@ export function RegionSuggest() {
   const region = useSoftRegion();
   return (
     <div className="mt-6">
+      <RegionChips current={region} className="mb-4" />
       <form action={`/${region}/search`} role="search" className="mb-4 flex max-w-xl gap-2">
         <label htmlFor="landing-q" className="sr-only">Search</label>
         <input id="landing-q" name="q" type="search" placeholder="Combat Patrol, Intercessors, Contrast paint…" className="h-12 min-w-0 flex-1 rounded-full border border-line bg-surface px-5 text-base" />
@@ -33,9 +34,6 @@ export function RegionSuggest() {
           </Link>
         ))}
       </div>
-      <p className="mt-3 text-sm text-muted">
-        Showing prices in {REGIONS[region].name} ({REGIONS[region].currency}). Another country? Pick it below.
-      </p>
     </div>
   );
 }
