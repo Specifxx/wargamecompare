@@ -25,3 +25,11 @@ test("eBay and the live site: unknown is never a false ok", () => {
   assert.equal(checkLive(200, "<title>WargameCompare</title>").status, "ok");
   assert.equal(checkLive(200, "Vercel 404").status, "fail");
 });
+
+test("family feed: fresh ok, stale only warns, missing unknown", async () => {
+  const { checkFamilyFeed } = await import("../src/lib/ops");
+  const now = new Date("2026-11-02T12:00:00Z");
+  assert.equal(checkFamilyFeed("2026-11-02T06:00:00Z", now).status, "ok");
+  assert.equal(checkFamilyFeed("2026-10-25T06:00:00Z", now).status, "warn");
+  assert.equal(checkFamilyFeed(null, now).status, "unknown");
+});

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EbayBox } from "@/components/EbayBox";
+import { FamilyCluster } from "@/components/FamilyCluster";
 import { EbayStrip } from "@/components/EbayStrip";
 import { mediansFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
@@ -53,6 +54,7 @@ export default function DealsPage({ params }: { params: { region: string } }) {
       <div className="mt-6">
         <EbayBox region={r.region} query="Warhammer" heading="More deals on eBay" placement="deals" />
       </div>
+      <FamilyCluster region={r.region} />
     </div>
   );
 }

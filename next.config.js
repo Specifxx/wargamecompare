@@ -23,7 +23,7 @@ module.exports = {
   images: { unoptimized: true },
   // The public data files ride with every server function, which reads them instead of a database. The per-store cache
   // (data/cache) is the importer's alone and is NOT bundled.
-  experimental: { outputFileTracingIncludes: { "/**": ["./data/*.json"] } },
+  experimental: { outputFileTracingIncludes: { "/**": ["./data/*.json", "./data/family/family-cluster.json"] } },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

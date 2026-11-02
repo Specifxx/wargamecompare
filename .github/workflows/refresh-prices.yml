@@ -64,6 +64,14 @@ jobs:
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_DAILY_CAP: ${{ vars.EBAY_DAILY_CAP }}
         run: npx tsx scripts/ebay.ts
+      # The Compare Empire network (DECISIONS.md "Sites that grow each other"): this site's best deals for the
+      # sister sites, and the hobby sisters' feeds for the deals pages. Never fails the run.
+      - name: Family feed
+        run: npx tsx scripts/family-sync.ts
+      # The Compare Empire network (DECISIONS.md "Sites that grow each other"): this site's best deals for the
+      # sister sites, and the hobby sisters' feeds for the deals pages. Never fails the run.
+      - name: Family feed
+        run: npx tsx scripts/family-sync.ts
       - name: Save the store reads
         if: always()
         uses: actions/cache/save@v4
