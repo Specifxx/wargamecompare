@@ -145,6 +145,8 @@ export function amazonTags(env: Record<string, string | undefined> = process.env
   };
 }
 export const AMAZON_DISCLOSURE = "As an Amazon Associate WargameCompare earns from qualifying purchases.";
+/** Amazon's trademark notice (Operating Agreement Dos and Don'ts, 2026-11-02), in the footer of every page. */
+export const AMAZON_TRADEMARK = "Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.";
 
 export function amazonLabel(region: Region): string {
   if (region === "nz") return "Amazon Australia (ships to NZ)";
