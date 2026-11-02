@@ -311,17 +311,6 @@
     ]
   },
   {
-    "key": "etoysworld",
-    "name": "eTOYSWORLD",
-    "base": "https://www.etoysworld.co.uk",
-    "market": "UK",
-    "country": "GB",
-    "collections": [
-      "warhammer-40k",
-      "age-of-sigmar"
-    ]
-  },
-  {
     "key": "fonefunshop",
     "name": "FoneFunShop",
     "base": "https://www.fonefunshop.com",
@@ -809,17 +798,6 @@
     ]
   },
   {
-    "key": "nortontcg",
-    "name": "TCG Group",
-    "base": "https://nortontcg.co.uk",
-    "market": "UK",
-    "country": "GB",
-    "collections": [
-      "games-workshop",
-      "blood-bowl"
-    ]
-  },
-  {
     "key": "theboardgamehut",
     "name": "The Board Game Hut",
     "base": "https://theboardgamehut.co.uk",
@@ -980,20 +958,6 @@
       "warhammer",
       "kill-team",
       "necromunda",
-      "blood-bowl"
-    ]
-  },
-  {
-    "key": "zatugames",
-    "name": "Zatu Games",
-    "base": "https://www.board-game.co.uk",
-    "market": "UK",
-    "country": "GB",
-    "collections": [
-      "citadel",
-      "warhammer",
-      "necromunda",
-      "kill-team",
       "blood-bowl"
     ]
   },
@@ -1555,17 +1519,6 @@
       "age-of-sigmar",
       "citadel-paints",
       "horus-heresy"
-    ]
-  },
-  {
-    "key": "gamescapital",
-    "name": "The Games Capital",
-    "base": "https://www.thegamescapital.com.au",
-    "market": "AU",
-    "country": "AU",
-    "collections": [
-      "citadel",
-      "warhammer-40k"
     ]
   },
   {
@@ -2376,20 +2329,6 @@
       "warhammer-40k",
       "warhammer-age-of-sigmar",
       "kill-team"
-    ]
-  },
-  {
-    "key": "labyss",
-    "name": "L'Abyss",
-    "base": "https://labyss.com",
-    "market": "CA",
-    "country": "CA",
-    "collections": [
-      "warhammer-1",
-      "warhammer-2",
-      "necromunda-1",
-      "kill-team-1",
-      "blood-bowl-1"
     ]
   },
   {
@@ -3213,20 +3152,6 @@
       "gw",
       "warhammer-1",
       "new-warhammer"
-    ]
-  },
-  {
-    "key": "cosmicbham",
-    "name": "Cosmic Games Birmingham",
-    "base": "https://cosmicbham.com",
-    "market": "US",
-    "country": "US",
-    "collections": [
-      "warhammer",
-      "gw",
-      "citadel-1",
-      "new-warhammer",
-      "warhammer-1"
     ]
   },
   {
