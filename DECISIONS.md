@@ -383,6 +383,34 @@ the file goes quiet for a day (a stopped monitor cannot mail). Only a FAILED che
 email to the owner; warnings wait for HQ and Monday. The file carries status and the monitor's own sentences only,
 the same as the public Actions log.
 
+## 2026-11-02 — Seasonal sale pages
+
+`/<region>/boxing-day`, `/<region>/january-sales` and `/<region>/lunar-new-year` (owner-approved growth plan,
+2026-11-02): one URL per region, kept every year like `/<region>/black-friday`, built weeks ahead so they are
+indexed before the day, with the same rows (in stock, at least 10% under RRP or the median of three or more
+stores, today) from one component, `src/components/SaleSeasonPage.tsx`. Each region has its own page; the intro
+states where the day is a sale day as a fact. Dates, the year a page is about (it rolls over a week after the
+event) and the intro are pure in `src/lib/sale-seasons.ts` (`tests/sale-seasons.test.ts`); Lunar New Year is a
+published-date table to 2040 (6 February 2027). Footer and sitemap, not the nav. CDN-cached by the existing
+region rule. Never a "was" price, a countdown or an invented sale.
+
+## 2026-11-02 — Price alerts through RiftCompare's shared service
+
+The owner chose "Yes, one shared service" for email price alerts on the sister sites. The site still has no
+database, no accounts and no mail key; the product page gains an "Email me when the price drops" form.
+
+- **The form** (`components/PriceAlertForm.tsx`, the same file on every sister site) posts
+  `{site, productId, region, email, targetCents}` straight to `https://riftcompare.com/api/sister-alerts`.
+  RiftCompare keeps the address (its own Neon project, private tables), sends one confirmation email (double opt-in)
+  and checks daily. This site stores nothing and holds no key.
+- **The prices** come from this site's own static `/alert-feed.json` (`lib/alert-feed.ts`, `force-static`, built with
+  each release from the loaders the pages read): each product's `Summary.best` per region (the cheapest in-stock store
+  price, never eBay, Amazon or Wayland, never converted), with `u` = `/{r}/p/<id>` (the service fills in the region),
+  plus the deals page's top three per region (RRP or store median, labelled). Another hobby site's alert email
+  (FigureCompare) may end with one of them.
+- The privacy page says what the form sends and links to RiftCompare's. RiftCompare's `sister-alerts.yml` fails (and
+  its ops monitor reports it) when a site with alerts serves no fresh feed.
+
 ## 2026-11-02 — Share buttons
 
 The owner wants word of mouth to be a big growth driver on every site (RiftCompare's DECISIONS has the twelve-site

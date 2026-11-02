@@ -18,6 +18,13 @@ Everything the site serves is committed JSON under `data/`, written by GitHub Ac
 Never write anything private to `data/` (it is public with the source). Never edit `data/` by hand. `data/cache/` is the
 importer's, git-ignored and kept in the Actions cache; never bundle it with the site.
 
+## Price alerts: RiftCompare's shared service (owner, 2026-11-02)
+
+The product page's "Email me when the price drops" form (`src/components/PriceAlertForm.tsx`) posts to
+`https://riftcompare.com/api/sister-alerts`; RiftCompare keeps the address, confirms it and emails, reading this site's
+static `/alert-feed.json` (`src/lib/alert-feed.ts`, `force-static`) once a day. This site never stores an address or
+holds a mail key. Keep the feed's price the cheapest in-stock store price (never eBay, Amazon or Wayland).
+
 ## Cost rules (from the sister sites, where breaking them ran up the bills)
 
 - Pages are `force-dynamic` and cached by Vercel's CDN for a day (`next.config.js` `CDN_PAGES`), never ISR, and no
