@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { VercelPageViews } from "@/components/VercelPageViews";
+import { ShareArrival } from "@/components/ShareArrival";
 import { jsonLd, siteJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import { SEASON_BOOT_SCRIPT } from "@/lib/season";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <QuickView />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(siteJsonLd()) }} />
         <VercelPageViews />
+        <ShareArrival />
       </body>
     </html>
   );
