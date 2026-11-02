@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { OutboundLink } from "@/components/OutboundLink";
 import { PriceList } from "@/components/PriceList";
 import { ReportPrice } from "@/components/ReportForms";
+import { PriceAlertForm } from "@/components/PriceAlertForm";
+import { ALERT_SITE_KEY } from "@/lib/alert-feed";
 import { ProductGrid } from "@/components/ProductCard";
 import { StoreCode } from "@/components/StoreCode";
 import {
@@ -193,6 +195,8 @@ export default function ProductPage({ params }: { params: { region: string; slug
         </h2>
         <PriceList {...priceRows(p, region, "product")} />
         <ReportPrice product={`${p.name}${p.code ? ` (${p.code})` : ""}`} region={r.short} buttonClassName="btn-ghost" stores={priceRows(p, region, "product").stores.map((s) => ({ name: s.name, price: s.price ?? "sold out" }))} />
+        {/* RiftCompare's shared alert service emails when it drops (lib/alert-feed.ts, DECISIONS.md 2026-11-02). */}
+        <PriceAlertForm site={ALERT_SITE_KEY} productId={p.id} region={r.market} priceCents={s?.best ?? null} className="mt-3" buttonClassName="btn-ghost" />
         <p className="mt-2 text-xs text-faint">
           eBay and Amazon are pinned first as labelled ads; the stores under them are sorted by price, in stock first, never by what we earn. {EBAY_DISCLOSURE} {amazon ? AMAZON_DISCLOSURE : ""}
           {updated && ` Store prices checked ${new Date(updated).toUTCString().slice(5, 22)} UTC.`}
