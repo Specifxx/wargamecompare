@@ -28,6 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const t of TYPES) if (hubIndexable(all.filter((x) => x.product.type === t.slug))) at(`/type/${t.slug}`);
     for (const s of all) if (productIndexable(s)) at(`/p/${s.product.id}`);
   }
-  for (const p of ["/about", "/creators", "/affiliate-disclosure"]) out.push({ url: `${SITE_URL}${p}` });
+  for (const p of ["/about", "/creators", "/embed", "/affiliate-disclosure"]) out.push({ url: `${SITE_URL}${p}` });
   return out;
 }

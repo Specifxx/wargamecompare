@@ -14,7 +14,7 @@ const securityHeaders = [
 // not ISR"): every data page is force-dynamic, and this header keeps its response at the CDN. The data changes only with
 // a release, and a release empties the CDN. Safe because no page reads a cookie, a header or the session.
 const CDN_CACHE = "public, s-maxage=86400, stale-while-revalidate=86400";
-const CDN_PAGES = ["/", "/:region(uk|au|nz|ca|us)", "/:region(uk|au|nz|ca|us)/:path*", "/sitemap.xml", "/robots.txt", "/about", "/privacy", "/terms", "/affiliate-disclosure", "/contact", "/creators", "/forum", "/forum/:path*"];
+const CDN_PAGES = ["/", "/:region(uk|au|nz|ca|us)", "/:region(uk|au|nz|ca|us)/:path*", "/sitemap.xml", "/robots.txt", "/about", "/privacy", "/terms", "/affiliate-disclosure", "/contact", "/creators", "/forum", "/forum/:path*", "/embed", "/embed/:path*"];
 
 module.exports = {
   reactStrictMode: true,
@@ -25,6 +25,12 @@ module.exports = {
   // (data/cache) is the importer's alone and is NOT bundled.
   experimental: { outputFileTracingIncludes: { "/**": ["./data/*.json"] } },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }, ...CDN_PAGES.map((source) => ({ source, headers: [{ key: "Vercel-CDN-Cache-Control", value: CDN_CACHE }] }))];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      // The embeddable widgets (DECISIONS.md, "Free price widgets", 2026-11-02) are framed on other sites: these override the
+      // SAMEORIGIN and report-only frame-ancestors above, for /embed/:path+ only (never /embed itself).
+      { source: "/embed/:path+", headers: [{ key: "X-Frame-Options", value: "ALLOWALL" }, { key: "Content-Security-Policy", value: "frame-ancestors *" }] },
+      ...CDN_PAGES.map((source) => ({ source, headers: [{ key: "Vercel-CDN-Cache-Control", value: CDN_CACHE }] })),
+    ];
   },
 };
