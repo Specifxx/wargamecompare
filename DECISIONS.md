@@ -410,3 +410,15 @@ database, no accounts and no mail key; the product page gains an "Email me when 
   (FigureCompare) may end with one of them.
 - The privacy page says what the form sends and links to RiftCompare's. RiftCompare's `sister-alerts.yml` fails (and
   its ops monitor reports it) when a site with alerts serves no fresh feed.
+
+## 2026-11-02 — Share buttons
+
+The owner wants word of mouth to be a big growth driver on every site (RiftCompare's DECISIONS has the twelve-site
+entry). Product pages and the quick view get a Share button: the phone's share sheet, else the link and message
+copied. No pop-up, no reward. The message names the real gap in the region (`lib/share-link.ts`: cheapest and
+dearest in-stock store, never converted). Each kit's share image (`[region]/p/[slug]/opengraph-image.tsx`) draws the
+same gap and the RRP the stores state, text only like every share card here; it is force-dynamic and held by the CDN
+for a day like the page, so only shared links cost a render. Every shared link carries
+`utm_source=share&utm_medium=product`; `share` and `share_visit` join `buy_click` as the only Vercel events
+(`lib/track.ts`): the button sends one, `ShareArrival` one per tab when a shared link brings someone, and
+RiftCompare's weekly growth report counts both. No shared-list page: the site has no list to share yet.
