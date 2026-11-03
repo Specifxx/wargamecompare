@@ -9,6 +9,7 @@ export function ProductCard({ s, region }: { s: Summary; region: Region }) {
   return (
     <Link
       href={`/${region}/p/${p.id}`}
+      prefetch={false}
       // A plain click opens the quick view (QuickView.tsx); the link itself stays for crawlers and new tabs.
       data-qv={p.id}
       data-qv-region={region}

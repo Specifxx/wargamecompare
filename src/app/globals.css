@@ -567,3 +567,17 @@ html[data-season="christmas"] header.sticky::after {
   --fm-radius: 14px;
   --fm-head: var(--font-display), var(--font-sans), system-ui, sans-serif;
 }
+
+/* The landing page's per-region blocks (HOME_REGION_SCRIPT, lib/regions.ts): every region is in the HTML, CSS shows the
+   visitor's. Without the attribute (no script, crawlers) the US block shows. Hidden images are never fetched (lazy). */
+.hr {
+  display: none;
+}
+html:not([data-hr]) .hr-us,
+html[data-hr="uk"] .hr-uk,
+html[data-hr="au"] .hr-au,
+html[data-hr="nz"] .hr-nz,
+html[data-hr="ca"] .hr-ca,
+html[data-hr="us"] .hr-us {
+  display: block;
+}

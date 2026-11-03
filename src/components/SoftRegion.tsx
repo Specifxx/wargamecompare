@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { regionFromTimeZone, X_DEFAULT_REGION, type Region } from "@/lib/regions";
+import { isRegion, regionFromTimeZone, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 
 /**
  * The visitor's region on a page that has none of its own (the landing page, About, the legal pages, a 404): the server's HTML is
@@ -12,6 +12,9 @@ export function useSoftRegion(): Region {
   const [r, setR] = useState<Region>(X_DEFAULT_REGION);
   useEffect(() => {
     try {
+      // The region HOME_REGION_SCRIPT chose before paint (a pick, else the time zone), so the menu matches the tiles shown.
+      const hr = document.documentElement.getAttribute("data-hr");
+      if (isRegion(hr)) return setR(hr);
       const tz = regionFromTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
       if (tz) setR(tz);
     } catch {

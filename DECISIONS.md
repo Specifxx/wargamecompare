@@ -533,3 +533,13 @@ as a link network and looks odd to a reader. The owner said do it.
   one owner, not paid, so no `sponsored`/`nofollow`.
 - Kept: the "Other card games" / hobby / tech price blocks on deals, Black Friday and pre-order pages
   (`clusterSisters`). They sit on a few pages, show real prices a reader of that page may want, and are not sitewide.
+
+## 2026-11-03: home pages lead with product photos
+
+Owner: "the front page can look much better. It needs images of products." The landing page and every region home now open
+with a wall of six real kits (stores' own photos, the day's biggest savings in stock, one per faction, price and saving on
+each), then image tiles per category (each with its most-stocked product's photo), then the savings grid. The landing page
+has no region, so its one CDN copy carries every region's blocks and `HOME_REGION_SCRIPT` (lib/regions.ts) sets
+`<html data-hr>` before paint so CSS shows the visitor's (their pick, else time zone, else the US); hidden blocks' images are
+lazy and never fetched. No image proxy, no new function, no request-time work. Product tiles stopped prefetching
+(`prefetch={false}`), one RSC render fewer per tile in view.
