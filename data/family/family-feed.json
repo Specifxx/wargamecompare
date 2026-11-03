@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "wargame",
- "generatedAt": "2026-11-02T03:26:40.440Z",
+ "generatedAt": "2026-11-03T02:10:45.589Z",
  "links": {
   "UK": {
    "deals": "https://wargamecompare.com/uk/deals"
@@ -108,6 +108,20 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "AU",
+   "title": "Kill team: Approved Ops Card Pack 2025",
+   "url": "https://wargamecompare.com/au/p/kill-team-approved-ops-card-pack-2025",
+   "cents": 2000,
+   "currency": "AUD",
+   "store": "Turtle TCG",
+   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/KillTeam-ApprovedOperationsCardPack2025.jpg?v=1757143862&width=200",
+   "refCents": 4000,
+   "refLabel": "RRP",
+   "savingPct": 50
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "AU",
    "title": "War Zone Nachmund: Vigilus Alone",
    "url": "https://wargamecompare.com/au/p/war-zone-nachmund-vigilus-alone",
    "cents": 4200,
@@ -150,20 +164,6 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "AU",
-   "title": "Codex: Adeptus Custodes",
-   "url": "https://wargamecompare.com/au/p/codex-adeptus-custodes",
-   "cents": 5200,
-   "currency": "AUD",
-   "store": "Gumnut",
-   "image": "https://cdn.shopify.com/s/files/1/0552/1804/5102/files/60030143001_ENGAdeptusCustodesCodex01.jpg?v=1791326066&width=200",
-   "refCents": 10400,
-   "refLabel": "RRP",
-   "savingPct": 50
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "AU",
    "title": "Path to Glory: Blighted Wilds",
    "url": "https://wargamecompare.com/au/p/path-to-glory-blighted-wilds",
    "cents": 4400,
@@ -178,12 +178,12 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "AU",
-   "title": "Datasheet Cards: Space Wolves",
-   "url": "https://wargamecompare.com/au/p/datasheet-cards-space-wolves",
+   "title": "Datasheet Cards: Drukhari",
+   "url": "https://wargamecompare.com/au/p/datasheet-cards-drukhari",
    "cents": 2900,
    "currency": "AUD",
    "store": "Gumnut",
-   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/DatasheetCardsSpaceWolves.jpg?v=1751006952&width=200",
+   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/DatasheetCardsDrukhariENG.jpg?v=1758947780&width=200",
    "refCents": 5600,
    "refLabel": "RRP",
    "savingPct": 48
@@ -282,22 +282,8 @@
    "currency": "CAD",
    "store": "401 Games",
    "image": "https://cdn.shopify.com/s/files/1/1704/1809/files/2024_06_60050117002_EngGSCDatasheet03.jpg?v=1717771149&width=200",
-   "refCents": 3899,
+   "refCents": 3949,
    "refLabel": "median store price",
-   "savingPct": 49
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "CA",
-   "title": "Interceptor City (Paperback)",
-   "url": "https://wargamecompare.com/ca/p/interceptor-city-hardcover-black-library-book",
-   "cents": 2039,
-   "currency": "CAD",
-   "store": "Card Brawlers",
-   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/InterceptorCityENG.jpg?v=1761995299&width=200",
-   "refCents": 4000,
-   "refLabel": "RRP",
    "savingPct": 49
   },
   {
@@ -354,6 +340,20 @@
    "image": "https://cdn.shopify.com/s/files/1/0509/7111/5709/files/KTExactionSquad6.jpg?v=1733483353&width=200",
    "refCents": 7055,
    "refLabel": "median store price",
+   "savingPct": 46
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "CA",
+   "title": "Blood Bowl: Vampire Team",
+   "url": "https://wargamecompare.com/ca/p/blood-bowl-vampire-team",
+   "cents": 3800,
+   "currency": "CAD",
+   "store": "Event Horizon Hobbies CA",
+   "image": "https://cdn.shopify.com/s/files/1/1704/1809/files/Blood-Bowl-Vampire-Team-The-Drakfang-Thirsters.jpg?v=1698702013&width=200",
+   "refCents": 7000,
+   "refLabel": "RRP",
    "savingPct": 46
   },
   {
@@ -416,7 +416,7 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "US",
-   "title": "Warzone Octarius: Book 1 – Rising Tide English",
+   "title": "40K: Octarius Book 1 - Rising Tide",
    "url": "https://wargamecompare.com/us/p/war-zone-octarius-book-1-rising-tide",
    "cents": 2750,
    "currency": "USD",
@@ -430,13 +430,13 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "US",
-   "title": "Battletome: Skaven",
-   "url": "https://wargamecompare.com/us/p/battletome-skaven",
+   "title": "Battletome: Nighthaunt",
+   "url": "https://wargamecompare.com/us/p/battletome-nighthaunt",
    "cents": 2995,
    "currency": "USD",
    "store": "Digital Heroes",
-   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/SkavenBattletomeSkaven.jpg?v=1728433702&width=200",
-   "refCents": 5799,
+   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/BattletomeDeathNighthaunt.jpg?v=1755300964&width=200",
+   "refCents": 5750,
    "refLabel": "median store price",
    "savingPct": 48
   }
