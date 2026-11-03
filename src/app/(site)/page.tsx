@@ -6,6 +6,7 @@ import { RegionSuggest } from "@/components/RegionSuggest";
 import { mediansFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
 import { CategoryTiles, HeroMosaic, categoryTiles, heroPicks } from "@/components/HomeVisuals";
+import { HomeHero, SectionHead } from "@/components/HomeHero";
 import { ProductGrid } from "@/components/ProductCard";
 import { productIndexable } from "@/lib/index-tiers";
 import { REGION_LIST, REGIONS } from "@/lib/regions";
@@ -56,32 +57,31 @@ export default function Landing() {
     return { r, hero, savings, tiles: categoryTiles(all, r.region) };
   });
   return (
-    <div className="page py-8 sm:py-12">
-      {/* Phone: headline, then the photos, then the rest. From lg the photos sit in a column of their own beside the text. */}
-      <section className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:gap-x-12 lg:gap-y-0">
-        <div className="lg:col-start-1 lg:row-start-1">
-          <p className="eyebrow">Stop paying full price for plastic</p>
-          <h1 className="mt-2 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl">Compare Warhammer prices across the discount stores</h1>
-        </div>
-        <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
-          {blocks.map(({ r, hero }) =>
-            hero.length ? (
-              <div key={r.region} className={`hr hr-${r.region}`}>
-                <p className="mb-2 flex items-center gap-1.5 text-sm font-semibold text-muted">
-                  <Flag code={r.region} /> Top savings in {r.inName} today
-                </p>
-                <HeroMosaic items={hero} region={r.region} />
-              </div>
-            ) : null,
-          )}
-        </div>
-        <div className="lg:col-start-1 lg:row-start-2">
-          <p className="max-w-2xl text-lg text-muted lg:mt-4">
-            Warhammer 40,000, Age of Sigmar, Kill Team, The Horus Heresy, The Old World and Citadel paints: every kit matched by its box code across independent
-            stores, cheapest in stock first, with the saving on RRP. Free, and no account needed.
-          </p>
-          <RegionSuggest />
-        </div>
+    <div className="page py-8">
+      <HomeHero
+        eyebrow="Stop paying full price for plastic"
+        title="Compare Warhammer prices across the discount stores"
+        lead={<>
+          Warhammer 40,000, Age of Sigmar, Kill Team, The Horus Heresy, The Old World and Citadel paints: every kit matched by its box code across independent
+          stores, cheapest in stock first, with the saving on RRP. Free, and no account needed.
+        </>}
+      >
+        <RegionSuggest />
+      </HomeHero>
+
+      {/* Every region's pictures are in this one CDN copy; CSS shows the visitor's (HOME_REGION_SCRIPT). Hidden blocks' images are
+          lazy, so a visitor downloads only their own region's photos. */}
+      <section className="sd mt-8" aria-label="Top savings today">
+        {blocks.map(({ r, hero }) =>
+          hero.length ? (
+            <div key={r.region} className={`hr hr-${r.region}`}>
+              <p className="mb-3 flex items-center justify-center gap-1.5 text-sm font-semibold text-muted">
+                <Flag code={r.region} /> Top savings in {r.inName} today
+              </p>
+              <HeroMosaic items={hero} region={r.region} className="sm:grid-cols-6" />
+            </div>
+          ) : null,
+        )}
       </section>
 
       {/* Christmas only (1 November to Boxing Day; hidden by CSS otherwise). */}
@@ -94,8 +94,20 @@ export default function Landing() {
         />
       </div>
 
-      <section className="mt-12">
-        <h2 className="mb-4 font-display text-2xl font-bold">Shop by category</h2>
+      {/* Real prices and product links in the landing page's server HTML, every region's (crawl-audit-sites, 2026-10-30). */}
+      <section className="sd mt-12">
+        {blocks.map(({ r, savings }) =>
+          savings.length ? (
+            <div key={r.region} className={`hr hr-${r.region}`}>
+              <SectionHead title={`Biggest savings in ${r.inName} today`} sub="In stock now, furthest under RRP, every store's own price." href={`/${r.region}/deals`} all="All deals" />
+              <ProductGrid items={savings} region={r.region} />
+            </div>
+          ) : null,
+        )}
+      </section>
+
+      <section className="sd mt-12">
+        <SectionHead title="Shop by category" sub="Every game and every kind of box, each with its own cheapest-first list." />
         {blocks.map(({ r, tiles }) => (
           <div key={r.region} className={`hr hr-${r.region}`}>
             <CategoryTiles tiles={tiles} />
@@ -103,33 +115,16 @@ export default function Landing() {
         ))}
       </section>
 
-      {/* Real prices and product links in the landing page's server HTML, every region's (crawl-audit-sites, 2026-10-30). */}
-      <section className="mt-12">
-        {blocks.map(({ r, savings }) =>
-          savings.length ? (
-            <div key={r.region} className={`hr hr-${r.region}`}>
-              <div className="mb-4 flex items-end justify-between gap-4">
-                <h2 className="font-display text-2xl font-bold">Biggest savings in {r.inName} today</h2>
-                <Link href={`/${r.region}/deals`} prefetch={false} className="shrink-0 text-sm font-semibold text-brand">
-                  All deals →
-                </Link>
-              </div>
-              <ProductGrid items={savings} region={r.region} />
-            </div>
-          ) : null,
-        )}
-      </section>
-
       <CreatorsTeaser />
 
-      <section className="mt-12">
-        <h2 className="mb-4 font-display text-2xl font-bold">Prices in your country</h2>
+      <section className="sd mt-12">
+        <SectionHead title="Prices in your country" sub="Each country compares only the stores that charge in its own currency." />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {REGION_LIST.map((r) => {
             const n = storesInMarket(r.market).length;
             const products = summariesFor(r.region).filter((s) => s.inStock > 0).length;
             return (
-              <Link key={r.region} href={`/${r.region}`} prefetch={false} data-region-pick={r.region} className="card p-5 transition-shadow hover:shadow-lift">
+              <Link key={r.region} href={`/${r.region}`} prefetch={false} data-region-pick={r.region} className="card p-5 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-lift">
                 <p className="flex items-center gap-2 font-display text-xl font-bold">
                   <Flag code={r.region} /> {r.name}
                 </p>

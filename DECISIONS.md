@@ -599,3 +599,25 @@ more", in the sitemap, and a "New releases and pre-orders" tile row on the regio
 - First read (2026-11-03): Da Red Gobbo's Squigmobile (7 November) and the Necromunda Orlock wave (14 November);
   US 11 pre-orders, AU 7, CA 13, UK 1, NZ 0. Pinned by `tests/releases.test.ts`. No new data, no new job: it reads
   the daily import's files.
+
+## 2026-11-03 — The home pages look like RiftCompare's: a centred hero, gold on blue-slate, Plus Jakarta Sans and Inter
+
+The owner (2026-11-03): "wargamecompare also needs to look better. the home page is just a wall of text with no actual
+images. Also the font and colouring can be way better and more inviting", with RiftCompare as the reference and "make sure
+with all these redesigns that the seo is still 100% good". (The photo wall and tiles of the morning's entry had not yet
+reached the live site: they ride the evening release.)
+
+**What.** Both home pages open with RiftCompare's hero (`components/HomeHero.tsx`): centred, the title with a soft gold
+glow over the living sparks canvas (`HeroSparks.tsx`, the card engine's), the search and the country row under it, then the
+six-kit photo wall full width, and every section after it under one title row (`SectionHead`). Cards and tiles lift on
+hover, the category tiles carry their label over the photo, and sections ease in on scroll (CSS view timelines, transform
+only, nothing hidden). The palette moved from near-black and brass to a deep blue-slate night with gold and a crimson spark,
+the light theme to warm paper and bronze; every text pair stays WCAG AA. The fonts are the family's since today: Plus Jakarta
+Sans for headings and Inter for text, bundled as the latin subsets of the variable fonts (75 KB together, OFL,
+`src/app/fonts`), no font request at runtime, `display: swap` with next/font's metric-matched fallback.
+
+**SEO unchanged, checked.** The two builds (`main` and this one) were compared page by page with scripts off: title, meta
+description, Open Graph, canonical, hreflang, every JSON-LD block, the h1, the set of internal links and the headings are
+identical on `/`, `/au`, `/uk` and `/us`; the only differences are the order of two h2s (the eBay box now follows "Stocked by
+the most stores") and the one-line section subtitles. Images keep their alt text and dimensions; only the first row of the
+photo wall loads eagerly. eBay's strip stays above the first product grid (owner, 2026-10-28; `tests/nav.test.ts`).

@@ -13,9 +13,9 @@ import { ThemeToggle } from "./ThemeToggle";
 export function HeaderBar({ region: r, home }: { region: Region; home: string }) {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
-      <div className="page flex h-[var(--hdr)] items-center gap-3">
+      <div className="page flex h-[var(--hdr)] items-center gap-2 sm:gap-3">
         <MobileMenu region={r} groups={navGroups(r)} />
-        <Link href={home} aria-label="WargameCompare home" className="shrink-0">
+        <Link href={home} aria-label="WargameCompare home" className="min-w-0 shrink">
           <Logo />
         </Link>
         <form action={`/${r}/search`} role="search" className="ml-auto hidden min-w-0 flex-1 justify-end sm:flex sm:max-w-md">

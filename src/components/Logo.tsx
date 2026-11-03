@@ -17,9 +17,9 @@ export function LogoMark({ size = 28 }: { size?: number }) {
 
 export function Logo() {
   return (
-    <span className="inline-flex items-center gap-2 text-brand">
+    <span className="inline-flex min-w-0 items-center gap-1.5 text-brand sm:gap-2">
       <LogoMark />
-      <span className="font-display text-lg font-extrabold tracking-tight text-ink sm:text-xl">
+      <span className="truncate font-display text-lg font-extrabold tracking-tight text-ink sm:text-xl">
         Wargame<span className="text-brand">Compare</span>
       </span>
       <Pumpkin />
