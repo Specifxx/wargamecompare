@@ -138,8 +138,8 @@ export function amazonTags(): Record<Region, string | null> {
     us: "riftcompare-20",
     uk: "compareempi03-21",
     ca: "compareempire-20",
-    au: "compareempire-22",
-    nz: "compareempire-22",
+    au: "wargamecomp-22",
+    nz: "wargamecomp-22",
   };
 }
 export const AMAZON_DISCLOSURE = "As an Amazon Associate WargameCompare earns from qualifying purchases.";
