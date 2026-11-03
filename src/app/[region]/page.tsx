@@ -15,6 +15,7 @@ import { SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
 import { Flag } from "@/components/Flag";
 import { RegionChips } from "@/components/RegionChips";
+import { SiteReviews } from "@/components/site-reviews/SiteReviews";
 
 export const dynamic = "force-dynamic";
 
@@ -143,6 +144,9 @@ export default function RegionHome({ params }: { params: { region: string } }) {
           <ProductGrid items={popular} region={r.region} />
         </section>
       )}
+
+      {/* The site's own star score and approved reviews (owner, 2026-11-03), loaded in the browser; nothing until there is a rating. */}
+      <SiteReviews />
 
       <section className="prose-wg max-w-3xl">
         <h2>How WargameCompare works</h2>
