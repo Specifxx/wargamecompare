@@ -1,11 +1,12 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { EbayStrip } from "@/components/EbayStrip";
 import type { Summary } from "@/lib/data";
 import type { Placement } from "@/lib/affiliate";
 import type { RegionInfo } from "@/lib/regions";
+import { Breadcrumbs } from "./Breadcrumbs";
 import { EbayBox } from "./EbayBox";
 import { ProductGrid } from "./ProductCard";
-import { breadcrumbLd, jsonLd } from "@/lib/seo";
+import { Empty, Section } from "./Section";
 
 const SHOWN = 96;
 
@@ -35,13 +36,15 @@ export function HubPage({
   const inStock = items.filter((s) => s.inStock > 0);
   const sold = items.filter((s) => s.inStock === 0);
   return (
-    <div className="page py-8">
-      <nav aria-label="Breadcrumb" className="mb-3 text-sm text-faint">
-        <Link href={`/${r.region}`} className="hover:text-ink">{r.name}</Link>
-      </nav>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: title, path }])) }} />
-      <h1 className="font-display text-3xl font-extrabold leading-tight">{title}</h1>
-      <p className="mt-2 max-w-3xl text-muted">{intro}</p>
+    <div className="page py-6 sm:py-8">
+      <Breadcrumbs
+        items={[
+          { path: `/${r.region}`, label: r.name },
+          { path, label: title },
+        ]}
+      />
+      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h1>
+      <p className="mt-3 max-w-3xl text-[15px] leading-7 text-muted">{intro}</p>
       {chips && chips.length > 0 && (
         <div className="mt-5 flex flex-wrap gap-2">
           {chips.map((c) => (
@@ -54,23 +57,22 @@ export function HubPage({
       <div className="mt-8">
         <EbayStrip region={r.region} items={inStock} placement="ebay-strip-hub" heading={`${ebayQuery} on eBay`} />
       </div>
-      <section className="mt-8">
-        <h2 className="mb-4 font-display text-xl font-bold">In stock ({inStock.length.toLocaleString("en")})</h2>
-        {inStock.length ? <ProductGrid items={inStock.slice(0, SHOWN)} region={r.region} /> : <p className="text-muted">Nothing in stock at the stores we compare today.</p>}
-        {inStock.length > SHOWN && (
-          <p className="mt-4">
-            <Link href={searchHref} className="btn-ghost">See all {inStock.length.toLocaleString("en")} in stock</Link>
-          </p>
+      <Section title={`In stock (${inStock.length.toLocaleString("en")})`} href={inStock.length > SHOWN ? searchHref : undefined} linkLabel={`See all ${inStock.length.toLocaleString("en")} in stock`}>
+        {inStock.length ? (
+          <ProductGrid items={inStock.slice(0, SHOWN)} region={r.region} eager={4} />
+        ) : (
+          <Empty actions={[{ href: `/${r.region}/deals`, label: "Today’s deals" }, { href: `/${r.region}/new-releases`, label: "New releases" }, { href: `/${r.region}/search`, label: "Search every kit" }]}>
+            Nothing in stock at the stores we compare today.
+          </Empty>
         )}
-      </section>
-      <div className="my-10">
+      </Section>
+      <div className="mt-10">
         <EbayBox region={r.region} query={ebayQuery} heading={`${ebayQuery} on eBay`} placement={placement} />
       </div>
       {sold.length > 0 && (
-        <section>
-          <h2 className="mb-4 font-display text-xl font-bold">Sold out everywhere today ({sold.length.toLocaleString("en")})</h2>
+        <Section title={`Sold out everywhere today (${sold.length.toLocaleString("en")})`}>
           <ProductGrid items={sold.slice(0, 24)} region={r.region} />
-        </section>
+        </Section>
       )}
     </div>
   );

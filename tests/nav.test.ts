@@ -27,7 +27,7 @@ test("every menu link is a page that exists", () => {
 test("no 'continue to region' step: the landing page has shortcuts and the full menu", () => {
   assert.doesNotMatch(read("src/components/RegionSuggest.tsx"), /Compare prices in/);
   assert.match(read("src/app/(site)/layout.tsx"), /SoftSideNav/);
-  assert.match(read("src/components/HeaderBar.tsx"), /MobileMenu/);
+  assert.match(read("src/components/Header.tsx"), /MobileMenu/);
 });
 
 test("eBay strips: above every region page's footer, labelled Ad, never a store's photo", () => {

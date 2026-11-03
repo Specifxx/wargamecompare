@@ -5,7 +5,7 @@
 // tabs and modified clicks go to the product page, whose server HTML keeps every price. eBay first, Amazon second, as
 // on the page.
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import type { PriceListData } from "@/lib/price-rows";
 import { PriceList } from "./PriceList";
 import { ShareButton } from "./ShareButton";
@@ -127,29 +127,32 @@ export function QuickView() {
   const img = head.img || got?.img || null;
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={name}>
-      <button type="button" aria-label="Close" tabIndex={-1} className="qv-backdrop absolute inset-0 bg-black/50 backdrop-blur-[2px]" onClick={close} />
-      <div className="qv-panel relative flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-line bg-surface shadow-2xl sm:rounded-2xl">
+      <button type="button" aria-label="Close" tabIndex={-1} className="qv-backdrop absolute inset-0 bg-black/55 backdrop-blur-[2px]" onClick={close} />
+      <div className="qv-panel relative flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border border-line bg-surface shadow-lift sm:rounded-2xl">
         <div className="flex items-start gap-4 border-b border-line p-4 sm:p-5">
-          <div className="plate h-24 w-24 shrink-0">
-            {img ? <img src={img} alt="" className="h-full w-full object-contain p-1.5" /> : <div className="flex h-full items-center justify-center text-xs text-sold">No photo</div>}
+          <div className="plate relative h-24 w-24 shrink-0 sm:h-28 sm:w-28">
+            {img ? <img src={img} alt="" className="absolute inset-0 h-full w-full object-contain p-2 mix-blend-multiply" /> : <div className="flex h-full items-center justify-center text-xs text-sold">No photo</div>}
           </div>
           <div className="min-w-0 flex-1">
-            <h2 className="font-display text-lg font-bold leading-snug">{name || <span className="qv-shimmer inline-block h-5 w-48 rounded" />}</h2>
-            {data && data !== "loading" && (
-              <p className="mt-1 text-xs text-faint">
-                {data.inStock} of {data.stores} {data.stores === 1 ? "store" : "stores"} in stock
+            <h2 className="font-display text-lg font-bold leading-snug tracking-tight sm:text-xl">{name || <span className="qv-shimmer inline-block h-5 w-48 rounded" />}</h2>
+            {got && (
+              <p className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-muted">
+                <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold ${got.inStock > 0 ? "bg-open-soft text-open" : "bg-sold-soft text-sold"}`}>
+                  <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+                  {got.inStock > 0 ? `In stock at ${got.inStock} of ${got.stores} ${got.stores === 1 ? "store" : "stores"}` : got.stores ? `Sold out at all ${got.stores} ${got.stores === 1 ? "store" : "stores"}` : "Not in stock"}
+                </span>
               </p>
             )}
             {got?.share && got.path && <ShareButton title={name} path={got.path} text={got.share} className="mt-2" />}
           </div>
-          <button ref={closeRef} type="button" onClick={close} aria-label="Close" className="-mr-1 -mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full text-muted hover:bg-raised hover:text-ink">
+          <button ref={closeRef} type="button" onClick={close} aria-label="Close" className="-mr-1 -mt-1 grid h-10 w-10 shrink-0 place-items-center rounded-full text-muted hover:bg-raised hover:text-ink">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
               <path d="M6 6l12 12M18 6 6 18" />
             </svg>
           </button>
         </div>
         <div className="flex-1 overflow-y-auto p-4 sm:p-5">
-          <h3 className="mb-3 text-sm font-semibold">Every store&rsquo;s price</h3>
+          <h3 className="eyebrow mb-3">Every store&rsquo;s price</h3>
           {data === "loading" ? (
             <Skeleton />
           ) : data ? (

@@ -37,7 +37,7 @@ export default function StorePage({ params }: { params: { region: string; store:
     <div className="page py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: `Stores in ${r.inName}`, path: `/${r.region}/stores` }, { name: s.name, path: `/${r.region}/stores/${s.key}` }])) }} />
       <nav aria-label="Breadcrumb" className="mb-3 text-sm text-faint"><Link href={`/${r.region}/stores`} className="hover:text-ink">Stores in {r.inName}</Link></nav>
-      <h1 className="font-display text-3xl font-extrabold">{s.name}</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{s.name}</h1>
       <p className="mt-2 text-muted">
         {storeHost(s)} · {listed.toLocaleString("en")} Games Workshop products listed{h?.lastOkAt ? `, last read ${new Date(h.lastOkAt).toUTCString().slice(5, 16)}` : ""}.
       </p>

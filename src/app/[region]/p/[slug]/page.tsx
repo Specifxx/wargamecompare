@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import { EbayStrip } from "@/components/EbayStrip";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { OutboundLink } from "@/components/OutboundLink";
-import { PriceList } from "@/components/PriceList";
+import { PriceList, PriceListNote } from "@/components/PriceList";
 import { ReportPrice } from "@/components/ReportForms";
 import { PriceAlertForm } from "@/components/PriceAlertForm";
 import { ALERT_SITE_KEY } from "@/lib/alert-feed";
 import { ProductGrid } from "@/components/ProductCard";
+import { Section } from "@/components/Section";
+import { StickyBuyBar } from "@/components/StickyBuyBar";
+import { StockPill } from "@/components/StockPill";
 import { StoreCode } from "@/components/StoreCode";
 import {
   AMAZON_DISCLOSURE,
@@ -28,12 +32,13 @@ import { productIndexable } from "@/lib/index-tiers";
 import { priceRows } from "@/lib/price-rows";
 import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGIONS, type Region } from "@/lib/regions";
-import { breadcrumbLd, jsonLd, ogFor, regionAlternates } from "@/lib/seo";
+import { jsonLd, ogFor, regionAlternates } from "@/lib/seo";
 import { STORE_BY_KEY } from "@/lib/stores";
 import { activeStoreCode, dealForHost } from "@/lib/store-partner-deals";
 import { SITE_URL } from "@/lib/site";
 import { productShareText } from "@/lib/share-link";
 import { ShareButton } from "@/components/ShareButton";
+import { Flag } from "@/components/Flag";
 
 export const dynamic = "force-dynamic";
 
@@ -76,11 +81,14 @@ export default function ProductPage({ params }: { params: { region: string; slug
   const others = (Object.keys(REGIONS) as Region[]).filter((x) => x !== region).map((x) => ({ x, s: summaryOf(p.id, x) })).filter((o) => o.s);
   const related = summariesFor(region)
     .filter((x) => x.product.id !== p.id && x.inStock > 0 && (faction ? x.product.faction === faction.slug : x.product.system === p.system))
-    .slice(0, 6);
+    .slice(0, 8);
   const updated = meta().updatedAt;
   const storeName = (k: string) => STORE_BY_KEY.get(k)?.name ?? k;
   const photoStore = offers.find((o) => o.u && p.image)?.s;
   const ebayCurrencyRegion: Region = region === "nz" ? "au" : region;
+  const rows = priceRows(p, region, "product");
+  const bestHref = best ? storeUrl(best.u, dealForHost(new URL(best.u).hostname)?.ref) : null;
+  const inStock = offers.filter((o) => o.in).length;
   const ld =
     productIndexable(s) && offers.some((o) => o.in)
       ? {
@@ -104,30 +112,22 @@ export default function ProductPage({ params }: { params: { region: string; slug
       : null;
 
   return (
-    <div className="page py-6">
-      <nav aria-label="Breadcrumb" className="mb-4 text-sm text-faint">
-        <Link href={`/${region}`} className="hover:text-ink">{r.short}</Link>
-        {system && (
-          <>
-            {" › "}
-            <Link href={`/${region}/game/${system.slug}`} className="hover:text-ink">{system.short}</Link>
-          </>
-        )}
-        {faction && (
-          <>
-            {" › "}
-            <Link href={`/${region}/faction/${faction.slug}`} className="hover:text-ink">{faction.name}</Link>
-          </>
-        )}
-        {" › "}
-        <span className="text-muted">{p.name}</span>
-      </nav>
+    <div className={`page py-6 sm:py-8 ${best ? "pb-24 lg:pb-8" : ""}`}>
+      {/* The same crumbs as before the port (the region, the game, the army, the product), drawn by the engine's component. */}
+      <Breadcrumbs
+        items={[
+          { path: `/${region}`, label: r.short },
+          ...(system ? [{ path: `/${region}/game/${system.slug}`, label: system.short }] : []),
+          ...(faction ? [{ path: `/${region}/faction/${faction.slug}`, label: faction.name }] : []),
+          { path: `/${region}/p/${p.id}`, label: p.name },
+        ]}
+      />
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10">
         <div>
-          <div className="plate mx-auto aspect-square max-w-md">
+          <div className="plate relative mx-auto aspect-square max-w-md">
             {p.image ? (
-              <img src={thumb(p.image, 800) ?? undefined} alt={p.name} className="h-full w-full object-contain p-4" fetchPriority="high" />
+              <img src={thumb(p.image, 800) ?? undefined} alt={p.name} width={800} height={800} className="absolute inset-0 h-full w-full object-contain p-4 mix-blend-multiply" fetchPriority="high" />
             ) : (
               <div className="flex h-full items-center justify-center text-sm text-sold">No photo</div>
             )}
@@ -135,54 +135,75 @@ export default function ProductPage({ params }: { params: { region: string; slug
           {p.image && photoStore && <p className="mt-2 text-center text-xs text-faint">Photo: {storeName(photoStore)}</p>}
         </div>
 
-        <div>
-          <h1 className="font-display text-2xl font-extrabold leading-tight sm:text-3xl">{p.name}</h1>
-          <ShareButton title={p.name} path={`/${region}/p/${p.id}`} text={productShareText(p.name, offers, storeName, (c) => formatPrice(c, region))} className="mt-3" />
-          <div className="mt-3 flex flex-wrap gap-2 text-xs">
-            {system && <Link href={`/${region}/game/${system.slug}`} className="chip py-1 text-xs">{system.name}</Link>}
-            {faction && <Link href={`/${region}/faction/${faction.slug}`} className="chip py-1 text-xs">{faction.name}</Link>}
-            {type && <Link href={`/${region}/type/${type.slug}`} className="chip py-1 text-xs">{type.name}</Link>}
+        <div className="min-w-0">
+          <div className="flex flex-wrap gap-2 text-xs">
+            {system && (
+              <Link href={`/${region}/game/${system.slug}`} className="chip py-1 text-xs">
+                {system.name}
+              </Link>
+            )}
+            {faction && (
+              <Link href={`/${region}/faction/${faction.slug}`} className="chip py-1 text-xs">
+                {faction.name}
+              </Link>
+            )}
+            {type && (
+              <Link href={`/${region}/type/${type.slug}`} className="chip py-1 text-xs">
+                {type.name}
+              </Link>
+            )}
             {p.code && <span className="chip py-1 text-xs">Box code {p.code}</span>}
           </div>
+          <h1 className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight sm:text-4xl">{p.name}</h1>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <StockPill state={best ? "open" : "soldout"}>{best ? `In stock at ${inStock} of ${offers.length} ${offers.length === 1 ? "store" : "stores"}` : offers.length ? `Sold out at all ${offers.length} ${offers.length === 1 ? "store" : "stores"}` : "Not in stock"}</StockPill>
+            <ShareButton title={p.name} path={`/${region}/p/${p.id}`} text={productShareText(p.name, offers, storeName, (c) => formatPrice(c, region))} />
+          </div>
 
-          <section className="card mt-5 p-5" aria-label="Best price">
-            {best ? (
+          {/* The best-price card (the engine's BestPriceCard, server-rendered): the cheapest store you can buy from now and its button, eBay beside it as a labelled ad. */}
+          <section className="card mt-5 p-5 sm:p-6" aria-label="Best price">
+            {best && bestHref ? (
               <>
-                <p className="eyebrow">Best price in {r.inName}</p>
-                <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="tabular font-display text-4xl font-extrabold">{formatPrice(best.p, region)}</span>
+                <p className="eyebrow">
+                  <Flag code={region} /> Best price in {r.inName}
+                </p>
+                <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="tabular font-display text-4xl font-extrabold tracking-tight sm:text-5xl">{formatPrice(best.p, region)}</span>
                   <span className="text-muted">at {storeName(best.s)}</span>
                 </div>
                 {rrp && rrp > best.p && (
-                  <p className="mt-1 text-sm">
+                  <p className="mt-1.5 text-sm">
                     <span className="font-bold text-open">{Math.round(((rrp - best.p) / rrp) * 100)}% under RRP</span>{" "}
                     <span className="text-muted">({formatPrice(rrp, region)}, as the stores state it)</span>
                   </p>
                 )}
-                <div className="mt-4 flex flex-wrap items-center gap-3">
-                  <OutboundLink href={storeUrl(best.u, dealForHost(new URL(best.u).hostname)?.ref)} rel={REL_STORE} retailer={storeName(best.s)} placement="product-best" className="btn-primary px-6 py-3 text-base">
-                    Buy at {storeName(best.s)}
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <OutboundLink href={bestHref} rel={REL_STORE} retailer={storeName(best.s)} placement="product-best" className="btn-primary min-h-12 px-6 text-base">
+                    Buy at {storeName(best.s)} <span aria-hidden="true">↗</span>
                   </OutboundLink>
-                  <OutboundLink href={ebay ? ebayAffiliateUrl(ebay.u, region, "product-best-ebay") : ebaySearchUrl(p.name, region, "product-best-ebay")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-best-ebay" className="btn-ad px-5 py-3 text-base">
+                  <OutboundLink href={ebay ? ebayAffiliateUrl(ebay.u, region, "product-best-ebay") : ebaySearchUrl(p.name, region, "product-best-ebay")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-best-ebay" className="btn-ad min-h-12 px-5 text-base">
                     {ebay ? `Or ${formatPrice(ebay.p, ebayCurrencyRegion)} on eBay` : "Compare on eBay"}
                   </OutboundLink>
                   <span className="ad-pill">Ad</span>
                   <StoreCode code={activeStoreCode(best.u)} />
                 </div>
                 <p className="mt-3 text-xs text-faint">Item price only; shipping is added at the store&rsquo;s checkout. {r.taxNote}</p>
+                <a href="#prices" className="mt-3 inline-flex min-h-10 items-center text-sm font-semibold text-brand hover:underline">
+                  Compare all {offers.length} {offers.length === 1 ? "price" : "prices"} ↓
+                </a>
               </>
             ) : (
               <>
                 <p className="eyebrow">Sold out in {r.inName}</p>
-                <p className="mt-1 text-muted">
+                <p className="mt-2 text-muted">
                   {offers.length ? `None of the ${offers.length} stores that list it has it in stock today.` : "None of the stores we compare lists it today."} New copies on eBay or Amazon:
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  <OutboundLink href={ebaySearchUrl(p.name, region, "product-soldout")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-soldout" className="btn-ad">
+                  <OutboundLink href={ebaySearchUrl(p.name, region, "product-soldout")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-soldout" className="btn-ad min-h-11">
                     Search {ebayLabel(region)}
                   </OutboundLink>
                   {amazon && (
-                    <OutboundLink href={amazonSearchUrl(p.name, region, "product-soldout")!} rel={REL_PAID} retailer={amazonLabel(region)} placement="product-soldout" className="btn-amazon">
+                    <OutboundLink href={amazonSearchUrl(p.name, region, "product-soldout")!} rel={REL_PAID} retailer={amazonLabel(region)} placement="product-soldout" className="btn-amazon min-h-11">
                       Check {amazonLabel(region)}
                     </OutboundLink>
                   )}
@@ -194,42 +215,41 @@ export default function ProductPage({ params }: { params: { region: string; slug
         </div>
       </div>
 
-      <section id="prices" className="mt-8">
-        <h2 className="mb-3 font-display text-xl font-bold">
-          {offers.length ? `${p.name} prices at ${offers.length} ${offers.length === 1 ? "store" : "stores"} in ${r.inName}` : `Where to look for ${p.name} in ${r.inName}`}
-        </h2>
+      <Section id="prices" title={offers.length ? `${p.name} prices at ${offers.length} ${offers.length === 1 ? "store" : "stores"} in ${r.inName}` : `Where to look for ${p.name} in ${r.inName}`}>
         <PriceList {...priceRows(p, region, "product")} />
-        <ReportPrice product={`${p.name}${p.code ? ` (${p.code})` : ""}`} region={r.short} buttonClassName="btn-ghost" stores={priceRows(p, region, "product").stores.map((s) => ({ name: s.name, price: s.price ?? "sold out" }))} />
-        {/* RiftCompare's shared alert service emails when it drops (lib/alert-feed.ts, DECISIONS.md 2026-11-02). */}
-        <PriceAlertForm site={ALERT_SITE_KEY} productId={p.id} region={r.market} priceCents={s?.best ?? null} className="mt-3" buttonClassName="btn-ghost" />
-        <p className="mt-2 text-xs text-faint">
+        <PriceListNote>
+          {updated && <p>Store prices checked {new Date(updated).toUTCString().slice(5, 22)} UTC.</p>}
+        </PriceListNote>
+        <div className="mt-4 flex flex-wrap items-start gap-3">
+          <ReportPrice product={`${p.name}${p.code ? ` (${p.code})` : ""}`} region={r.short} buttonClassName="btn-ghost" stores={rows.stores.map((x) => ({ name: x.name, price: x.price ?? "sold out" }))} />
+          {/* RiftCompare's shared alert service emails when it drops (lib/alert-feed.ts, DECISIONS.md 2026-11-02). */}
+          <PriceAlertForm site={ALERT_SITE_KEY} productId={p.id} region={r.market} priceCents={s?.best ?? null} buttonClassName="btn-ghost" />
+        </div>
+        <p className="mt-3 text-xs text-faint">
           eBay and Amazon are pinned first as labelled ads; the stores under them are sorted by price, in stock first, never by what we earn. {EBAY_DISCLOSURE} {amazon ? AMAZON_DISCLOSURE : ""}
-          {updated && ` Store prices checked ${new Date(updated).toUTCString().slice(5, 22)} UTC.`}
         </p>
-      </section>
+      </Section>
 
       {others.length > 0 && (
-        <section className="mt-8">
-          <h2 className="mb-3 font-display text-lg font-bold">In other countries</h2>
+        <Section title="In other countries">
           <div className="flex flex-wrap gap-2">
             {others.map(({ x, s: os }) => (
-              <Link key={x} href={`/${x}/p/${p.id}`} className="chip">
-                {REGIONS[x].short}: {os!.best != null ? `from ${formatPrice(os!.best, x)}` : "sold out"} <span className="text-faint">· {os!.stores} {os!.stores === 1 ? "store" : "stores"}</span>
+              <Link key={x} href={`/${x}/p/${p.id}`} className="chip min-h-10">
+                <Flag code={x} /> {REGIONS[x].short}: {os!.best != null ? `from ${formatPrice(os!.best, x)}` : "sold out"} <span className="text-faint">· {os!.stores} {os!.stores === 1 ? "store" : "stores"}</span>
               </Link>
             ))}
           </div>
-          <p className="mt-2 text-xs text-faint">Each country in its own currency; we never convert prices.</p>
-        </section>
+          <p className="mt-3 text-xs text-faint">Each country in its own currency; we never convert prices.</p>
+        </Section>
       )}
 
       {related.length > 0 && (
-        <section className="mt-10">
-          <h2 className="mb-4 font-display text-xl font-bold">More {faction?.name ?? system?.name ?? ""} in stock</h2>
+        <Section title={`More ${faction?.name ?? system?.name ?? ""} in stock`} href={faction ? `/${region}/faction/${faction.slug}` : system ? `/${region}/game/${system.slug}` : undefined} linkLabel="See all">
           <ProductGrid items={related} region={region} />
-        </section>
+        </Section>
       )}
 
-      <div className="mt-10">
+      <div className="mt-14">
         <EbayStrip
           region={region}
           items={[...(s ? [s] : []), ...related, ...summariesFor(region).filter((x) => x.product.id !== p.id && x.product.system === p.system && x.inStock > 0).slice(0, 12)]}
@@ -238,20 +258,9 @@ export default function ProductPage({ params }: { params: { region: string; slug
         />
       </div>
 
+      {best && bestHref && <StickyBuyBar price={formatPrice(best.p, region)} store={storeName(best.s)} href={bestHref} />}
+
       {ld && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ld) }} />}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: jsonLd(
-            breadcrumbLd([
-              { name: r.short, path: `/${region}` },
-              ...(system ? [{ name: system.short, path: `/${region}/game/${system.slug}` }] : []),
-              ...(faction ? [{ name: faction.name, path: `/${region}/faction/${faction.slug}` }] : []),
-              { name: p.name, path: `/${region}/p/${p.id}` },
-            ]),
-          ),
-        }}
-      />
     </div>
   );
 }

@@ -2,58 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* WargameCompare palette (owner, 2026-11-03: "the font and colouring can be way better and more inviting", RiftCompare's
-   look as the reference): a deep blue-slate night by default instead of the old near-black, gold for the brand, a crimson
-   spark for highlights, and a warm paper light theme. Every pair used for text is WCAG AA (4.5:1) at the sizes the site uses it. */
 :root {
-  --bg: 247 245 240;
+  --bg: 246 246 243;
   --surface: 255 255 255;
-  --raised: 250 247 241;
-  --line: 229 224 214;
-  --ink: 26 26 32;
-  --muted: 92 90 86;
-  --faint: 104 101 96;
-  --brand: 150 92 14; /* bronze: white on it 5.0:1, 4.9:1 as text on --bg */
+  --raised: 250 250 248;
+  --line: 228 227 222;
+  --ink: 21 23 28;
+  --muted: 92 96 108;
+  --faint: 100 104 115; /* 5.2:1 on --bg, 5.6:1 on --surface (WCAG AA for small text) */
+  --brand: 164 28 52; /* WargameCompare claret; white on it is 6.4:1, and it reads at 6.0:1 on --bg */
   --brand-ink: 255 255 255;
-  --brand-soft: 250 237 212;
-  --brand-strong: 118 70 8;
-  --spark: 190 40 50; /* crimson, highlights only */
-  --open: 18 122 58;
-  --open-soft: 225 246 232;
-  --sold: 98 104 118;
-  --sold-soft: 238 239 243;
-  --stale: 143 88 0;
+  --brand-soft: 252 230 235;
+  --brand-strong: 128 18 40; /* brand as TEXT on --brand-soft and on --surface: chips and .btn-soft */
+  --spark: 212 168 72; /* brass, used sparingly: highlights only */
+  --open: 20 118 56; /* 5.0:1 on --open-soft, 5.7:1 on --surface: the 12px stock pill is AA */
+  --open-soft: 226 245 232;
+  --sold: 100 104 115; /* 4.8:1 on --sold-soft: the 12px sold-out pill is AA */
+  --sold-soft: 238 238 240;
+  --stale: 143 88 0; /* was 176 110 0: 3.7:1 on --stale-soft, under WCAG AA 4.5:1 (axe color-contrast, "Not checked recently" pill) */
   --stale-soft: 253 243 219;
-  --ad: 243 246 252;
+  --pre: 88 76 214;
+  --pre-soft: 236 234 252;
+  --ad: 243 246 252; /* sponsored units: a cool tint no store row or product card uses. muted 5.8:1, brand 4.7:1 on it */
   --ad-line: 120 128 148;
-  --shadow: 40 36 30;
+  --shadow: 24 22 18;
+  /* The sticky header's height: sticky offsets (top-[var(--hdr)]) and anchor jumps (scroll-padding-top below) follow it. */
   --hdr: 60px;
   color-scheme: light;
-}
-
-:root:not([data-theme="light"]) {
-  --bg: 18 21 28;
-  --surface: 26 30 39;
-  --raised: 35 40 52;
-  --line: 50 56 72;
-  --ink: 238 240 245;
-  --muted: 170 178 192;
-  --faint: 144 152 166;
-  --brand: 236 184 92; /* gold: 10.5:1 on --bg */
-  --brand-ink: 30 22 6;
-  --brand-soft: 62 48 22;
-  --brand-strong: 246 210 140;
-  --spark: 240 96 96;
-  --open: 78 210 124;
-  --open-soft: 22 50 34;
-  --sold: 154 160 174;
-  --sold-soft: 40 44 56;
-  --stale: 240 184 70;
-  --stale-soft: 54 42 16;
-  --ad: 28 34 48;
-  --ad-line: 120 132 160;
-  --shadow: 0 0 0;
-  color-scheme: dark;
 }
 
 @media (min-width: 1024px) {
@@ -62,20 +37,56 @@
   }
 }
 
-/* lib/region-boot.ts: while a visitor is moved to their own region's copy of the page, at most 1.5 s. */
-html[data-geo="pending"] main { visibility: hidden; }
+/* Dark is the default (owner, 2026-10-24): a visitor who has not chosen light gets it, decided before first paint by
+   THEME_BOOT_SCRIPT (lib/theme.ts) from their own saved choice; no server read, so one CDN copy serves everyone.
+   The shell is the Dex / MTG Compare engine's (2026-11-03, the A/B test: DECISIONS.md); only the brand accent is this site's. */
+:root:not([data-theme="light"]) {
+    --bg: 15 16 19;
+    --surface: 23 24 29;
+    --raised: 29 31 37;
+    --line: 45 47 55;
+    --ink: 238 238 241;
+    --muted: 166 170 181;
+    --faint: 140 144 156; /* 6.0:1 on --bg, 5.6:1 on --surface */
+    --brand: 255 122 146; /* 8.9:1 on --bg */
+    --brand-ink: 34 8 16;
+    --brand-soft: 66 22 34;
+    --brand-strong: 255 170 188; /* on --brand-soft and on --surface */
+    --open: 74 206 120;
+    --open-soft: 20 48 30;
+    --sold: 150 154 164;
+    --sold-soft: 38 40 46;
+    --stale: 240 180 60;
+    --stale-soft: 52 40 14;
+    --pre: 160 150 255;
+    --pre-soft: 36 32 70;
+    --ad: 26 31 45;
+    --ad-line: 120 130 156;
+    --shadow: 0 0 0;
+    color-scheme: dark;
+}
 
 html {
   -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  /* An in-page link (#prices) or a focused element lands below the sticky header, not under it. */
   scroll-padding-top: calc(var(--hdr) + 8px);
 }
+
 body {
-  @apply bg-bg font-sans text-ink antialiased;
+  @apply bg-bg text-ink antialiased;
+  font-feature-settings: "ss01", "cv11";
+  /* A safety net for phones: an element wider than the screen (a rail whose grid item lacks min-w-0, a wide table) is clipped
+     instead of laying the whole page out wider and zoomed out, with a sideways scroll into dead space. `clip`, not `hidden`,
+     so position: sticky keeps working. */
+  overflow-x: clip;
 }
-h1, h2, h3 { letter-spacing: -0.015em; }
+
 .tabular {
   font-variant-numeric: tabular-nums;
 }
+
+/* Focus that's visible on every surface. */
 :focus-visible {
   outline: 2px solid rgb(var(--brand));
   outline-offset: 2px;
@@ -90,7 +101,7 @@ h1, h2, h3 { letter-spacing: -0.015em; }
     @apply rounded-xl border border-line bg-surface shadow-card;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors disabled:opacity-50;
   }
   .btn-primary {
     @apply btn bg-brand text-brand-ink hover:brightness-110;
@@ -98,10 +109,25 @@ h1, h2, h3 { letter-spacing: -0.015em; }
   .btn-ghost {
     @apply btn border border-line bg-surface text-ink hover:bg-raised;
   }
+  /* A secondary action that is still a buy action (an in-stock store that is not the cheapest): the brand's tint, quieter than
+     .btn-primary, louder than .btn-ghost. brand-strong on brand-soft is 5.6:1 (6.9:1 dark). */
   .btn-soft {
-    @apply btn bg-brand-soft text-brand-strong hover:brightness-105;
+    @apply btn bg-brand-soft text-brand-strong hover:bg-brand/15;
   }
-  /* eBay's own button blue: never passes for the site's own actions; every unit with one carries an "Ad" label. */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink/30;
+  }
+  .chip-on {
+    @apply border-ink bg-ink text-surface hover:border-ink;
+  }
+  /* A sponsored eBay unit: dashed, cool-tinted, always with an .ad-pill. Never a card, never a row. */
+  .ad-box {
+    @apply rounded-xl border border-dashed border-ad-line bg-ad;
+  }
+  /* An ad's own button: eBay's button blue, #3665f3 with white text (4.9:1; #2a50c8 on hover, 6.8:1), the blue of eBay's own
+     buttons, the price table's eBay row and the hot buttons. It never passes for the site's own actions (.btn-primary) and every
+     unit around one carries its "Ad" label. (Until the growth release it was a grey outline.) The transparent border keeps the
+     box the size the outline gave it. */
   .btn-ad {
     @apply btn border border-transparent bg-[#3665f3] text-white hover:bg-[#2a50c8];
   }
@@ -109,11 +135,9 @@ h1, h2, h3 { letter-spacing: -0.015em; }
   .btn-amazon {
     @apply btn bg-brand-soft text-brand-strong hover:brightness-105;
   }
-  .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-ink/40;
-  }
-  .ad-box {
-    @apply rounded-xl border border-dashed border-ad-line bg-ad;
+  /* An ad's chips: outlined and cool-toned, so they never pass for the site's internal navigation chips (.chip). */
+  .ad-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-dashed border-ad-line bg-surface px-3 py-1 text-xs font-medium text-ink transition-colors hover:border-ink;
   }
   .ad-pill {
     @apply inline-flex shrink-0 items-center rounded border border-ad-line px-1.5 text-[11px] font-bold leading-[18px] text-muted;
@@ -121,18 +145,33 @@ h1, h2, h3 { letter-spacing: -0.015em; }
   .eyebrow {
     @apply text-xs font-semibold uppercase tracking-[0.12em] text-muted;
   }
+  /* What a product photo sits on: white, rounded, a hairline ring. Store photos are shot on white, so in dark mode the plate stays
+     light (#f3f3f1) instead of putting a white rectangle on a dark card. */
   .plate {
     @apply isolate overflow-hidden rounded-lg bg-white ring-1 ring-line;
   }
-  /* A section's title row: the heading, one line under it and the "all" link (components/SectionHead.tsx). */
-  .section-head {
-    @apply mb-4 flex items-end justify-between gap-4;
-  }
-  .section-title {
-    @apply font-display text-2xl font-extrabold leading-tight;
-  }
   :root:not([data-theme="light"]) .plate {
     background-color: #f3f3f1;
+  }
+  /* One row that scrolls sideways (chips, a product rail): snap to each child, no scrollbar, and a fade at the right edge that says
+     there is more. The 4px of block padding (cancelled by the margin) keeps focus rings from being clipped by the scroll box. */
+  .scroller {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-block: 4px;
+    margin-block: -4px;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+  }
+  .scroller::-webkit-scrollbar {
+    display: none;
+  }
+  .scroller > * {
+    flex: none;
+    scroll-snap-align: start;
   }
   .prose-wg p {
     @apply mb-4 leading-7 text-muted;
@@ -140,62 +179,96 @@ h1, h2, h3 { letter-spacing: -0.015em; }
   .prose-wg h2 {
     @apply mb-3 mt-8 font-display text-xl font-bold text-ink;
   }
-  .prose-wg h3 {
-    @apply mb-1 mt-4 font-semibold text-ink;
-  }
   .prose-wg a {
     @apply font-medium text-brand underline underline-offset-2;
   }
   .prose-wg ul {
     @apply mb-4 list-disc space-y-1 pl-5 text-muted;
   }
-}
-
-
-/* The home hero (owner, 2026-11-03: RiftCompare's look): a soft gold glow behind the centred title, the living sparks
-   (components/HeroSparks.tsx) under the content, and the title's own glow. Decoration only; nothing a crawler reads changes. */
-.hero-band {
-  background:
-    radial-gradient(60rem 22rem at 50% -30%, rgb(var(--brand) / 0.26), transparent 60%),
-    radial-gradient(28rem 14rem at 8% 110%, rgb(var(--spark) / 0.12), transparent 60%),
-    radial-gradient(28rem 14rem at 92% 110%, rgb(var(--brand) / 0.14), transparent 60%);
-}
-:root[data-theme="light"] .hero-band {
-  background:
-    radial-gradient(60rem 22rem at 50% -30%, rgb(var(--brand) / 0.16), transparent 60%),
-    radial-gradient(28rem 14rem at 8% 110%, rgb(var(--spark) / 0.08), transparent 60%),
-    radial-gradient(28rem 14rem at 92% 110%, rgb(var(--brand) / 0.1), transparent 60%);
-}
-.hero-band > :not(.hero-sparks) { position: relative; z-index: 1; }
-.hero-sparks { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.hero-glow { text-shadow: 0 0 40px rgb(var(--brand) / 0.35); letter-spacing: -0.02em; }
-.hero-word {
-  background: linear-gradient(180deg, rgb(var(--brand-strong)) 0%, rgb(var(--brand)) 70%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Scroll motion: a section eases up as it enters the screen, driven by the scroll position itself (CSS view timelines), so
-   there is no script per frame. Transform only, never opacity, so no content is ever hidden from a crawler or a browser without
-   view timelines; reduced motion gets none. .sd: the block; .sd-stagger: its direct children one after another. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .sd, .sd-stagger { view-timeline-name: --sd; }
-    .sd { animation: sd-in linear both; animation-timeline: --sd; animation-range: entry 0% entry 220px; }
-    .sd-stagger > * { animation: sd-in linear both; animation-timeline: --sd; animation-range: entry 0% entry 220px; }
-    .sd-stagger > :nth-child(2) { animation-range: entry 30px entry 250px; }
-    .sd-stagger > :nth-child(3) { animation-range: entry 60px entry 280px; }
-    .sd-stagger > :nth-child(4) { animation-range: entry 90px entry 310px; }
-    .sd-stagger > :nth-child(5) { animation-range: entry 120px entry 340px; }
-    .sd-stagger > :nth-child(n + 6) { animation-range: entry 150px entry 370px; }
+  .prose-wg ol {
+    @apply mb-4 list-decimal space-y-1 pl-5 text-muted;
+  }
+  .prose-wg h3 {
+    @apply mb-1 mt-4 font-semibold text-ink;
   }
 }
-@keyframes sd-in { from { transform: translate3d(0, 24px, 0); } to { transform: none; } }
 
-/* Theme toggle: both icons are drawn; CSS shows the one for the current theme (no hydration mismatch). */
-:root:not([data-theme="light"]) .theme-icon-dark,
-:root[data-theme="light"] .theme-icon-light {
+/* ── The shell (components/Header.tsx, MobileMenu.tsx, Section.tsx) ─────────────────────────────────────────────── */
+
+/* The header's search box is components/SearchBox.tsx, unchanged; the header only fits it to its one row: a 44px target below
+   lg (40px from lg), and 16px text on a phone, where anything smaller makes iOS zoom the page on focus. */
+.hdr-search form[role="search"] {
+  min-height: 2.75rem;
+}
+@media (max-width: 639.98px) {
+  .hdr-search input {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  .hdr-search form[role="search"] {
+    min-height: 2.5rem;
+  }
+}
+
+/* The phone menu: a native modal <dialog> drawn as a sheet from the top. It slides in with a transform (no layout), the page behind
+   is dimmed, and it does not scroll under the sheet (the gutter stays, so nothing moves on a desktop with scrollbars). */
+.menu-sheet[open] {
+  animation: menu-sheet-in 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.menu-sheet::backdrop {
+  background: rgb(15 16 19 / 0.45);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+@keyframes menu-sheet-in {
+  from {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-sheet[open] {
+    animation: none;
+  }
+}
+html:has(.menu-sheet[open]) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+/* An empty state's action chip leads with an icon that sits beside its link (the link is just the chip and its words). */
+.empty-action {
+  position: relative;
+  display: inline-flex;
+}
+.empty-action > svg {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: rgb(var(--brand-strong));
+}
+.empty-action > .chip {
+  padding-left: 2.125rem;
+}
+
+/* A product card's body is a size container: on a card too narrow for "In stock · 12 stores" (a 2-up grid on a 320px phone) the
+   pill drops the unit ("In stock · 12"); its title still says it in full. */
+.card-body {
+  container-type: inline-size;
+}
+@container (max-width: 127.98px) {
+  .stock-unit {
+    display: none;
+  }
+}
+
+/* A page whose own units leave no room for the banner above the footer asks for
+   it to be dropped with <NoPreFooter/> (components/Ebay.tsx). Pure CSS, so the
+   page stays static. Where :has() is missing the banner simply stays. */
+body:has([data-ebay-no-prefooter]) [data-ebay-prefooter] {
   display: none;
 }
 
@@ -228,6 +301,11 @@ html[data-season="halloween"] header.sticky {
   border-bottom-color: transparent;
   box-shadow: 0 3px 0 0 rgb(var(--brand)), 0 6px 0 0 rgb(var(--spark) / 0.85);
 }
+
+/* ThemeToggle: the icon for the theme you would switch TO. */
+.theme-icon-dark { display: none; }
+:root[data-theme="light"] .theme-icon-dark { display: block; }
+:root[data-theme="light"] .theme-icon-light { display: none; }
 
 /* Quick view (src/components/QuickView.tsx): opens at once, prices shimmer in. */
 .qv-shimmer {
@@ -621,6 +699,9 @@ html[data-season="christmas"] header.sticky::after {
   --fm-radius: 14px;
   --fm-head: var(--font-display), var(--font-sans), system-ui, sans-serif;
 }
+
+/* lib/region-boot.ts: while a visitor is moved to their own region's copy of the page, at most 1.5 s. */
+html[data-geo="pending"] main { visibility: hidden; }
 
 /* The landing page's per-region blocks (HOME_REGION_SCRIPT, lib/regions.ts): every region is in the HTML, CSS shows the
    visitor's. Without the attribute (no script, crawlers) the US block shows. Hidden images are never fetched (lazy). */

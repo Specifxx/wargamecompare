@@ -18,7 +18,7 @@ export default function SearchPage({ params }: { params: { region: string } }) {
   const r = regionOr404(params.region);
   return (
     <div className="page py-8">
-      <h1 className="font-display text-3xl font-extrabold">Search {r.inName}</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Search {r.inName}</h1>
       <Search
         region={r.region}
         systems={SYSTEMS.map((s) => [s.slug, s.name])}

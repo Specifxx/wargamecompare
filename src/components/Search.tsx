@@ -40,6 +40,8 @@ export function Search({
   const [stock, setStock] = useState(true);
   const [sort, setSort] = useState("relevance");
   const [shown, setShown] = useState(60);
+  const typeName = new Map(types);
+  const factionName = new Map(factions);
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
@@ -119,17 +121,41 @@ export function Search({
           </OutboundLink>
         </div>
       )}
-      <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+      <div className="mt-3 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
         {results.slice(0, shown).map((r) => (
-          <Link key={r[0]} href={`/${region}/p/${r[0]}`} className="card group flex flex-col overflow-hidden hover:shadow-lift">
-            <div className="plate m-2 aspect-square">{r[9] && <img src={r[9]} alt={r[1]} loading="lazy" className="h-full w-full object-contain p-2" />}</div>
-            <div className="flex flex-1 flex-col gap-1 px-3 pb-3">
-              <p className="line-clamp-2 text-sm font-semibold group-hover:text-brand">{r[1]}</p>
-              <div className="mt-auto flex items-baseline justify-between pt-1">
-                {r[5] != null ? <span className="tabular font-bold">{formatPrice(r[5], region)}</span> : <span className="text-sm text-sold">Sold out</span>}
-                {r[8] != null && r[8] >= 5 && <span className="rounded bg-open-soft px-1.5 text-xs font-bold text-open">−{r[8]}%</span>}
+          <Link key={r[0]} href={`/${region}/p/${r[0]}`} data-qv={r[0]} data-qv-region={region} data-qv-name={r[1]} data-qv-img={r[9] ?? undefined} className="group card flex flex-col overflow-hidden transition-all hover:-translate-y-0.5 hover:shadow-lift">
+            <div className="plate relative m-2 aspect-square lg:mb-0 lg:aspect-[8/7]">
+              {r[9] ? (
+                <img src={r[9]} alt={r[1]} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain p-3 mix-blend-multiply transition-transform duration-300 group-hover:scale-[1.03]" />
+              ) : (
+                <div className="flex h-full items-center justify-center p-6 text-center text-sm font-semibold text-[#5c606c]">{typeName.get(r[4]) ?? r[4]}</div>
+              )}
+              {r[4] && typeName.get(r[4]) && <span className="absolute left-2 top-2 max-w-[calc(100%-1.5rem)] truncate rounded-full bg-surface/90 px-2 py-0.5 text-[11px] font-semibold text-muted shadow-card backdrop-blur">{typeName.get(r[4])}</span>}
+            </div>
+            <div className="card-body flex flex-1 flex-col gap-2 px-3 pb-3 pt-1 sm:px-4 sm:pb-4 lg:pt-3">
+              <div className="min-h-[2.5rem]">
+                <h3 className="line-clamp-2 text-sm font-semibold leading-snug group-hover:text-brand sm:text-[15px]">{r[1]}</h3>
+                {r[3] && factionName.get(r[3]) && <p className="mt-0.5 text-xs text-faint">{factionName.get(r[3])}</p>}
               </div>
-              <p className="text-xs text-faint">{r[6]} of {r[7]} stores in stock</p>
+              {r[8] != null && r[8] >= 5 && <p className="text-[11px] font-semibold leading-4 text-open">{r[8]}% under RRP</p>}
+              <div className="mt-auto">
+                <span className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-semibold leading-4 ${r[6] > 0 ? "bg-open-soft text-open" : "bg-sold-soft text-sold"}`}>
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-current" aria-hidden="true" />
+                  {r[6] > 0 ? `In stock · ${r[6]} of ${r[7]}` : r[7] ? `Sold out · all ${r[7]}` : "Not in stock"}
+                  <span className="stock-unit">{r[7] === 1 ? " store" : " stores"}</span>
+                </span>
+                {r[5] != null ? (
+                  <p className="mt-1.5 flex items-baseline gap-1.5">
+                    <span className="text-xs font-medium text-muted">From</span>
+                    <span className="tabular font-display text-lg font-bold">{formatPrice(r[5], region)}</span>
+                  </p>
+                ) : (
+                  <p className="mt-1.5 text-xs font-medium text-faint">No price while sold out</p>
+                )}
+              </div>
+              <p aria-hidden="true" className="h-4 truncate text-[11px] font-semibold leading-4 text-brand-strong lg:h-5 lg:text-xs lg:leading-5 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100 lg:group-focus-visible:opacity-100">
+                {r[7] > 1 ? `Compare ${r[7]} prices` : "See the price"}&nbsp;→
+              </p>
             </div>
           </Link>
         ))}
