@@ -3,7 +3,7 @@ import { AMAZON_DISCLOSURE, AMAZON_TRADEMARK, EBAY_DISCLOSURE } from "@/lib/affi
 import { SYSTEMS } from "@/lib/catalog";
 import { REGION_LIST, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 import { CONTACT_EMAIL, GW_DISCLAIMER, SITE_NAME } from "@/lib/site";
-import { NETWORK_PAGE, footerSisters } from "@/lib/family-network";
+import { NETWORK_PAGE } from "@/lib/family-network";
 import { Flag } from "./Flag";
 
 export function Footer({ region }: { region: Region | null }) {
@@ -11,7 +11,7 @@ export function Footer({ region }: { region: Region | null }) {
   const year = new Date().getUTCFullYear();
   return (
     <footer className="mt-16 border-t border-line bg-surface">
-      <div className="page grid gap-8 py-10 text-sm sm:grid-cols-2 lg:grid-cols-4">
+      <div className="page grid gap-8 py-10 text-sm sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <p className="eyebrow mb-3">Browse</p>
           <ul className="space-y-1.5">
@@ -86,25 +86,9 @@ export function Footer({ region }: { region: Region | null }) {
             <li><Link href="/uk/stores#suggest" className="text-muted hover:text-ink">Suggest a store</Link></li>
             <li><Link href="/how-we-pick-stores" className="text-muted hover:text-ink">How we pick stores</Link></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`} className="text-muted hover:text-ink">{CONTACT_EMAIL}</a></li>
-          </ul>
-        </div>
-        <div>
-          {/* One short list (owner, 2026-11-02: the old list of every site was "convoluted"): the hobby sisters,
-              then the network page that lists every site (lib/family-network.ts, DECISIONS.md "Sites that grow each other"). */}
-          <p className="eyebrow mb-3">Sister sites</p>
-          <ul className="space-y-1.5">
-            {footerSisters("wargame").map((s) => (
-              <li key={s.id}>
-                <a href={s.url} rel="noopener" title={s.label} className="text-muted hover:text-ink">
-                  {s.name}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a href={NETWORK_PAGE} rel="noopener" className="text-muted hover:text-ink">
-                A Compare Empire site →
-              </a>
-            </li>
+            {/* No sister-site list (owner, 2026-11-03: a hobby site listing card and tech sites reads as a link
+                network): one link to the page that lists every Compare Empire site (lib/family-network.ts). */}
+            <li><a href={NETWORK_PAGE} rel="noopener" className="text-muted hover:text-ink">A Compare Empire site →</a></li>
           </ul>
         </div>
       </div>
