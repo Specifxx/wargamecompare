@@ -7,7 +7,7 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-  { key: "Content-Security-Policy-Report-Only", value: "default-src 'self'; img-src https: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://vitals.vercel-insights.com https://api.github.com https://raw.githubusercontent.com; frame-ancestors 'self'; object-src 'none'" },
+  { key: "Content-Security-Policy-Report-Only", value: "default-src 'self'; img-src https: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://riftcompare.com https://vitals.vercel-insights.com https://api.github.com https://raw.githubusercontent.com; frame-ancestors 'self'; object-src 'none'" },
 ];
 
 // PAGES ARE CACHED BY VERCEL'S CDN FOR A DAY, NOT ISR (the sister sites' lesson, DECISIONS.md "Pages are CDN-cached,
