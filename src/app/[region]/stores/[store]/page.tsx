@@ -6,7 +6,7 @@ import { ProductGrid } from "@/components/ProductCard";
 import { REL_STORE, storeUrl } from "@/lib/affiliate";
 import { meta, offersFor, summariesFor } from "@/lib/data";
 import { regionOr404 } from "@/lib/page";
-import { ogFor } from "@/lib/seo";
+import { breadcrumbLd, jsonLd, ogFor } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { STORE_BY_KEY, storeHost } from "@/lib/stores";
 import { dealForHost } from "@/lib/store-partner-deals";
@@ -35,7 +35,8 @@ export default function StorePage({ params }: { params: { region: string; store:
   const h = meta().stores[s.key];
   return (
     <div className="page py-8">
-      <nav className="mb-3 text-sm text-faint"><Link href={`/${r.region}/stores`} className="hover:text-ink">Stores in {r.inName}</Link></nav>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: `Stores in ${r.inName}`, path: `/${r.region}/stores` }, { name: s.name, path: `/${r.region}/stores/${s.key}` }])) }} />
+      <nav aria-label="Breadcrumb" className="mb-3 text-sm text-faint"><Link href={`/${r.region}/stores`} className="hover:text-ink">Stores in {r.inName}</Link></nav>
       <h1 className="font-display text-3xl font-extrabold">{s.name}</h1>
       <p className="mt-2 text-muted">
         {storeHost(s)} · {listed.toLocaleString("en")} Games Workshop products listed{h?.lastOkAt ? `, last read ${new Date(h.lastOkAt).toUTCString().slice(5, 16)}` : ""}.

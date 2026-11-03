@@ -37,6 +37,7 @@ export default function FactionPage({ params }: { params: { region: string; fact
   return (
     <HubPage
       r={r}
+      path={`/${r.region}/faction/${f.slug}`}
       title={`${f.name} prices in ${r.inName}`}
       intro={`${f.name} (${sys?.name ?? ""}) at the stores we compare in ${r.inName}: units, Combat Patrols and army sets, books and dice, matched by box code.`}
       items={items}

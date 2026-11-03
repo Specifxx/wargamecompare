@@ -83,6 +83,8 @@ export interface CategoryTile {
   href: string;
   count: number;
   image: string | null;
+  /** The pictured product's name. */
+  alt?: string;
 }
 
 /** The category tiles for a region: each with its most-stocked in-stock product's photo (the list is sorted by store count). */
@@ -92,7 +94,7 @@ export function categoryTiles(all: Summary[], region: Region): CategoryTile[] {
     const items = all.filter(c.has);
     const pic = items.find((s) => s.inStock > 0 && !!s.product.image && !used.has(s.product.image!) && (c.pic ?? (() => true))(s));
     if (pic) used.add(pic.product.image!);
-    return { label: c.label, href: `/${region}${c.path}`, count: items.length, image: pic ? thumb(pic.product.image, 400) : null };
+    return { label: c.label, href: `/${region}${c.path}`, count: items.length, image: pic ? thumb(pic.product.image, 400) : null, alt: pic?.product.name };
   }).filter((t) => t.count > 0);
 }
 
@@ -103,7 +105,7 @@ export function CategoryTiles({ tiles }: { tiles: CategoryTile[] }) {
         <Link key={t.href} href={t.href} prefetch={false} className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
           <div className="plate m-2 mb-0 aspect-[4/3]">
             {t.image ? (
-              <img src={t.image} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" />
+              <img src={t.image} alt={t.alt ?? t.label} loading="lazy" decoding="async" className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" />
             ) : (
               <div className="h-full w-full" />
             )}

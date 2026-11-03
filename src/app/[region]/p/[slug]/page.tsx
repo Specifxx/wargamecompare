@@ -28,7 +28,7 @@ import { productIndexable } from "@/lib/index-tiers";
 import { priceRows } from "@/lib/price-rows";
 import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGIONS, type Region } from "@/lib/regions";
-import { jsonLd, ogFor, regionAlternates } from "@/lib/seo";
+import { breadcrumbLd, jsonLd, ogFor, regionAlternates } from "@/lib/seo";
 import { STORE_BY_KEY } from "@/lib/stores";
 import { activeStoreCode, dealForHost } from "@/lib/store-partner-deals";
 import { SITE_URL } from "@/lib/site";
@@ -119,6 +119,8 @@ export default function ProductPage({ params }: { params: { region: string; slug
             <Link href={`/${region}/faction/${faction.slug}`} className="hover:text-ink">{faction.name}</Link>
           </>
         )}
+        {" › "}
+        <span className="text-muted">{p.name}</span>
       </nav>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
@@ -237,6 +239,19 @@ export default function ProductPage({ params }: { params: { region: string; slug
       </div>
 
       {ld && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ld) }} />}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            breadcrumbLd([
+              { name: r.short, path: `/${region}` },
+              ...(system ? [{ name: system.short, path: `/${region}/game/${system.slug}` }] : []),
+              ...(faction ? [{ name: faction.name, path: `/${region}/faction/${faction.slug}` }] : []),
+              { name: p.name, path: `/${region}/p/${p.id}` },
+            ]),
+          ),
+        }}
+      />
     </div>
   );
 }

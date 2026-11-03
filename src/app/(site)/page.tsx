@@ -9,19 +9,40 @@ import { CategoryTiles, HeroMosaic, categoryTiles, heroPicks } from "@/component
 import { ProductGrid } from "@/components/ProductCard";
 import { productIndexable } from "@/lib/index-tiers";
 import { REGION_LIST, REGIONS } from "@/lib/regions";
-import { ogFor } from "@/lib/seo";
-import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { faqLd, homeAlternates, jsonLd, ogFor } from "@/lib/seo";
+import { GUIDES, fill } from "@/lib/guides";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
 import { Flag } from "@/components/Flag";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: { absolute: `${SITE_NAME}: compare Warhammer prices across discount stores` },
-  description: SITE_TAGLINE,
-  alternates: { canonical: SITE_URL },
-  openGraph: ogFor("/", SITE_NAME, SITE_TAGLINE),
+  // 60 characters, keyword first, brand last (SEO audit, 2026-11-03).
+  title: { absolute: `Warhammer Price Comparison: Discount Stores | ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  alternates: homeAlternates(SITE_URL),
+  openGraph: ogFor("/", SITE_NAME, SITE_DESCRIPTION),
 };
+
+const FAQ: [string, string][] = [
+  [
+    "Where is the cheapest place to buy Warhammer?",
+    "It changes from kit to kit. Independent discount stores usually sell Games Workshop products 10 to 25% under RRP, and a different store is cheapest for different boxes, so we compare every store's own price for each product every day and sort them cheapest first.",
+  ],
+  [
+    "Are these Games Workshop prices with shipping?",
+    "No. They are each store's listed item price in your own currency. Shipping and free-shipping thresholds differ by store, so check the store's checkout before you buy, especially on a big order.",
+  ],
+  [
+    "Which countries do you compare?",
+    "The United Kingdom, Australia, New Zealand, Canada and the United States. Each country only compares stores that charge in its own currency, and prices are never converted.",
+  ],
+  [
+    "Is WargameCompare part of Games Workshop?",
+    "No. WargameCompare is an independent price comparison site, not affiliated with or endorsed by Games Workshop. Product photos belong to the stores that list them.",
+  ],
+];
 
 export default function Landing() {
   // Every region's pictures are in this one CDN copy; CSS shows the visitor's (HOME_REGION_SCRIPT). Hidden blocks' images are
@@ -127,7 +148,37 @@ export default function Landing() {
           Independent stockists sell the same boxes for 10 to 25% under RRP, and which one is cheapest changes from kit to kit. We read their catalogues every day so
           you don&rsquo;t have to open twenty tabs. Prices stay in your own currency and are never converted.
         </p>
+        <h2>How it works</h2>
+        <p>
+          Every listing is matched to a Games Workshop product by its box code, item number or barcode, never by a guess at the title, so a Combat Patrol is only
+          ever compared with the same Combat Patrol. Second-hand, painted, bits and store-made bundles are left out. The stores are sorted by price, in stock first;
+          eBay and Amazon sit above them as labelled ads and are never counted as the cheapest store.
+        </p>
+        <h2>Guides</h2>
+        {REGION_LIST.map((r) => (
+          <ul key={r.region} className={`hr hr-${r.region}`}>
+            {GUIDES.map((g) => (
+              <li key={g.slug}>
+                <Link href={`/${r.region}/guides/${g.slug}`} prefetch={false}>{fill(g.h1, r.inName)}</Link>
+              </li>
+            ))}
+            <li>
+              <Link href={`/${r.region}/deals`} prefetch={false}>Warhammer deals in {r.inName} today</Link>
+            </li>
+            <li>
+              <Link href={`/${r.region}/stores`} prefetch={false}>Every store we compare in {r.inName}</Link>
+            </li>
+          </ul>
+        ))}
+        <h2>Questions</h2>
+        {FAQ.map(([q, a]) => (
+          <div key={q}>
+            <h3>{q}</h3>
+            <p>{a}</p>
+          </div>
+        ))}
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqLd(FAQ)) }} />
     </div>
   );
 }

@@ -36,7 +36,7 @@ export default function DealsPage({ params }: { params: { region: string } }) {
       <div className="card mt-6 divide-y divide-line overflow-hidden">
         {list.map((d) => (
           <Link key={d.s.product.id} href={`/${r.region}/p/${d.s.product.id}`} className="flex items-center gap-3 px-3 py-3 hover:bg-raised">
-            <div className="plate h-14 w-14 shrink-0">{d.s.product.image && <img src={thumb(d.s.product.image, 120) ?? undefined} alt="" loading="lazy" className="h-full w-full object-contain p-1" />}</div>
+            <div className="plate h-14 w-14 shrink-0">{d.s.product.image && <img src={thumb(d.s.product.image, 120) ?? undefined} alt={d.s.product.name} loading="lazy" className="h-full w-full object-contain p-1" />}</div>
             <div className="min-w-0 flex-1">
               <p className="truncate font-semibold">{d.s.product.name}</p>
               <p className="text-xs text-faint">

@@ -18,7 +18,7 @@ export function ProductCard({ s, region }: { s: Summary; region: Region }) {
       className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
       <div className="plate m-2 aspect-square">
         {p.image ? (
-          <img src={thumb(p.image, 400) ?? undefined} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain p-2" />
+          <img src={thumb(p.image, 400) ?? undefined} alt={p.name} loading="lazy" decoding="async" className="h-full w-full object-contain p-2" />
         ) : (
           <div className="flex h-full items-center justify-center text-xs text-sold">No photo</div>
         )}

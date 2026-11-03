@@ -37,6 +37,6 @@ test("linked from the landing page, footer, menu and sitemap, and held by the CD
   assert.match(read("src/app/(site)/page.tsx"), /<CreatorsTeaser/);
   assert.match(read("src/components/Footer.tsx"), /href="\/creators"/);
   assert.match(read("src/lib/nav.ts"), /href: "\/creators"/);
-  assert.match(read("src/app/sitemap.ts"), /"\/creators"/);
+  assert.match(read("src/lib/sitemap.ts"), /"\/creators"/);
   assert.match(read("next.config.js"), /"\/creators"/);
 });

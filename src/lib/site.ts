@@ -5,6 +5,9 @@ export const SITE_NAME = "WargameCompare";
 export const SITE_DOMAIN = "wargamecompare.com";
 export const SITE_URL = normaliseOrigin(process.env.NEXT_PUBLIC_SITE_URL) ?? `https://${SITE_DOMAIN}`;
 export const SITE_TAGLINE = "Miniature wargaming prices and stock, compared across independent stores in the UK, Australia, New Zealand, Canada and the US.";
+/** The landing page's search description: names Warhammer and Games Workshop, which the tagline does not (SEO audit, 2026-11-03). */
+export const SITE_DESCRIPTION =
+  "Compare Warhammer and Games Workshop prices at independent discount stores in the UK, Australia, New Zealand, Canada and the US: live stock, savings on RRP.";
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "compareempire@gmail.com";
 
 // Games Workshop's IP rules (DECISIONS.md, "Name, logo and Games Workshop's trademarks"): the brand never contains

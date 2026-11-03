@@ -5,6 +5,7 @@ import type { Placement } from "@/lib/affiliate";
 import type { RegionInfo } from "@/lib/regions";
 import { EbayBox } from "./EbayBox";
 import { ProductGrid } from "./ProductCard";
+import { breadcrumbLd, jsonLd } from "@/lib/seo";
 
 const SHOWN = 96;
 
@@ -18,8 +19,11 @@ export function HubPage({
   ebayQuery,
   placement,
   chips,
+  path,
 }: {
   r: RegionInfo;
+  /** This page's path, for its BreadcrumbList. */
+  path: string;
   title: string;
   intro: string;
   items: Summary[];
@@ -35,6 +39,7 @@ export function HubPage({
       <nav aria-label="Breadcrumb" className="mb-3 text-sm text-faint">
         <Link href={`/${r.region}`} className="hover:text-ink">{r.name}</Link>
       </nav>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: title, path }])) }} />
       <h1 className="font-display text-3xl font-extrabold leading-tight">{title}</h1>
       <p className="mt-2 max-w-3xl text-muted">{intro}</p>
       {chips && chips.length > 0 && (

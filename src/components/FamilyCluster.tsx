@@ -16,7 +16,7 @@ export function FamilyCluster({ region }: { region: Region }) {
       <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {tiles.map(({ site, item, more }) => (
           <li key={site.id} className="card flex min-w-0 gap-3 p-3">
-            <div className="plate h-14 w-14 shrink-0">{item.image && <img src={item.image} alt="" aria-hidden="true" loading="lazy" className="h-full w-full object-contain p-1" />}</div>
+            <div className="plate h-14 w-14 shrink-0">{item.image && <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full object-contain p-1" />}</div>
             <div className="min-w-0 text-sm">
               <p className="eyebrow">{site.topic} · {site.name}</p>
               <a href={item.url} rel="noopener" className="line-clamp-2 font-semibold hover:underline">{item.title}</a>

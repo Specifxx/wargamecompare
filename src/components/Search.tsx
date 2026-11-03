@@ -122,7 +122,7 @@ export function Search({
       <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {results.slice(0, shown).map((r) => (
           <Link key={r[0]} href={`/${region}/p/${r[0]}`} className="card group flex flex-col overflow-hidden hover:shadow-lift">
-            <div className="plate m-2 aspect-square">{r[9] && <img src={r[9]} alt="" loading="lazy" className="h-full w-full object-contain p-2" />}</div>
+            <div className="plate m-2 aspect-square">{r[9] && <img src={r[9]} alt={r[1]} loading="lazy" className="h-full w-full object-contain p-2" />}</div>
             <div className="flex flex-1 flex-col gap-1 px-3 pb-3">
               <p className="line-clamp-2 text-sm font-semibold group-hover:text-brand">{r[1]}</p>
               <div className="mt-auto flex items-baseline justify-between pt-1">
