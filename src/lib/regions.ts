@@ -70,16 +70,32 @@ export function regionFromTimeZone(tz: string | undefined | null): Region | null
 
 /** The visitor's own region on every regional page (lib/region-boot.ts); a time zone we don't cover is the US. */
 export const REGION_KEY = "wgc-region";
+/** [region, time-zone pattern], first match wins (the same order as regionFromTimeZone). */
+const TIME_ZONES: [string, string][] = [
+  ["au", "^Australia/"],
+  ["nz", "^Pacific/(Auckland|Chatham)$"],
+  ["uk", "^Europe/(London|Belfast|Guernsey|Jersey|Isle_of_Man)$"],
+  ["ca", "^America/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal|Moncton|Whitehorse|Yellowknife)$"],
+  ["us", "^(America/|US/|Pacific/Honolulu$)"],
+];
 export const REGION_BOOT_SCRIPT = regionBootScript({
   key: REGION_KEY,
   hreflang: Object.fromEntries(REGION_LIST.map((r) => [r.region, r.hreflang])),
-  zones: [
-    ["au", "^Australia/"],
-    ["nz", "^Pacific/(Auckland|Chatham)$"],
-    ["uk", "^Europe/(London|Belfast|Guernsey|Jersey|Isle_of_Man)$"],
-    ["ca", "^America/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal|Moncton|Whitehorse|Yellowknife)$"],
-    ["us", "^(America/|US/|Pacific/Honolulu$)"],
-  ],
+  zones: TIME_ZONES,
   fallback: "us",
   pageRegion: `C.indexOf(s)>=0?s:null`,
 });
+
+/**
+ * The landing page (no region of its own) carries every region's tiles in its one CDN copy; this sets
+ * `<html data-hr="<region>">` before first paint so CSS shows the visitor's (`.hr-<region>`, globals.css): the region they
+ * picked, else their time zone's, else the US. Crawlers and visitors without script see the US block (and every region's
+ * links in the HTML). A pick on the page updates it at once. No request, no cookie, no redirect.
+ */
+export const HOME_REGION_SCRIPT = `(function(){try{var d=document.documentElement,K=${JSON.stringify(REGION_KEY)},C=${JSON.stringify(REGION_LIST.map((r) => r.region))},r=null;
+try{r=localStorage.getItem(K)}catch(e){}
+if(C.indexOf(r)<0){r=${JSON.stringify(X_DEFAULT_REGION)};var z="";try{z=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}
+var Z=${JSON.stringify(TIME_ZONES)};for(var i=0;i<Z.length;i++)if(new RegExp(Z[i][1]).test(z)){r=Z[i][0];break}}
+d.setAttribute("data-hr",r);
+document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("[data-region-pick]");if(a&&C.indexOf(a.getAttribute("data-region-pick"))>=0)d.setAttribute("data-hr",a.getAttribute("data-region-pick"))},true);
+}catch(e){}})();`;
