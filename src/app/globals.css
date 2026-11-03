@@ -584,3 +584,14 @@ html[data-hr="ca"] .hr-ca,
 html[data-hr="us"] .hr-us {
   display: block;
 }
+
+/* Rate us card and "What people say" (components/site-reviews): drawn in the site's own theme, light and dark. */
+:root {
+  --srv-bg: rgb(var(--surface));
+  --srv-fg: rgb(var(--ink));
+  --srv-muted: rgb(var(--muted));
+  --srv-line: rgb(var(--line));
+  --srv-accent: rgb(var(--brand));
+  --srv-accent-fg: rgb(var(--brand-ink));
+  --srv-field: rgb(var(--raised));
+}

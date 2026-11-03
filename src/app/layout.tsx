@@ -8,7 +8,9 @@ import { SEASON_BOOT_SCRIPT } from "@/lib/season";
 import { THEME_BOOT_SCRIPT } from "@/lib/theme";
 import { HOME_REGION_SCRIPT, REGION_BOOT_SCRIPT } from "@/lib/regions";
 import { QuickView } from "@/components/QuickView";
+import { RateCard } from "@/components/site-reviews/RateCard";
 import "./globals.css";
+import "@/components/site-reviews/site-reviews.css";
 
 // The display face is bundled (OFL, src/app/fonts): no font request at build or at runtime. Body text is the system stack.
 const display = localFont({
@@ -45,6 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         {/* On every page, the home page included: any product link opens the quick view. */}
         <QuickView />
+        {/* Rate us (owner, 2026-11-03): the corner card, asking only after real use; RiftCompare keeps the ratings. */}
+        <RateCard />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(siteJsonLd()) }} />
         <VercelPageViews />
         <ShareArrival />

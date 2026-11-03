@@ -5,6 +5,7 @@ import { REGION_LIST, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 import { CONTACT_EMAIL, GW_DISCLAIMER, SITE_NAME } from "@/lib/site";
 import { NETWORK_PAGE } from "@/lib/family-network";
 import { Flag } from "./Flag";
+import { RateUsLink } from "./site-reviews/SiteReviews";
 
 export function Footer({ region }: { region: Region | null }) {
   const r = region ?? X_DEFAULT_REGION;
@@ -83,6 +84,7 @@ export function Footer({ region }: { region: Region | null }) {
             <li><Link href="/embed" className="text-muted hover:text-ink">Free price widgets</Link></li>
             <li><Link href="/forum" className="text-muted hover:text-ink">Community forum (beta)</Link></li>
             <li><Link href="/contact" className="text-muted hover:text-ink">Contact and store listings</Link></li>
+            <li><RateUsLink className="text-muted hover:text-ink">Rate us</RateUsLink></li>
             <li><Link href="/uk/stores#suggest" className="text-muted hover:text-ink">Suggest a store</Link></li>
             <li><Link href="/how-we-pick-stores" className="text-muted hover:text-ink">How we pick stores</Link></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`} className="text-muted hover:text-ink">{CONTACT_EMAIL}</a></li>

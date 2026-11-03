@@ -569,3 +569,14 @@ each under 4,000 URLs today); `/llms.txt` is generated from the same data as the
 reciprocal hreflang with the chooser at `/` as x-default (`homeAlternates`). Product, hub, guide and store pages emit a
 BreadcrumbList matching their visible trail. Product photos' `alt` is the product name. The landing title is
 "Warhammer Price Comparison: Discount Stores | WargameCompare" (60 characters, keyword first). `tests/seo.test.ts` pins it.
+
+## Rate us and "What people say", run by RiftCompare (2026-11-03)
+
+The owner wanted RiftCompare's rating pop-up on every site, each site's reviews public, and every written review approved in
+RiftCompare's admin; star ratings count at once. This site stores nothing: the corner card (`components/site-reviews/RateCard.tsx`,
+in the root layout) posts cross-origin to `https://riftcompare.com/api/site-reviews`, and the region home's "What people say"
+reads the score and approved reviews from `https://riftcompare.com/api/site-reviews/wargame` in the browser (public JSON, CDN six
+hours): no function, no data read. The card copies RiftCompare's corner card, not its rating drive: never on arrival, after 4
+pages and 3 minutes or on return from a store tab, at most three times 14 days apart, always closable; "Rate us" in the footer
+opens it. While no ad script is on the page it says "We don't run banner ads, so if this helped, please leave us a review."
+No email asked for, never review markup. RiftCompare's DECISIONS.md, "Every site's reviews, approved in one queue".
