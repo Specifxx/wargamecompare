@@ -6,7 +6,7 @@ import { EbayBox } from "@/components/EbayBox";
 import { ProductGrid } from "@/components/ProductCard";
 import { CategoryTiles, HeroMosaic, categoryTiles, heroPicks } from "@/components/HomeVisuals";
 import { FACTIONS, SYSTEMS } from "@/lib/catalog";
-import { mediansFor, meta, summariesFor } from "@/lib/data";
+import { mediansFor, meta, releasesFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
 import { regionOr404 } from "@/lib/page";
 import { REGION_LIST } from "@/lib/regions";
@@ -49,6 +49,12 @@ export default function RegionHome({ params }: { params: { region: string } }) {
     .sort((a, b) => b.n - a.n)
     .slice(0, 24);
   const updated = meta().updatedAt;
+  // New releases and pre-orders (lib/releases.ts): the soonest pre-orders, else the newest arrivals, as product tiles.
+  const rel = releasesFor(r.region);
+  const ids = new Set([...rel.preorders, ...rel.arrivals].slice(0, 6).map((x) => x.product.id));
+  const fresh = all.filter((s) => ids.has(s.product.id));
+  const freshOrder = [...rel.preorders, ...rel.arrivals].map((x) => x.product.id);
+  fresh.sort((a, b) => freshOrder.indexOf(a.product.id) - freshOrder.indexOf(b.product.id));
 
   return (
     <div className="page py-8">
@@ -93,6 +99,16 @@ export default function RegionHome({ params }: { params: { region: string } }) {
       <div className="mb-10">
         <EbayStrip region={r.region} items={[...top, ...popular]} placement="ebay-strip-home" heading="Today's top kits on eBay" />
       </div>
+      {fresh.length > 0 && (
+        <section className="mb-12">
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <h2 className="font-display text-2xl font-bold">{rel.preorders.length ? "New releases and pre-orders" : "Just arrived"}</h2>
+            <Link href={`/${r.region}/new-releases`} className="text-sm font-semibold text-brand">All new releases →</Link>
+          </div>
+          <ProductGrid items={fresh} region={r.region} />
+        </section>
+      )}
+
       {top.length > 0 && (
         <section className="mb-12">
           <div className="mb-4 flex items-end justify-between gap-4">

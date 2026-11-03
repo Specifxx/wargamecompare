@@ -569,3 +569,22 @@ each under 4,000 URLs today); `/llms.txt` is generated from the same data as the
 reciprocal hreflang with the chooser at `/` as x-default (`homeAlternates`). Product, hub, guide and store pages emit a
 BreadcrumbList matching their visible trail. Product photos' `alt` is the product name. The landing title is
 "Warhammer Price Comparison: Discount Stores | WargameCompare" (60 characters, keyword first). `tests/seo.test.ts` pins it.
+
+## 2026-11-03 — New releases and pre-orders page, from the stores' own pre-order titles
+
+The owner (2026-11-03): "We need a fresh pipeline of new products for all our sites, that's where our demand is."
+Games Workshop opens pre-orders most Saturdays and buyers search for them, but the site had no page for them.
+
+**What.** `/<region>/new-releases` (`src/lib/releases.ts`, `releasesFor` in `data.ts`), linked first under "Deals &
+more", in the sitemap, and a "New releases and pre-orders" tile row on the region home above the savings.
+
+- On pre-order: a store's title says pre-order AND either a release date a title states is still to come, or two or
+  more stores say pre-order with no date. A stated date that has passed is a store that never edited its title
+  ("Pre-Order For 10/17/2026" still up in November), so it is not shown. US and Canadian titles read month first,
+  the others day first; an impossible date is read the other way; only dates from 60 days ago to a year ahead count.
+  The date shown is the latest any store states, so a delayed batch is never shown early.
+- Just arrived: first seen by the import in the last 45 days, never on the import's first day (2026-10-28, when
+  every product was "new").
+- First read (2026-11-03): Da Red Gobbo's Squigmobile (7 November) and the Necromunda Orlock wave (14 November);
+  US 11 pre-orders, AU 7, CA 13, UK 1, NZ 0. Pinned by `tests/releases.test.ts`. No new data, no new job: it reads
+  the daily import's files.

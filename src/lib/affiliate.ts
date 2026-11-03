@@ -40,6 +40,7 @@ export const PLACEMENTS = [
   "quickview-table", // the quick view: the store rows
   "quickview-wayland", // the quick view: the Wayland Games row
   "guide-ebay", // a region guide: the eBay block
+  "new-releases", // new releases and pre-orders page: the eBay block
 ] as const;
 export type Placement = (typeof PLACEMENTS)[number];
 

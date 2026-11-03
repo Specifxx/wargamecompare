@@ -62,6 +62,7 @@ export function navGroups(region: Region): NavGroup[] {
     {
       title: "Deals & more",
       links: [
+        { href: `/${region}/new-releases`, label: "New releases and pre-orders" },
         { href: `/${region}/deals`, label: "Today's deals" },
         { href: `/${region}/black-friday`, label: "Black Friday deals" },
         { href: `/${region}/stores`, label: "Stores we compare" },

@@ -36,6 +36,7 @@ export function sitemapPart(part: string): SitemapUrl[] | null {
   const at = (p: string) => out.push({ url: `${SITE_URL}/${region}${p}`, lastModified });
   at("");
   at("/deals");
+  at("/new-releases");
   at("/black-friday");
   for (const p of ["/boxing-day", "/january-sales", "/lunar-new-year"]) at(p);
   at("/stores");

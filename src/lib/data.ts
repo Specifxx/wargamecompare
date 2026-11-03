@@ -8,6 +8,7 @@ import { median } from "./deals";
 import { ebayRowShown } from "./ebay-rows";
 import { STORE_BY_KEY } from "./stores";
 import type { EbayFile, Meta, Offer, OffersFile, Product, RrpFile } from "./types";
+import { firstImportDay, releases } from "./releases";
 
 const DIR = path.join(process.cwd(), "data");
 function load<T>(file: string, fallback: T): T {
@@ -135,4 +136,16 @@ export function summaryOf(id: string, region: Region): Summary | null {
 /** Which regions list a product at all (for hreflang and the "other countries" line). */
 export function regionsListing(id: string): Region[] {
   return (Object.keys(REGIONS) as Region[]).filter((r) => (data().offers[REGIONS[r].market]?.[id]?.length ?? 0) > 0);
+}
+
+const releaseLists = new Map<string, ReturnType<typeof releases>>();
+/** The region's pre-orders and new arrivals (lib/releases.ts), from registered stores only. Computed once per instance per region and day. */
+export function releasesFor(region: Region, today: string = new Date().toISOString().slice(0, 10)): ReturnType<typeof releases> {
+  const key = `${region}|${today}`;
+  const hit = releaseLists.get(key);
+  if (hit) return hit;
+  const items = summariesFor(region).map((s) => ({ product: s.product, offers: offersFor(s.product.id, region) }));
+  const out = releases(items, region, today, firstImportDay(data().products));
+  releaseLists.set(key, out);
+  return out;
 }
