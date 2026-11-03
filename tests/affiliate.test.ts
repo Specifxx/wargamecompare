@@ -20,7 +20,7 @@ test("eBay links: right site per region, campaign and customid", () => {
 
 test("Amazon: each store's own hard-coded tag (owner, 2026-11-02)", () => {
   const tags = amazonTags();
-  assert.deepEqual(tags, { us: "riftcompare-20", uk: "compareempi03-21", ca: "compareempire-20", au: "compareempire-22", nz: "compareempire-22" });
+  assert.deepEqual(tags, { us: "riftcompare-20", uk: "compareempi03-21", ca: "compareempire-20", au: "wargamecomp-22", nz: "wargamecomp-22" });
   assert.equal(amazonSearchUrl("x", "ca", "product-amazon", { ...tags, ca: null }), null, "a store with no tag shows no Amazon");
   const us = new URL(amazonSearchUrl("Codex: Orks", "us", "product-amazon")!);
   assert.equal(us.searchParams.get("tag"), "riftcompare-20");
