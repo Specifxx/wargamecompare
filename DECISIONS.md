@@ -621,3 +621,36 @@ description, Open Graph, canonical, hreflang, every JSON-LD block, the h1, the s
 identical on `/`, `/au`, `/uk` and `/us`; the only differences are the order of two h2s (the eBay box now follows "Stocked by
 the most stores") and the one-line section subtitles. Images keep their alt text and dimensions; only the first row of the
 photo wall loads eagerly. eBay's strip stays above the first product grid (owner, 2026-10-28; `tests/nav.test.ts`).
+
+## 2026-11-03 — The whole site runs the Dex/MTG engine's look, as a before-and-after test
+
+The owner (2026-11-03): "I want to do a test. Can we completely redesign wargamecompare and make it follow the same engine as
+dexcompare and mtgcompare? To do A/B testing". That overrides the morning's "no engine switches" note for this site only.
+
+**What "the same engine" means here.** WargameCompare already shared the engine's token system and navigation model, so the
+port is the presentation layer of DexCompare's sealed app and MTG Compare on WargameCompare's own data layer (`lib/data.ts`,
+`lib/price-rows.ts`, the committed JSON): the neutral stylesheet and its light and dark themes (`globals.css`, from MTG, with the
+site's claret as the one brand colour), Bricolage Grotesque for display and Inter for text (latin subsets, OFL, `src/app/fonts`;
+Plus Jakarta Sans is gone), the one-row sticky header with the Browse dropdown, the typeahead `SearchBox` over `/api/index`,
+the `<details>` country switcher and the `<dialog>` phone menu, the xl sidebar with active marking, the product card (type pill
+over the photo, stock pill, "From", "Compare N prices"), the grid-row price table with the "Cheapest" badge and a "Show more"
+fold after eight stores, the quick view, the `Section`/`Empty`/`Breadcrumbs` pieces, the phone sticky buy bar, and the footer
+with a brand column. The hero band keeps the morning's photo wall (owner, 2026-11-03: "it needs images of products") as its
+aside, and the category tiles stay. `HomeHero`, `HeroSparks`, `HomeVisuals`'s picks (now `lib/home.ts`), `HeaderBar`,
+`SoftHeader`, `SoftSideNav` and `MenuCloser` are replaced.
+
+**SEO unchanged, checked.** Both builds (`main` and this one) were compared page by page with scripts off on the landing page,
+two region homes, two product pages, a game, an army and a type hub, deals, new releases, stores, search, about, creators, a
+guide and Black Friday: title, meta description, robots, canonical, hreflang, Open Graph, every JSON-LD block, the h1 and the
+h2 outline are identical. Internal links only grew: the country switcher now links every region's copy of the same page, the
+Browse item links `/<region>/search`, and the product page's related rail shows eight kits instead of six. Every URL is the
+same. The cost rules hold: every page is still `force-dynamic` under the CDN rules, nothing reads a cookie or header, no new
+JavaScript on the server, the client bundle is 87 KB shared (`tests/cache.test.ts`).
+
+**The test is before-and-after, not a split.** A cookie or edge traffic split would break the one-CDN-copy-per-URL rule
+(two variants means two cache misses per page, double the function work), and serving crawlers a different page than visitors
+risks a cloaking judgement. So: the seven days before the release are the baseline, the seven to fourteen days after are the
+treatment, measured on Vercel Web Analytics (`buy_click` by retailer and placement, page views, visitors, the pages-per-visit)
+and Search Console (clicks and CTR per page, which the identical metadata keeps comparable). The redesign rides the next
+daily `[deploy]` data commit after the merge (about 4 November, 19:20 UTC); judge it around 18 November. If clicks per visitor
+fall, `git revert` of the one merge commit restores the old look in the same release cadence.

@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
 import { EbayStrip } from "@/components/EbayStrip";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { ChristmasBanner } from "@/components/ChristmasBanner";
 import { EbayBox } from "@/components/EbayBox";
+import { Flag } from "@/components/Flag";
+import { CategoryTiles, HeroMosaic } from "@/components/HomeVisuals";
+import { Icon } from "@/components/Icon";
 import { ProductGrid } from "@/components/ProductCard";
-import { CategoryTiles, HeroMosaic, categoryTiles, heroPicks } from "@/components/HomeVisuals";
-import { HomeHero, SectionHead } from "@/components/HomeHero";
+import { RegionChips } from "@/components/RegionChips";
+import { SearchBox } from "@/components/SearchBox";
+import { Section } from "@/components/Section";
+import { SiteReviews } from "@/components/site-reviews/SiteReviews";
 import { FACTIONS, SYSTEMS } from "@/lib/catalog";
 import { mediansFor, meta, releasesFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
+import { categoryTiles, heroPicks } from "@/lib/home";
 import { regionOr404 } from "@/lib/page";
-import { REGION_LIST } from "@/lib/regions";
 import { homeAlternates, ogFor } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
-import { Flag } from "@/components/Flag";
-import { RegionChips } from "@/components/RegionChips";
-import { SiteReviews } from "@/components/site-reviews/SiteReviews";
 
 export const dynamic = "force-dynamic";
 
@@ -59,116 +61,151 @@ export default function RegionHome({ params }: { params: { region: string } }) {
   fresh.sort((a, b) => freshOrder.indexOf(a.product.id) - freshOrder.indexOf(b.product.id));
 
   return (
-    <div className="page py-8">
-      <HomeHero
-        eyebrow={<><Flag code={r.region} /> {r.name}</>}
-        title={<>Warhammer prices in {r.inName}, compared across {stores.length} independent stores</>}
-        lead={<>
-          {all.length.toLocaleString("en")} products tracked, {inStock.toLocaleString("en")} in stock somewhere today. Every price is the store&rsquo;s own, in{" "}
-          {r.currency}, cheapest first. {r.taxNote}
-          {updated && <> Prices checked {new Date(updated).toUTCString().slice(5, 16)}.</>}
-        </>}
-      >
-        <form action={`/${r.region}/search`} className="mx-auto mt-6 flex max-w-xl gap-2">
-          <label htmlFor="home-q" className="sr-only">Search</label>
-          <input id="home-q" name="q" type="search" placeholder="Combat Patrol, Intercessors, Contrast paint…" className="h-12 min-w-0 flex-1 rounded-full border border-line bg-surface px-5 text-base shadow-card" />
-          <button className="btn-primary h-12 px-6">Search</button>
-        </form>
-        <RegionChips current={r.region} className="mt-5 justify-center" />
-      </HomeHero>
-
-      {hero.length > 0 && (
-        <section className="sd mt-8" aria-label="Top savings today">
-          <p className="mb-3 text-center text-sm font-semibold text-muted">Top savings today</p>
-          <HeroMosaic items={hero} region={r.region} className="sm:grid-cols-6" />
-        </section>
-      )}
-
-      {/* Christmas only (1 November to Boxing Day; hidden by CSS otherwise). */}
-      <div className="mt-10">
-        <ChristmasBanner
-          title="Christmas gifts for the hobby"
-          text={`Combat Patrols, starter sets and paints, matched across ${stores.length} stores in ${r.inName}, cheapest in stock first.`}
-          href={`/${r.region}/deals`}
-          cta="Today's biggest savings"
-        />
-      </div>
-
-      {/* eBay first (owner, 2026-10-28): the strip sits above the page's first product grid. */}
-      <div className="sd mt-10">
-        <EbayStrip region={r.region} items={[...top, ...popular]} placement="ebay-strip-home" heading="Today's top kits on eBay" />
-      </div>
-
-      {top.length > 0 && (
-        <section className="sd mt-12">
-          <SectionHead title="Biggest savings today" sub="In stock now, furthest under RRP, every store's own price." href={`/${r.region}/deals`} all="All deals" />
-          <ProductGrid items={top} region={r.region} />
-        </section>
-      )}
-
-      {fresh.length > 0 && (
-        <section className="sd mt-12">
-          <SectionHead title={rel.preorders.length ? "New releases and pre-orders" : "Just arrived"} sub="What the stores have just listed, cheapest first." href={`/${r.region}/new-releases`} all="All new releases" />
-          <ProductGrid items={fresh} region={r.region} />
-        </section>
-      )}
-
-      {tiles.length > 0 && (
-        <section className="sd mt-12">
-          <SectionHead title="Shop by category" sub="Every game and every kind of box, each with its own cheapest-first list." />
-          <CategoryTiles tiles={tiles} />
-        </section>
-      )}
-
-      <section className="sd mt-12">
-        <SectionHead title="Browse by game" />
-        <div className="flex flex-wrap gap-2">
-          {systems.map(({ s, n }) => (
-            <Link key={s.slug} href={`/${r.region}/game/${s.slug}`} className="chip">
-              {s.name} <span className="text-faint">{n}</span>
-            </Link>
-          ))}
+    <div>
+      {/* The engine's hero band (Dex and MTG Compare): the words and the search on the left, the day's photo wall on the right. The
+          H1, the lead and every link are the same as before the port; only the composition changed. */}
+      <section className="relative overflow-hidden border-b border-line bg-surface">
+        <div className="page relative grid gap-8 py-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center">
+          <div className="min-w-0">
+            <div className="eyebrow">
+              <Flag code={r.region} /> {r.name} · prices in {r.currency}
+            </div>
+            <h1 className="mt-3 max-w-3xl font-display text-3xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
+              Warhammer prices in <span className="text-brand">{r.inName}</span>, compared across {stores.length} independent stores
+            </h1>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-muted sm:text-lg">
+              {all.length.toLocaleString("en")} products tracked, {inStock.toLocaleString("en")} in stock somewhere today. Every price is the store&rsquo;s own, in {r.currency}, cheapest first. {r.taxNote}
+              {updated && <> Prices checked {new Date(updated).toUTCString().slice(5, 16)}.</>}
+            </p>
+            <div className="mt-6 max-w-2xl">
+              <SearchBox region={r.region} size="lg" />
+            </div>
+            <RegionChips region={r.region} className="mt-4" />
+            <nav aria-label="Jump to" className="mt-4 flex flex-wrap gap-2">
+              <Link href={`/${r.region}/deals`} prefetch={false} className="chip min-h-10 border-brand/30 bg-brand-soft font-semibold text-brand-strong hover:border-brand/60">
+                <Icon name="tag" size={16} /> Deals
+              </Link>
+              <Link href={`/${r.region}/new-releases`} prefetch={false} className="chip min-h-10 border-open/30 bg-open-soft font-semibold text-open hover:border-open/60">
+                <Icon name="calendar" size={16} /> New releases
+              </Link>
+              <Link href={`/${r.region}/type/combat-patrols`} prefetch={false} className="chip min-h-10">
+                Combat Patrols
+              </Link>
+              <Link href={`/${r.region}/type/starter-sets`} prefetch={false} className="chip min-h-10">
+                Starter sets
+              </Link>
+              <Link href={`/${r.region}/type/paints`} prefetch={false} className="chip min-h-10">
+                Paints
+              </Link>
+              <Link href={`/${r.region}/stores`} prefetch={false} className="chip min-h-10">
+                Stores
+              </Link>
+            </nav>
+            <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-open motion-safe:animate-pulse" aria-hidden="true" />
+              <span>
+                <b className="tabular font-semibold text-ink">{stores.length.toLocaleString("en")}</b> stores
+              </span>
+              <span aria-hidden="true">·</span>
+              <span>
+                <b className="tabular font-semibold text-ink">{inStock.toLocaleString("en")}</b> in stock
+              </span>
+              <span aria-hidden="true">·</span>
+              <span>checked daily</span>
+            </p>
+          </div>
+          {hero.length > 0 && (
+            <aside aria-labelledby="top-savings">
+              <p id="top-savings" className="eyebrow mb-3">
+                Top savings today
+              </p>
+              <HeroMosaic items={hero} region={r.region} />
+            </aside>
+          )}
         </div>
       </section>
 
-      {factions.length > 0 && (
-        <section className="sd mt-10">
-          <SectionHead title="Popular armies" />
+      <div className="page">
+        {/* Christmas only (1 November to Boxing Day; hidden by CSS otherwise). */}
+        <div className="mt-8">
+          <ChristmasBanner
+            title="Christmas gifts for the hobby"
+            text={`Combat Patrols, starter sets and paints, matched across ${stores.length} stores in ${r.inName}, cheapest in stock first.`}
+            href={`/${r.region}/deals`}
+            cta="Today's biggest savings"
+          />
+        </div>
+
+        {/* eBay first (owner, 2026-10-28): the strip sits above the page's first product grid. */}
+        <div className="mt-8">
+          <EbayStrip region={r.region} items={[...top, ...popular]} placement="ebay-strip-home" heading="Today's top kits on eBay" />
+        </div>
+
+        {top.length > 0 && (
+          <Section title="Biggest savings today" kicker="In stock now, furthest under RRP, every store's own price" href={`/${r.region}/deals`} linkLabel="All deals">
+            <ProductGrid items={top} region={r.region} eager={4} />
+          </Section>
+        )}
+
+        {fresh.length > 0 && (
+          <Section title={rel.preorders.length ? "New releases and pre-orders" : "Just arrived"} kicker="What the stores have just listed, cheapest first" href={`/${r.region}/new-releases`} linkLabel="All new releases">
+            <ProductGrid items={fresh} region={r.region} />
+          </Section>
+        )}
+
+        {tiles.length > 0 && (
+          <Section title="Shop by category" kicker="Every game and every kind of box, each with its own cheapest-first list">
+            <CategoryTiles tiles={tiles} />
+          </Section>
+        )}
+
+        <Section title="Browse by game">
           <div className="flex flex-wrap gap-2">
-            {factions.map(({ f, n }) => (
-              <Link key={f.slug} href={`/${r.region}/faction/${f.slug}`} className="chip">
-                {f.name} <span className="text-faint">{n}</span>
+            {systems.map(({ s, n }) => (
+              <Link key={s.slug} href={`/${r.region}/game/${s.slug}`} className="chip">
+                {s.name} <span className="text-faint">{n}</span>
               </Link>
             ))}
           </div>
-        </section>
-      )}
+        </Section>
 
-      {popular.length > 0 && (
-        <section className="sd mt-12">
-          <SectionHead title="Stocked by the most stores" sub="The kits you can buy almost anywhere, so the comparison matters most." />
-          <ProductGrid items={popular} region={r.region} />
-        </section>
-      )}
+        {factions.length > 0 && (
+          <Section title="Popular armies">
+            <div className="flex flex-wrap gap-2">
+              {factions.map(({ f, n }) => (
+                <Link key={f.slug} href={`/${r.region}/faction/${f.slug}`} className="chip">
+                  {f.name} <span className="text-faint">{n}</span>
+                </Link>
+              ))}
+            </div>
+          </Section>
+        )}
 
-      <div className="sd mt-12">
-        <EbayBox region={r.region} query="Warhammer" heading={`Warhammer on eBay ${r.region === "nz" ? "Australia" : r.short}`} placement="home-ebay" />
+        {popular.length > 0 && (
+          <Section title="Stocked by the most stores" kicker="The kits you can buy almost anywhere, so the comparison matters most">
+            <ProductGrid items={popular} region={r.region} />
+          </Section>
+        )}
+
+        <div className="mt-14">
+          <EbayBox region={r.region} query="Warhammer" heading={`Warhammer on eBay ${r.region === "nz" ? "Australia" : r.short}`} placement="home-ebay" />
+        </div>
+
+        {/* The site's own star score and approved reviews (owner, 2026-11-03), loaded in the browser; nothing until there is a rating. */}
+        <SiteReviews className="mt-14" />
+
+        <section className="prose-wg mt-14 max-w-3xl">
+          <h2>How WargameCompare works</h2>
+          <p>
+            We read each store&rsquo;s public catalogue once a day and match every listing to one product by the code printed on the box (for example 48-75), so a
+            price is only ever compared with the same kit. Second-hand, painted and on-sprue listings are left out. The best price is the cheapest store that has it in
+            stock; the saving is measured against the RRP the stores themselves state. Shipping is not included: check the store&rsquo;s checkout.
+          </p>
+          <p>
+            Missing a store? <Link href="/contact">Tell us</Link> and we will add it if its catalogue can be read.
+          </p>
+        </section>
       </div>
-
-      {/* The site's own star score and approved reviews (owner, 2026-11-03), loaded in the browser; nothing until there is a rating. */}
-      <SiteReviews className="mt-12" />
-
-      <section className="prose-wg mt-12 max-w-3xl">
-        <h2>How WargameCompare works</h2>
-        <p>
-          We read each store&rsquo;s public catalogue once a day and match every listing to one product by the code printed on the box (for example 48-75), so a
-          price is only ever compared with the same kit. Second-hand, painted and on-sprue listings are left out. The best price is the cheapest store that has it in
-          stock; the saving is measured against the RRP the stores themselves state. Shipping is not included: check the store&rsquo;s checkout.
-        </p>
-        <p>
-          Missing a store? <Link href="/contact">Tell us</Link> and we will add it if its catalogue can be read.
-        </p>
-      </section>
     </div>
   );
 }

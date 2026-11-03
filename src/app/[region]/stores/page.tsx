@@ -27,8 +27,8 @@ export default function StoresPage({ params }: { params: { region: string } }) {
     .sort((a, b) => b.cheapest - a.cheapest || a.s.name.localeCompare(b.s.name));
   return (
     <div className="page py-8">
-      <h1 className="font-display text-3xl font-extrabold">Where to buy Warhammer in {r.inName}</h1>
-      <p className="mt-2 max-w-3xl text-muted">
+      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Where to buy Warhammer in {r.inName}</h1>
+      <p className="mt-3 max-w-3xl text-[15px] leading-7 text-muted">
         The {stores.length} independent stores we compare in {r.inName}, by how many products they are the cheapest for today. Missing one? <a href="#suggest" className="text-brand underline">Suggest it</a>.
       </p>
       <div className="card mt-6 divide-y divide-line">

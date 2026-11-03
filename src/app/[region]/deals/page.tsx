@@ -25,8 +25,8 @@ export default function DealsPage({ params }: { params: { region: string } }) {
   const list = deals(summariesFor(r.region), mediansFor(r.region)).slice(0, 150);
   return (
     <div className="page py-8">
-      <h1 className="font-display text-3xl font-extrabold">Warhammer deals in {r.inName} today</h1>
-      <p className="mt-2 max-w-3xl text-muted">
+      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Warhammer deals in {r.inName} today</h1>
+      <p className="mt-3 max-w-3xl text-[15px] leading-7 text-muted">
         In-stock products whose cheapest price is at least 10% under the RRP two or more stores state, or under the median price of three or more stores today.
         Nothing here is history: it is today&rsquo;s prices only. Item price; shipping extra.
       </p>

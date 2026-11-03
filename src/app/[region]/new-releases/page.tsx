@@ -51,8 +51,8 @@ export default function NewReleasesPage({ params }: { params: { region: string }
   const { preorders, arrivals } = releasesFor(r.region);
   return (
     <div className="page py-8">
-      <h1 className="font-display text-3xl font-extrabold">New Warhammer releases and pre-orders in {r.inName}</h1>
-      <p className="mt-2 max-w-3xl text-muted">
+      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">New Warhammer releases and pre-orders in {r.inName}</h1>
+      <p className="mt-3 max-w-3xl text-[15px] leading-7 text-muted">
         Games Workshop opens pre-orders most Saturdays. Here is every product the stores we compare are taking pre-orders for, with the release date the stores
         state, then what has just arrived. Every price is the store&rsquo;s own, in {r.currency}, item price only; shipping is extra.
       </p>
