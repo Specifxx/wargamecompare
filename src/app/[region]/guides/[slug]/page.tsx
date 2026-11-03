@@ -7,7 +7,7 @@ import { offersFor, summariesFor, type Summary } from "@/lib/data";
 import { cheapestOfType, fill, GUIDE_BY_SLUG, GUIDES, storeSavings, type GuideInfo } from "@/lib/guides";
 import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGION_LIST, type RegionInfo } from "@/lib/regions";
-import { jsonLd, ogFor, regionAlternates } from "@/lib/seo";
+import { breadcrumbLd, jsonLd, ogFor, regionAlternates } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { STORE_BY_KEY } from "@/lib/stores";
 
@@ -154,6 +154,7 @@ export default function GuidePage({ params }: { params: { region: string; slug: 
   return (
     <article className="page py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ld) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: "Guides", path: `/${r.region}/guides` }, { name: h1, path: `/${r.region}/guides/${g.slug}` }])) }} />
       <p className="text-xs font-bold uppercase tracking-wide text-faint"><Link href={`/${r.region}/guides`} className="hover:text-brand">Guides</Link> · {r.name}</p>
       <h1 className="mt-1 font-display text-3xl font-extrabold">{h1}</h1>
       {g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : <Discounts r={r} all={all} />}

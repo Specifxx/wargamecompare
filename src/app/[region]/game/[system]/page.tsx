@@ -41,6 +41,7 @@ export default function GamePage({ params }: { params: { region: string; system:
   return (
     <HubPage
       r={r}
+      path={`/${r.region}/game/${s.slug}`}
       title={`${s.name} prices in ${r.inName}`}
       intro={`Every ${s.name} product the stores we compare list in ${r.inName}, matched by box code and sorted by how many stores stock it. Prices are the stores' own, in ${r.currency}.`}
       items={items}

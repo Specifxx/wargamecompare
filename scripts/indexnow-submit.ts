@@ -1,11 +1,11 @@
 // Sends every sitemap URL to IndexNow after the daily release (refresh-prices.yml). See src/lib/indexnow.ts.
 // A refusal is logged, never fatal: the data commit has already landed and the sitemap still works.
-import sitemap from "@/app/sitemap";
+import { sitemapPart, sitemapParts } from "@/lib/sitemap";
 import { INDEXNOW_ENDPOINT, indexNowBodies } from "@/lib/indexnow";
 import { SITE_URL } from "@/lib/site";
 
 async function main() {
-  for (const body of indexNowBodies(SITE_URL, sitemap().map((e) => e.url))) {
+  for (const body of indexNowBodies(SITE_URL, sitemapParts().flatMap((p) => sitemapPart(p) ?? []).map((e) => e.url))) {
     const res = await fetch(INDEXNOW_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },

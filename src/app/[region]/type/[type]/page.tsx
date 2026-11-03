@@ -35,6 +35,7 @@ export default function TypePage({ params }: { params: { region: string; type: s
   return (
     <HubPage
       r={r}
+      path={`/${r.region}/type/${t.slug}`}
       title={`${t.name}: prices in ${r.inName}`}
       intro={`Every ${t.name.toLowerCase()} product the stores we compare list in ${r.inName}, in ${r.currency}, cheapest in stock first.`}
       items={items}

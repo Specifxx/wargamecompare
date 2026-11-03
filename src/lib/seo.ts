@@ -4,6 +4,32 @@ import type { Metadata } from "next";
 import { REGIONS, X_DEFAULT_REGION, type Region } from "./regions";
 import { GW_DISCLAIMER, SITE_NAME, SITE_URL } from "./site";
 
+/** BreadcrumbList for a page's visible breadcrumb trail; the last item is the page itself (SEO audit, 2026-11-03). */
+export function breadcrumbLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.name, item: `${SITE_URL}${it.path}` })),
+  };
+}
+
+/** FAQPage for questions printed on the page (never for hidden text). */
+export function faqLd(qa: [string, string][]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: qa.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+  };
+}
+
+/** hreflang for the landing page and the region homes: each region's home, and the chooser at / as x-default. */
+export function homeAlternates(canonical: string): Metadata["alternates"] {
+  const languages: Record<string, string> = {};
+  for (const r of Object.values(REGIONS)) languages[r.hreflang] = `${SITE_URL}/${r.region}`;
+  languages["x-default"] = SITE_URL;
+  return { canonical, languages };
+}
+
 export function jsonLd(obj: unknown): string {
   return JSON.stringify(obj).replace(/</g, "\\u003c");
 }

@@ -10,7 +10,8 @@ import { mediansFor, meta, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
 import { regionOr404 } from "@/lib/page";
 import { REGION_LIST } from "@/lib/regions";
-import { ogFor, regionAlternates } from "@/lib/seo";
+import { homeAlternates, ogFor } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
 import { Flag } from "@/components/Flag";
 import { RegionChips } from "@/components/RegionChips";
@@ -25,7 +26,7 @@ export function generateMetadata({ params }: { params: { region: string } }): Me
   return {
     title: { absolute: title },
     description,
-    alternates: regionAlternates(r.region, "", REGION_LIST.map((x) => x.region)),
+    alternates: homeAlternates(`${SITE_URL}/${r.region}`),
     openGraph: ogFor(`/${r.region}`, title, description),
   };
 }

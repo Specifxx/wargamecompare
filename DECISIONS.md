@@ -543,3 +543,13 @@ has no region, so its one CDN copy carries every region's blocks and `HOME_REGIO
 `<html data-hr>` before paint so CSS shows the visitor's (their pick, else time zone, else the US); hidden blocks' images are
 lazy and never fetched. No image proxy, no new function, no request-time work. Product tiles stopped prefetching
 (`prefetch={false}`), one RSC render fewer per tile in view.
+
+## 2026-11-03 SEO audit: split sitemap, landing title, structured data, llms.txt
+
+Bill's network SEO audit (homepages only) found a 14,241-URL single sitemap, a soft-404 `/llms.txt`, a landing description
+that never says "Warhammer", no hreflang on the landing page, empty `alt` on product photos and no BreadcrumbList.
+`/sitemap.xml` is now an index (route handler) of `/sitemaps/site.xml` and one file per region (`src/lib/sitemap.ts`,
+each under 4,000 URLs today); `/llms.txt` is generated from the same data as the pages. The landing and region homes carry
+reciprocal hreflang with the chooser at `/` as x-default (`homeAlternates`). Product, hub, guide and store pages emit a
+BreadcrumbList matching their visible trail. Product photos' `alt` is the product name. The landing title is
+"Warhammer Price Comparison: Discount Stores | WargameCompare" (60 characters, keyword first). `tests/seo.test.ts` pins it.

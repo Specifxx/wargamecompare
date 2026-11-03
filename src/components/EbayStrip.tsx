@@ -30,7 +30,7 @@ export function EbayStrip({ region, items, placement, heading, max = 6 }: { regi
             <OutboundLink href={t.href} rel={REL_PAID} retailer={ebayLabel(region)} placement={placement} className="flex h-full flex-col overflow-hidden rounded-xl border border-ad-line bg-surface transition-shadow hover:shadow-lift">
               {t.image ? (
                 <div className="plate m-2 aspect-square">
-                  <img src={t.image} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain p-1" />
+                  <img src={t.image} alt={`${t.name} on eBay`} loading="lazy" decoding="async" className="h-full w-full object-contain p-1" />
                 </div>
               ) : (
                 <div className="m-2 flex aspect-square items-center justify-center rounded-lg bg-ad p-3 text-center text-xs font-semibold text-muted">{t.system}</div>

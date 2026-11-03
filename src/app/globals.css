@@ -131,6 +131,9 @@ body {
   .prose-wg h2 {
     @apply mb-3 mt-8 font-display text-xl font-bold text-ink;
   }
+  .prose-wg h3 {
+    @apply mb-1 mt-4 font-semibold text-ink;
+  }
   .prose-wg a {
     @apply font-medium text-brand underline underline-offset-2;
   }
