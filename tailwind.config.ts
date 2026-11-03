@@ -24,13 +24,14 @@ const config: Config = {
         ad: { DEFAULT: v("ad"), line: v("ad-line") },
       },
       fontFamily: {
-        sans: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
         display: ["var(--font-display)", "var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
-      borderRadius: { xl: "14px", "2xl": "20px" },
+      borderRadius: { lg: "10px", xl: "16px", "2xl": "22px", "3xl": "28px" },
       boxShadow: {
-        card: "0 1px 2px rgb(var(--shadow) / 0.06), 0 1px 0 rgb(var(--shadow) / 0.02)",
-        lift: "0 10px 30px -12px rgb(var(--shadow) / 0.25), 0 2px 6px rgb(var(--shadow) / 0.06)",
+        card: "0 1px 2px rgb(var(--shadow) / 0.08), 0 1px 0 rgb(var(--shadow) / 0.03)",
+        lift: "0 16px 40px -16px rgb(var(--shadow) / 0.45), 0 4px 10px rgb(var(--shadow) / 0.08)",
+        glow: "0 0 0 1px rgb(var(--brand) / 0.35), 0 12px 40px -10px rgb(var(--brand) / 0.45)",
       },
       maxWidth: { page: "1200px", shell: "1480px" },
     },

@@ -15,10 +15,10 @@ export function ProductCard({ s, region }: { s: Summary; region: Region }) {
       data-qv-region={region}
       data-qv-name={p.name}
       data-qv-img={thumb(p.image, 400) ?? undefined}
-      className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
+      className="card group flex min-w-0 flex-col overflow-hidden transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lift">
       <div className="plate m-2 aspect-square">
         {p.image ? (
-          <img src={thumb(p.image, 400) ?? undefined} alt={p.name} loading="lazy" decoding="async" className="h-full w-full object-contain p-2" />
+          <img src={thumb(p.image, 400) ?? undefined} alt={p.name} width={400} height={400} loading="lazy" decoding="async" className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" />
         ) : (
           <div className="flex h-full items-center justify-center text-xs text-sold">No photo</div>
         )}
@@ -31,7 +31,7 @@ export function ProductCard({ s, region }: { s: Summary; region: Region }) {
           ) : (
             <span className="text-sm font-semibold text-sold">Sold out</span>
           )}
-          {s.off != null && s.off >= 0.05 && <span className="rounded bg-open-soft px-1.5 text-xs font-bold text-open">−{Math.round(s.off * 100)}%</span>}
+          {s.off != null && s.off >= 0.05 && <span className="rounded-md bg-open-soft px-1.5 py-0.5 text-xs font-bold text-open">−{Math.round(s.off * 100)}%</span>}
         </div>
         <p className="text-xs text-faint">
           {s.inStock} of {s.stores} {s.stores === 1 ? "store" : "stores"} in stock
@@ -43,7 +43,7 @@ export function ProductCard({ s, region }: { s: Summary; region: Region }) {
 
 export function ProductGrid({ items, region }: { items: Summary[]; region: Region }) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+    <div className="sd-stagger grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       {items.map((s) => (
         <ProductCard key={s.product.id} s={s} region={region} />
       ))}

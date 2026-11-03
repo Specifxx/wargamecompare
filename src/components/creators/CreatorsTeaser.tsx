@@ -10,7 +10,7 @@ export function CreatorsTeaser() {
   if (!first) return null;
   const handle = first.links[0]?.handle;
   return (
-    <Link href="/creators" prefetch={false} className="card group mt-8 flex flex-col gap-4 p-4 transition-shadow hover:shadow-lift sm:flex-row sm:items-center sm:justify-between sm:p-5">
+    <Link href="/creators" prefetch={false} className="card group mt-12 flex flex-col gap-4 rounded-2xl p-4 transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-lift sm:flex-row sm:items-center sm:justify-between sm:p-5">
       <div className="flex items-center gap-4">
         <div className="flex shrink-0 -space-x-3">
           {creators.map((c) => (

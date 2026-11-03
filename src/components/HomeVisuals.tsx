@@ -42,10 +42,10 @@ export function HeroMosaic({ items, region, className = "" }: { items: Summary[]
             data-qv-name={p.name}
             data-qv-img={src}
             title={p.name}
-            className="plate group relative block aspect-square rounded-xl"
+            className="plate group relative block min-w-0 aspect-square rounded-xl shadow-card transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lift"
           >
             {/* The first row is above the fold on a phone: load it at once; the rest lazily. */}
-            <img src={src} alt={p.name} loading={i < 3 ? "eager" : "lazy"} decoding="async" className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" />
+            <img src={src} alt={p.name} width={400} height={400} loading={i < 3 ? "eager" : "lazy"} decoding="async" className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" />
             <span className="absolute inset-x-1.5 bottom-1.5 flex items-center justify-between gap-1">
               <span className="tabular rounded-md bg-black/80 px-1.5 py-0.5 text-[11px] font-bold text-white sm:text-xs">{formatPrice(s.best!, region)}</span>
               {s.off != null && s.off >= 0.05 && <span className="rounded-md bg-open px-1.5 py-0.5 text-[11px] font-bold text-white sm:text-xs">−{Math.round(s.off * 100)}%</span>}
@@ -100,19 +100,19 @@ export function categoryTiles(all: Summary[], region: Region): CategoryTile[] {
 
 export function CategoryTiles({ tiles }: { tiles: CategoryTile[] }) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <div className="sd-stagger grid grid-cols-2 gap-3 sm:grid-cols-4">
       {tiles.map((t) => (
-        <Link key={t.href} href={t.href} prefetch={false} className="card group flex flex-col overflow-hidden transition-shadow hover:shadow-lift">
-          <div className="plate m-2 mb-0 aspect-[4/3]">
+        <Link key={t.href} href={t.href} prefetch={false} className="card group relative flex min-w-0 aspect-[4/3] flex-col overflow-hidden transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lift">
+          <div className="plate absolute inset-0 rounded-none ring-0">
             {t.image ? (
-              <img src={t.image} alt={t.alt ?? t.label} loading="lazy" decoding="async" className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105" />
+              <img src={t.image} alt={t.alt ?? t.label} width={400} height={400} loading="lazy" decoding="async" className="h-full w-full object-contain p-3 pb-10 transition-transform duration-300 group-hover:scale-105" />
             ) : (
               <div className="h-full w-full" />
             )}
           </div>
-          <div className="flex items-baseline justify-between gap-2 px-3 py-2.5">
-            <span className="text-sm font-semibold leading-snug group-hover:text-brand">{t.label}</span>
-            <span className="tabular shrink-0 text-xs text-faint">{t.count.toLocaleString("en")}</span>
+          <div className="relative mt-auto flex items-baseline justify-between gap-2 bg-gradient-to-t from-black/85 via-black/60 to-transparent px-3 pb-2.5 pt-6 text-white">
+            <span className="text-sm font-bold leading-snug">{t.label}</span>
+            <span className="tabular shrink-0 text-xs text-white/70">{t.count.toLocaleString("en")}</span>
           </div>
         </Link>
       ))}
