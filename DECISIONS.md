@@ -543,3 +543,19 @@ has no region, so its one CDN copy carries every region's blocks and `HOME_REGIO
 `<html data-hr>` before paint so CSS shows the visitor's (their pick, else time zone, else the US); hidden blocks' images are
 lazy and never fetched. No image proxy, no new function, no request-time work. Product tiles stopped prefetching
 (`prefetch={false}`), one RSC render fewer per tile in view.
+
+## 2026-11-03 — The quick view shows the product's own link
+
+**Why.** Owner: "quickview popup should have a link change as well for all sites, instead of using the same link". The
+pop-up kept the list page's URL, so a copied or bookmarked link lost the product, and Back left the page instead of
+closing the pop-up.
+
+**What.** Opening a quick view pushes the product page's own existing URL (/<region>/p/<id>) with `history.pushState`
+(`src/lib/quick-view-url.ts`, the same file on every site). Back closes it and restores the list's URL, Forward reopens it,
+closing it (×, Escape, the backdrop) steps back, so the history never fills with pop-ups. "See price history and details"
+only hides the pop-up and navigates to the URL already shown, which Next turns into a replace: Back from the product page
+goes to the list. The entry copies Next's own history state (`__NA` and the router tree), so the app router passes the
+push through and the page under the pop-up never re-renders.
+
+**SEO.** No new URL exists: the link is the canonical product page, which a reload, a share or a crawler gets in full
+server HTML. Never a `?view=` or `#` variant (duplicate URLs, extra CDN copies). Pinned by `tests/quick-view-url.test.ts`.
