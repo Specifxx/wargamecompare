@@ -5,7 +5,7 @@ name: Probe stores
 on:
   push:
     branches: ["claude/**"]
-    paths: ["probe/candidates.txt", "scripts/probe-stores.ts"]
+    paths: ["probe/candidates.txt", "scripts/probe-stores.ts", "src/data/stores.json", "src/lib/import/**"]
   workflow_dispatch:
 
 permissions:
@@ -58,3 +58,15 @@ jobs:
           git commit -m "probe: store results" || exit 0
           for i in 1 2 3 4; do git push origin HEAD:${GITHUB_REF_NAME} && exit 0; sleep $((2 ** i)); git pull --rebase origin ${GITHUB_REF_NAME}; done
           exit 1
+  trial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsx scripts/import.ts --only mindgames,hobbytechtoys,warandpeacegames,wargamershub,westcoastgames,battlereadygames,doublestarhobby,imperialhobbies,jrtoycanada,kingdomtitans,mapleairbrush,fenrisworkshop,tabletoprenaissance,gamecorner,hobbycity,kapitihobbies,afistfulofdice,castlecomics,wargamesemporium --concurrency 3
+      - run: node -e 'const m=require("./data/meta.json");for (const [k,v] of Object.entries(m.stores)) if (["mindgames","hobbytechtoys","warandpeacegames","wargamershub","westcoastgames","battlereadygames","doublestarhobby","imperialhobbies","jrtoycanada","kingdomtitans","mapleairbrush","fenrisworkshop","tabletoprenaissance","gamecorner","hobbycity","kapitihobbies","afistfulofdice","castlecomics","wargamesemporium"].includes(k)) console.log(k, JSON.stringify(v));'

@@ -3,6 +3,7 @@
 // unauthenticated read endpoint, checked against robots.txt first; one store at a time per runner slot, politely.
 import type { StoreConfig } from "@/lib/stores";
 import { get, robotsAllows, sleep } from "./http";
+import { readWooStore, wooCurrency } from "./woocommerce";
 
 export interface ShopifyVariant {
   id: number;
@@ -16,6 +17,8 @@ export interface ShopifyProduct {
   id: number;
   title: string;
   handle: string;
+  /** The product page, when it is not /products/<handle> (a WooCommerce store). */
+  url?: string;
   vendor?: string;
   product_type?: string;
   tags?: string[] | string;
@@ -33,6 +36,7 @@ const PAGE = 250;
 const MAX_PAGES = 80; // 20,000 products: the biggest whole-catalogue store seen was ~15k
 
 export async function readStore(store: StoreConfig): Promise<StoreRead> {
+  if (store.platform === "woocommerce") return readWooStore(store);
   const paths = store.collections.length ? store.collections.map((h) => `/collections/${h}/products.json`) : ["/products.json"];
   const allowed = await robotsAllows(store.base);
   const seen = new Set<number>();
@@ -64,6 +68,7 @@ export async function readStore(store: StoreConfig): Promise<StoreRead> {
 
 /** The currency the store charges for its own country (cart.js, else meta.json), or null. */
 export async function storeCurrency(store: StoreConfig): Promise<string | null> {
+  if (store.platform === "woocommerce") return wooCurrency(store);
   for (const path of ["/cart.js", "/meta.json"]) {
     const d = (await get(`${store.base}${path}?country=${store.country}`).catch(() => null)) as { currency?: string } | null;
     if (d?.currency) return d.currency;

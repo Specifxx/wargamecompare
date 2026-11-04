@@ -10,8 +10,11 @@ export interface StoreConfig {
   market: Market;
   /** ISO country sent as Shopify's ?country= so a Markets-enabled store prices in its own currency. */
   country: string;
-  /** Shopify collection handles holding its Games Workshop stock; [] = the whole catalogue (/products.json). */
+  /** Shopify collection handles holding its Games Workshop stock; [] = the whole catalogue (/products.json).
+   *  WooCommerce: Store API category slugs; [] = a keyword search per Games Workshop range (lib/import/woocommerce.ts). */
   collections: string[];
+  /** Omitted = Shopify (products.json). "woocommerce" reads the WordPress Store API. */
+  platform?: "shopify" | "woocommerce";
 }
 
 export const STORES: StoreConfig[] = (raw as StoreConfig[]).slice().sort((a, b) => a.name.localeCompare(b.name));
