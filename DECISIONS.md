@@ -654,3 +654,31 @@ treatment, measured on Vercel Web Analytics (`buy_click` by retailer and placeme
 and Search Console (clicks and CTR per page, which the identical metadata keeps comparable). The redesign rides the next
 daily `[deploy]` data commit after the merge (about 4 November, 19:20 UTC); judge it around 18 November. If clicks per visitor
 fall, `git revert` of the one merge commit restores the old look in the same release cadence.
+
+## 2026-11-04: 19 stores from the big-store gap research, and a WooCommerce reader
+
+Owner: "ensure all big stores are captured with no gaps … I don't have domain knowledge outside of Australia". A
+research pass per region (r/Warhammer40k's retailer wiki, the Warhamateur and Warhammer Guild discount lists, Spikey
+Bits, store locators) named 79 Games Workshop retailers not on the list. A runner probe read each one the way the
+import does; 18 Shopify stores priced Games Workshop product in their market's currency and were added with their
+Games Workshop collections (a trial import read all of them): Australia Hobbytech Toys, War and Peace Games,
+WarGamers Hub, West Coast Games; Canada Battle Ready Games, Double Star, Imperial Hobbies, JR Toy Company, Kingdom
+of the Titans, Maple Airbrush Supplies (Citadel paints), Fenris Workshop, Tabletop Renaissance; New Zealand Game
+Corner, Hobby City (Citadel paints), Kapiti Hobbies; UK A Fistful of Dice, Castle Comics, Wargames Emporium.
+
+**Mind Games (m-g.com.au), the national Australian chain, runs WooCommerce**, so the import now has a second reader,
+`src/lib/import/woocommerce.ts`: the WordPress Store API, checked against robots.txt, category slugs or (with
+`collections: []`) a keyword search per Games Workshop range, products returned in the Shopify shape so the same
+listing filter, identity and pricing rules apply. `platform: "woocommerce"` in `stores.json` selects it. Waroffice
+(UK) is also WooCommerce but showed seven Warhammer products: not added.
+
+**The biggest names cannot be read, and stay off the list until an adapter exists:** Element Games, Dark Sphere,
+Firestorm Games, Hobby Workshop, The Outpost, 4TK, Magic Madhouse (BigCommerce), Chaos Cards, Wayland (all custom
+or behind Cloudflare, no feed); Mighty Ape AU/NZ (Kogan platform, 403); The Gamesmen, War for Less, Aetherworks,
+Area 52, Milsims (custom); Sentry Box, MiniWarGaming, Meeplemart (custom); US Miniature Market (Magento), Game
+Kastle (Shopify, but its feed holds no Games Workshop collection and robots.txt blocks the catalogue), Noble Knight,
+GameNerdz, Discount Games Inc, CoolStuffInc, The Warstore, Atomic Empire (custom). Shopify stores whose robots.txt
+disallows the feed are honoured and left out: Black Hole Gaming, Leodis, Sprues & Brews, Board Game Extras, Emerald
+Hobbies, Elemental Games, Tin Soldier, Ocean Wargames, Boardlandia, Mission Fun & Games. Games Paradise and Hobbyco
+(AU) run Shopify but their Games Workshop stock is not in any collection the probe could find. Bad Moon Cafe (UK)
+lists events and pre-orders only.
