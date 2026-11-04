@@ -25,7 +25,7 @@ export function sitemapPart(part: string): SitemapUrl[] | null {
   if (part === "site") {
     return [
       { url: SITE_URL, lastModified },
-      ...["/about", "/creators", "/embed", "/price-report", "/affiliate-disclosure", "/how-we-pick-stores"].map((p) => ({ url: `${SITE_URL}${p}` })),
+      ...["/about", "/creators", "/embed", "/price-report", "/affiliate-disclosure", "/how-we-pick-stores", "/list-your-store"].map((p) => ({ url: `${SITE_URL}${p}` })),
     ];
   }
   if (!isRegion(part)) return null;
