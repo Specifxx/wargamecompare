@@ -57,7 +57,7 @@ function toListings(store: StoreConfig, products: ShopifyProduct[]): StoreListin
         store: store.key,
         market: store.market,
         title: (multi && v.title && v.title !== "Default Title" ? `${p.title} ${v.title}` : p.title).slice(0, 160),
-        url: `${store.base}/products/${p.handle}${multi ? `?variant=${v.id}` : ""}`,
+        url: p.url ?? `${store.base}/products/${p.handle}${multi ? `?variant=${v.id}` : ""}`,
         cents,
         wasCents: was && Number.isFinite(was) ? was : null,
         inStock: v.available === true,

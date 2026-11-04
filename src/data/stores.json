@@ -1975,7 +1975,7 @@
   },
   {
     "key": "dejouer",
-    "name": "DéJouer",
+    "name": "D\u00e9Jouer",
     "base": "https://dejouer.ca",
     "market": "CA",
     "country": "CA",
@@ -3781,7 +3781,7 @@
   },
   {
     "key": "journeysendgames",
-    "name": "Journey’s End Games",
+    "name": "Journey\u2019s End Games",
     "base": "https://journeysendgames.com",
     "market": "US",
     "country": "US",
@@ -4798,6 +4798,281 @@
       "warhammer-40000",
       "age-of-sigmar",
       "kill-team"
+    ]
+  },
+  {
+    "key": "hobbytechtoys",
+    "name": "Hobbytech Toys",
+    "base": "https://hobbytechtoys.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "games-workshop",
+      "citadel"
+    ]
+  },
+  {
+    "key": "warandpeacegames",
+    "name": "War and Peace Games",
+    "base": "https://warandpeacegames.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "games-workshop-1",
+      "warhammer-colour"
+    ]
+  },
+  {
+    "key": "wargamershub",
+    "name": "WarGamers Hub",
+    "base": "https://wargamershub.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "warhammer-40k",
+      "age-of-sigmar",
+      "citadel",
+      "kill-team",
+      "warhammer-the-old-world",
+      "horus-heresy",
+      "necromunda",
+      "blood-bowl",
+      "black-library"
+    ]
+  },
+  {
+    "key": "westcoastgames",
+    "name": "West Coast Games",
+    "base": "https://westcoastgames.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar",
+      "warhammer-the-old-world",
+      "horus-heresy"
+    ]
+  },
+  {
+    "key": "mindgames",
+    "name": "Mind Games",
+    "base": "https://m-g.com.au",
+    "market": "AU",
+    "country": "AU",
+    "collections": [],
+    "platform": "woocommerce"
+  },
+  {
+    "key": "battlereadygames",
+    "name": "Battle Ready Games",
+    "base": "https://battlereadygames.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40000",
+      "warhammer-citadel",
+      "warhammer-age-of-sigmar",
+      "warhammer-the-horus-heresy",
+      "kill-team",
+      "black-library",
+      "warhammer-the-old-world"
+    ]
+  },
+  {
+    "key": "doublestarhobby",
+    "name": "Double Star Games and Hobbies",
+    "base": "https://doublestarhobby.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "warhammer-40k",
+      "warhammer-age-of-sigmar",
+      "black-library",
+      "kill-team",
+      "warhammer-the-old-world",
+      "the-horus-heresy"
+    ]
+  },
+  {
+    "key": "imperialhobbies",
+    "name": "Imperial Hobbies",
+    "base": "https://imperialhobbies.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000-killteam",
+      "age-of-sigmar-warcry",
+      "warhammer-30-000",
+      "necromunda-and-underworlds",
+      "warhammer-the-old-world",
+      "citadel-paint",
+      "middle-earth-strategy-battle-game"
+    ]
+  },
+  {
+    "key": "jrtoycanada",
+    "name": "JR Toy Company",
+    "base": "https://jrtoycanada.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop",
+      "warhammer-40-000",
+      "warhammer-the-horus-heresy",
+      "warhammer-age-of-sigmar",
+      "citadel-colour",
+      "warhammer-40-000-kill-team",
+      "warhammer-the-old-world",
+      "middle-earth-strategy-battle-game"
+    ]
+  },
+  {
+    "key": "kingdomtitans",
+    "name": "Kingdom of the Titans",
+    "base": "https://kingdomtitans.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "age-of-sigmar",
+      "citadel",
+      "the-old-world",
+      "the-horus-heresy",
+      "black-library",
+      "middle-earth"
+    ]
+  },
+  {
+    "key": "mapleairbrush",
+    "name": "Maple Airbrush Supplies",
+    "base": "https://mapleairbrushsupplies.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "citadel-colors-paint",
+      "games-workshop-40k",
+      "horus-heresy-age-of-darkness"
+    ]
+  },
+  {
+    "key": "fenrisworkshop",
+    "name": "Fenris Workshop",
+    "base": "https://shop.fenrisworkshop.com",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "all-games-workshop-citadel-black-library"
+    ]
+  },
+  {
+    "key": "tabletoprenaissance",
+    "name": "Tabletop Renaissance",
+    "base": "https://tabletoprenaissance.ca",
+    "market": "CA",
+    "country": "CA",
+    "collections": [
+      "games-workshop",
+      "citadel-colour",
+      "black-library-publications",
+      "warhammer-40k",
+      "warhammer-the-old-world",
+      "age-of-sigmar",
+      "warhammer-underworld"
+    ]
+  },
+  {
+    "key": "gamecorner",
+    "name": "Game Corner",
+    "base": "https://gamecorner.co.nz",
+    "market": "NZ",
+    "country": "NZ",
+    "collections": [
+      "warhammer",
+      "citadel-paint"
+    ]
+  },
+  {
+    "key": "hobbycity",
+    "name": "Hobby City",
+    "base": "https://hobbycity.nz",
+    "market": "NZ",
+    "country": "NZ",
+    "collections": [
+      "citadel"
+    ]
+  },
+  {
+    "key": "kapitihobbies",
+    "name": "Kapiti Hobbies",
+    "base": "https://kapitihobbies.com",
+    "market": "NZ",
+    "country": "NZ",
+    "collections": [
+      "warhammer-40k",
+      "warhammer-age-of-sigmar",
+      "citadel",
+      "black-library",
+      "middle-earth-sbg",
+      "warhammer-the-old-world",
+      "necromunda",
+      "horus-heresy",
+      "kill-team",
+      "warhammer-colour",
+      "blood-bowl",
+      "warcry"
+    ]
+  },
+  {
+    "key": "afistfulofdice",
+    "name": "A Fistful of Dice",
+    "base": "https://afistfulofdice.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "all-games-workshop",
+      "citadel-colour"
+    ]
+  },
+  {
+    "key": "castlecomics",
+    "name": "Castle Comics",
+    "base": "https://castlecomicsuk.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "games-workshop",
+      "warhammer-40k",
+      "black-library",
+      "warhammer-age-of-sigmar",
+      "the-horus-heresy-30k",
+      "warhammer-the-old-world",
+      "necromunda",
+      "citadel-spray-paints",
+      "warhammer-colour-layer",
+      "warhammer-colour-contrast",
+      "warhammer-colour-base"
+    ]
+  },
+  {
+    "key": "wargamesemporium",
+    "name": "Wargames Emporium",
+    "base": "https://wargamesemporium.co.uk",
+    "market": "UK",
+    "country": "GB",
+    "collections": [
+      "citadel",
+      "warhammer-40-000",
+      "warhammer-age-of-sigmar",
+      "the-horus-heresy",
+      "necromunda",
+      "kill-team",
+      "cities-of-sigmar",
+      "the-old-world",
+      "blood-bowl",
+      "middle-earth-battle-game"
     ]
   }
 ]
