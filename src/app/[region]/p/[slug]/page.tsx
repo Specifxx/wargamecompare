@@ -106,6 +106,8 @@ export default function ProductPage({ params }: { params: { region: string; slug
             highPrice: (Math.max(...offers.filter((o) => o.in).map((o) => o.p)) / 100).toFixed(2),
             offerCount: offers.filter((o) => o.in).length,
             availability: "https://schema.org/InStock",
+            // Prices refresh on the daily import: good until tomorrow (schema.org priceValidUntil).
+            priceValidUntil: new Date(Date.now() + 86400e3).toISOString().slice(0, 10),
             url: `${SITE_URL}/${region}/p/${p.id}`,
           },
         }
