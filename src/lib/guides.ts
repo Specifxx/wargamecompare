@@ -2,7 +2,7 @@
 // question no hub page answers: how to start for the least money, and how much the discount stores really save.
 import type { Summary } from "./data";
 
-export type GuideSlug = "cheapest-way-to-start" | "discount-stores-vs-rrp";
+export type GuideSlug = "cheapest-way-to-start" | "discount-stores-vs-rrp" | "warhammer-prices-where-they-are-heading";
 
 export interface GuideInfo {
   slug: GuideSlug;
@@ -10,6 +10,8 @@ export interface GuideInfo {
   title: string;
   h1: string;
   description: string;
+  /** The guide's own link preview (public/guides/<slug>.jpg, 1200×630); absent: the site's share image. */
+  image?: string;
 }
 
 export const GUIDES: GuideInfo[] = [
@@ -24,6 +26,13 @@ export const GUIDES: GuideInfo[] = [
     title: "How much do Warhammer discount stores save in {in}? Every store vs RRP",
     h1: "How much Warhammer discount stores save in {in}",
     description: "Each independent store in {in} measured against RRP today: the typical saving, how many kits it beats RRP on, and the biggest savings.",
+  },
+  {
+    slug: "warhammer-prices-where-they-are-heading",
+    title: "Warhammer prices in {in}: GW's rises, the discount gap and what comes next",
+    h1: "Warhammer prices in {in}: GW's rises, the discount gap and where it goes next",
+    description: "GW's price rises since 2022, how far under RRP stores in {in} sell today, how other countries compare, and our read on the next rise.",
+    image: "/guides/warhammer-prices-where-they-are-heading.jpg",
   },
 ];
 export const GUIDE_BY_SLUG = new Map(GUIDES.map((g) => [g.slug as string, g]));

@@ -24,7 +24,7 @@ export function generateMetadata({ params }: { params: { region: string; slug: s
   const { r, g } = load(params);
   const title = fill(g.title, r.inName);
   const description = fill(g.description, r.inName);
-  return { title: { absolute: title }, description, alternates: regionAlternates(r.region, `/guides/${g.slug}`, REGION_LIST.map((x) => x.region)), openGraph: ogFor(`/${r.region}/guides/${g.slug}`, title, description) };
+  return { title: { absolute: title }, description, alternates: regionAlternates(r.region, `/guides/${g.slug}`, REGION_LIST.map((x) => x.region)), openGraph: ogFor(`/${r.region}/guides/${g.slug}`, title, description, g.image) };
 }
 
 const Grid = ({ items, r }: { items: Summary[]; r: RegionInfo }) =>
@@ -145,6 +145,98 @@ function Discounts({ r, all }: { r: RegionInfo; all: Summary[] }) {
   );
 }
 
+/** The cheapest in-stock store against the RRP two or more stores state, across a region's products. */
+function discountGap(all: Summary[]) {
+  const offs = all.filter((s) => s.rrp && s.best != null && s.stores >= 2).map((s) => (s.rrp! - s.best!) / s.rrp!).sort((a, b) => a - b);
+  if (offs.length < 50) return null;
+  return { n: offs.length, typical: offs[Math.floor(offs.length / 2)], top: offs[Math.floor(offs.length * 0.9)], under: offs.filter((x) => x > 0.005).length / offs.length, deep: offs.filter((x) => x >= 0.2).length / offs.length };
+}
+
+function Trajectory({ r, all }: { r: RegionInfo; all: Summary[] }) {
+  const gap = discountGap(all);
+  const pct = (x: number) => `${Math.round(x * 100)}%`;
+  const stores = storeSavings(all, (id) => offersFor(id, r.region));
+  const others = REGION_LIST.filter((x) => x.region !== r.region).map((x) => ({ r: x, gap: discountGap(summariesFor(x.region)) })).filter((x) => x.gap);
+  const biggest = all.filter((s) => s.off != null && s.stores >= 2).sort((a, b) => b.off! - a.off!).slice(0, 4);
+  return (
+    <>
+      <P>
+        Games Workshop has raised its prices every year since 2022, and the independent stores that sell under its RRP have, so far, kept discounting at about the
+        same rate. That gap is the whole reason this site exists, so this guide looks at both sides of it for {r.inName}: what GW has done, what the stores we
+        compare are doing this morning, how that compares with the other countries we cover, and where we think it goes from here. Prices are in {r.currency}. {r.taxNote}
+      </P>
+      <H2>Four years of rises, and a change of season</H2>
+      <P>
+        GW announces one price rise a year. From 2022 to 2024 it landed in spring: around 5% on core plastic kits and more on books, resin and scenery in March 2022;
+        about 6% on kits, brushes and sprays in March 2023; an average of 3% to 5% from May and June 2024, with 8% to 14% in Sweden and Norway. In 2025 the pattern
+        changed: the rise was announced on 30 August and took effect on 6 October, at about 4% on the products it touched, and GW&rsquo;s half-year report to November
+        2025 later put the year&rsquo;s rises on miniatures and books at about 3.5% and named roughly US$8 million of new US tariff costs as the largest drag on its
+        margin. Nothing has been announced for 2026 as we write this. Our read is that the rise has moved to autumn for good, because an October rise sits between the
+        summer launches and the Christmas quarter, and that the next one lands in the same window in 2026 or early 2027, at a similar size unless tariffs move again.
+      </P>
+      <H2>What the stores are doing in {r.inName} today</H2>
+      {gap ? (
+        <P>
+          Across {gap.n.toLocaleString(r.locale)} products that two or more of the stores we compare list in stock with a stated RRP, the cheapest store is
+          typically <strong>{pct(gap.typical)} under RRP</strong>. {pct(gap.under)} of those products can be had under RRP somewhere, {pct(gap.deep)} at 20% off or
+          more, and the best tenth of savings run to {pct(gap.top)} or better. {stores.length ? <>The deepest typical discounter in {r.inName} today is{" "}
+          <Link href={`/${r.region}/stores/${stores[0].store}`} className="text-brand underline">{STORE_BY_KEY.get(stores[0].store)?.name ?? stores[0].store}</Link> at {pct(stores[0].typical)} off across {stores[0].compared} products; every store is ranked in{" "}
+          <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="text-brand underline">store savings vs RRP</Link>.</> : null}
+        </P>
+      ) : (
+        <P>Too few stores in {r.inName} state an RRP today for a fair measure of the discount; the <Link href={`/${r.region}/deals`} className="text-brand underline">deals page</Link> lists what is under the median of the stores we compare.</P>
+      )}
+      <P>
+        The pattern inside those numbers has held since we started comparing: a core of long-established discounters sells almost everything at a fixed percentage
+        under RRP, new releases sit at the smallest discount in their first weeks, and the deepest cuts are on last year&rsquo;s boxes, army sets and paint. Stores
+        do not race each other down. The typical discount is a store policy, not a sale, which is why it survives each GW rise intact: when the RRP goes up 4%, so
+        does the discounted price.
+      </P>
+      <H2>How {r.inName} compares</H2>
+      {others.length ? (
+        <div className="card mt-4 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-line text-left text-faint">
+                <th className="px-3 py-2">Country</th>
+                <th className="px-3 py-2 text-right">Typical saving under RRP</th>
+                <th className="px-3 py-2 text-right">Products 20%+ off</th>
+                <th className="px-3 py-2 text-right">Products compared</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[{ r, gap }, ...others].filter((x) => x.gap).map((x) => (
+                <tr key={x.r.region} className={`border-b border-line last:border-0 ${x.r.region === r.region ? "font-semibold" : ""}`}>
+                  <td className="px-3 py-2"><Link href={`/${x.r.region}/guides/warhammer-prices-where-they-are-heading`} className="hover:text-brand">{x.r.name}</Link></td>
+                  <td className="tabular px-3 py-2 text-right">{pct(x.gap!.typical)}</td>
+                  <td className="tabular px-3 py-2 text-right">{pct(x.gap!.deep)}</td>
+                  <td className="tabular px-3 py-2 text-right">{x.gap!.n.toLocaleString(r.locale)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : null}
+      <P>
+        Each country is measured in its own currency against its own RRP, so this is a comparison of discount depth, not of price. The UK and Australia have run the
+        deepest typical discounts since we began, because both have a long-established independent trade that competes on a fixed percentage off; North America has
+        more stores but a smaller typical cut, and New Zealand has too few stores stating an RRP for the measure to mean much.
+      </P>
+      <H2>The biggest savings on RRP today</H2>
+      <Grid items={biggest} r={r} />
+      <H2>Where we think it goes</H2>
+      <P>
+        Three things to expect. First, another rise of about 4%, most likely announced in late summer and landing in autumn, with weeks of notice; the stores&rsquo;
+        prices move the same day, so the only way to buy at the old price is before it. Second, the discount gap holds: nothing in four years of rises has narrowed
+        it, and tariff costs fall on GW&rsquo;s own US prices, not on what an independent store chooses to take off them. Third, the sales calendar matters more than
+        the rise. Black Friday, Boxing Day and the January sales are when the stores that normally sit at 10% off go to 20% or more, and those are a bigger swing than
+        any annual rise. The <Link href={`/${r.region}/black-friday`} className="text-brand underline">Black Friday page</Link> and{" "}
+        <Link href={`/${r.region}/deals`} className="text-brand underline">deals page</Link> show what is actually under RRP each morning, never a sale we invented.
+      </P>
+    </>
+  );
+}
+
 export default function GuidePage({ params }: { params: { region: string; slug: string } }) {
   const { r, g } = load(params);
   const all = summariesFor(r.region);
@@ -157,7 +249,7 @@ export default function GuidePage({ params }: { params: { region: string; slug: 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: "Guides", path: `/${r.region}/guides` }, { name: h1, path: `/${r.region}/guides/${g.slug}` }])) }} />
       <p className="text-xs font-bold uppercase tracking-wide text-faint"><Link href={`/${r.region}/guides`} className="hover:text-brand">Guides</Link> · {r.name}</p>
       <h1 className="mt-1 font-display text-3xl font-extrabold">{h1}</h1>
-      {g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : <Discounts r={r} all={all} />}
+      {g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : g.slug === "discount-stores-vs-rrp" ? <Discounts r={r} all={all} /> : <Trajectory r={r} all={all} />}
       <div className="mt-10">
         <EbayBox region={r.region} query={g.slug === "cheapest-way-to-start" ? "Warhammer Combat Patrol" : "Warhammer"} heading="On eBay" placement="guide-ebay" />
       </div>
