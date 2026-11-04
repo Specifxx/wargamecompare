@@ -41,6 +41,8 @@ export const PLACEMENTS = [
   "quickview-wayland", // the quick view: the Wayland Games row
   "guide-ebay", // a region guide: the eBay block
   "new-releases", // new releases and pre-orders page: the eBay block
+  "side-ebay", // the left side rail on a wide screen: popular kits on eBay
+  "side-ebay-deals", // the right side rail on a wide screen: today's deals on eBay
 ] as const;
 export type Placement = (typeof PLACEMENTS)[number];
 

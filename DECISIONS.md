@@ -682,3 +682,22 @@ disallows the feed are honoured and left out: Black Hole Gaming, Leodis, Sprues 
 Hobbies, Elemental Games, Tin Soldier, Ocean Wargames, Boardlandia, Mission Fun & Games. Games Paradise and Hobbyco
 (AU) run Shopify but their Games Workshop stock is not in any collection the probe could find. Bad Moon Cafe (UK)
 lists events and pre-orders only.
+
+## 2026-11-04 — The engine's eBay side rails, on both sides
+
+The owner (2026-11-04, moving Gundam Compare onto the Dex / MTG Compare engine): "we should have the ads, the new ad change
+that we had for that MTG Dex compare engine … make sure that we are using as much juice out of the eBay API as possible."
+Checked against the engine's ad layout, WargameCompare already had everything but the side rails: eBay pinned first and
+Amazon second in every price list and quick view (Amazon never in the quick view), the eBay strip above every first grid and
+above the footer, the eBay row beside the best price. The one gap was the two fixed rails outside the 1480px shell on a wide
+screen.
+
+Ported (`src/components/SideAds.tsx`, geometry in `src/lib/rails.ts`, tiles in `src/lib/side-rails.ts`, mounted by the region
+layout): left rail the most widely stocked kits, right rail today's deals, both eBay (Games Workshop has no TCGplayer, which
+is the engine's right rail), each tile a live Buy It Now listing the import already matched (photo and delivered price; a rail
+of bare searches is noise), never a product in both rails. Browser-only from 1864px wide, as many tiles as the window's height
+fits, nothing in the server HTML (no SEO or layout change), every link `rel="sponsored"` under its own tag (`side-ebay`,
+`side-ebay-deals`), labelled Ad, outside the store comparison and never counted as a store. No extra eBay call: the rails
+read `data/ebay.json` like the strips. One lesson pinned in `tests/side-rails.test.ts`: a value imported from a `"use client"`
+module into server code is a client reference, not the value (it emptied the rails once), so the geometry lives in a plain
+module.

@@ -2,9 +2,11 @@ import { notFound } from "next/navigation";
 import { EbayStrip } from "@/components/EbayStrip";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { SideAds } from "@/components/SideAds";
 import { SideNav } from "@/components/SideNav";
 import { summariesFor } from "@/lib/data";
 import { navGroups } from "@/lib/nav";
+import { sideRailsFor } from "@/lib/side-rails";
 import { isRegion, REGIONS } from "@/lib/regions";
 
 export default function RegionLayout({ children, params }: { children: React.ReactNode; params: { region: string } }) {
@@ -26,6 +28,8 @@ export default function RegionLayout({ children, params }: { children: React.Rea
         </main>
       </div>
       <Footer region={region} />
+      {/* The eBay side rails: browser-only, from 1864px wide, outside the shell (SideAds.tsx). */}
+      <SideAds rails={sideRailsFor(region)} />
     </>
   );
 }

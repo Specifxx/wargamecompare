@@ -50,7 +50,7 @@ export function EbayStrip({ region, items, placement, heading, max = 6 }: { regi
   );
 }
 
-interface Tile {
+export interface Tile {
   id: string;
   name: string;
   system: string;
