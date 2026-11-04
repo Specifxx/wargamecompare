@@ -49,7 +49,7 @@ export function footerColumns(r: Region): { title: string; links: FooterLink[] }
         { href: "/embed", label: "Free price widgets" },
         { href: "/forum", label: "Community forum (beta)" },
         { href: "/contact", label: "Contact and store listings" },
-        { href: "/uk/stores#suggest", label: "Suggest a store" },
+        { href: "/list-your-store", label: "List your store" },
         { href: "/how-we-pick-stores", label: "How we pick stores" },
       ],
     },
