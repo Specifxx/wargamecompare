@@ -1,0 +1,2291 @@
+[
+ {
+  "region": "AUSTRALIA",
+  "host": "aetherworks.com.au",
+  "name": "Aetherworks (Sydney)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "area52.com.au",
+  "name": "Area 52 (Sydney)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "elementalgames.com.au",
+  "name": "Elemental Games",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "emeraldhobbies.com.au",
+  "name": "Emerald Hobbies (Emerald, QLD)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "frontlinehobbies.com.au",
+  "name": "Frontline Hobbies (Newcastle NSW)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "gamesmen.com.au",
+  "name": "The Gamesmen (Sydney)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "gamesparadise.com.au",
+  "name": "Games Paradise (Sydney)",
+  "platform": "shopify",
+  "currency": "AUD",
+  "market": "AU",
+  "collections": [],
+  "whole": {
+   "listings": 250,
+   "gw": 18
+  }
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "hobbyco.com.au",
+  "name": "Hobbyco (Sydney QVB)",
+  "platform": "shopify",
+  "currency": "AUD",
+  "market": "AU",
+  "collections": [
+   {
+    "handle": "games-workshop",
+    "title": "Games Workshop",
+    "listings": 0,
+    "gw": 0
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 0
+  }
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "hobbytechtoys.com.au",
+  "name": "Hobbytech Toys (Perth)",
+  "platform": "shopify",
+  "currency": "AUD",
+  "market": "AU",
+  "collections": [
+   {
+    "handle": "games-workshop",
+    "title": "Games Workshop",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "games-workshop-all",
+    "title": "Games Workshop (all)",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "best-sellers-warhammer",
+    "title": "Best Sellers - Warhammer",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "citadel-paints",
+    "title": "Citadel Model Paints",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "citadel",
+    "title": "Citadel Paints",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "black-library",
+    "title": "Black Library Books",
+    "listings": 212,
+    "gw": 209
+   },
+   {
+    "handle": "grand-alliance-of-chaos",
+    "title": "Age Of Sigmar Grand Alliance Of Chaos Miniatures",
+    "listings": 158,
+    "gw": 158
+   },
+   {
+    "handle": "citadel-layer-paints",
+    "title": "Citadel Layer Paints",
+    "listings": 154,
+    "gw": 154
+   },
+   {
+    "handle": "grand-alliance-of-order",
+    "title": "Age Of Sigmar Grand Alliance Of Order Miniatures",
+    "listings": 160,
+    "gw": 160
+   },
+   {
+    "handle": "citadel-layer",
+    "title": "Citadel Layer Paint",
+    "listings": 149,
+    "gw": 149
+   },
+   {
+    "handle": "grand-alliance-of-death",
+    "title": "Age Of Sigmar Grand Alliance Of Death Miniatures",
+    "listings": 89,
+    "gw": 89
+   },
+   {
+    "handle": "citadel-base-paints",
+    "title": "Citadel Base Paints",
+    "listings": 80,
+    "gw": 80
+   },
+   {
+    "handle": "grand-alliance-of-destruction",
+    "title": "Age Of Sigmar Grand Alliance Of Destruction Miniatures",
+    "listings": 75,
+    "gw": 75
+   },
+   {
+    "handle": "citadel-air",
+    "title": "Citadel Air Paint",
+    "listings": 55,
+    "gw": 55
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 0
+  },
+  "suggested": {
+   "key": "hobbytechtoys",
+   "name": "Hobbytech Toys (Perth)",
+   "base": "https://hobbytechtoys.com.au",
+   "market": "AU",
+   "country": "AU",
+   "collections": [
+    "citadel-paints",
+    "citadel",
+    "games-workshop",
+    "games-workshop-all",
+    "best-sellers-warhammer",
+    "black-library"
+   ]
+  }
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "m-g.com.au",
+  "name": "Mind Games (Australia, national chain)",
+  "platform": "woocommerce",
+  "currency": "AUD",
+  "whole": {
+   "listings": 24,
+   "gw": 24
+  }
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "mightyape.com.au",
+  "name": "Mighty Ape (AU)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "milsims.com.au",
+  "name": "Milsims Games (Melbourne)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "mindgames.com.au",
+  "name": "Mind Games (old domain)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "tinsoldier.com.au",
+  "name": "Tin Soldier (Sydney)",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "warandpeacegames.com.au",
+  "name": "War and Peace Games (Sydney; also the AU/NZ distributor for Wargames Atlantic)",
+  "platform": "shopify",
+  "currency": "AUD",
+  "market": "AU",
+  "collections": [
+   {
+    "handle": "games-workshop-1",
+    "title": "Warhammer",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "warhammer-colour",
+    "title": "Warhammer Colour",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "tone-pro-warhammer-colour",
+    "title": "Tone Pro (Warhammer Colour)",
+    "listings": 152,
+    "gw": 152
+   },
+   {
+    "handle": "wargame-rule-books",
+    "title": "Wargame Rule Books",
+    "listings": 111,
+    "gw": 49
+   },
+   {
+    "handle": "wargames-atlantic",
+    "title": "Wargames Atlantic",
+    "listings": 100,
+    "gw": 90
+   },
+   {
+    "handle": "layer-paints-warhammer-colour",
+    "title": "Layer Paints (Warhammer Colour)",
+    "listings": 93,
+    "gw": 93
+   },
+   {
+    "handle": "contrast-paints-warhammer-colour",
+    "title": "Contrast Paints (Warhammer Colour)",
+    "listings": 61,
+    "gw": 61
+   },
+   {
+    "handle": "base-paints-warhammer-colour",
+    "title": "Base Paints (Warhammer Colour)",
+    "listings": 57,
+    "gw": 57
+   },
+   {
+    "handle": "ancients-to-colonial-ranges-wargames-atlantic",
+    "title": "Ancients to Colonial Ranges (Wargames Atlantic)",
+    "listings": 34,
+    "gw": 33
+   },
+   {
+    "handle": "the-barons-war-wargames-atlantic",
+    "title": "The Barons' War (Wargames Atlantic)",
+    "listings": 31,
+    "gw": 31
+   },
+   {
+    "handle": "sci-fi-ranges-wargames-atlantic",
+    "title": "Sci Fi Ranges (Wargames Atlantic)",
+    "listings": 27,
+    "gw": 27
+   },
+   {
+    "handle": "warhammer-tools-modelling-supplies",
+    "title": "Warhammer Tools & Modelling Supplies",
+    "listings": 25,
+    "gw": 25
+   },
+   {
+    "handle": "dry-paints-warhammer-colour",
+    "title": "Dry Paints (Warhammer Colour)",
+    "listings": 23,
+    "gw": 23
+   },
+   {
+    "handle": "technical-paints-warhammer-colour",
+    "title": "Technical Paints (Warhammer Colour)",
+    "listings": 21,
+    "gw": 21
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 174
+  },
+  "suggested": {
+   "key": "warandpeacegames",
+   "name": "War and Peace Games (Sydney; also the AU/NZ distributor for Wargames Atlantic)",
+   "base": "https://warandpeacegames.com.au",
+   "market": "AU",
+   "country": "AU",
+   "collections": [
+    "games-workshop-1",
+    "warhammer-colour",
+    "tone-pro-warhammer-colour",
+    "layer-paints-warhammer-colour",
+    "wargames-atlantic",
+    "contrast-paints-warhammer-colour"
+   ]
+  }
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "warforless.com.au",
+  "name": "War for Less",
+  "platform": "other"
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "wargamershub.com.au",
+  "name": "WarGamers Hub",
+  "platform": "shopify",
+  "currency": "AUD",
+  "market": "AU",
+  "collections": [
+   {
+    "handle": "warhammer-40k",
+    "title": "Warhammer 40,000",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "age-of-sigmar",
+    "title": "Age of Sigmar",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "black-library",
+    "title": "Black Library",
+    "listings": 250,
+    "gw": 247
+   },
+   {
+    "handle": "citadel",
+    "title": "Citadel",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "kill-team",
+    "title": "Kill Team",
+    "listings": 47,
+    "gw": 47
+   },
+   {
+    "handle": "warhammer-tone-pro-paints",
+    "title": "Warhammer Tone Pro Paints",
+    "listings": 152,
+    "gw": 152
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer - The Old World",
+    "listings": 121,
+    "gw": 120
+   },
+   {
+    "handle": "horus-heresy",
+    "title": "Horus Heresy",
+    "listings": 116,
+    "gw": 116
+   },
+   {
+    "handle": "necromunda",
+    "title": "Necromunda",
+    "listings": 142,
+    "gw": 142
+   },
+   {
+    "handle": "blood-bowl",
+    "title": "Blood Bowl",
+    "listings": 47,
+    "gw": 46
+   },
+   {
+    "handle": "cities-of-sigmar",
+    "title": "Cities of Sigmar",
+    "listings": 28,
+    "gw": 28
+   },
+   {
+    "handle": "warhammer-40-000-terrain",
+    "title": "Warhammer 40,000 Terrain",
+    "listings": 11,
+    "gw": 11
+   },
+   {
+    "handle": "glue-for-wargaming-miniatures-terrain",
+    "title": "Glue for Wargaming Miniatures & Terrain",
+    "listings": 9,
+    "gw": 8
+   },
+   {
+    "handle": "age-of-sigmar-army-boxes",
+    "title": "Age of Sigmar - Army Boxes",
+    "listings": 6,
+    "gw": 6
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 185
+  },
+  "suggested": {
+   "key": "wargamershub",
+   "name": "WarGamers Hub",
+   "base": "https://wargamershub.com.au",
+   "market": "AU",
+   "country": "AU",
+   "collections": [
+    "warhammer-40k",
+    "age-of-sigmar",
+    "citadel",
+    "black-library",
+    "warhammer-tone-pro-paints",
+    "necromunda"
+   ]
+  }
+ },
+ {
+  "region": "AUSTRALIA",
+  "host": "westcoastgames.com.au",
+  "name": "West Coast Games",
+  "platform": "shopify",
+  "currency": "AUD",
+  "market": "AU",
+  "collections": [
+   {
+    "handle": "games-workshop",
+    "title": "Games Workshop",
+    "listings": 44,
+    "gw": 18
+   },
+   {
+    "handle": "warhammer-40-000",
+    "title": "Warhammer 40,000",
+    "listings": 22,
+    "gw": 9
+   },
+   {
+    "handle": "warhammer-age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 10,
+    "gw": 6
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer The Old World",
+    "listings": 8,
+    "gw": 2
+   },
+   {
+    "handle": "other-games-workshop",
+    "title": "Other Games Workshop",
+    "listings": 4,
+    "gw": 1
+   },
+   {
+    "handle": "horus-heresy",
+    "title": "Horus Heresy",
+    "listings": 2,
+    "gw": 2
+   },
+   {
+    "handle": "cities-of-sigmar",
+    "title": "Cities of Sigmar",
+    "listings": 0,
+    "gw": 0
+   },
+   {
+    "handle": "kill-team",
+    "title": "Kill Team",
+    "listings": 0,
+    "gw": 0
+   },
+   {
+    "handle": "necromunda",
+    "title": "Necromunda",
+    "listings": 0,
+    "gw": 0
+   },
+   {
+    "handle": "warcry",
+    "title": "Warcry",
+    "listings": 0,
+    "gw": 0
+   },
+   {
+    "handle": "warhammer-underworlds",
+    "title": "Warhammer Underworlds",
+    "listings": 0,
+    "gw": 0
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 72
+  },
+  "suggested": {
+   "key": "westcoastgames",
+   "name": "West Coast Games",
+   "base": "https://westcoastgames.com.au",
+   "market": "AU",
+   "country": "AU",
+   "collections": [
+    "warhammer-age-of-sigmar"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "battlereadygames.ca",
+  "name": "Battle Ready Games",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [
+   {
+    "handle": "warhammer-40000",
+    "title": "Warhammer 40000",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "armies-of-the-imperium",
+    "title": "Warhammer 40k - Armies of the Imperium",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "warhammer-citadel",
+    "title": "Warhammer Colour",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "xenos-armies",
+    "title": "Warhammer 40k - Xenos Armies",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "warhammer-age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 50,
+    "gw": 50
+   },
+   {
+    "handle": "space-marines",
+    "title": "Warhammer 40k - Space Marines",
+    "listings": 156,
+    "gw": 156
+   },
+   {
+    "handle": "armies-of-chaos",
+    "title": "Warhammer 40k - Armies of Chaos",
+    "listings": 137,
+    "gw": 137
+   },
+   {
+    "handle": "warhammer-tone-pro",
+    "title": "WARHAMMER TONE PRO",
+    "listings": 152,
+    "gw": 152
+   },
+   {
+    "handle": "warhammer-the-horus-heresy",
+    "title": "Warhammer The Horus Heresy",
+    "listings": 25,
+    "gw": 25
+   },
+   {
+    "handle": "black-library",
+    "title": "Black Library",
+    "listings": 14,
+    "gw": 13
+   },
+   {
+    "handle": "kill-team",
+    "title": "Warhammer 40k - Kill Team",
+    "listings": 29,
+    "gw": 29
+   },
+   {
+    "handle": "combat-patrol",
+    "title": "Warhammer 40k - Combat Patrol",
+    "listings": 22,
+    "gw": 22
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer The Old World",
+    "listings": 4,
+    "gw": 4
+   },
+   {
+    "handle": "warhammer-aos-box-sets",
+    "title": "Warhammer AOS box sets",
+    "listings": 2,
+    "gw": 2
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 241
+  },
+  "suggested": {
+   "key": "battlereadygames",
+   "name": "Battle Ready Games",
+   "base": "https://battlereadygames.ca",
+   "market": "CA",
+   "country": "CA",
+   "collections": [
+    "warhammer-40000",
+    "warhammer-citadel",
+    "xenos-armies",
+    "armies-of-the-imperium",
+    "space-marines",
+    "warhammer-tone-pro"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "doublestarhobby.com",
+  "name": "Double Star Games and Hobbies (Toronto)",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [
+   {
+    "handle": "warhammer-40k",
+    "title": "Warhammer 40K",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "warhammer-age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "joytoy-warhammer-40k-action-figures",
+    "title": "JoyToy Warhammer 40K Action Figures",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "black-library",
+    "title": "Black Library",
+    "listings": 198,
+    "gw": 196
+   },
+   {
+    "handle": "warhammer-40k-space-wolves",
+    "title": "Warhammer 40K: Space Wolves",
+    "listings": 103,
+    "gw": 103
+   },
+   {
+    "handle": "warhammer-40k-blood-angels",
+    "title": "Warhammer 40K: Blood Angels",
+    "listings": 95,
+    "gw": 95
+   },
+   {
+    "handle": "warhammer-40k-dark-angels",
+    "title": "Warhammer 40K: Dark Angels",
+    "listings": 96,
+    "gw": 96
+   },
+   {
+    "handle": "kill-team",
+    "title": "Warhammer 40,000 Kill Team",
+    "listings": 51,
+    "gw": 51
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer: The Old World",
+    "listings": 137,
+    "gw": 135
+   },
+   {
+    "handle": "the-horus-heresy",
+    "title": "The Horus Heresy",
+    "listings": 128,
+    "gw": 128
+   },
+   {
+    "handle": "warhammer-40k-black-templars",
+    "title": "Warhammer 40K: Black Templars",
+    "listings": 92,
+    "gw": 92
+   },
+   {
+    "handle": "warhammer-40k-ultramarines",
+    "title": "Warhammer 40K: Ultramarines",
+    "listings": 88,
+    "gw": 88
+   },
+   {
+    "handle": "warhammer-40k-deathwatch",
+    "title": "Warhammer 40K: Deathwatch",
+    "listings": 85,
+    "gw": 85
+   },
+   {
+    "handle": "warhammer-40k-imperial-fists",
+    "title": "Warhammer 40K: Imperial Fists",
+    "listings": 83,
+    "gw": 83
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 119
+  },
+  "suggested": {
+   "key": "doublestarhobby",
+   "name": "Double Star Games and Hobbies (Toronto)",
+   "base": "https://doublestarhobby.com",
+   "market": "CA",
+   "country": "CA",
+   "collections": [
+    "warhammer-40k",
+    "joytoy-warhammer-40k-action-figures",
+    "warhammer-age-of-sigmar",
+    "black-library",
+    "warhammer-the-old-world",
+    "the-horus-heresy"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "ergames.ca",
+  "name": "Eastridge Games (Calgary)",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [],
+  "whole": {
+   "listings": 250,
+   "gw": 0
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "imperialhobbies.ca",
+  "name": "Imperial Hobbies (Richmond, BC)",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [
+   {
+    "handle": "games-workshop",
+    "title": "Games Workshop",
+    "listings": 250,
+    "gw": 247
+   },
+   {
+    "handle": "warhammer-40-000-killteam",
+    "title": "Warhammer 40,000 & Killteam",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "age-of-sigmar-warcry",
+    "title": "Age of Sigmar & Warcry",
+    "listings": 188,
+    "gw": 188
+   },
+   {
+    "handle": "warhammer-30-000",
+    "title": "The Horus Heresy",
+    "listings": 96,
+    "gw": 95
+   },
+   {
+    "handle": "necromunda-and-underworlds",
+    "title": "Necromunda and Underworlds",
+    "listings": 68,
+    "gw": 68
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer: The Old World",
+    "listings": 52,
+    "gw": 51
+   },
+   {
+    "handle": "citadel-paint",
+    "title": "Citadel Paint",
+    "listings": 17,
+    "gw": 17
+   },
+   {
+    "handle": "middle-earth-strategy-battle-game",
+    "title": "Middle Earth: Strategy Battle Game",
+    "listings": 16,
+    "gw": 16
+   },
+   {
+    "handle": "osprey-tabletop-wargaming",
+    "title": "Osprey Tabletop Wargaming",
+    "listings": 0,
+    "gw": 0
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 11
+  },
+  "suggested": {
+   "key": "imperialhobbies",
+   "name": "Imperial Hobbies (Richmond, BC)",
+   "base": "https://imperialhobbies.ca",
+   "market": "CA",
+   "country": "CA",
+   "collections": [
+    "warhammer-40-000-killteam",
+    "games-workshop",
+    "age-of-sigmar-warcry",
+    "warhammer-30-000",
+    "necromunda-and-underworlds",
+    "warhammer-the-old-world"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "jrtoycanada.ca",
+  "name": "JR Toy Company",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [
+   {
+    "handle": "games-workshop",
+    "title": "Games Workshop",
+    "listings": 250,
+    "gw": 248
+   },
+   {
+    "handle": "warhammer-40-000",
+    "title": "Warhammer 40,000",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "warhammer-the-horus-heresy",
+    "title": "Warhammer: The Horus Heresy",
+    "listings": 105,
+    "gw": 104
+   },
+   {
+    "handle": "warhammer-age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 75,
+    "gw": 74
+   },
+   {
+    "handle": "citadel-colour",
+    "title": "Citadel Colour",
+    "listings": 67,
+    "gw": 67
+   },
+   {
+    "handle": "citadel-paints-hobby-supplies",
+    "title": "Citadel Paints & Hobby Supplies",
+    "listings": 67,
+    "gw": 67
+   },
+   {
+    "handle": "warhammer-40-000-kill-team",
+    "title": "Warhammer 40,000 Kill Team",
+    "listings": 16,
+    "gw": 16
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer: The Old World",
+    "listings": 24,
+    "gw": 24
+   },
+   {
+    "handle": "warhammer-the-old-world-1",
+    "title": "Warhammer: The Old World",
+    "listings": 23,
+    "gw": 23
+   },
+   {
+    "handle": "middle-earth-strategy-battle-game",
+    "title": "Middle-earth Strategy Battle Game",
+    "listings": 33,
+    "gw": 33
+   },
+   {
+    "handle": "warhammer-40-000-aeldari",
+    "title": "Aeldari",
+    "listings": 12,
+    "gw": 12
+   },
+   {
+    "handle": "warhammer-40-000-blood-angels",
+    "title": "Blood Angels",
+    "listings": 4,
+    "gw": 4
+   },
+   {
+    "handle": "warhammer-40-000-space-wolves",
+    "title": "Warhammer 40,000: Space Wolves",
+    "listings": 6,
+    "gw": 6
+   },
+   {
+    "handle": "cities-of-sigmar",
+    "title": "Cities of Sigmar",
+    "listings": 4,
+    "gw": 4
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 18
+  },
+  "suggested": {
+   "key": "jrtoycanada",
+   "name": "JR Toy Company",
+   "base": "https://jrtoycanada.ca",
+   "market": "CA",
+   "country": "CA",
+   "collections": [
+    "warhammer-40-000",
+    "games-workshop",
+    "warhammer-the-horus-heresy",
+    "warhammer-age-of-sigmar",
+    "citadel-colour",
+    "citadel-paints-hobby-supplies"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "kingdomtitans.ca",
+  "name": "Kingdom of the Titans (Saguenay, QC)",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [
+   {
+    "handle": "games-workshop",
+    "title": "Games Workshop",
+    "listings": 250,
+    "gw": 217
+   },
+   {
+    "handle": "home-games-workshop-in-stock",
+    "title": "Home - Games workshop in stock",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "warhammer-40k",
+    "title": "Warhammer 40k",
+    "listings": 250,
+    "gw": 227
+   },
+   {
+    "handle": "other-wargames",
+    "title": "Other Wargames",
+    "listings": 250,
+    "gw": 222
+   },
+   {
+    "handle": "age-of-sigmar",
+    "title": "Age of Sigmar",
+    "listings": 250,
+    "gw": 224
+   },
+   {
+    "handle": "wargames",
+    "title": "Wargames",
+    "listings": 250,
+    "gw": 62
+   },
+   {
+    "handle": "citadel",
+    "title": "Citadel",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "citadel-paints",
+    "title": "Citadel paints",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "wargaming-bases",
+    "title": "Wargaming Bases",
+    "listings": 250,
+    "gw": 235
+   },
+   {
+    "handle": "the-old-world",
+    "title": "The Old World",
+    "listings": 250,
+    "gw": 241
+   },
+   {
+    "handle": "warhammer-joytoy-figurines",
+    "title": "Warhammer Joytoy Figurines",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "the-horus-heresy",
+    "title": "The Horus Heresy",
+    "listings": 250,
+    "gw": 236
+   },
+   {
+    "handle": "black-library",
+    "title": "Black Library",
+    "listings": 250,
+    "gw": 235
+   },
+   {
+    "handle": "middle-earth",
+    "title": "Middle-Earth",
+    "listings": 249,
+    "gw": 249
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 0
+  },
+  "suggested": {
+   "key": "kingdomtitans",
+   "name": "Kingdom of the Titans (Saguenay, QC)",
+   "base": "https://kingdomtitans.ca",
+   "market": "CA",
+   "country": "CA",
+   "collections": [
+    "citadel-paints",
+    "warhammer-joytoy-figurines",
+    "home-games-workshop-in-stock",
+    "citadel",
+    "middle-earth",
+    "the-old-world"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "mapleairbrushsupplies.com",
+  "name": "Maple Airbrush Supplies",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [
+   {
+    "handle": "citadel-colors-paint",
+    "title": "Games Worksop Citadel Paints",
+    "listings": 219,
+    "gw": 219
+   },
+   {
+    "handle": "warhammer-citadel-tone-pro-acrylic-paint",
+    "title": "Warhammer Citadel Tone Pro Acrylic Paint",
+    "listings": 152,
+    "gw": 152
+   },
+   {
+    "handle": "citadel-layer-paints",
+    "title": "Citadel Layer Paints",
+    "listings": 90,
+    "gw": 90
+   },
+   {
+    "handle": "games-workshop-40k",
+    "title": "Warhammer 40K Miniatures Kits",
+    "listings": 47,
+    "gw": 47
+   },
+   {
+    "handle": "citadel-contrast-paint",
+    "title": "Games Workshop Citadel Contrast Paint",
+    "listings": 61,
+    "gw": 61
+   },
+   {
+    "handle": "citadel-base-paints",
+    "title": "Citadel Base Paints by Games Workshop",
+    "listings": 57,
+    "gw": 57
+   },
+   {
+    "handle": "citadel-air-paints",
+    "title": "Games Workshop Citadel Air Paints for Airbrushing",
+    "listings": 47,
+    "gw": 47
+   },
+   {
+    "handle": "citadel-brushes-tools",
+    "title": "Citadel Brushes",
+    "listings": 16,
+    "gw": 0
+   },
+   {
+    "handle": "ak-interactive-wargame-enamel-liquid-pigments",
+    "title": "AK Interactive Wargame Enamel Liquid Pigments",
+    "listings": 18,
+    "gw": 18
+   },
+   {
+    "handle": "horus-heresy-age-of-darkness",
+    "title": "Horus Heresy Age of Darkness",
+    "listings": 18,
+    "gw": 18
+   },
+   {
+    "handle": "citadel-colours-dry-paints",
+    "title": "Citadel Dry Paints",
+    "listings": 24,
+    "gw": 24
+   },
+   {
+    "handle": "citadel-colours-technical",
+    "title": "Citadel Colours Technical",
+    "listings": 21,
+    "gw": 21
+   },
+   {
+    "handle": "citadel-shade-paints",
+    "title": "Games Workshop Citadel Shade Paints",
+    "listings": 19,
+    "gw": 19
+   },
+   {
+    "handle": "games-workshop-tools-accessories",
+    "title": "Games Workshop Tools & Accessories",
+    "listings": 9,
+    "gw": 5
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 153
+  },
+  "suggested": {
+   "key": "mapleairbrushsupplies",
+   "name": "Maple Airbrush Supplies",
+   "base": "https://mapleairbrushsupplies.com",
+   "market": "CA",
+   "country": "CA",
+   "collections": [
+    "citadel-colors-paint",
+    "warhammer-citadel-tone-pro-acrylic-paint",
+    "citadel-layer-paints",
+    "citadel-contrast-paint",
+    "citadel-base-paints",
+    "games-workshop-40k"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "miniwargaming.com",
+  "name": "MiniWarGaming (Ontario)",
+  "platform": "other"
+ },
+ {
+  "region": "CANADA",
+  "host": "missionfunandgames.com",
+  "name": "Mission Fun and Games (St Albert, AB)",
+  "platform": "other"
+ },
+ {
+  "region": "CANADA",
+  "host": "sentrybox.ca",
+  "name": "The Sentry Box (Calgary)",
+  "platform": "other"
+ },
+ {
+  "region": "CANADA",
+  "host": "shop.fenrisworkshop.com",
+  "name": "Fenris Workshop (Quebec City)",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [
+   {
+    "handle": "all-games-workshop-citadel-black-library",
+    "title": "Games Workshop",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "warhammer-40k",
+    "title": "Warhammer 40,000",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "black-library",
+    "title": "Black Library",
+    "listings": 162,
+    "gw": 161
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer: The Old World",
+    "listings": 250,
+    "gw": 248
+   },
+   {
+    "handle": "warhammer-horus-heresy",
+    "title": "The Horus Heresy",
+    "listings": 227,
+    "gw": 209
+   },
+   {
+    "handle": "middle-earth",
+    "title": "Middle-earth Strategy Battle Game",
+    "listings": 250,
+    "gw": 242
+   },
+   {
+    "handle": "all-necromunda",
+    "title": "Necromunda",
+    "listings": 165,
+    "gw": 162
+   },
+   {
+    "handle": "the-horus-heresy-legions-imperialis",
+    "title": "Legions Imperialis",
+    "listings": 117,
+    "gw": 111
+   },
+   {
+    "handle": "blood-bowl",
+    "title": "Blood Bowl",
+    "listings": 94,
+    "gw": 83
+   },
+   {
+    "handle": "warhammer-underworlds",
+    "title": "Warhammer Underworlds",
+    "listings": 79,
+    "gw": 57
+   },
+   {
+    "handle": "warhammer-40-000-kill-team",
+    "title": "Kill Team",
+    "listings": 72,
+    "gw": 58
+   },
+   {
+    "handle": "age-of-sigmar-warcry",
+    "title": "Warcry",
+    "listings": 34,
+    "gw": 30
+   },
+   {
+    "handle": "warhammer-quest",
+    "title": "Warhammer Quest",
+    "listings": 9,
+    "gw": 7
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 39
+  },
+  "suggested": {
+   "key": "fenrisworkshop",
+   "name": "Fenris Workshop (Quebec City)",
+   "base": "https://shop.fenrisworkshop.com",
+   "market": "CA",
+   "country": "CA",
+   "collections": [
+    "all-games-workshop-citadel-black-library",
+    "warhammer-40k",
+    "age-of-sigmar",
+    "warhammer-the-old-world",
+    "middle-earth",
+    "warhammer-horus-heresy"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "tabletoprenaissance.ca",
+  "name": "Tabletop Renaissance",
+  "platform": "shopify",
+  "currency": "CAD",
+  "market": "CA",
+  "collections": [
+   {
+    "handle": "games-workshop",
+    "title": "Games Workshop",
+    "listings": 250,
+    "gw": 234
+   },
+   {
+    "handle": "citadel-colour",
+    "title": "Citadel Colour",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "black-library-publications",
+    "title": "Black Library Publications",
+    "listings": 139,
+    "gw": 131
+   },
+   {
+    "handle": "warhammer-40k",
+    "title": "Warhammer 40000",
+    "listings": 171,
+    "gw": 162
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer: The Old World",
+    "listings": 98,
+    "gw": 98
+   },
+   {
+    "handle": "age-of-sigmar",
+    "title": "Age of Sigmar",
+    "listings": 71,
+    "gw": 58
+   },
+   {
+    "handle": "warhammer-underworld",
+    "title": "Warhammer Underworlds",
+    "listings": 30,
+    "gw": 30
+   },
+   {
+    "handle": "cities-of-sigmar",
+    "title": "Cities of Sigmar",
+    "listings": 29,
+    "gw": 28
+   },
+   {
+    "handle": "games-workshop-preorders",
+    "title": "Games Workshop Preorders",
+    "listings": 4,
+    "gw": 4
+   },
+   {
+    "handle": "age-of-sigmar-soulbound-rpg",
+    "title": "Age of Sigmar: Soulbound RPG",
+    "listings": 2,
+    "gw": 0
+   },
+   {
+    "handle": "blood-bowl",
+    "title": "Blood Bowl",
+    "listings": 0,
+    "gw": 0
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 127
+  },
+  "suggested": {
+   "key": "tabletoprenaissance",
+   "name": "Tabletop Renaissance",
+   "base": "https://tabletoprenaissance.ca",
+   "market": "CA",
+   "country": "CA",
+   "collections": [
+    "citadel-colour",
+    "games-workshop",
+    "warhammer-40k",
+    "black-library-publications",
+    "warhammer-the-old-world",
+    "age-of-sigmar"
+   ]
+  }
+ },
+ {
+  "region": "CANADA",
+  "host": "wheelswingshobbies.com",
+  "name": "Wheels & Wings Hobbies (Toronto)",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "cerberusgames.co.nz",
+  "name": "Cerberus Games (Auckland)",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "cgstore.co.nz",
+  "name": "Cerberus Games (Auckland)",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "diceandslice.co.nz",
+  "name": "Dice and Slice (Auckland)",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "gamecorner.co.nz",
+  "name": "Game Corner",
+  "platform": "shopify",
+  "currency": "NZD",
+  "market": "NZ",
+  "collections": [
+   {
+    "handle": "warhammer",
+    "title": "Warhammer",
+    "listings": 78,
+    "gw": 78
+   },
+   {
+    "handle": "warhammer-40k",
+    "title": "Warhammer 40K",
+    "listings": 54,
+    "gw": 54
+   },
+   {
+    "handle": "warhammer-age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 19,
+    "gw": 19
+   },
+   {
+    "handle": "citadel-paint",
+    "title": "Citadel",
+    "listings": 10,
+    "gw": 10
+   },
+   {
+    "handle": "warhammer-40k-kill-team",
+    "title": "Warhammer 40K Kill Team",
+    "listings": 5,
+    "gw": 5
+   },
+   {
+    "handle": "warhammer-battleforce",
+    "title": "Warhammer Battleforce",
+    "listings": 8,
+    "gw": 8
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 61
+  },
+  "suggested": {
+   "key": "gamecorner",
+   "name": "Game Corner",
+   "base": "https://gamecorner.co.nz",
+   "market": "NZ",
+   "country": "NZ",
+   "collections": [
+    "warhammer",
+    "warhammer-40k",
+    "warhammer-age-of-sigmar",
+    "citadel-paint",
+    "warhammer-battleforce",
+    "warhammer-40k-kill-team"
+   ]
+  }
+ },
+ {
+  "region": "NEW",
+  "host": "hobbycity.nz",
+  "name": "Hobby City (Auckland)",
+  "platform": "shopify",
+  "currency": "NZD",
+  "market": "NZ",
+  "collections": [
+   {
+    "handle": "citadel",
+    "title": "Citadel",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "citadel-paints",
+    "title": "Citadel Paints",
+    "listings": 246,
+    "gw": 246
+   },
+   {
+    "handle": "black-friday-wargaming-deals",
+    "title": "Black Friday Wargaming Deals",
+    "listings": 0,
+    "gw": 0
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 115
+  },
+  "suggested": {
+   "key": "hobbycity",
+   "name": "Hobby City (Auckland)",
+   "base": "https://hobbycity.nz",
+   "market": "NZ",
+   "country": "NZ",
+   "collections": [
+    "citadel",
+    "citadel-paints"
+   ]
+  }
+ },
+ {
+  "region": "NEW",
+  "host": "hobbymaster.co.nz",
+  "name": "Hobby Master (Auckland)",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "kapitihobbies.com",
+  "name": "Kapiti Hobbies (Wellington)",
+  "platform": "shopify",
+  "currency": "NZD",
+  "market": "NZ",
+  "collections": [
+   {
+    "handle": "warhammer-40k",
+    "title": "Warhammer 40K",
+    "listings": 250,
+    "gw": 247
+   },
+   {
+    "handle": "warhammer-age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "citadel",
+    "title": "Citadel",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "black-library",
+    "title": "Black Library",
+    "listings": 250,
+    "gw": 247
+   },
+   {
+    "handle": "middle-earth-sbg",
+    "title": "Middle-Earth SBG",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer The Old World",
+    "listings": 250,
+    "gw": 248
+   },
+   {
+    "handle": "gw-sale-items",
+    "title": "GW SALE ITEMS!",
+    "listings": 110,
+    "gw": 110
+   },
+   {
+    "handle": "necromunda",
+    "title": "Necromunda",
+    "listings": 117,
+    "gw": 115
+   },
+   {
+    "handle": "horus-heresy",
+    "title": "Horus Heresy",
+    "listings": 169,
+    "gw": 169
+   },
+   {
+    "handle": "kill-team",
+    "title": "Kill Team",
+    "listings": 80,
+    "gw": 80
+   },
+   {
+    "handle": "warhammer-colour",
+    "title": "Warhammer Colour",
+    "listings": 165,
+    "gw": 165
+   },
+   {
+    "handle": "blood-bowl",
+    "title": "Blood Bowl",
+    "listings": 58,
+    "gw": 53
+   },
+   {
+    "handle": "warhammer-collectibles",
+    "title": "Warhammer Collectibles",
+    "listings": 118,
+    "gw": 0
+   },
+   {
+    "handle": "warcry",
+    "title": "Warcry",
+    "listings": 11,
+    "gw": 11
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 226
+  },
+  "suggested": {
+   "key": "kapitihobbies",
+   "name": "Kapiti Hobbies (Wellington)",
+   "base": "https://kapitihobbies.com",
+   "market": "NZ",
+   "country": "NZ",
+   "collections": [
+    "citadel",
+    "middle-earth-sbg",
+    "warhammer-age-of-sigmar",
+    "warhammer-the-old-world",
+    "warhammer-40k",
+    "black-library"
+   ]
+  }
+ },
+ {
+  "region": "NEW",
+  "host": "mightyape.co.nz",
+  "name": "Mighty Ape (NZ)",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "minikiwilandshop.co.nz",
+  "name": "Mini Kiwiland Shop",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "oceanwargames.co.nz",
+  "name": "Ocean Wargames",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "southernlakestcg.co.nz",
+  "name": "Southern Lakes TCG",
+  "platform": "other"
+ },
+ {
+  "region": "NEW",
+  "host": "thehobbycollective.co.nz",
+  "name": "The Hobby Collective",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "4tk.co.uk",
+  "name": "4tk Gaming (Colchester)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "afistfulofdice.co.uk",
+  "name": "A Fistful of Dice (South East)",
+  "platform": "shopify",
+  "currency": "GBP",
+  "market": "UK",
+  "collections": [
+   {
+    "handle": "all-games-workshop",
+    "title": "Games Workshop",
+    "listings": 250,
+    "gw": 249
+   },
+   {
+    "handle": "age-of-sigmar",
+    "title": "Games Workshop: Age of Sigmar",
+    "listings": 250,
+    "gw": 243
+   },
+   {
+    "handle": "citadel-colour",
+    "title": "Citadel Colour",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "games-workshop-space-marines",
+    "title": "Warhammer 40,000: Space Marines",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "games-workshop-horus-heresy",
+    "title": "Games Workshop: Horus Heresy",
+    "listings": 180,
+    "gw": 179
+   },
+   {
+    "handle": "age-of-sigmar-grand-alliance-order",
+    "title": "Age of Sigmar: Grand Alliance Order",
+    "listings": 138,
+    "gw": 138
+   },
+   {
+    "handle": "age-of-sigmar-grand-alliance-chaos",
+    "title": "Age of Sigmar: Grand Alliance Chaos",
+    "listings": 142,
+    "gw": 142
+   },
+   {
+    "handle": "warhammer-pro-paints",
+    "title": "Warhammer Pro Paints",
+    "listings": 152,
+    "gw": 152
+   },
+   {
+    "handle": "the-old-world",
+    "title": "The Old World",
+    "listings": 118,
+    "gw": 117
+   },
+   {
+    "handle": "games-workshop-necromunda",
+    "title": "Games Workshop: Necromunda",
+    "listings": 122,
+    "gw": 122
+   },
+   {
+    "handle": "games-workshop-warhammer-40-0000-chaos-space-marines",
+    "title": "Warhammer 40,000: Chaos Space Marines",
+    "listings": 110,
+    "gw": 110
+   },
+   {
+    "handle": "age-of-sigmar-grand-alliance-death",
+    "title": "Age of Sigmar: Grand Alliance Death",
+    "listings": 87,
+    "gw": 87
+   },
+   {
+    "handle": "age-of-sigmar-grand-alliance-destruction",
+    "title": "Age of Sigmar: Grand Alliance Destruction",
+    "listings": 71,
+    "gw": 71
+   },
+   {
+    "handle": "age-of-sigmar-rules",
+    "title": "Age of Sigmar: Rules",
+    "listings": 67,
+    "gw": 67
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 176
+  },
+  "suggested": {
+   "key": "afistfulofdice",
+   "name": "A Fistful of Dice (South East)",
+   "base": "https://afistfulofdice.co.uk",
+   "market": "UK",
+   "country": "GB",
+   "collections": [
+    "citadel-colour",
+    "games-workshop-space-marines",
+    "all-games-workshop",
+    "age-of-sigmar",
+    "games-workshop-horus-heresy",
+    "warhammer-pro-paints"
+   ]
+  }
+ },
+ {
+  "region": "UK",
+  "host": "bigorbitcards.co.uk",
+  "name": "Big Orbit Cards (Worcestershire)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "blackholegaming.co.uk",
+  "name": "Black Hole Gaming (South East)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "boardgameextras.co.uk",
+  "name": "Board Game Extras",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "castlecomicsuk.co.uk",
+  "name": "Castle Comics (Cumbernauld)",
+  "platform": "shopify",
+  "currency": "GBP",
+  "market": "UK",
+  "collections": [
+   {
+    "handle": "games-workshop",
+    "title": "Games Workshop",
+    "listings": 250,
+    "gw": 200
+   },
+   {
+    "handle": "warhammer-40k",
+    "title": "Warhammer 40K",
+    "listings": 250,
+    "gw": 233
+   },
+   {
+    "handle": "warhammer-tone-pro",
+    "title": "Warhammer Tone Pro",
+    "listings": 133,
+    "gw": 133
+   },
+   {
+    "handle": "black-library",
+    "title": "Black Library",
+    "listings": 106,
+    "gw": 102
+   },
+   {
+    "handle": "warhammer-age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 104,
+    "gw": 104
+   },
+   {
+    "handle": "warhammer-colour-layer",
+    "title": "Warhammer Colour: Layer",
+    "listings": 61,
+    "gw": 61
+   },
+   {
+    "handle": "warhammer-colour-contrast",
+    "title": "Warhammer Colour: Contrast",
+    "listings": 53,
+    "gw": 53
+   },
+   {
+    "handle": "the-horus-heresy-30k",
+    "title": "The Horus Heresy 30K",
+    "listings": 47,
+    "gw": 43
+   },
+   {
+    "handle": "warhammer-colour-base",
+    "title": "Warhammer Colour: Base",
+    "listings": 43,
+    "gw": 43
+   },
+   {
+    "handle": "warhammer-the-old-world",
+    "title": "Warhammer: The Old World",
+    "listings": 25,
+    "gw": 25
+   },
+   {
+    "handle": "warhammer-40k-rules-codexes",
+    "title": "Warhammer 40k Rules & Codexes",
+    "listings": 27,
+    "gw": 26
+   },
+   {
+    "handle": "citadel-spray-paints",
+    "title": "Citadel Spray Paints",
+    "listings": 24,
+    "gw": 24
+   },
+   {
+    "handle": "necromunda",
+    "title": "Necromunda",
+    "listings": 16,
+    "gw": 16
+   },
+   {
+    "handle": "warhammer-40k-combat-patrol",
+    "title": "Warhammer 40k Combat Patrol",
+    "listings": 17,
+    "gw": 17
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 137
+  },
+  "suggested": {
+   "key": "castlecomicsuk",
+   "name": "Castle Comics (Cumbernauld)",
+   "base": "https://castlecomicsuk.co.uk",
+   "market": "UK",
+   "country": "GB",
+   "collections": [
+    "warhammer-40k",
+    "games-workshop",
+    "warhammer-tone-pro",
+    "warhammer-age-of-sigmar",
+    "black-library",
+    "warhammer-colour-layer"
+   ]
+  }
+ },
+ {
+  "region": "UK",
+  "host": "chaoscards.co.uk",
+  "name": "Chaos Cards (Folkestone)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "darksphere.co.uk",
+  "name": "Dark Sphere (London)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "elementgames.co.uk",
+  "name": "Element Games",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "firestormgames.co.uk",
+  "name": "Firestorm Games (Cardiff)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "giftsforgeeks.org.uk",
+  "name": "Gifts for Geeks (Leicester; same company as Tabletop Tyrant)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "glasshammergaming.co.uk",
+  "name": "Glasshammer Gaming (Telford)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "hobbyworkshop.co.uk",
+  "name": "Hobby Workshop (Barnsley)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "imperialgames.co.uk",
+  "name": "Imperial Games (Exeter)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "leodisgames.co.uk",
+  "name": "Leodis Games (Leeds)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "magicmadhouse.co.uk",
+  "name": "Magic Madhouse (London)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "shop.badmooncafe.co.uk",
+  "name": "Bad Moon Cafe (London)",
+  "platform": "shopify",
+  "currency": "GBP",
+  "market": "UK",
+  "collections": [
+   {
+    "handle": "games-workshop-pre-orders",
+    "title": "Pre-Orders",
+    "listings": 7,
+    "gw": 7
+   },
+   {
+    "handle": "warhammer-events",
+    "title": "Warhammer Events",
+    "listings": 12,
+    "gw": 12
+   },
+   {
+    "handle": "other-warhammer-events",
+    "title": "Other Warhammer Events",
+    "listings": 5,
+    "gw": 5
+   },
+   {
+    "handle": "40k-events",
+    "title": "40K Events",
+    "listings": 7,
+    "gw": 7
+   },
+   {
+    "handle": "gw-preorders",
+    "title": "gw preorders",
+    "listings": 0,
+    "gw": 0
+   }
+  ],
+  "whole": {
+   "listings": 48,
+   "gw": 12
+  },
+  "suggested": {
+   "key": "badmooncafe",
+   "name": "Bad Moon Cafe (London)",
+   "base": "https://shop.badmooncafe.co.uk",
+   "market": "UK",
+   "country": "GB",
+   "collections": [
+    "warhammer-events",
+    "games-workshop-pre-orders",
+    "40k-events",
+    "other-warhammer-events"
+   ]
+  }
+ },
+ {
+  "region": "UK",
+  "host": "spruesandbrews.co.uk",
+  "name": "Sprues & Brews (Preston)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "store.ontabletop.com",
+  "name": "OnTableTop store (Beasts of War, Coleraine)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "tabletoptyrant.co.uk",
+  "name": "Tabletop Tyrant (Leicester)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "the-outpost.co.uk",
+  "name": "The Outpost (Sheffield)",
+  "platform": "other"
+ },
+ {
+  "region": "UK",
+  "host": "wargamesemporium.co.uk",
+  "name": "Wargames Emporium (Sheffield)",
+  "platform": "shopify",
+  "currency": "GBP",
+  "market": "UK",
+  "collections": [
+   {
+    "handle": "citadel",
+    "title": "Citadel",
+    "listings": 250,
+    "gw": 250
+   },
+   {
+    "handle": "warhammer-40-000",
+    "title": "Warhammer 40,000",
+    "listings": 244,
+    "gw": 244
+   },
+   {
+    "handle": "warhammer-age-of-sigmar",
+    "title": "Warhammer Age of Sigmar",
+    "listings": 230,
+    "gw": 230
+   },
+   {
+    "handle": "the-horus-heresy",
+    "title": "The Horus Heresy",
+    "listings": 210,
+    "gw": 208
+   },
+   {
+    "handle": "wargames-atlantic",
+    "title": "Wargames Atlantic",
+    "listings": 196,
+    "gw": 169
+   },
+   {
+    "handle": "necromunda",
+    "title": "Necromunda",
+    "listings": 54,
+    "gw": 54
+   },
+   {
+    "handle": "kill-team",
+    "title": "Kill Team",
+    "listings": 45,
+    "gw": 45
+   },
+   {
+    "handle": "cities-of-sigmar",
+    "title": "Cities of Sigmar",
+    "listings": 32,
+    "gw": 32
+   },
+   {
+    "handle": "the-old-world",
+    "title": "The Old World",
+    "listings": 28,
+    "gw": 28
+   },
+   {
+    "handle": "blood-bowl",
+    "title": "Blood Bowl",
+    "listings": 19,
+    "gw": 17
+   },
+   {
+    "handle": "middle-earth-battle-game",
+    "title": "Middle-earth Battle Game",
+    "listings": 16,
+    "gw": 16
+   }
+  ],
+  "whole": {
+   "listings": 250,
+   "gw": 103
+  },
+  "suggested": {
+   "key": "wargamesemporium",
+   "name": "Wargames Emporium (Sheffield)",
+   "base": "https://wargamesemporium.co.uk",
+   "market": "UK",
+   "country": "GB",
+   "collections": [
+    "citadel",
+    "warhammer-40-000",
+    "warhammer-age-of-sigmar",
+    "the-horus-heresy",
+    "wargames-atlantic",
+    "necromunda"
+   ]
+  }
+ },
+ {
+  "region": "UK",
+  "host": "waroffice.co.uk",
+  "name": "Waroffice (North West)",
+  "platform": "woocommerce",
+  "currency": "GBP",
+  "whole": {
+   "listings": 7,
+   "gw": 7
+  }
+ },
+ {
+  "region": "USA",
+  "host": "atomicempire.com",
+  "name": "Atomic Empire (Durham, NC)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "boardlandia.com",
+  "name": "Boardlandia",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "capefeargames.com",
+  "name": "Cape Fear Games (Wilmington, NC)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "cardhaus.com",
+  "name": "Cardhaus (WA)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "coolstuffinc.com",
+  "name": "CoolStuffInc (FL)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "gamekastle.com",
+  "name": "Game Kastle (CA/TX chain)",
+  "platform": "shopify",
+  "currency": "USD",
+  "market": "US",
+  "collections": [],
+  "whole": {
+   "listings": 250,
+   "gw": 19
+  }
+ },
+ {
+  "region": "USA",
+  "host": "gamenerdz.com",
+  "name": "GameNerdz (TX)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "ggportland.com",
+  "name": "Guardian Games (Portland, OR)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "miniaturemarket.com",
+  "name": "Miniature Market (St. Louis)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "nobleknight.com",
+  "name": "Noble Knight Games (WI)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "store.modellbahnott.com",
+  "name": "Modellbahn Ott (PA)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "thewarstore.com",
+  "name": "The Warstore (NY)",
+  "platform": "other"
+ },
+ {
+  "region": "USA",
+  "host": "warpfireminis.com",
+  "name": "Warpfire Minis (Ocala, FL)",
+  "platform": "other"
+ }
+]
