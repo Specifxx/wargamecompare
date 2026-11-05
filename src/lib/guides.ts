@@ -38,7 +38,7 @@ export const GUIDES: GuideInfo[] = [
     slug: "warhammer-gift-guide",
     title: "Warhammer gift guide 2026 {in}: presents at every budget, priced today",
     h1: "Warhammer gift guide 2026: what to buy at every budget in {in}",
-    description: "Gifts for a Warhammer player in {in} at every budget: paint sets, popular kits, Combat Patrols, Spearheads, starter sets and army boxes at today's cheapest store price.",
+    description: "Warhammer gifts at every budget in {in}: paint sets, popular kits, Combat Patrols, Spearheads and starter sets at today's cheapest store price.",
     image: "/guides/warhammer-gift-guide.jpg",
   },
 ];
