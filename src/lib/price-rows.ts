@@ -3,6 +3,7 @@
 // the stores sorted by price, in stock first, then Wayland. Paid rows are never counted as a store, never "Cheapest",
 // and never re-rank the stores. Server-only (reads data/).
 import {
+  amazonItemUrl,
   amazonLabel,
   amazonSearchUrl,
   ebayAffiliateUrl,
@@ -13,6 +14,7 @@ import {
   waylandSearchUrl,
   type Placement,
 } from "./affiliate";
+import { AMAZON_CLOCK, amazonLive, storeFor } from "./amazon-live";
 import { ebayFor, offersFor } from "./data";
 import { formatPrice, type Region } from "./regions";
 import { STORE_BY_KEY } from "./stores";
@@ -37,9 +39,17 @@ export interface StoreRow {
   href: string;
   placement: Placement;
 }
+/** Amazon's own price from the Creators API at this build (lib/amazon-live.ts): shown with its time, 24 hours at most. */
+export interface AmazonLiveRow {
+  price: string;
+  at: string;
+  timeZone: string;
+  zoneLabel: string;
+}
 export interface PriceListData {
   ebay: PaidRow & { title: string | null; price: string | null; ship: string | null; vs: string | null; found: boolean };
-  amazon: PaidRow | null;
+  /** `found`: Amazon's own listing of this exact barcode (a /dp/ link), else a tagged search. */
+  amazon: (PaidRow & { found: boolean; live: AmazonLiveRow | null }) | null;
   stores: StoreRow[];
   wayland: PaidRow | null;
 }
@@ -62,7 +72,12 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       : null;
   const at = <T extends string>(x: T) => `${surface}-${x}` as Placement;
   // Never in the quick view (2026-11-02): Amazon's Operating Agreement allows no Amazon link in a pop-up window.
-  const amazon = surface === "quickview" ? null : amazonSearchUrl(p.name, region, at("amazon"));
+  // On the product page, the Creators API's own listing and price when this build fetched one (owner, 2026-11-05),
+  // else the tagged search; the price is Amazon's row's alone, never a sort, the cheapest badge, a deal or the feed.
+  const live = surface === "quickview" ? null : amazonLive(p.ean, region);
+  const liveHref = live && amazonItemUrl(live.asin, region, at("amazon"));
+  const amazon = surface === "quickview" ? null : liveHref ?? amazonSearchUrl(p.name, region, at("amazon"));
+  const clock = AMAZON_CLOCK[storeFor(region)];
   const wayland = WAYLAND_REGIONS.includes(region) ? waylandSearchUrl(p.name) : null;
   const isBook = p.system === "black-library";
   const storeName = (k: string) => STORE_BY_KEY.get(k)?.name ?? k;
@@ -77,7 +92,15 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       ship: ebay ? (ebay.sh ? `Delivered, incl. ${formatPrice(ebay.sh, ebayRegion)} postage` : ebay.sh === 0 ? "Delivered, free postage" : "plus postage") : null,
       vs,
     },
-    amazon: amazon ? { label: amazonLabel(region), href: amazon, placement: at("amazon") } : null,
+    amazon: amazon
+      ? {
+          label: amazonLabel(region),
+          href: amazon,
+          placement: at("amazon"),
+          found: !!liveHref,
+          live: live && liveHref ? { price: formatPrice(live.p, storeFor(region)), at: live.at, timeZone: clock.timeZone, zoneLabel: clock.label } : null,
+        }
+      : null,
     stores: offers.map((o, i) => ({
       key: o.s,
       name: storeName(o.s),

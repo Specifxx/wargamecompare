@@ -713,3 +713,26 @@ The request is filed as a `suggest-store` report with `issue: "owner"`; RiftComp
 those first and asks for a reply within two days. No email is asked for (the reports branch is public); no pop-up,
 no cold email. RiftCompare and OP Compare keep their `/stores/suggest` page (now the owner pitch) and redirect
 `/list-your-store` to it.
+
+## 2026-11-05 — Amazon's own price on the Amazon row, from the Creators API at build
+
+The owner (2026-11-05): "We need all the sites especially compare empire showing the API prices as price rows." The
+owner's Associates accounts (AU approved 2026-11-03, US 2026-11-05) give ONE Creators API credential that serves every
+Amazon store, but each store opens only once its own account has qualifying sales, so the site must switch on by itself
+per store and keep working without it.
+
+Every product with an EAN (4,238 of them) is looked up by barcode: `scripts/fetch-amazon-prices.ts` runs first in the
+build script, before `next build`, in each store we tag (US, UK, CA, AU; NZ shows Amazon AU's price in A$ like its eBay
+row), ten products a call, the most widely stocked kits first, 30 calls a store (`AMAZON_BUILD_CALLS`). It writes
+`data/amazon-live/<store>.json`, git-ignored and traced into the functions, never committed: Amazon's licence lets a
+price be kept for 24 hours and shown with the time it was fetched, so each build fetches its own and a price older than
+24 hours is not read (`lib/amazon-live.ts`), and the browser hides it again past 24 hours (`AmazonPrice.tsx`) since the
+CDN serves the page for a day. A price under 60% or over 160% of the store median is dropped (a different product behind
+the barcode, or a marketplace seller's fantasy). Without credentials, or with a store Amazon refuses (401/403/429), the
+script logs and moves on; the build never fails on it and the row keeps the tagged search link and "Amazon's own price".
+
+The price lives on the Amazon row alone (`priceRows`, product surface): a `/dp/<ASIN>` link with the region's tag and
+sub id, "View" instead of "Search", the required "accurate as of" disclaimer under the list. It is never a sort, the
+cheapest badge, a deal, the alert feed, metadata or the quick view (no Amazon link in a pop-up). The credentials are
+Vercel Production variables only (`AMAZON_CREATORS_AU_*`, a store's own `AMAZON_CREATORS_<STORE>_*` overriding), never
+in the repo; `tests/amazon-api.test.ts` keeps the client build-side and the live file out of git.

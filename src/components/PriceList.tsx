@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { REL_PAID, REL_STORE } from "@/lib/affiliate";
 import type { PriceListData, StoreRow } from "@/lib/price-rows";
+import { AMAZON_PRICE_DISCLAIMER, AmazonPrice } from "./AmazonPrice";
 import { OutboundLink } from "./OutboundLink";
 import { StockPill } from "./StockPill";
 
@@ -58,20 +59,27 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
               <span className="truncate text-[15px] font-semibold sm:text-base">{amazon.label}</span>
               <span className="ad-pill">Ad</span>
             </div>
-            <div className="truncate text-[11px] leading-4 text-faint sm:text-xs">Price and stock are Amazon&rsquo;s own; we do not check them.</div>
+            <div className="truncate text-[11px] leading-4 text-faint sm:text-xs">
+              {amazon.found ? "Amazon\u2019s own listing of this exact product; price and stock are Amazon\u2019s." : "Price and stock are Amazon\u2019s own; we do not check them."}
+            </div>
             <div className="flex h-5 items-center justify-self-end [grid-area:1/2] sm:[grid-area:1/2/3]">
               <SearchPill />
             </div>
             <div className="mt-1 flex min-w-0 items-baseline gap-2 [grid-area:2/1] sm:mt-0 sm:block sm:text-right sm:[grid-area:1/3/3]">
-              <span className="block truncate text-sm leading-6 text-muted sm:text-xs">Amazon&rsquo;s own price</span>
+              {amazon.live ? (
+                <AmazonPrice price={amazon.live.price} at={amazon.live.at} timeZone={amazon.live.timeZone} zoneLabel={amazon.live.zoneLabel} />
+              ) : (
+                <span className="block truncate text-sm leading-6 text-muted sm:text-xs">Amazon&rsquo;s own price</span>
+              )}
             </div>
             <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-soft ${ROW_BUTTON}`}>
-              Search <span aria-hidden="true">↗</span>
+              {amazon.found ? "View" : "Search"} <span aria-hidden="true">↗</span>
             </OutboundLink>
           </li>
         )}
         {stores.map((o, i) => (i < limit ? <Row key={o.key} o={o} /> : null))}
       </ul>
+      {amazon?.live && <p className="px-4 py-2 text-[11px] leading-4 text-faint sm:px-5">* {AMAZON_PRICE_DISCLAIMER}</p>}
       {more.length > 0 && (
         <MoreRows label={moreOpen > 0 ? `Show ${more.length} more ${more.length === 1 ? "store" : "stores"} (${moreOpen} in stock)` : `Show ${more.length} more sold out`}>
           {more.map((o) => (
