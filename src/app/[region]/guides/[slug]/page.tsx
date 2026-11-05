@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { EbayBox } from "@/components/EbayBox";
 import { ProductCard } from "@/components/ProductCard";
 import { offersFor, summariesFor, type Summary } from "@/lib/data";
-import { cheapestOfType, fill, GUIDE_BY_SLUG, GUIDES, storeSavings, type GuideInfo } from "@/lib/guides";
+import { cheapestOfType, fill, GUIDE_BY_SLUG, GUIDES, mostStockedOfType, storeSavings, type GuideInfo } from "@/lib/guides";
 import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGION_LIST, type RegionInfo } from "@/lib/regions";
 import { breadcrumbLd, jsonLd, ogFor, regionAlternates } from "@/lib/seo";
@@ -237,6 +237,74 @@ function Trajectory({ r, all }: { r: RegionInfo; all: Summary[] }) {
   );
 }
 
+function Gifts({ r, all }: { r: RegionInfo; all: Summary[] }) {
+  const paints = cheapestOfType(all, "paint-sets", 4);
+  const tools = mostStockedOfType(all, "tools", 4);
+  const kits = mostStockedOfType(all, "miniatures", 8, 4);
+  const patrols = [...cheapestOfType(all, "combat-patrols", 8, "warhammer-40k"), ...cheapestOfType(all, "combat-patrols", 8, "age-of-sigmar")].sort((a, b) => a.best! - b.best!).slice(0, 8);
+  const starters = [...cheapestOfType(all, "starter-sets", 4, "warhammer-40k", 2), ...cheapestOfType(all, "starter-sets", 4, "age-of-sigmar", 2)].sort((a, b) => a.best! - b.best!).slice(0, 4);
+  const armies = cheapestOfType(all, "army-sets", 4);
+  const books = mostStockedOfType(all, "books", 4);
+  const p = (s: Summary | undefined) => (s?.best != null ? formatPrice(s.best, r.region) : null);
+  const deals = all.filter((s) => s.off != null && s.off >= 0.15 && s.stores >= 2).sort((a, b) => b.off! - a.off!).slice(0, 8);
+  return (
+    <>
+      <P>
+        The problem with buying for a Warhammer player is that they already have a plan: an army, a faction, a half-painted project on the desk. The safe gifts are
+        the ones every army uses (paint, tools, a book), the popular kits of their own army, or a whole new box that starts something. Everything below is in stock
+        at the independent stores we compare in {r.inName} this morning, at the cheapest store&rsquo;s price, which is almost always under Games Workshop&rsquo;s RRP
+        {patrols[0] ? <> (the cheapest Combat Patrol or Spearhead today is {p(patrols[0])})</> : null}. Prices are in {r.currency}. {r.taxNote}
+      </P>
+      <H2>Stocking fillers: paint sets, tools and books</H2>
+      <P>
+        A paint set is the one gift no player returns: every army needs more of it. The sets below bundle a brush with the colours; a single pot or a primer spray
+        is cheaper still, and every paint we compare is on <Link className="text-brand underline" href={`/${r.region}/type/paints`}>the paints page</Link>.
+      </P>
+      <Grid items={paints} r={r} />
+      <P>Tools and hobby supplies the most stores stock, which is the best sign that players actually buy them:</P>
+      <Grid items={tools} r={r} />
+      <P>The books stocked by the most stores today, for a reader who already has every model they can fit on the shelf:</P>
+      <Grid items={books} r={r} />
+      <H2>A kit for their own army</H2>
+      <P>
+        If you know which army they play, one box of it is the gift that gets used first. These are the kits the most stores in {r.inName} have in stock today,
+        a fair proxy for what players are buying this season; filter by system on <Link className="text-brand underline" href={`/${r.region}/type/miniatures`}>the kits page</Link>
+        to find their faction.
+      </P>
+      <Grid items={kits} r={r} />
+      <H2>A whole army in one box: Combat Patrols and Spearheads</H2>
+      <P>
+        Combat Patrol (Warhammer 40,000) and Spearhead (Age of Sigmar) boxes hold one faction&rsquo;s ready-to-play force with its own small-game rules, and they
+        are the best value per model short of a starter set. For someone starting out, pick the faction they like the look of; for an existing player, their own
+        faction&rsquo;s box is usually still worth having. The cheapest in stock today:
+      </P>
+      <Grid items={patrols} r={r} />
+      <H2>The big present: a starter set or an army set</H2>
+      <P>
+        A starter set holds two small armies, the rules and a battle map, so two people can play from one box: the right gift for someone who has never played,
+        or for a parent and child. Army sets are a single faction&rsquo;s launch box, usually with models not yet sold separately, and they sell out, so a listed
+        one in stock is worth taking.
+      </P>
+      <Grid items={starters} r={r} />
+      <Grid items={armies} r={r} />
+      <H2>Today&rsquo;s biggest savings, if you are flexible</H2>
+      <P>
+        If the budget matters more than the box, these are the products furthest under RRP at a store in {r.inName} this morning. The full list is on{" "}
+        <Link className="text-brand underline" href={`/${r.region}/deals`}>the deals page</Link>, and <Link className="text-brand underline" href={`/${r.region}/black-friday`}>Black Friday</Link> is
+        when the stores that normally sit at 10% off go deeper.
+      </P>
+      <Grid items={deals} r={r} />
+      <H2>Before you order a gift</H2>
+      <ul className="mt-3 max-w-3xl list-disc space-y-2 pl-5 leading-relaxed text-muted">
+        <li>Check the store&rsquo;s last order date for delivery before the 25th; it is usually on the shipping page, and it moves earlier every week of December.</li>
+        <li>Add shipping before comparing: our prices are item prices, and free-shipping thresholds differ by store. See <Link className="text-brand underline" href={`/${r.region}/guides/discount-stores-vs-rrp`}>how much each store saves</Link>.</li>
+        <li>Buy the box, not the codex: the rules in a Combat Patrol, Spearhead or starter set are enough to learn on, and the army book they want changes with each edition.</li>
+        <li>When in doubt, a store gift card from the shop they already use keeps the discount: most independents sell under RRP, so the card buys more than it would at GW.</li>
+      </ul>
+    </>
+  );
+}
+
 export default function GuidePage({ params }: { params: { region: string; slug: string } }) {
   const { r, g } = load(params);
   const all = summariesFor(r.region);
@@ -249,7 +317,7 @@ export default function GuidePage({ params }: { params: { region: string; slug: 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: "Guides", path: `/${r.region}/guides` }, { name: h1, path: `/${r.region}/guides/${g.slug}` }])) }} />
       <p className="text-xs font-bold uppercase tracking-wide text-faint"><Link href={`/${r.region}/guides`} className="hover:text-brand">Guides</Link> · {r.name}</p>
       <h1 className="mt-1 font-display text-3xl font-extrabold">{h1}</h1>
-      {g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : g.slug === "discount-stores-vs-rrp" ? <Discounts r={r} all={all} /> : <Trajectory r={r} all={all} />}
+      {g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : g.slug === "discount-stores-vs-rrp" ? <Discounts r={r} all={all} /> : g.slug === "warhammer-gift-guide" ? <Gifts r={r} all={all} /> : <Trajectory r={r} all={all} />}
       <div className="mt-10">
         <EbayBox region={r.region} query={g.slug === "cheapest-way-to-start" ? "Warhammer Combat Patrol" : "Warhammer"} heading="On eBay" placement="guide-ebay" />
       </div>

@@ -2,7 +2,7 @@
 // question no hub page answers: how to start for the least money, and how much the discount stores really save.
 import type { Summary } from "./data";
 
-export type GuideSlug = "cheapest-way-to-start" | "discount-stores-vs-rrp" | "warhammer-prices-where-they-are-heading";
+export type GuideSlug = "cheapest-way-to-start" | "discount-stores-vs-rrp" | "warhammer-prices-where-they-are-heading" | "warhammer-gift-guide";
 
 export interface GuideInfo {
   slug: GuideSlug;
@@ -34,6 +34,13 @@ export const GUIDES: GuideInfo[] = [
     description: "GW's price rises since 2022, how far under RRP stores in {in} sell today, how other countries compare, and our read on the next rise.",
     image: "/guides/warhammer-prices-where-they-are-heading.jpg",
   },
+  {
+    slug: "warhammer-gift-guide",
+    title: "Warhammer gift guide 2026 {in}: presents at every budget, priced today",
+    h1: "Warhammer gift guide 2026: what to buy at every budget in {in}",
+    description: "Gifts for a Warhammer player in {in} at every budget, from paint sets and the most-stocked kits to Combat Patrols, Spearheads, starter sets and army boxes, at today's cheapest in-stock store price.",
+    image: "/guides/warhammer-gift-guide.jpg",
+  },
 ];
 export const GUIDE_BY_SLUG = new Map(GUIDES.map((g) => [g.slug as string, g]));
 export const fill = (s: string, inName: string) => s.replaceAll("{in}", inName);
@@ -53,6 +60,14 @@ function median(xs: number[]): number | null {
 const NOT_A_STARTER = /\bsoulbound\b|\bwrath\s*(&|and)\s*glory\b|\broleplay|\bcompanion\b|\bgaming pack\b|\bbattlezone\b/i;
 /** A whole Combat Patrol, Spearhead or Vanguard box ("Combat Patrol: Necrons"), not a unit sold "(Combat Patrol)". */
 export const PATROL_BOX = /^(warhammer[^:]*:\s*)?(combat patrol|spearhead|vanguard)\s*[:\-\u2013]/i;
+
+/** The in-stock products of a type the most stores list (the widely stocked ones are the safe gifts), cheapest first among ties. */
+export function mostStockedOfType(all: Summary[], type: string, n: number, minStores = 3): Summary[] {
+  return all
+    .filter((s) => s.product.type === type && s.best != null && s.inStock >= minStores && !NOT_A_STARTER.test(s.product.name))
+    .sort((a, b) => b.inStock - a.inStock || a.best! - b.best!)
+    .slice(0, n);
+}
 
 /** The cheapest in-stock boxes of a type, optionally of one game, at `minStores` or more stores (a real comparison). */
 export function cheapestOfType(all: Summary[], type: string, n: number, system?: string, minStores = 2): Summary[] {
