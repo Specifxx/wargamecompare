@@ -166,6 +166,17 @@ export function amazonSearchUrl(name: string, region: Region, placement: Placeme
   return u.toString();
 }
 
+/** Amazon's own page for an item the Creators API found (lib/amazon-live.ts), tagged like a search; null without a store or tag. */
+export function amazonItemUrl(asin: string, region: Region, placement: Placement, tags = amazonTags()): string | null {
+  const tag = tags[region];
+  const host = AMAZON_HOST[region];
+  if (!tag || !host || !/^[A-Z0-9]{10}$/.test(asin)) return null;
+  const u = new URL(`https://${host}/dp/${asin}`);
+  u.searchParams.set("tag", tag);
+  u.searchParams.set("ascsubtag", subId(region, placement));
+  return u.toString();
+}
+
 // ─── Wayland Games ─────────────────────────────────────────────────────────────
 /**
  * WAYLAND_SEARCH_TEMPLATE: Wayland's affiliate link with `{q}` where the search words go. Unset = no Wayland link.

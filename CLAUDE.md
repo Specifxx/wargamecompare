@@ -65,6 +65,15 @@ every rule you change.
 - The two eBay side rails (`SideAds.tsx`, `lib/side-rails.ts`; owner 2026-11-04) are browser-only from 1864px, outside the
   shell, live listings from `data/ebay.json` only, never in the server HTML, never counted as a store.
 
+## Amazon's price on the Amazon row (owner, 2026-11-05)
+
+`scripts/fetch-amazon-prices.ts` runs first in every Vercel build and asks the Creators API by EAN (getItems), in every
+Amazon store with a tag (US, UK, CA, AU; NZ reads AU's), into the git-ignored `data/amazon-live/`; the product page's
+Amazon row (`lib/price-rows.ts`, product surface only) shows Amazon's own listing and price with its time for 24 hours
+(`lib/amazon-live.ts`, `AmazonPrice.tsx`). Never committed, never a sort, the cheapest badge, a deal, the feed or the
+quick view. Credentials `AMAZON_CREATORS_AU_*` (Vercel only) serve every store; a store without API access yet is
+skipped and its row keeps the search link. `tests/amazon-api.test.ts` pins it.
+
 ## eBay
 
 Only `scripts/ebay.ts` (GitHub Actions) calls eBay. The keyset is on the owner's second eBay account (5,000 calls a
