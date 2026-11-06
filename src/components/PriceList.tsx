@@ -14,6 +14,12 @@ import { CartAddButton } from "./cart/CartAddButton";
 const ROW_GRID = "grid grid-cols-[1fr_auto] items-center gap-x-3 px-4 py-3 sm:grid-cols-[1fr_auto_10rem_auto] sm:gap-x-4 sm:px-5 sm:py-3.5";
 const ROW_BUTTON = "min-h-11 justify-self-end whitespace-nowrap [grid-area:2/2/4] sm:min-h-10 sm:[grid-area:1/4/3]";
 const ROW_ACTIONS = "flex items-center gap-2 justify-self-end [grid-area:2/2/4] sm:[grid-area:1/4/3]";
+const ROW_LINK = "min-h-11 whitespace-nowrap sm:min-h-10";
+/** The pinned rows' outlines (owner, 2026-11-06): eBay green, Amazon amber. Inset, so the row keeps its grid. */
+export const PIN_OUTLINE = {
+  ebay: "outline outline-2 -outline-offset-2 outline-[#16a34a]",
+  amazon: "outline outline-2 -outline-offset-2 outline-[#f59e0b]",
+} as const;
 const BADGE = "shrink-0 rounded-full bg-open px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-surface";
 /** Rows shown before the "Show N more" fold. */
 const SHOWN = 8;
@@ -31,17 +37,19 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
   return (
     <div className={`divide-y divide-line overflow-hidden ${compact ? "rounded-xl border border-line bg-surface" : "card"}`}>
       <ul className="divide-y divide-line">
-        <li className={ROW_GRID} data-row="ebay">
+        {/* eBay and Amazon work like a store row (owner, 2026-11-06): stock pill, thumbs, cart; on top, green and amber outlines. */}
+        <li className={`${ROW_GRID} ${PIN_OUTLINE.ebay}`} data-row="ebay">
           <div className="flex h-5 items-center gap-2 overflow-hidden sm:h-6">
             <span className="truncate text-[15px] font-semibold sm:text-base">{ebay.label}</span>
             <span className="ad-pill">Ad</span>
           </div>
           <div className="truncate text-[11px] leading-4 text-faint sm:text-xs" title={ebay.title ?? undefined}>
+            <StoreVote url={ebay.cart?.productUrl ?? ebay.href} name="eBay" className="-ml-1 mr-1 text-muted" />
             {ebay.title ?? "New, Buy It Now listings"}
             {ebay.vs && <span className="text-muted"> · {ebay.vs}</span>}
           </div>
           <div className="flex h-5 items-center justify-self-end [grid-area:1/2] sm:[grid-area:1/2/3]">
-            {ebay.found ? <StockPill state="open">Listed</StockPill> : <SearchPill />}
+            {ebay.found ? <StockPill state="open">In stock</StockPill> : <SearchPill />}
           </div>
           <div className="mt-1 flex min-w-0 items-baseline gap-2 [grid-area:2/1] sm:mt-0 sm:block sm:text-right sm:[grid-area:1/3/3]">
             {ebay.price ? (
@@ -53,32 +61,39 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
               <span className="block truncate text-sm leading-6 text-muted sm:text-xs">eBay sellers&rsquo; prices</span>
             )}
           </div>
-          <OutboundLink href={ebay.href} rel={REL_PAID} retailer={ebay.label} placement={ebay.placement} className={`btn-soft ${ROW_BUTTON}`}>
-            {ebay.found ? "View deal" : "Search"} <span aria-hidden="true">↗</span>
-          </OutboundLink>
+          <div className={ROW_ACTIONS}>
+            {ebay.cart && <CartAddButton href={ebay.href} productUrl={ebay.cart.productUrl} storeName="eBay" title={ebay.cart.title} priceCents={ebay.cart.priceCents} currency={ebay.cart.currency} image={ebay.cart.image} className="text-muted" />}
+            <OutboundLink href={ebay.href} rel={REL_PAID} retailer={ebay.label} placement={ebay.placement} className={`btn-soft ${ROW_LINK}`}>
+              {ebay.found ? "View deal" : "Search"} <span aria-hidden="true">↗</span>
+            </OutboundLink>
+          </div>
         </li>
         {amazon && (
-          <li className={ROW_GRID} data-row="amazon">
+          <li className={`${ROW_GRID} ${PIN_OUTLINE.amazon}`} data-row="amazon">
             <div className="flex h-5 items-center gap-2 overflow-hidden sm:h-6">
               <span className="truncate text-[15px] font-semibold sm:text-base">{amazon.label}</span>
               <span className="ad-pill">Ad</span>
             </div>
             <div className="truncate text-[11px] leading-4 text-faint sm:text-xs">
-              {amazon.found ? "Amazon\u2019s own listing of this exact product; price and stock are Amazon\u2019s." : "Price and stock are Amazon\u2019s own; we do not check them."}
+              <StoreVote url={amazon.href} name="Amazon" className="-ml-1 mr-1 text-muted" />
+              {amazon.found ? "Amazon\u2019s own listing of this exact product; price and stock are Amazon\u2019s." : "Also check the price on Amazon: price and stock are Amazon\u2019s own."}
             </div>
             <div className="flex h-5 items-center justify-self-end [grid-area:1/2] sm:[grid-area:1/2/3]">
-              <SearchPill />
+              {amazon.live ? <StockPill state="open">In stock</StockPill> : <SearchPill />}
             </div>
             <div className="mt-1 flex min-w-0 items-baseline gap-2 [grid-area:2/1] sm:mt-0 sm:block sm:text-right sm:[grid-area:1/3/3]">
               {amazon.live ? (
                 <AmazonPrice price={amazon.live.price} at={amazon.live.at} timeZone={amazon.live.timeZone} zoneLabel={amazon.live.zoneLabel} />
               ) : (
-                <span className="block truncate text-sm leading-6 text-muted sm:text-xs">Amazon&rsquo;s own price</span>
+                <span className="block truncate text-sm leading-6 text-muted sm:text-xs">Also check on Amazon</span>
               )}
             </div>
-            <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-soft ${ROW_BUTTON}`}>
-              {amazon.found ? "View" : "Search"} <span aria-hidden="true">↗</span>
-            </OutboundLink>
+            <div className={ROW_ACTIONS}>
+              {amazon.cart && <CartAddButton href={amazon.href} productUrl={amazon.cart.productUrl} storeName="Amazon" title={amazon.cart.title} priceCents={amazon.cart.priceCents} currency={amazon.cart.currency} image={amazon.cart.image} className="text-muted" />}
+              <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-soft ${ROW_LINK}`}>
+                {amazon.found ? "View deal" : "Check Amazon"} <span aria-hidden="true">↗</span>
+              </OutboundLink>
+            </div>
           </li>
         )}
         {stores.map((o, i) => (i < limit ? <Row key={o.key} o={o} /> : null))}

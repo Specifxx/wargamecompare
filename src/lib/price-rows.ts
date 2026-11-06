@@ -50,10 +50,20 @@ export interface AmazonLiveRow {
   timeZone: string;
   zoneLabel: string;
 }
+/** The cart list's line for an eBay or Amazon row (owner, 2026-11-06: they work like a store row): a manual line on its tagged link. */
+export interface PaidCart {
+  title: string;
+  image: string | null;
+  priceCents: number;
+  currency: string;
+  /** The listing's own page, for the thumbs' domain and the cart list. */
+  productUrl: string;
+}
+
 export interface PriceListData {
-  ebay: PaidRow & { title: string | null; price: string | null; ship: string | null; vs: string | null; found: boolean };
+  ebay: PaidRow & { title: string | null; price: string | null; ship: string | null; vs: string | null; found: boolean; cart?: PaidCart };
   /** `found`: Amazon's own listing of this exact barcode (a /dp/ link), else a tagged search. */
-  amazon: (PaidRow & { found: boolean; live: AmazonLiveRow | null }) | null;
+  amazon: (PaidRow & { found: boolean; live: AmazonLiveRow | null; cart?: PaidCart }) | null;
   stores: StoreRow[];
   wayland: PaidRow | null;
 }
@@ -95,6 +105,8 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       price: ebay ? formatPrice(total, ebayRegion) : null,
       ship: ebay ? (ebay.sh ? `Delivered, incl. ${formatPrice(ebay.sh, ebayRegion)} postage` : ebay.sh === 0 ? "Delivered, free postage" : "plus postage") : null,
       vs,
+      // The price the row shows (delivered), in the eBay site's currency.
+      ...(ebay ? { cart: { title: p.name, image: p.image ?? null, priceCents: total, currency: REGIONS[ebayRegion].currency, productUrl: ebay.u } } : {}),
     },
     amazon: amazon
       ? {
@@ -103,6 +115,7 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
           placement: at("amazon"),
           found: !!liveHref,
           live: live && liveHref ? { price: formatPrice(live.p, storeFor(region)), at: live.at, timeZone: clock.timeZone, zoneLabel: clock.label } : null,
+          ...(live && liveHref ? { cart: { title: p.name, image: p.image ?? null, priceCents: live.p, currency: REGIONS[storeFor(region)].currency, productUrl: liveHref } } : {}),
         }
       : null,
     stores: offers.map((o, i) => ({
