@@ -62,7 +62,7 @@ every rule you change.
   shared by the product page and the tile quick view (`QuickView.tsx`, `/api/quick/<region>/<id>`, CDN-cached). None is ever counted as a store, given the "Cheapest" badge, the best price or a deal;
   the store rows stay sorted by price and the real cheapest keeps its badge.
 - Store partner codes (`src/lib/store-partner-deals.ts`) are a label beside a price, never a re-rank.
-- The two eBay side rails (`SideAds.tsx`, `lib/side-rails.ts`; owner 2026-11-04) are browser-only from 1864px, outside the
+- The two eBay side rails (`SideAds.tsx`, `lib/side-rails.ts`; owner 2026-11-04) are browser-only from 1280px (owner 2026-11-06: up to 10 tiles, scrolling), beside the
   shell, live listings from `data/ebay.json` only, never in the server HTML, never counted as a store.
 
 ## Amazon's price on the Amazon row (owner, 2026-11-05)
