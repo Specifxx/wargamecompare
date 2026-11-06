@@ -28,7 +28,7 @@ export default function RegionLayout({ children, params }: { children: React.Rea
         </main>
       </div>
       <Footer region={region} />
-      {/* The eBay side rails: browser-only, from 1864px wide, outside the shell (SideAds.tsx). */}
+      {/* The eBay side rails: browser-only, from 1280px wide, beside the shell (SideAds.tsx). */}
       <SideAds rails={sideRailsFor(region)} />
     </>
   );

@@ -4,28 +4,34 @@
 import type { Tile } from "@/components/EbayStrip";
 import type { Region } from "./regions";
 
-/** The shell is 1480px; each rail is RAIL_W wide with GUTTER on both sides of it. */
+/**
+ * From MIN_WIDTH (1280px: every common 16:9 and 16:10 laptop and monitor, owner 2026-11-06: "it should appear on regular 16:9
+ * screens … 16:10 even") a rail RAIL_W wide sits on each side of the shell, GUTTER from the window's edge and GUTTER from the
+ * shell. Below 1864px the shell gives up that room (globals.css: max-width min(1480px, 100vw - 2 × RAIL_ROOM)); from 1864px it is
+ * its full 1480px and the rails sit just outside it.
+ */
 const SHELL_W = 1480;
-export const RAIL_W = 160;
-export const GUTTER = 16;
-export const MIN_WIDTH = SHELL_W + 2 * (RAIL_W + 2 * GUTTER); // 1864: the RAIL class in SideAds.tsx says the same
+export const RAIL_W = 136;
+export const GUTTER = 12;
+/** The room one rail takes from the shell's side (globals.css says the same: 160px). */
+export const RAIL_ROOM = RAIL_W + 2 * GUTTER;
+export const MIN_WIDTH = 1280; // the RAIL class in SideAds.tsx and the globals.css shell rule say the same
+/** Up to ten tiles, popular first; the list scrolls inside the rail (owner, 2026-11-06: "scrollable … up to 10 products"). */
+export const MAX_TILES = 10;
+export const MIN_TILES = 2;
 /** Vertical budget: the sticky header (--hdr, 64px from lg) and a gutter above, a gutter below, the rail's own top line and note. */
 const TOP = 64 + GUTTER;
 const HEAD = 30;
 const NOTE = 34;
 const PAD = 2 * 8;
-const GAP = 8;
 /** One tile: 8px padding, a (RAIL_W - 16 - 16)px square picture, two title lines (36px) and a price line (20px). */
 export const TILE_H = 8 + (RAIL_W - PAD - 16) + 6 + 36 + 20 + 8;
-export const MAX_TILES = 6;
-export const MIN_TILES = 2;
-/** Where a rail's outer edge sits: outside the shell, a gutter in. */
-export const RAIL_EDGE = `calc(50% - ${SHELL_W / 2 + GUTTER + RAIL_W}px)`;
+/** Where a rail's outer edge sits: a gutter in from the window, or just outside a full-width shell. */
+export const RAIL_EDGE = `max(${GUTTER}px, calc(50% - ${SHELL_W / 2 + GUTTER + RAIL_W}px))`;
 
-/** How many tiles a window of this height fits (0: no rail). Pure, for the tests. */
-export function tilesThatFit(innerHeight: number): number {
-  const room = innerHeight - TOP - GUTTER - HEAD - NOTE - PAD;
-  return Math.max(0, Math.min(MAX_TILES, Math.floor((room + GAP) / (TILE_H + GAP))));
+/** Whether a window this tall holds a rail with at least one whole tile in view (the rest scroll). Pure, for the tests. */
+export function railFits(innerHeight: number): boolean {
+  return innerHeight - TOP - GUTTER - HEAD - NOTE - PAD >= TILE_H;
 }
 
 export interface SideRails {

@@ -3,20 +3,24 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { MAX_TILES, MIN_WIDTH, tilesThatFit } from "../src/lib/rails";
+import { MAX_TILES, MIN_WIDTH, RAIL_ROOM, railFits } from "../src/lib/rails";
 import { sideRailsFor } from "../src/lib/side-rails";
 import { REGIONS, type Region } from "../src/lib/regions";
 
 const read = (p: string) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 
-test("the side rails fit only a wide, tall window and never a clipped tile", () => {
-  assert.equal(MIN_WIDTH, 1864);
-  assert.equal(tilesThatFit(300), 0);
-  assert.equal(tilesThatFit(1080), 4);
-  assert.equal(tilesThatFit(5000), MAX_TILES);
+test("the side rails show on every regular 16:9 and 16:10 screen and scroll through up to ten tiles", () => {
+  assert.equal(MIN_WIDTH, 1280, "1280×720, 1280×800, 1366, 1440, 1536, 1600, 1680, 1920 and up (owner, 2026-11-06)");
+  assert.equal(MAX_TILES, 10);
+  assert.equal(RAIL_ROOM, 160);
+  assert.ok(!railFits(300), "too short for one whole tile: no rail");
+  assert.ok(railFits(720) && railFits(800), "a 1280×720 window has a rail");
   const src = read("src/components/SideAds.tsx");
   assert.match(src, /^"use client"/);
-  assert.match(src, /min-\[1864px\]:flex/);
+  assert.match(src, /min-\[1280px\]:flex/);
+  assert.match(src, /overflow-y-auto/, "the list scrolls inside the rail");
+  const css = read("src/app/globals.css");
+  assert.match(css, /@media \(min-width: 1280px\) \{\s*\.max-w-shell,\s*\.xl\\:max-w-shell \{\s*max-width: min\(1480px, calc\(100vw - 320px\)\);/, "the shell leaves the rails their room");
   assert.match(src, /rel=\{REL_PAID\}/);
   assert.doesNotMatch(src, /from "@\/lib\/data"/, "the client rail never reads data/");
   // A value imported from a "use client" module into server code is a client reference, not the value (it emptied the rails once).
