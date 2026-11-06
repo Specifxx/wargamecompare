@@ -844,3 +844,13 @@ stored, prices may not; not bundled with functions). The build prices those ASIN
 of the store median. Credentials are per country (the AU credential answers US and UK calls with 400
 InvalidAssociate, found on Compare Empire), and InvalidAssociate / AssociateNotEligible now stop a store at once.
 
+
+## 2026-11-06 — Every visitor lands on their own region, the US when we can't tell
+
+The owner, for every site: "all of our websites … should default to the US version, unless it detects the user's
+country." `lib/region-boot.ts` (byte-identical in MTG Compare, DexCompare, WargameCompare and CamCompare) now moves
+every person, never a crawler, on a regional page of another region to the same page in theirs: the region they picked
+(localStorage), else their time zone's, else the US. This reverses the 2026-11-02 rule that moved only visitors who had
+picked and offered everyone else a "Switch to <X> prices" line; Compare Empire made the same reversal earlier the same
+day. Crawlers still see every regional page as it is, and URLs, titles, canonicals and hreflang are unchanged, so
+indexing is untouched. A pick always beats the time zone. `tests/region-boot.test.ts` pins it.
