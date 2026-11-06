@@ -47,3 +47,11 @@ test("the region layout mounts the rails outside the shell", () => {
   const layout = read("src/app/[region]/layout.tsx");
   assert.ok(layout.indexOf("<SideAds ") > layout.indexOf("<Footer"), "rails after the footer, outside the shell div");
 });
+
+test("the pages with no region (the home page, About…) get the same rails, in the visitor's region", () => {
+  const site = read("src/app/(site)/layout.tsx");
+  assert.ok(site.indexOf("<SoftSideAds ") > site.indexOf("<Footer"), "after the footer, outside the shell");
+  assert.match(site, /sideRailsFor\(r\)/, "every region's rails, picked in the browser");
+  assert.match(read("src/components/SideAds.tsx"), /export function SoftSideAds[\s\S]*?useSoftRegion\(\)/);
+});
+

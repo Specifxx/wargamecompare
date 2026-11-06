@@ -1,9 +1,12 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { SoftEbayBox } from "@/components/SoftEbayBox";
+import { SoftSideAds } from "@/components/SideAds";
 import { SoftSideNav } from "@/components/SideNav";
+import { sideRailsFor } from "@/lib/side-rails";
+import type { SideRails } from "@/lib/rails";
 import { navGroups } from "@/lib/nav";
-import { X_DEFAULT_REGION } from "@/lib/regions";
+import { REGIONS, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 
 // The pages with no region of their own (the landing page, About, the legal pages) get the whole navigation too (owner,
 // 2026-10-28): the header, the phone menu and, from xl, the sidebar, for the visitor's region (built for the US on the server
@@ -22,6 +25,8 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         </main>
       </div>
       <Footer region={null} />
+      {/* The eBay side rails from 1280px, browser-only, in the visitor's region (SideAds.tsx; owner 2026-11-06: the home page too). */}
+      <SoftSideAds all={Object.fromEntries((Object.keys(REGIONS) as Region[]).map((r) => [r, sideRailsFor(r)])) as Record<Region, SideRails>} />
     </>
   );
 }

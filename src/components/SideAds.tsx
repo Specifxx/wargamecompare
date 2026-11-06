@@ -6,6 +6,7 @@ import { GUTTER, MAX_TILES, MIN_TILES, MIN_WIDTH, RAIL_EDGE, RAIL_W, railFits, t
 import { formatPrice, type Region } from "@/lib/regions";
 import type { Tile } from "./EbayStrip";
 import { OutboundLink } from "./OutboundLink";
+import { useSoftRegion } from "./SoftRegion";
 
 // The two side rails (ported from the Dex / MTG Compare engine, owner 2026-11-04: "the new ad change … as much juice out of the
 // eBay API as possible"): real eBay Buy It Now listings stacked down the far left and far right of a wide screen, OUTSIDE the
@@ -44,6 +45,15 @@ export function SideAds({ rails }: { rails: SideRails }) {
       <Rail side="right" rails={rails} tiles={rails.right} placement="side-ebay-deals" heading="Top deals" />
     </>
   );
+}
+
+/**
+ * The same rails on the pages with no region of their own (the home page, About…; owner 2026-11-06: "the home page must have this
+ * as well"), in the visitor's suggested or picked region (SoftRegion.tsx), like their header and sidebar. `all`: every region's
+ * rails, computed on the server (lib/side-rails.ts sideRailsFor).
+ */
+export function SoftSideAds({ all }: { all: Record<Region, SideRails> }) {
+  return <SideAds rails={all[useSoftRegion()]} />;
 }
 
 const RAIL = "fixed z-30 hidden flex-col rounded-xl border border-ad-line bg-surface p-2 shadow-card min-[1280px]:flex";
