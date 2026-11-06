@@ -5,6 +5,7 @@ import type { PriceListData, StoreRow } from "@/lib/price-rows";
 import { AMAZON_PRICE_DISCLAIMER, AmazonPrice } from "./AmazonPrice";
 import { OutboundLink } from "./OutboundLink";
 import { StockPill } from "./StockPill";
+import { StoreVote } from "./StoreVote";
 
 // The engine's price table rows (from MTG Compare's OfferRows): a grid whose cells are placed by grid-area. On a phone, two columns:
 // the store and its stock pill; the price; the host line; the button, 44 px, beside the last two. From sm one line: the store over
@@ -121,6 +122,7 @@ function Row({ o }: { o: StoreRow }) {
         {isAwinLink(o.href) && <span className="text-[11px] text-faint">Paid link</span>}
       </div>
       <div className="truncate text-[11px] leading-4 text-faint sm:text-xs" title={o.title}>
+        <StoreVote url={o.vote} name={o.name} className="-ml-1 mr-1 text-muted" />
         {o.title}
         {o.code && (
           <span className="font-semibold text-brand-strong" title={`Checked ${o.code.checked}`}>

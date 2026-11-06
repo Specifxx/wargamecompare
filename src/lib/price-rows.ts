@@ -38,6 +38,8 @@ export interface StoreRow {
   code: ActiveStoreCode | null;
   href: string;
   placement: Placement;
+  /** the store's own listing URL, for the shared thumbs up / down (components/StoreVote.tsx) */
+  vote: string;
 }
 /** Amazon's own price from the Creators API at this build (lib/amazon-live.ts): shown with its time, 24 hours at most. */
 export interface AmazonLiveRow {
@@ -112,6 +114,7 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       code: activeStoreCode(o.u),
       href: storeUrl(o.u, dealForHost(new URL(o.u).hostname)?.ref),
       placement: at("table"),
+      vote: o.u,
     })),
     wayland: wayland ? { label: "Wayland Games", href: wayland, placement: at("wayland") } : null,
   };
