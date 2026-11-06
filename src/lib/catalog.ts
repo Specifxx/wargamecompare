@@ -135,6 +135,10 @@ export function typeOf(title: string, system: string | null): ProductType {
     const t = TYPES.find((x) => ["paint-sets", "paints", "tools"].includes(x.slug) && x.re!.test(title));
     return t ?? TYPES.find((x) => x.slug === "tools")!;
   }
+  // A rulebook or codex that names a box ("Combat Patrol Companion", "Codex: Spearhead") is a book, and a battleforce or
+  // Apocalypse detachment that names a spearhead is an army set: neither belongs on the Combat Patrols list.
+  if (/\bcompanion\b|\bcodex\b|\bbattletome\b|\brulebook\b|\bcore book\b/i.test(title)) return TYPES.find((x) => x.slug === "books")!;
+  if (/\bbattleforce\b|\bspearhead detachment\b/i.test(title)) return TYPES.find((x) => x.slug === "army-sets")!;
   return TYPES.find((x) => x.re && x.re.test(title)) ?? TYPES[TYPES.length - 1];
 }
 

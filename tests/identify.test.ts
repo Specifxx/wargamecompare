@@ -109,3 +109,46 @@ test("code groups of one product join by exact title, never across two box codes
   assert.notEqual(g[5], g[3]);
   assert.notEqual(g[5], g[4]);
 });
+
+// Real AU listings, 2026-11-06: Mperor's 3rd-edition "Extremis" starter set and the 4th-edition Ultimate/Spearhead set
+// share Games Workshop's box code 80-01 but not an item number. One page showed the old set at A$199 as "44% under RRP
+// (A$355)", the new set's RRP.
+test("one box code, two editions: the item numbers keep them apart", () => {
+  const g = groupListings([
+    { store: "mperor", title: "Warhammer Age of Sigmar Extremis Starter Set", codes: codesOf("", ["60010299027", "80-01"]) },
+    { store: "x1", title: "Warhammer Age of Sigmar: Extremis", codes: codesOf("", ["60010299027"]) },
+    { store: "gumnut", title: "Age Of Sigmar - Ultimate Starter Set (4th Ed)", codes: codesOf("", ["60010299044", "80-01"]) },
+    { store: "vault", title: "Warhammer: Age of Sigmar - Spearhead Starter Set", codes: codesOf("", ["60010299044"]) },
+    { store: "hobbytech", title: "Warhammer Age of Sigmar: Ultimate Starter Set [80-01]", codes: codesOf("Warhammer Age of Sigmar: Ultimate Starter Set [80-01]", ["5011921203451"]) },
+    { store: "turtle", title: "80-01 Age Of Sigmar: Ultimate Starter Set", codes: codesOf("80-01 Age Of Sigmar: Ultimate Starter Set", []) },
+    { store: "lotsmoore", title: "Warhammer Age of Sigmar: Ultimate Starter Set", codes: codesOf("", ["60010299044"]) },
+  ]);
+  assert.notEqual(g[0], g[2]);
+  assert.equal(g[0], g[1]);
+  assert.equal(g[2], g[3]);
+  assert.equal(g[2], g[6]);
+  assert.equal(g[5], g[2]); // "80-01 …" at the title's start is the box code, not a word
+});
+
+test("paint pots of two generations stay one product", () => {
+  const g = groupListings([
+    { store: "a", title: "Base: Khorne Red", codes: codesOf("", ["99189950001", "21-04"]) },
+    { store: "b", title: "Citadel Base: Khorne Red", codes: codesOf("", ["99189950158", "21-04"]) },
+    { store: "c", title: "Base: Khorne Red", codes: codesOf("", ["21-04"]) },
+  ]);
+  assert.equal(g[0], g[1]);
+  assert.equal(g[0], g[2]);
+});
+
+// Real UK listings, 2026-11-06: one store files Combat Patrol: Dark Angels under "73-441". Same item number and barcode,
+// so one page, not two.
+test("an odd box code beside one item number and barcode stays one product", () => {
+  const g = groupListings([
+    { store: "a", title: "Combat Patrol: Dark Angels", codes: codesOf("", ["99120101406", "73-44"]) },
+    { store: "b", title: "Combat Patrol: Dark Angels", codes: codesOf("", ["5011921203789", "73-441"]) },
+    { store: "c", title: "Warhammer 40k Combat Patrol: Dark Angels (73-44)", codes: codesOf("Warhammer 40k Combat Patrol: Dark Angels (73-44)", ["5011921203789"]) },
+    { store: "d", title: "Combat Patrol: Dark Angels", codes: codesOf("", ["99120101406", "5011921203789"]) },
+  ]);
+  assert.equal(new Set(g).size, 1);
+  assert.notEqual(g[0], -1);
+});

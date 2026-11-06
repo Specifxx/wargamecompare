@@ -39,3 +39,11 @@ test("slugs are unique, URL-safe and every faction's system exists", () => {
   const systems = new Set(SYSTEMS.map((s) => s.slug));
   for (const f of FACTION_BY_SLUG.values()) assert.ok(systems.has(f.system), `${f.slug}: ${f.system}`);
 });
+
+// Real titles from the UK Combat Patrols list, 2026-11-06.
+test("rulebooks and battleforces that name a box are not Combat Patrols", () => {
+  assert.equal(typeOf("Warhammer 40,000: Combat Patrol Companion", "warhammer-40k").slug, "books");
+  assert.equal(typeOf("Battleforce: Stormcast Eternals – Thunderstrike Spearhead", "age-of-sigmar").slug, "army-sets");
+  assert.equal(typeOf("Apocalypse Tyranids Spearhead Detachment", "warhammer-40k").slug, "army-sets");
+  assert.equal(typeOf("Spearhead: Snarlpack Huntaz", "age-of-sigmar").slug, "combat-patrols");
+});

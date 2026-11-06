@@ -867,3 +867,16 @@ see today's price on Amazon. With no Amazon price the row reads "Also check on A
 is counted as a store, "Best price", a deal, an alert price or the reference price; TCGplayer and Cardmarket stay
 references (no thumbs, no cart line); no Amazon link in a pop-up.
 WargameCompare: the eBay row's pill now reads "In stock" (was "Listed"); its cart line carries the delivered price the row shows. Wayland stays a search row under the stores.
+
+## 2026-11-06: one box code, two editions; odd box codes beside one item number
+
+A shopper review found the AU "Spearhead Starter Set" page showing Mperor's 3rd-edition Extremis set at A$199 as "44% under
+RRP (A$355)", the 4th-edition set's RRP: Games Workshop reuses box code 80-01 for every edition's starter set, and the box
+code joined them. `groupListings` step 2b now drops the box code from a group holding two item numbers whose titles name
+the kit differently (a word most of one side uses and none of the other's), and 4c joins a group known only by its box
+code to ONE product it shares a title with, never two. The other way round, a store's odd box code beside one item
+number and barcode ("73-441" for Combat Patrol: Dark Angels) no longer splits the kit into two pages with the same
+barcode. A bare box code at a title's start or end is no longer a title word. Rulebooks that name a box ("Combat Patrol
+Companion") are books, battleforces and Apocalypse detachments that name a spearhead are army sets. The product page's
+eBay button shows the delivered price when postage is known, as the eBay row does. Real titles in `tests/identify.test.ts`
+and `tests/catalog.test.ts`. Pages pick it up at the next import.
