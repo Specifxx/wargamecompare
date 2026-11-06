@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
-import { credentialsFor, itemsOf, pickListing, tokenEndpoint, type Item } from "../src/lib/amazon-creators";
+import { barcodeMatches, credentialsFor, isWrongAccount, itemsOf, pickListing, tokenEndpoint, type Item } from "../src/lib/amazon-creators";
+import { dueForSearch, searchWords } from "../src/lib/amazon-asins";
+import { checkAmazon } from "../src/lib/ops";
 import { isFreshAmazonPrice, storeFor } from "../src/lib/amazon-live";
 import { amazonItemUrl } from "../src/lib/affiliate";
 
@@ -72,3 +74,42 @@ test("the Creators API client stays build-side; only the price rows read live Am
   assert.match(JSON.parse(fs.readFileSync("package.json", "utf8")).scripts.build, /^\(tsx scripts\/fetch-amazon-prices\.ts \|\| true\) && (\(tsx scripts\/fetch-awin\.ts \|\| true\) && )?next build/);
   assert.match(fs.readFileSync("next.config.js", "utf8"), /\.\/data\/amazon-live\/\*\.json/);
 });
+
+test("an ASIN counts only when Amazon's own barcodes carry our EAN", () => {
+  const it = (eans: string[], upcs: string[] = []): Item => ({ asin: "B000000001", itemInfo: { externalIds: { eans: { displayValues: eans }, upcs: { displayValues: upcs } } } });
+  assert.ok(barcodeMatches(it(["5011921171804"]), "5011921171804"));
+  assert.ok(!barcodeMatches(it(["5011921171811"]), "5011921171804"), "another box is not this one");
+  assert.ok(!barcodeMatches({ asin: "B000000001" }, "5011921171804"), "no barcodes on Amazon's side, no match");
+});
+
+test("a credential from another country's account stops that store at once", () => {
+  assert.ok(isWrongAccount('{"__type":"InvalidAssociate","message":"Your credential is not linked to the partner tag"}'));
+  assert.ok(!isWrongAccount('{"__type":"ThrottleException"}'));
+});
+
+test("a found ASIN is kept; a miss is searched again after 30 days; the name search is the product's name", () => {
+  assert.ok(dueForSearch(undefined, "2026-11-06"));
+  assert.ok(!dueForSearch(["B000000001", "2026-01-01"], "2026-11-06"));
+  assert.ok(!dueForSearch([null, "2026-10-20"], "2026-11-06"));
+  assert.ok(dueForSearch([null, "2026-10-01"], "2026-11-06"));
+  assert.equal(searchWords({ name: "Space Marines Intercessors" }), "Space Marines Intercessors");
+});
+
+test("the Amazon ops check is never red: the sales gate is expected, only a silent finder turns amber", () => {
+  const now = new Date("2026-11-06T12:00:00Z");
+  assert.equal(checkAmazon({}, now).status, "ok");
+  const r = checkAmazon({ us: { at: "2026-11-06T06:00:00Z", state: "refused" }, au: { at: "2026-11-06T06:00:00Z", state: "ok", known: 40, waiting: 3 } }, now);
+  assert.equal(r.status, "ok");
+  assert.match(r.detail, /US waiting for Amazon API access; AU 40 ASINs/);
+  assert.equal(checkAmazon({ us: { at: "2026-11-03T06:00:00Z", state: "ok" } }, now).status, "warn");
+});
+
+test("pages never read the ASIN files; the refresh finds ASINs with the credentials as GitHub secrets", () => {
+  const walk = (d: string): string[] => fs.readdirSync(d).flatMap((f) => (fs.statSync(path.join(d, f)).isDirectory() ? walk(path.join(d, f)) : [path.join(d, f)]));
+  for (const f of [...walk("src/app"), ...walk("src/components")].filter((f) => /\.tsx?$/.test(f)))
+    assert.ok(!/amazon-asins/.test(fs.readFileSync(f, "utf8")), `${f} reads the ASIN files`);
+  const wf = fs.readFileSync(".github/workflows/refresh-prices.yml", "utf8");
+  assert.match(wf, /npx tsx scripts\/amazon-asins\.ts/);
+  for (const r of ["US", "UK", "CA", "AU"]) assert.ok(wf.includes(`AMAZON_CREATORS_${r}_CLIENT_SECRET: \${{ secrets.AMAZON_CREATORS_${r}_CLIENT_SECRET }}`), r);
+});
+

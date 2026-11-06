@@ -3,6 +3,7 @@
 // check fails the run and GitHub emails the owner. A source that cannot be read is "unknown": shown, never a false ok.
 // A new scheduled job, external API or limit gets a check here and a test in tests/ops.test.ts.
 import { codesNeedingRecheck } from "./store-partner-deals";
+import type { AsinStatus } from "./amazon-asins";
 import type { EbayFile, Meta } from "./types";
 
 export type Status = "ok" | "warn" | "fail" | "unknown";
@@ -69,4 +70,19 @@ export function checkFamilyFeed(generatedAt: string | null, now: Date): Check {
   return h > 50
     ? { name, status: "warn", detail: `Written ${Math.round(h)} hours ago: read the Family feed step of refresh-prices.yml.` }
     : { name, status: "ok", detail: `Written ${Math.round(h)} hours ago.` };
+}
+
+/** Amazon's ASIN finder (scripts/amazon-asins.ts) per store. Never red: without access the rows keep their tagged
+ *  search links. "refused" is Amazon's 10-sales gate and is expected for weeks, so it stays green with its reason;
+ *  only a finder that stopped reporting for two days is amber. */
+export function checkAmazon(statuses: Record<string, AsinStatus | null>, now: Date): Check {
+  const seen = Object.entries(statuses).filter(([, s]) => s) as [string, AsinStatus][];
+  const name = "Amazon ASINs";
+  if (!seen.length) return { name, status: "ok", detail: "no Amazon ASIN run recorded yet: the Amazon rows are tagged searches" };
+  const stale = seen.filter(([, s]) => (now.getTime() - Date.parse(s.at)) / H > 54).map(([r]) => r.toUpperCase());
+  const parts = seen.map(([r, s]) =>
+    s.state === "ok" ? `${r.toUpperCase()} ${s.known ?? 0} ASINs (${s.waiting ?? 0} waiting)` : s.state === "refused" ? `${r.toUpperCase()} waiting for Amazon API access` : `${r.toUpperCase()} no credential`,
+  );
+  if (stale.length) return { name, status: "warn", detail: `Amazon ASIN finder last ran over two days ago for ${stale.join(", ")}: check the Refresh prices workflow. ${parts.join("; ")}` };
+  return { name, status: "ok", detail: parts.join("; ") };
 }
