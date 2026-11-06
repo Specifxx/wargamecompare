@@ -87,7 +87,7 @@ export default function ProductPage({ params }: { params: { region: string; slug
   const photoStore = offers.find((o) => o.u && p.image)?.s;
   const ebayCurrencyRegion: Region = region === "nz" ? "au" : region;
   const rows = priceRows(p, region, "product");
-  const bestHref = best ? storeUrl(best.u, dealForHost(new URL(best.u).hostname)?.ref) : null;
+  const bestHref = best ? storeUrl(best.u, dealForHost(new URL(best.u).hostname)?.ref, { checkout: best.in }) : null;
   const inStock = offers.filter((o) => o.in).length;
   const ld =
     productIndexable(s) && offers.some((o) => o.in)
