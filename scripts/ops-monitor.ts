@@ -2,7 +2,9 @@
 // emails the owner. Runs in GitHub Actions on purpose: it works when the deploy is what broke.
 import fs from "node:fs";
 import path from "node:path";
-import { checkCodes, checkEbay, checkFamilyFeed, checkImport, checkLive, type Check } from "@/lib/ops";
+import { readAsinStatus } from "@/lib/amazon-asins";
+import { AMAZON_STORES } from "@/lib/amazon-creators";
+import { checkAmazon, checkCodes, checkEbay, checkFamilyFeed, checkImport, checkLive, type Check } from "@/lib/ops";
 import { STORES } from "@/lib/stores";
 import type { EbayFile, Meta } from "@/lib/types";
 
@@ -29,6 +31,7 @@ async function main() {
       checks.push(checkLive(0, null));
     }
   } else checks.push(checkLive(null, null));
+  checks.push(checkAmazon(Object.fromEntries(AMAZON_STORES.map((s) => [s, readAsinStatus(s)])), now));
   checks.push(checkCodes(now));
   checks.push(checkFamilyFeed(read<{ generatedAt?: string }>("family/family-feed.json")?.generatedAt ?? null, now));
 

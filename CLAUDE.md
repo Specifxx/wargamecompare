@@ -67,12 +67,16 @@ every rule you change.
 
 ## Amazon's price on the Amazon row (owner, 2026-11-05)
 
-`scripts/fetch-amazon-prices.ts` runs first in every Vercel build and asks the Creators API by EAN (getItems), in every
-Amazon store with a tag (US, UK, CA, AU; NZ reads AU's), into the git-ignored `data/amazon-live/`; the product page's
-Amazon row (`lib/price-rows.ts`, product surface only) shows Amazon's own listing and price with its time for 24 hours
-(`lib/amazon-live.ts`, `AmazonPrice.tsx`). Never committed, never a sort, the cheapest badge, a deal, the feed or the
-quick view. Credentials `AMAZON_CREATORS_AU_*` (Vercel only) serve every store; a store without API access yet is
-skipped and its row keeps the search link. `tests/amazon-api.test.ts` pins it.
+`scripts/amazon-asins.ts` (daily refresh; getItems takes ASINs only, 2026-11-06) finds each product's ASIN with
+searchItems (the EAN, then the name) and keeps it only when Amazon's own externalIds carry our EAN; ASINs and misses
+are committed in `data/amazon/` (prices never). `scripts/fetch-amazon-prices.ts` runs first in every Vercel build and
+asks getItems for those ASINs, in every Amazon store with a tag (US, UK, CA, AU; NZ reads AU's), into the git-ignored
+`data/amazon-live/`; the product page's Amazon row (`lib/price-rows.ts`, product surface only) shows Amazon's own
+listing and price with its time for 24 hours (`lib/amazon-live.ts`, `AmazonPrice.tsx`). Never committed, never a
+sort, the cheapest badge, a deal, the feed or the quick view. Credentials `AMAZON_CREATORS_<US|UK|CA|AU>_*` (GitHub
+secrets + Vercel Production): each country's own (a credential works only for its own account's tags; AU is the
+fallback). A store without API access yet (Amazon wants 10 qualifying sales in 30 days) is skipped and its row keeps
+the search link; the ops check "Amazon ASINs" shows it. `tests/amazon-api.test.ts` pins it.
 
 ## eBay
 

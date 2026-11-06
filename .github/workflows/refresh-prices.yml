@@ -64,6 +64,21 @@ jobs:
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_DAILY_CAP: ${{ vars.EBAY_DAILY_CAP }}
         run: npx tsx scripts/ebay.ts
+      - name: Amazon ASINs (by EAN; a no-op until a Creators API credential exists)
+        env:
+          AMAZON_CREATORS_US_CLIENT_ID: ${{ secrets.AMAZON_CREATORS_US_CLIENT_ID }}
+          AMAZON_CREATORS_US_CLIENT_SECRET: ${{ secrets.AMAZON_CREATORS_US_CLIENT_SECRET }}
+          AMAZON_CREATORS_US_VERSION: ${{ secrets.AMAZON_CREATORS_US_VERSION }}
+          AMAZON_CREATORS_UK_CLIENT_ID: ${{ secrets.AMAZON_CREATORS_UK_CLIENT_ID }}
+          AMAZON_CREATORS_UK_CLIENT_SECRET: ${{ secrets.AMAZON_CREATORS_UK_CLIENT_SECRET }}
+          AMAZON_CREATORS_UK_VERSION: ${{ secrets.AMAZON_CREATORS_UK_VERSION }}
+          AMAZON_CREATORS_CA_CLIENT_ID: ${{ secrets.AMAZON_CREATORS_CA_CLIENT_ID }}
+          AMAZON_CREATORS_CA_CLIENT_SECRET: ${{ secrets.AMAZON_CREATORS_CA_CLIENT_SECRET }}
+          AMAZON_CREATORS_CA_VERSION: ${{ secrets.AMAZON_CREATORS_CA_VERSION }}
+          AMAZON_CREATORS_AU_CLIENT_ID: ${{ secrets.AMAZON_CREATORS_AU_CLIENT_ID }}
+          AMAZON_CREATORS_AU_CLIENT_SECRET: ${{ secrets.AMAZON_CREATORS_AU_CLIENT_SECRET }}
+          AMAZON_CREATORS_AU_VERSION: ${{ secrets.AMAZON_CREATORS_AU_VERSION }}
+        run: npx tsx scripts/amazon-asins.ts
       # The Compare Empire network (DECISIONS.md "Sites that grow each other"): this site's best deals for the
       # sister sites, and the hobby sisters' feeds for the deals pages. Never fails the run.
       - name: Family feed

@@ -1,6 +1,6 @@
 // Runs first in every Vercel build: Amazon's own price of each product, in every Amazon store we have a tag
-// for (US, UK, CA, AU; NZ reads AU's), looked up by EAN with the Creators API (getItems, itemIdType EAN, ten
-// a call, one call a second) and written to data/amazon-live/<store>.json (git-ignored). Amazon's licence
+// for (US, UK, CA, AU; NZ reads AU's), with the Creators API (getItems, ten ASINs a call, one call a second):
+// the ASINs the daily refresh matched to our EANs (scripts/amazon-asins.ts, data/amazon/; getItems takes no EAN), and written to data/amazon-live/<store>.json (git-ignored). Amazon's licence
 // lets a price be kept for 24 hours and shown with its time, so prices are fetched by each build and never
 // committed; the product page shows one only while under 24 hours old (lib/amazon-live.ts). Products with
 // the most in-stock stores first, AMAZON_BUILD_CALLS calls a store (30 by default: 300 products, about 35
@@ -12,7 +12,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { amazonTags } from "../src/lib/affiliate";
-import { AMAZON_STORES, AmazonRefused, credentialsFor, creatorsClient, MARKETS, pickListing, PRICE_RESOURCES, type AmazonStore } from "../src/lib/amazon-creators";
+import { readAsins } from "../src/lib/amazon-asins";
+import { AMAZON_STORES, AmazonRefused, barcodeMatches, credentialsFor, creatorsClient, MARKETS, pickListing, PRICE_RESOURCES, type AmazonStore } from "../src/lib/amazon-creators";
 import { AMAZON_LIVE_DIR, type AmazonLiveFile } from "../src/lib/amazon-live";
 import { REGIONS } from "../src/lib/regions";
 import type { OffersFile, Product } from "../src/lib/types";
@@ -33,14 +34,15 @@ async function store(code: AmazonStore, products: Product[], offers: OffersFile)
   const creds = credentialsFor(code);
   if (!creds) return console.log(`Amazon prices ${code}: no AMAZON_CREATORS_* credentials, skipped.`);
   const byId = offers[REGIONS[code].market] ?? {};
+  const asins = readAsins(code);
   const inRegion = products
-    .filter((p) => p.ean)
-    .map((p) => ({ p, offers: (byId[p.id] ?? []).filter((o) => o.in) }))
-    .filter((x) => x.offers.length)
+    .filter((p): p is Product & { ean: string } => !!p.ean)
+    .map((p) => ({ p, asin: asins[p.ean]?.[0], offers: (byId[p.id] ?? []).filter((o) => o.in) }))
+    .filter((x): x is typeof x & { asin: string } => !!x.asin && x.offers.length > 0)
     .sort((a, b) => b.offers.length - a.offers.length || b.offers[0].p - a.offers[0].p);
   const cap = Number(process.env.AMAZON_BUILD_CALLS || 30) * 10;
   const todo = inRegion.slice(0, cap);
-  if (!todo.length) return;
+  if (!todo.length) return console.log(`Amazon prices ${code}: no ASINs found yet (scripts/amazon-asins.ts), skipped.`);
   const api = await creatorsClient(code, tag, creds);
   const fetchedAt = new Date().toISOString();
   const prices: AmazonLiveFile["prices"] = {};
@@ -48,20 +50,22 @@ async function store(code: AmazonStore, products: Product[], offers: OffersFile)
     const batch = todo.slice(i, i + 10);
     let items;
     try {
-      items = await api.call("getItems", { itemIds: batch.map((x) => x.p.ean), itemIdType: "EAN", resources: PRICE_RESOURCES });
+      items = await api.call("getItems", { itemIds: batch.map((x) => x.asin), itemIdType: "ASIN", resources: PRICE_RESOURCES });
     } catch (e) {
       console.log(`Amazon prices ${code}: ${(e as Error).message}`);
       if (e instanceof AmazonRefused) break;
       continue;
     }
     for (const x of batch) {
-      const it = items.find((it) => (it.itemInfo?.externalIds?.eans?.displayValues ?? []).includes(x.p.ean!));
-      const pick = it && pickListing(it, market.currency);
+      const it = items.find((it) => it.asin === x.asin);
+      // The ASIN was matched by EAN; if Amazon now lists other barcodes on it, the page changed: skip it.
+      if (!it || (it.itemInfo?.externalIds && !barcodeMatches(it, x.p.ean))) continue;
+      const pick = pickListing(it, market.currency);
       if (!pick) continue;
       const cents = Math.round(pick.amount * 100);
       const ref = median(x.offers.map((o) => o.p));
       if (ref && (cents < ref * 0.6 || cents > ref * 1.6)) continue;
-      prices[x.p.ean!] = { asin: it!.asin, p: cents };
+      prices[x.p.ean] = { asin: it.asin, p: cents };
     }
   }
   if (!Object.keys(prices).length) return console.log(`Amazon prices ${code}: none (${api.calls()} calls).`);

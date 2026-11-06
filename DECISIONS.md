@@ -831,3 +831,16 @@ permalink (the single-click checkout links), so Awin and partner stores, and row
 "manual" lines on their own tracked links; eBay, Amazon, TCGplayer and Cardmarket are never lines. Shared files, the
 same in every site (port fixes by hand): `src/lib/cart-list.ts`, `src/components/cart/*` (`cart-config.ts` is the
 one per-site file; styles imported once from the root layout), `tests/cart-list.test.ts`.
+
+## 2026-11-06: Amazon prices find ASINs by EAN first (ported from ScentCompare #20)
+
+The 2026-11-05 build fetch asked getItems with `itemIdType: "EAN"`. The Creators API documents ASIN as the only
+itemIdType, so it could never have priced anything, even once Amazon opened access. Now `scripts/amazon-asins.ts`
+runs in the daily refresh: per Amazon store, products with the most in-stock stores first, one searchItems by the
+EAN and, failing that, one by the product's name, kept only when the result's own `externalIds` list our EAN (a
+wrong merge is worse than a missing price; products without an EAN are never searched). Up to 300 calls a store a
+day (`AMAZON_SEARCH_BUDGET`), misses retried after 30 days, `data/amazon/asins-<store>.json` committed (ASINs may be
+stored, prices may not; not bundled with functions). The build prices those ASINs, ten a call, still within 60–160%
+of the store median. Credentials are per country (the AU credential answers US and UK calls with 400
+InvalidAssociate, found on Compare Empire), and InvalidAssociate / AssociateNotEligible now stop a store at once.
+
