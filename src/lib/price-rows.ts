@@ -16,7 +16,7 @@ import {
 } from "./affiliate";
 import { AMAZON_CLOCK, amazonLive, storeFor } from "./amazon-live";
 import { ebayFor, offersFor } from "./data";
-import { formatPrice, type Region } from "./regions";
+import { formatPrice, REGIONS, type Region } from "./regions";
 import { STORE_BY_KEY } from "./stores";
 import { activeStoreCode, dealForHost, type ActiveStoreCode } from "./store-partner-deals";
 import type { Product } from "./types";
@@ -40,6 +40,8 @@ export interface StoreRow {
   placement: Placement;
   /** the store's own listing URL, for the shared thumbs up / down (components/StoreVote.tsx) */
   vote: string;
+  /** The cart list (components/cart, owner 2026-11-06): an in-stock row's product name, price and currency. */
+  cart?: { title: string; image: string | null; priceCents: number; currency: string };
 }
 /** Amazon's own price from the Creators API at this build (lib/amazon-live.ts): shown with its time, 24 hours at most. */
 export interface AmazonLiveRow {
@@ -115,6 +117,7 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       href: storeUrl(o.u, dealForHost(new URL(o.u).hostname)?.ref, { checkout: o.in }),
       placement: at("table"),
       vote: o.u,
+      ...(o.in ? { cart: { title: p.name, image: p.image ?? null, priceCents: o.p, currency: REGIONS[region].currency } } : {}),
     })),
     wayland: wayland ? { label: "Wayland Games", href: wayland, placement: at("wayland") } : null,
   };

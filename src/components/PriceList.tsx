@@ -6,12 +6,14 @@ import { AMAZON_PRICE_DISCLAIMER, AmazonPrice } from "./AmazonPrice";
 import { OutboundLink } from "./OutboundLink";
 import { StockPill } from "./StockPill";
 import { StoreVote } from "./StoreVote";
+import { CartAddButton } from "./cart/CartAddButton";
 
 // The engine's price table rows (from MTG Compare's OfferRows): a grid whose cells are placed by grid-area. On a phone, two columns:
 // the store and its stock pill; the price; the host line; the button, 44 px, beside the last two. From sm one line: the store over
 // its line, then the pill, the price, the button.
 const ROW_GRID = "grid grid-cols-[1fr_auto] items-center gap-x-3 px-4 py-3 sm:grid-cols-[1fr_auto_10rem_auto] sm:gap-x-4 sm:px-5 sm:py-3.5";
 const ROW_BUTTON = "min-h-11 justify-self-end whitespace-nowrap [grid-area:2/2/4] sm:min-h-10 sm:[grid-area:1/4/3]";
+const ROW_ACTIONS = "flex items-center gap-2 justify-self-end [grid-area:2/2/4] sm:[grid-area:1/4/3]";
 const BADGE = "shrink-0 rounded-full bg-open px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-surface";
 /** Rows shown before the "Show N more" fold. */
 const SHOWN = 8;
@@ -141,9 +143,15 @@ function Row({ o }: { o: StoreRow }) {
         )}
         {o.was && <span className="tabular truncate text-[11px] leading-4 text-muted line-through sm:block sm:text-xs">was {o.was}</span>}
       </div>
-      <OutboundLink href={o.href} rel={storeRel(o.href)} retailer={o.name} placement={o.placement} className={`${o.cheapest ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} ${ROW_BUTTON}`}>
-        {o.inStock ? "View deal" : "View"} <span aria-hidden="true">↗</span>
-      </OutboundLink>
+      {/* The row's button, and beside it the cart list's "Add to cart" (components/cart) on an in-stock row. */}
+      <div className={ROW_ACTIONS}>
+        {o.cart && (
+          <CartAddButton href={o.href} productUrl={o.vote} storeName={o.name} title={o.cart.title} priceCents={o.cart.priceCents} currency={o.cart.currency} image={o.cart.image} className="text-muted" />
+        )}
+        <OutboundLink href={o.href} rel={storeRel(o.href)} retailer={o.name} placement={o.placement} className={`${o.cheapest ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} min-h-11 whitespace-nowrap sm:min-h-10`}>
+          {o.inStock ? "View deal" : "View"} <span aria-hidden="true">↗</span>
+        </OutboundLink>
+      </div>
     </li>
   );
 }
