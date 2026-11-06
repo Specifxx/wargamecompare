@@ -44,6 +44,8 @@ export const PLACEMENTS = [
   "new-releases", // new releases and pre-orders page: the eBay block
   "side-ebay", // the left side rail on a wide screen: popular kits on eBay
   "side-ebay-deals", // the right side rail on a wide screen: today's deals on eBay
+  "dock-ebay", // the phone dock below 1280px (components/AdDock.tsx, owner 2026-11-06): the left rail's popular kits
+  "dock-ebay-deals", // the phone dock: the right rail's deals
 ] as const;
 export type Placement = (typeof PLACEMENTS)[number];
 

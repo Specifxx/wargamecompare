@@ -6,6 +6,10 @@ import { readFileSync } from "node:fs";
 import { MAX_TILES, MIN_WIDTH, RAIL_ROOM, railFits } from "../src/lib/rails";
 import { sideRailsFor } from "../src/lib/side-rails";
 import { REGIONS, type Region } from "../src/lib/regions";
+import { PLACEMENTS } from "../src/lib/affiliate";
+import { dockHref } from "../src/components/SideAds";
+import { DOCK_ARM, dockShows, interleave, type DockState } from "../src/components/AdDock";
+const src = (p: string) => read(`src/${p}`);
 
 const read = (p: string) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 
@@ -55,3 +59,28 @@ test("the pages with no region (the home page, About…) get the same rails, in 
   assert.match(read("src/components/SideAds.tsx"), /export function SoftSideAds[\s\S]*?useSoftRegion\(\)/);
 });
 
+test("the phone dock: narrow screens only, never on the first screen, never beside another unit, the buy bar or a dialog", () => {
+  const ok: DockState = { narrow: true, scrolled: 1000, screen: 800, blockers: 0, buybar: false, modal: false, typing: false, dismissed: false };
+  assert.ok(dockShows(ok));
+  assert.ok(!dockShows({ ...ok, narrow: false }), "wide screens have the rails");
+  assert.ok(!dockShows({ ...ok, scrolled: 800 * DOCK_ARM - 1 }), "not on the first screen");
+  assert.ok(!dockShows({ ...ok, blockers: 1 }), "another unit or the footer in view");
+  assert.ok(!dockShows({ ...ok, buybar: true }), "never on a page with the buy bar");
+  assert.ok(!dockShows({ ...ok, modal: true }), "never over a dialog or the menu");
+  assert.ok(!dockShows({ ...ok, typing: true }), "never over the keyboard");
+  assert.ok(!dockShows({ ...ok, dismissed: true }));
+  assert.deepEqual(interleave([{ items: ["e1", "e2", "e3"] }, { items: ["t1"] }]), ["e1", "t1", "e2", "e3"], "the sides take turns");
+  const d = src("components/AdDock.tsx");
+  assert.match(d, /^"use client";/);
+  assert.match(d, /return armed \? <>\{children\}<\/> : null;/, "nothing rendered or fetched before the visitor scrolls");
+  assert.match(d, /translate-y-full/, "slides on transform only (CLS 0)");
+  assert.match(d, /querySelectorAll\(`footer, \[data-dock-yield\], \$\{yieldTo\}`\)/, "hides beside every other unit and the footer");
+  assert.match(d, /yieldTo = "\[data-ad\]"/, "every [data-ad] unit by default");
+  assert.match(d, /sessionStorage\.setItem\(DISMISS_KEY, "1"\)/, "✕ hides it for the visit");
+  assert.match(d, />Ad<\/span>/, "labelled Ad");
+  const s = src("components/SideAds.tsx");
+  for (const p of ["dock-ebay", "dock-ebay-deals"]) assert.ok((PLACEMENTS as readonly string[]).includes(p), `${p} is a placement`);
+  assert.equal(dockHref("https://ebay.com/x?customid=wgc-uk-side-ebay-deals&a=1"), "https://ebay.com/x?customid=wgc-uk-dock-ebay-deals&a=1");
+  assert.match(s, /buybar="\[data-sticky-buy\]"/, "never on a product page");
+  assert.doesNotMatch(d + s, /amazon/i, "no Amazon in the dock");
+});
