@@ -10,6 +10,7 @@ import { RegionSwitcher } from "./RegionSwitcher";
 import { HeaderNavItems, SoftHeaderNavItems, SoftRegionSwitcher, SoftSearchBox, type HeaderNavItem } from "./HeaderNav";
 import { ThemeToggle } from "./ThemeToggle";
 import { SearchBox } from "./SearchBox";
+import { CartHeaderLink } from "@/components/cart/CartHeaderLink";
 
 /**
  * The desktop nav (lg and up), in order: Deals, New releases, Browse (the dropdown: every game, product type and popular army,
@@ -64,6 +65,8 @@ export function Header({ region }: { region: Region | null }) {
         <div className="hdr-search min-w-0 flex-1 lg:ml-auto lg:w-56 lg:flex-none xl:w-64">{region ? <SearchBox region={region} size="sm" /> : <SoftSearchBox />}</div>
         <ThemeToggle />
         {region ? <RegionSwitcher region={region} compact /> : <SoftRegionSwitcher />}
+        {/* The cart list (components/cart, owner 2026-11-06): every width, with its count. */}
+        <CartHeaderLink />
         <MobileMenu region={region} groups={groups} built={built} className="lg:hidden" />
       </div>
     </header>
