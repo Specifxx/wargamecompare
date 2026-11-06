@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "wargame",
- "generatedAt": "2026-11-05T00:58:02.621Z",
+ "generatedAt": "2026-11-06T00:55:51.479Z",
  "links": {
   "UK": {
    "deals": "https://wargamecompare.com/uk/deals"
@@ -108,20 +108,6 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "AU",
-   "title": "Kill team: Approved Ops Card Pack 2025",
-   "url": "https://wargamecompare.com/au/p/kill-team-approved-ops-card-pack-2025",
-   "cents": 2000,
-   "currency": "AUD",
-   "store": "Turtle TCG",
-   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/KillTeam-ApprovedOperationsCardPack2025.jpg?v=1757143862&width=200",
-   "refCents": 4000,
-   "refLabel": "median store price",
-   "savingPct": 50
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "AU",
    "title": "War Zone Nachmund: Vigilus Alone",
    "url": "https://wargamecompare.com/au/p/war-zone-nachmund-vigilus-alone",
    "cents": 4200,
@@ -157,6 +143,20 @@
    "store": "Lots Moore",
    "image": "https://cdn.shopify.com/s/files/1/0623/1349/6801/products/xtuwoix5aundwxegkhi3.jpg?v=1653616109&width=200",
    "refCents": 9800,
+   "refLabel": "RRP",
+   "savingPct": 50
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "AU",
+   "title": "Age Of Sigmar: General's Handbook",
+   "url": "https://wargamecompare.com/au/p/age-of-sigmar-generals-handbook",
+   "cents": 5000,
+   "currency": "AUD",
+   "store": "Turtle TCG",
+   "image": "https://cdn.shopify.com/s/files/1/0508/7985/6797/files/https___trade.games-workshop.com_assets_2025_05_60040299160_EngAgeofSigmarGeneralsHandbook05.jpg?v=1748714717&width=200",
+   "refCents": 10000,
    "refLabel": "RRP",
    "savingPct": 50
   },
@@ -206,20 +206,6 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "NZ",
-   "title": "Chaos Space Marines: Raptors",
-   "url": "https://wargamecompare.com/nz/p/chaos-space-marines-raptors",
-   "cents": 5799,
-   "currency": "NZD",
-   "store": "PlayX",
-   "image": "https://cdn.shopify.com/s/files/1/0740/1619/4849/files/ED81B73F-72AC-47D4-B678-57F5413A64D6.png?v=1735587573&width=200",
-   "refCents": 11200,
-   "refLabel": "median store price",
-   "savingPct": 48
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "NZ",
    "title": "Kill Team Datacards: Chaos Cult",
    "url": "https://wargamecompare.com/nz/p/kill-team-datacards-chaos-cult",
    "cents": 2800,
@@ -249,7 +235,7 @@
    "cluster": "hobby",
    "region": "NZ",
    "title": "Warhammer 40,000 Introductory Set",
-   "url": "https://wargamecompare.com/nz/p/warhammer-40-000-introductory-set",
+   "url": "https://wargamecompare.com/nz/p/warhammer-40k-introductory-set",
    "cents": 10900,
    "currency": "NZD",
    "store": "Goblin Games NZ",
@@ -271,6 +257,20 @@
    "refCents": 9450,
    "refLabel": "median store price",
    "savingPct": 31
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "NZ",
+   "title": "Astra Militarum: Cadian Shock Troops",
+   "url": "https://wargamecompare.com/nz/p/astra-militarum-cadian-shock-troops",
+   "cents": 7299,
+   "currency": "NZD",
+   "store": "PlayX",
+   "image": "https://cdn.shopify.com/s/files/1/0740/1619/4849/files/69DAB1F1-DC5A-44EF-AEC3-62E0AFA97B71.png?v=1735419118&width=200",
+   "refCents": 10500,
+   "refLabel": "RRP",
+   "savingPct": 30
   },
   {
    "kind": "deal",
@@ -430,15 +430,15 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "US",
-   "title": "40K: Octarius Book 1 - Rising Tide",
-   "url": "https://wargamecompare.com/us/p/war-zone-octarius-book-1-rising-tide",
-   "cents": 2750,
+   "title": "Space Marines: Infernus Squad",
+   "url": "https://wargamecompare.com/us/p/space-marines-infernus-squad",
+   "cents": 3150,
    "currency": "USD",
-   "store": "The Guardtower",
-   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/https___trade.games-workshop.com_assets_2021_10_60040199144_ENGOctariusRisingTideBookLead.jpg?v=1728552046&width=200",
-   "refCents": 5248,
-   "refLabel": "median store price",
-   "savingPct": 48
+   "store": "AFK Games",
+   "image": "https://cdn.shopify.com/s/files/1/0931/5267/4090/files/SMInfernusPaintSet07.jpg?v=1762200998&width=200",
+   "refCents": 6200,
+   "refLabel": "RRP",
+   "savingPct": 49
   }
  ]
 }
