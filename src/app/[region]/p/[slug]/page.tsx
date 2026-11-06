@@ -184,7 +184,7 @@ export default function ProductPage({ params }: { params: { region: string; slug
                     Buy at {storeName(best.s)} <span aria-hidden="true">↗</span>
                   </OutboundLink>
                   <OutboundLink href={ebay ? ebayAffiliateUrl(ebay.u, region, "product-best-ebay") : ebaySearchUrl(p.name, region, "product-best-ebay")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-best-ebay" className="btn-ad min-h-12 px-5 text-base">
-                    {ebay ? `Or ${formatPrice(ebay.p, ebayCurrencyRegion)} on eBay` : "Compare on eBay"}
+                    {ebay ? `Or ${formatPrice(ebay.p + (ebay.sh ?? 0), ebayCurrencyRegion)}${ebay.sh == null ? " + postage" : " delivered"} on eBay` : "Compare on eBay"}
                   </OutboundLink>
                   <span className="ad-pill">Ad</span>
                   <StoreCode code={activeStoreCode(best.u)} />

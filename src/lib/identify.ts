@@ -88,6 +88,7 @@ export function titleTokens(title: string): string[] {
     .toLowerCase()
     .replace(/\((?:pre-?order|preorder)[^)]*\)|\bpre-?order(?: for)? [\d/]+|\bships? [\d/]+|\[max[^\]]*\]/g, " ")
     .replace(/[[(][^)\]]*\d{2,3}-\d{1,3}[^)\]]*[)\]]|[[(]\s*\d{9,13}\s*[)\]]/g, " ") // codes in brackets
+    .replace(/^\s*#?\d{2,3}-\d{1,3}\s|\s#?\d{2,3}-\d{1,3}\s*$/g, " ") // a bare box code at the start or end
     .replace(/['’]/g, "")
     .replace(/[^a-z0-9]+/g, " ")
     .split(" ")
@@ -153,6 +154,45 @@ export function groupListings(listings: Listing[]): number[] {
   };
   usable.forEach((codes) => codes.forEach((c, i) => i && union(codes[0], c)));
 
+  // 2b. One box code, two editions. Games Workshop reuses a short code across editions ("80-01" is Age of Sigmar's
+  // starter set in every edition: Extremis, then Spearhead/Ultimate), while each edition has its own item number. A
+  // group holding two item numbers whose listings name the kit differently (a word most of one edition's titles use
+  // and none of the other's, "extremis") was joined by the box code alone: the short code is dropped from every listing
+  // in it that carries an item number or barcode, and the union is redone. Paint pots of two generations share a name,
+  // so they stay one group here (and 4c joins them by title in any case).
+  {
+    const itemsByRoot = new Map<string, Map<string, number[]>>();
+    usable.forEach((codes, i) => {
+      for (const c of codes) {
+        if (!c.startsWith("item:")) continue;
+        const r = find(c);
+        const m = itemsByRoot.get(r) ?? new Map<string, number[]>();
+        itemsByRoot.set(r, m);
+        m.set(c, [...(m.get(c) ?? []), i]);
+      }
+    });
+    const split = new Set<string>();
+    for (const [root, byItem] of itemsByRoot) {
+      if (byItem.size < 2) continue;
+      const sides = [...byItem.values()].map((idx) => idx.map((i) => new Set(titleTokens(listings[i].title).filter((t) => !GENERIC.has(t)))));
+      const exclusive = sides.some((side, k) => {
+        const others = sides.filter((_, j) => j !== k).flat();
+        const freq = new Map<string, number>();
+        for (const ts of side) for (const t of ts) freq.set(t, (freq.get(t) ?? 0) + 1);
+        return [...freq].some(([t, n]) => n >= side.length * 0.5 && !others.some((o) => o.has(t)));
+      });
+      if (exclusive) split.add(root);
+    }
+    if (split.size) {
+      const inSplit = usable.map((codes) => codes.some((c) => split.has(find(c))));
+      usable.forEach((codes, i) => {
+        if (inSplit[i] && codes.some((c) => !c.startsWith("short:"))) usable[i] = codes.filter((c) => !c.startsWith("short:"));
+      });
+      parent.clear();
+      usable.forEach((codes) => codes.forEach((c, i) => i && union(codes[0], c)));
+    }
+  }
+
   // 3. A group holding two different SHORT codes (or two item numbers, or two barcodes) was bridged by a listing that
   // is wrong somewhere: refuse the bridges. Each listing then keeps only its first code's own group.
   const kindsInRoot = new Map<string, Map<CodeKind, Set<string>>>();
@@ -167,7 +207,19 @@ export function groupListings(listings: Listing[]): number[] {
       m.set(kind, s);
     }),
   );
-  const conflicted = new Set([...kindsInRoot].filter(([, m]) => [...m.values()].some((s) => s.size > 1)).map(([r]) => r));
+  // Two box codes under ONE item number and ONE barcode are one kit with a store's odd box code ("73-441" beside
+  // "73-44" for Combat Patrol: Dark Angels): the item number proves it, so that group is kept whole. Splitting it made
+  // two pages for one box, each with the same barcode.
+  const conflicted = new Set(
+    [...kindsInRoot]
+      .filter(([, m]) => {
+        const many = [...m].filter(([, s]) => s.size > 1).map(([k]) => k);
+        if (!many.length) return false;
+        const strongOne = (m.get("item")?.size ?? 0) + (m.get("ean")?.size ?? 0) >= 1 && (m.get("item")?.size ?? 0) <= 1 && (m.get("ean")?.size ?? 0) <= 1;
+        return !(many.length === 1 && many[0] === "short" && strongOne && (m.get("item")?.size ?? 0) === 1);
+      })
+      .map(([r]) => r),
+  );
   const groupKey = (codes: string[]): string | null => {
     if (!codes.length) return null;
     const r = find(codes[0]);
@@ -240,16 +292,46 @@ export function groupListings(listings: Listing[]): number[] {
       set.add(g);
       groupsByKey.set(k, set);
     });
-    for (const gs of groupsByKey.values()) {
-      if (gs.size < 2) continue;
-      const all = new Set([...gs].flatMap((g) => [...(shorts.get(gFind(g)) ?? [])]));
-      if (all.size > 1) continue;
-      const [first, ...rest] = [...gs].map(gFind);
+    // A group is "strong" when one of its listings carries an item number or barcode. Strong groups are joined by a
+    // shared title first; a group known only by its box code then joins the ONE product it shares a title with, never
+    // two (it would bridge the two editions 2b just split).
+    const strong = new Set<number>();
+    out.forEach((g, i) => {
+      if (g >= 0 && usable[i].some((c) => !c.startsWith("short:"))) strong.add(g);
+    });
+    const join = (gs: number[]) => {
+      const all = new Set(gs.flatMap((g) => [...(shorts.get(gFind(g)) ?? [])]));
+      if (all.size > 1) return;
+      const [first, ...rest] = gs.map(gFind);
       for (const g of rest) {
         if (g === first) continue;
         gParent.set(g, first);
         shorts.set(first, new Set([...(shorts.get(first) ?? []), ...(shorts.get(g) ?? [])]));
       }
+    };
+    for (const gs of groupsByKey.values()) {
+      const s = [...gs].filter((g) => strong.has(g));
+      if (s.length >= 2) join(s);
+    }
+    const weakTargets = new Map<number, Set<number>>();
+    for (const gs of groupsByKey.values()) {
+      // Two box codes under one title ("Combat Patrol: Space Marines" of two editions): nobody joins on it.
+      if (new Set([...gs].flatMap((g) => [...(shorts.get(g) ?? [])])).size > 1) continue;
+      const weak = [...gs].filter((g) => !strong.has(g));
+      const targets = [...gs].filter((g) => strong.has(g)).map(gFind);
+      for (const w of weak) {
+        const t = weakTargets.get(w) ?? new Set<number>();
+        targets.forEach((x) => t.add(x));
+        weakTargets.set(w, t);
+      }
+    }
+    for (const gs of groupsByKey.values()) {
+      const weak = [...gs].filter((g) => !strong.has(g));
+      if (weak.length >= 2 && weak.every((w) => !(weakTargets.get(w)?.size))) join(weak);
+    }
+    for (const [w, t] of weakTargets) {
+      const roots = new Set([...t].map(gFind));
+      if (roots.size === 1) join([[...roots][0], w]);
     }
     out.forEach((g, i) => {
       if (g >= 0) out[i] = gFind(g);
