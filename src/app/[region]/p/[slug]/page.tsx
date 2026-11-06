@@ -22,7 +22,7 @@ import {
   ebayLabel,
   ebaySearchUrl,
   REL_PAID,
-  REL_STORE,
+  storeRel,
   storeUrl,
 } from "@/lib/affiliate";
 import { FACTION_BY_SLUG, SYSTEM_BY_SLUG, TYPE_BY_SLUG } from "@/lib/catalog";
@@ -180,7 +180,7 @@ export default function ProductPage({ params }: { params: { region: string; slug
                   </p>
                 )}
                 <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <OutboundLink href={bestHref} rel={REL_STORE} retailer={storeName(best.s)} placement="product-best" className="btn-primary min-h-12 px-6 text-base">
+                  <OutboundLink href={bestHref} rel={storeRel(bestHref)} retailer={storeName(best.s)} placement="product-best" className="btn-primary min-h-12 px-6 text-base">
                     Buy at {storeName(best.s)} <span aria-hidden="true">↗</span>
                   </OutboundLink>
                   <OutboundLink href={ebay ? ebayAffiliateUrl(ebay.u, region, "product-best-ebay") : ebaySearchUrl(p.name, region, "product-best-ebay")} rel={REL_PAID} retailer={ebayLabel(region)} placement="product-best-ebay" className="btn-ad min-h-12 px-5 text-base">

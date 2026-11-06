@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { REL_PAID, REL_STORE } from "@/lib/affiliate";
+import { isAwinLink } from "@/lib/awin";
+import { REL_PAID, storeRel } from "@/lib/affiliate";
 import type { PriceListData, StoreRow } from "@/lib/price-rows";
 import { AMAZON_PRICE_DISCLAIMER, AmazonPrice } from "./AmazonPrice";
 import { OutboundLink } from "./OutboundLink";
@@ -117,6 +118,7 @@ function Row({ o }: { o: StoreRow }) {
       <div className="flex h-5 items-center gap-2 overflow-hidden sm:h-6">
         <span className="truncate text-[15px] font-semibold sm:text-base">{o.name}</span>
         {o.cheapest && <span className={BADGE}>Cheapest</span>}
+        {isAwinLink(o.href) && <span className="text-[11px] text-faint">Paid link</span>}
       </div>
       <div className="truncate text-[11px] leading-4 text-faint sm:text-xs" title={o.title}>
         {o.title}
@@ -137,7 +139,7 @@ function Row({ o }: { o: StoreRow }) {
         )}
         {o.was && <span className="tabular truncate text-[11px] leading-4 text-muted line-through sm:block sm:text-xs">was {o.was}</span>}
       </div>
-      <OutboundLink href={o.href} rel={REL_STORE} retailer={o.name} placement={o.placement} className={`${o.cheapest ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} ${ROW_BUTTON}`}>
+      <OutboundLink href={o.href} rel={storeRel(o.href)} retailer={o.name} placement={o.placement} className={`${o.cheapest ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} ${ROW_BUTTON}`}>
         {o.inStock ? "View deal" : "View"} <span aria-hidden="true">↗</span>
       </OutboundLink>
     </li>

@@ -736,3 +736,13 @@ sub id, "View" instead of "Search", the required "accurate as of" disclaimer und
 cheapest badge, a deal, the alert feed, metadata or the quick view (no Amazon link in a pop-up). The credentials are
 Vercel Production variables only (`AMAZON_CREATORS_AU_*`, a store's own `AMAZON_CREATORS_<STORE>_*` overriding), never
 in the repo; `tests/amazon-api.test.ts` keeps the client build-side and the live file out of git.
+
+## 2026-11-06 — Awin: a store that accepts us pays from the next build, with no step by hand
+
+**Decision (owner: "check if we are making the most of Awin, and if it's not there, just do it"):** the family's Awin
+account (Compare Empire, publisher 3144410) is read each morning by Compare Empire's `scripts/awin-sync.ts`, which
+publishes the programmes that accepted us, with their tracked domains, in its public `data/awin/programmes.json`. This
+site copies it first in every build (`scripts/fetch-awin.ts` → `src/lib/awin-programmes.json`; the committed copy is an
+empty list). `storeUrl` turns a link to a joined advertiser's own domain (Element Games, Firestorm, Wayland…, whichever
+accept) into its Awin deep link to the same page, unless a store partner code applies; `storeRel` makes it "sponsored"
+and the price list marks it "Paid link". Order, the Cheapest badge and prices never change.

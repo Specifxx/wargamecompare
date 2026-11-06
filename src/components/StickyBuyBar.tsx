@@ -1,4 +1,4 @@
-import { REL_STORE } from "@/lib/affiliate";
+import { storeRel } from "@/lib/affiliate";
 import { OutboundLink } from "./OutboundLink";
 
 /**
@@ -14,7 +14,7 @@ export function StickyBuyBar({ price, store, href, note }: { price: string; stor
           <p className="truncate text-[11px] font-medium leading-4 text-muted">{note ?? `Cheapest in stock · ${store}`}</p>
           <p className="tabular font-display text-lg font-bold leading-6">{price}</p>
         </div>
-        <OutboundLink href={href} rel={REL_STORE} retailer={store} placement="product-sticky" className="btn-primary min-h-11 shrink-0 px-5">
+        <OutboundLink href={href} rel={storeRel(href)} retailer={store} placement="product-sticky" className="btn-primary min-h-11 shrink-0 px-5">
           View deal <span aria-hidden="true">↗</span>
         </OutboundLink>
       </div>

@@ -69,6 +69,6 @@ test("the Creators API client stays build-side; only the price rows read live Am
     assert.ok(!/AMAZON_CREATORS/.test(s) || f === "src/lib/amazon-creators.ts", `${f} names the credentials`);
   }
   assert.match(fs.readFileSync(".gitignore", "utf8"), /^\/data\/amazon-live\/$/m);
-  assert.match(JSON.parse(fs.readFileSync("package.json", "utf8")).scripts.build, /^\(tsx scripts\/fetch-amazon-prices\.ts \|\| true\) && next build/);
+  assert.match(JSON.parse(fs.readFileSync("package.json", "utf8")).scripts.build, /^\(tsx scripts\/fetch-amazon-prices\.ts \|\| true\) && (\(tsx scripts\/fetch-awin\.ts \|\| true\) && )?next build/);
   assert.match(fs.readFileSync("next.config.js", "utf8"), /\.\/data\/amazon-live\/\*\.json/);
 });
