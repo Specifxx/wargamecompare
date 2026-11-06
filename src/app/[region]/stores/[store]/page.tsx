@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { OutboundLink } from "@/components/OutboundLink";
 import { ProductGrid } from "@/components/ProductCard";
-import { REL_STORE, storeUrl } from "@/lib/affiliate";
+import { storeRel, storeUrl } from "@/lib/affiliate";
 import { meta, offersFor, summariesFor } from "@/lib/data";
 import { regionOr404 } from "@/lib/page";
 import { breadcrumbLd, jsonLd, ogFor } from "@/lib/seo";
@@ -42,7 +42,7 @@ export default function StorePage({ params }: { params: { region: string; store:
         {storeHost(s)} · {listed.toLocaleString("en")} Games Workshop products listed{h?.lastOkAt ? `, last read ${new Date(h.lastOkAt).toUTCString().slice(5, 16)}` : ""}.
       </p>
       <p className="mt-4">
-        <OutboundLink href={storeUrl(s.base, dealForHost(storeHost(s))?.ref)} rel={REL_STORE} retailer={s.name} placement="store-page" className="btn-primary">
+        <OutboundLink href={storeUrl(s.base, dealForHost(storeHost(s))?.ref)} rel={storeRel(storeUrl(s.base, dealForHost(storeHost(s))?.ref))} retailer={s.name} placement="store-page" className="btn-primary">
           Visit {s.name}
         </OutboundLink>
       </p>

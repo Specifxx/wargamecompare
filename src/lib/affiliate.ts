@@ -11,6 +11,7 @@
 //   • Store partner programmes (store-partner-deals.ts): a store's own commission parameter and exclusive code.
 // Store links otherwise go out untouched except for utm_source, which is what a partner conversation starts from.
 import type { Region } from "./regions";
+import { awinUrl, clickref, isAwinLink } from "./awin";
 
 export const PLACEMENTS = [
   "product-best", // product page: the best-price card's button
@@ -204,6 +205,8 @@ export function storeUrl(url: string, ref?: { param: string; value: string } | n
       u.searchParams.set("utm_medium", "referral");
     }
     if (ref) u.searchParams.set(ref.param, ref.value);
+    // No partner code of its own: a store that accepted us on Awin (src/lib/awin.ts) goes through its tracked deep link.
+    else return awinUrl(u.toString(), clickref("wgc", u.hostname.replace(/^www\./, ""))) ?? u.toString();
     return u.toString();
   } catch {
     return url;
@@ -212,4 +215,8 @@ export function storeUrl(url: string, ref?: { param: string; value: string } | n
 
 export const REL_PAID = "sponsored nofollow noopener";
 export const REL_STORE = "nofollow noopener";
+/** A store link's rel: "sponsored" once it earns (an Awin deep link), plain nofollow otherwise. */
+export function storeRel(href: string): string {
+  return isAwinLink(href) ? REL_PAID : REL_STORE;
+}
 export const EBAY_DISCLOSURE = "Affiliate link: as an eBay Partner Network affiliate, WargameCompare earns from qualifying purchases at no cost to you.";

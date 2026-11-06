@@ -5,7 +5,7 @@
   "description": "WargameCompare: miniature wargaming prices and stock, compared across independent stores.",
   "scripts": {
     "dev": "next dev",
-    "build": "(tsx scripts/fetch-amazon-prices.ts || true) && next build",
+    "build": "(tsx scripts/fetch-amazon-prices.ts || true) && (tsx scripts/fetch-awin.ts || true) && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
