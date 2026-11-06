@@ -113,3 +113,9 @@ test("pages never read the ASIN files; the refresh finds ASINs with the credenti
   for (const r of ["US", "UK", "CA", "AU"]) assert.ok(wf.includes(`AMAZON_CREATORS_${r}_CLIENT_SECRET: \${{ secrets.AMAZON_CREATORS_${r}_CLIENT_SECRET }}`), r);
 });
 
+
+test("the quick view's Amazon row is the tagged Amazon link itself, never Amazon's price (owner, 2026-11-06)", () => {
+  const src = fs.readFileSync("src/lib/price-rows.ts", "utf8");
+  assert.doesNotMatch(src, /startsWith\("quickview"\) \? null : \(?liveUrl/, "the quick view keeps the Amazon link");
+  assert.match(src, /const live = [^;]*quickview[^;]*\? null : found;/, "Amazon's price stays on the product page");
+});

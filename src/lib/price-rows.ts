@@ -85,12 +85,15 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
           : "same as the cheapest store"
       : null;
   const at = <T extends string>(x: T) => `${surface}-${x}` as Placement;
-  // Never in the quick view (2026-11-02): Amazon's Operating Agreement allows no Amazon link in a pop-up window.
-  // On the product page, the Creators API's own listing and price when this build fetched one (owner, 2026-11-05),
-  // else the tagged search; the price is Amazon's row's alone, never a sort, the cheapest badge, a deal or the feed.
-  const live = surface === "quickview" ? null : amazonLive(p.ean, region);
-  const liveHref = live && amazonItemUrl(live.asin, region, at("amazon"));
-  const amazon = surface === "quickview" ? null : liveHref ?? amazonSearchUrl(p.name, region, at("amazon"));
+  // The Creators API's own listing when this build fetched one (owner, 2026-11-05), else the tagged search; the price is
+  // Amazon's row's alone, never a sort, the cheapest badge, a deal or the feed. The quick view carries the same tagged
+  // link (owner, 2026-11-06: a visitor-opened view of this one product is the Associates policy's "pop-up windows in
+  // conjunction with your Site promoting Products closely associated with the materials on your Site"), but never
+  // Amazon's price: that stays on the product page (24-hour licence, CLAUDE.md).
+  const found = amazonLive(p.ean, region);
+  const liveHref = found && amazonItemUrl(found.asin, region, at("amazon"));
+  const live = surface === "quickview" ? null : found;
+  const amazon = liveHref ?? amazonSearchUrl(p.name, region, at("amazon"));
   const clock = AMAZON_CLOCK[storeFor(region)];
   const wayland = WAYLAND_REGIONS.includes(region) ? waylandSearchUrl(p.name) : null;
   const isBook = p.system === "black-library";

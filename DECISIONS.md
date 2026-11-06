@@ -880,3 +880,16 @@ barcode. A bare box code at a title's start or end is no longer a title word. Ru
 Companion") are books, battleforces and Apocalypse detachments that name a spearhead are army sets. The product page's
 eBay button shows the delivered price when postage is known, as the eBay row does. Real titles in `tests/identify.test.ts`
 and `tests/catalog.test.ts`. Pages pick it up at the next import.
+
+## 2026-11-06: The quick view carries the tagged Amazon link (owner)
+
+Since 2026-11-02 the quick view showed no Amazon link (or, on KaeYoung and ScentCompare, an "Amazon" row that opened our
+own product page), read as Amazon's ban on links in pop-ups. The owner noticed the quick view sends nobody to Amazon and
+chose (2026-11-06) to put the product page's own tagged Amazon link there. Amazon's Participation Requirements, item
+(o): "You will not post or serve any Special Links … within any pop-up or pop-under windows, transitional page ads, or
+layer ads, except for pop-up windows in conjunction with your Site promoting Products closely associated with the
+materials on your Site." A quick view the visitor opens for one product, showing that same product, fits the exception;
+the owner accepted the remaining risk. The quick view shows the link only (the item's own page where the ASIN is known,
+else the tagged search), never Amazon's price: that stays on the product page under the 24-hour licence. Uninvited
+overlays (a phone ad dock, a corner card, an exit pop-up) still never carry Amazon, and an Amazon page is never framed
+(item (n)).
