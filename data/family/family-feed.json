@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "wargame",
- "generatedAt": "2026-11-06T00:55:51.479Z",
+ "generatedAt": "2026-11-06T11:22:05.783Z",
  "links": {
   "UK": {
    "deals": "https://wargamecompare.com/uk/deals"
@@ -150,20 +150,6 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "AU",
-   "title": "Age Of Sigmar: General's Handbook",
-   "url": "https://wargamecompare.com/au/p/age-of-sigmar-generals-handbook",
-   "cents": 5000,
-   "currency": "AUD",
-   "store": "Turtle TCG",
-   "image": "https://cdn.shopify.com/s/files/1/0508/7985/6797/files/https___trade.games-workshop.com_assets_2025_05_60040299160_EngAgeofSigmarGeneralsHandbook05.jpg?v=1748714717&width=200",
-   "refCents": 10000,
-   "refLabel": "RRP",
-   "savingPct": 50
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "AU",
    "title": "Datasheet Cards: Drukhari",
    "url": "https://wargamecompare.com/au/p/datasheet-cards-drukhari",
    "cents": 2900,
@@ -186,6 +172,20 @@
    "image": "https://cdn.shopify.com/s/files/1/0552/1804/5102/files/60050210005_engLuminethRealmlordsWarscrollCards01.jpg?v=1774979779&width=200",
    "refCents": 5600,
    "refLabel": "RRP",
+   "savingPct": 48
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "AU",
+   "title": "Path to Glory: Blighted Wilds",
+   "url": "https://wargamecompare.com/au/p/path-to-glory-blighted-wilds",
+   "cents": 4400,
+   "currency": "AUD",
+   "store": "Mperor.cc",
+   "image": "https://cdn.shopify.com/s/files/1/0931/5267/4090/files/rn-image_picker_lib_temp_ce4bf706-fa2a-473f-87d9-9ed275bfc4b6.jpg?v=1764875006&width=200",
+   "refCents": 8466,
+   "refLabel": "median store price",
    "savingPct": 48
   },
   {
@@ -235,7 +235,7 @@
    "cluster": "hobby",
    "region": "NZ",
    "title": "Warhammer 40,000 Introductory Set",
-   "url": "https://wargamecompare.com/nz/p/warhammer-40k-introductory-set",
+   "url": "https://wargamecompare.com/nz/p/warhammer-40k-introductory-set-40-4",
    "cents": 10900,
    "currency": "NZD",
    "store": "Goblin Games NZ",
