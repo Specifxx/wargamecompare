@@ -6,6 +6,7 @@ import { GUTTER, MAX_TILES, MIN_TILES, MIN_WIDTH, RAIL_EDGE, RAIL_W, railFits, t
 import { formatPrice, type Region } from "@/lib/regions";
 import type { Tile } from "./EbayStrip";
 import { OutboundLink } from "./OutboundLink";
+import { AdDock, DockGate, DockTile, DOCK_LINK, type DockSide } from "./AdDock";
 import { useSoftRegion } from "./SoftRegion";
 
 // The two side rails (ported from the Dex / MTG Compare engine, owner 2026-11-04: "the new ad change … as much juice out of the
@@ -27,9 +28,13 @@ export { MAX_TILES, MIN_WIDTH, TILE_H, railFits, type SideRails } from "@/lib/ra
 
 export function SideAds({ rails }: { rails: SideRails }) {
   const [fit, setFit] = useState(false);
+  const [narrow, setNarrow] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia(`(min-width: ${MIN_WIDTH}px)`);
-    const update = () => setFit(mq.matches && railFits(window.innerHeight));
+    const update = () => {
+      setFit(mq.matches && railFits(window.innerHeight));
+      setNarrow(!mq.matches);
+    };
     update();
     mq.addEventListener("change", update);
     window.addEventListener("resize", update, { passive: true });
@@ -38,6 +43,8 @@ export function SideAds({ rails }: { rails: SideRails }) {
       window.removeEventListener("resize", update);
     };
   }, []);
+  // Too narrow for the rails (phones, tablets, a small window): the same tiles in the phone dock (AdDock.tsx).
+  if (narrow) return <PhoneDock rails={rails} />;
   if (!fit) return null;
   return (
     <>
@@ -97,5 +104,38 @@ function Rail({ side, rails, tiles, placement, heading }: { side: "left" | "righ
         <span className="truncate">Affiliate · delivered</span>
       </p>
     </div>
+  );
+}
+
+/** The rails' tag with the dock's placement in it (side-ebay → dock-ebay), so EPN's customid report tells the two apart. Pure. */
+export function dockHref(href: string): string {
+  return href.replace(/(customid=wgc-[a-z]+-)side-ebay/, "$1dock-ebay");
+}
+
+/**
+ * The phone dock (owner, 2026-11-06: the rails "on mobile … in the best way that doesn't interrupt user experience"): the rails'
+ * tiles, popular kits and today's deals taking turns, in one bar along the foot of a narrow screen. AdDock.tsx has the rules; it
+ * yields to every eBay unit on the page (.ad-box) and never shows on a product page (the buy bar, data-sticky-buy).
+ */
+function PhoneDock({ rails }: { rails: SideRails }) {
+  const priceRegion: Region = rails.region === "nz" ? "au" : rails.region;
+  const side = (key: string, tiles: Tile[], placement: Placement, brand: string): DockSide => ({
+    key,
+    items: tiles
+      .filter((t) => t.image && t.price != null)
+      .slice(0, MAX_TILES)
+      .map((t) => (
+        <OutboundLink key={t.id} href={dockHref(t.href)} rel={REL_PAID} retailer={rails.label} placement={placement} className={DOCK_LINK}>
+          <DockTile img={t.image!} alt={`${t.name} on eBay`} brand={<span className="font-black text-ink">{brand}</span>} title={t.name} price={formatPrice(t.price!, priceRegion)} cta="View" plate />
+          <span className="sr-only">, on {rails.label}</span>
+        </OutboundLink>
+      )),
+  });
+  const sides = [side("kits", rails.left, "dock-ebay", "eBay · Popular"), side("deals", rails.right, "dock-ebay-deals", "eBay · Deal")].filter((s) => s.items.length > 0);
+  if (sides.length === 0) return null;
+  return (
+    <DockGate minWidth={MIN_WIDTH}>
+      <AdDock label={`Sponsored: kits on ${rails.label}`} sides={sides} placement="dock-ebay" minWidth={MIN_WIDTH} yieldTo=".ad-box, [data-ad], [data-ebay-strip]" buybar="[data-sticky-buy]" />
+    </DockGate>
   );
 }
