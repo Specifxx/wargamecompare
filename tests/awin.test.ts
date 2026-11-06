@@ -34,6 +34,6 @@ test("store links go through Awin when no partner code applies, and earn the spo
   assert.equal(storeRel("https://www.awin1.com/cread.php?awinmid=1&awinaffid=3144410&ued=x"), REL_PAID);
   assert.equal(storeRel("https://www.elementgames.co.uk/x"), REL_STORE);
   const src = readFileSync("src/lib/affiliate.ts", "utf8");
-  assert.match(src, /else return awinUrl\(u\.toString\(\), clickref\("wgc"/);
+  assert.match(src, /const awin = awinUrl\(u\.toString\(\), clickref\("wgc"[^\n]*\n\s*if \(awin\) return awin;/);
   for (const f of ["src/components/PriceList.tsx", "src/components/StickyBuyBar.tsx"]) assert.doesNotMatch(readFileSync(f, "utf8"), /rel=\{REL_STORE\}/, f);
 });
