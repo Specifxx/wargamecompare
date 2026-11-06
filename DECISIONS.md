@@ -778,3 +778,14 @@ component there first and copy it.
 
 **Addendum (owner, 2026-11-06: "the home page must have this as well"):** the home page gets the same rails, in the
 visitor's suggested or picked region (`SoftSideAds`, the way its header and sidebar follow the visitor).
+
+## 2026-11-06 — Buy links open the store's checkout
+
+**Decision (owner: "for all the sites that we can, send them directly to the checkout page, with the item in the
+basket"):** an in-stock Shopify store row opens that store's checkout with the item in the cart, through Shopify's cart
+permalink (`/cart/<variant id>:1`), as RiftCompare (#340) and OP Compare (#99) do. `scripts/import.ts` now names the
+variant on every Shopify listing URL (before, only on multi-variant products), and `storeUrl(…, { checkout })` returns
+the cart link, with `utm_source` and `utm_content=checkout`, for in-stock rows on the product page, its best-price
+button and the quick view (`price-rows.ts`). A store with a partner code or on Awin keeps its product page (their
+tracking runs there); eBay, Amazon and Wayland are unchanged. `buy_click` carries `link_type`.
+`lib/checkout-link.ts`, `tests/checkout-link.test.ts`.

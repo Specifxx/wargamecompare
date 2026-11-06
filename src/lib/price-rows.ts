@@ -112,7 +112,7 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       price: o.in || !isBook ? formatPrice(o.p, region) : null,
       was: o.w && o.w > o.p && (o.in || !isBook) ? formatPrice(o.w, region) : null,
       code: activeStoreCode(o.u),
-      href: storeUrl(o.u, dealForHost(new URL(o.u).hostname)?.ref),
+      href: storeUrl(o.u, dealForHost(new URL(o.u).hostname)?.ref, { checkout: o.in }),
       placement: at("table"),
       vote: o.u,
     })),

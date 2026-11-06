@@ -11,6 +11,7 @@
 //   • Store partner programmes (store-partner-deals.ts): a store's own commission parameter and exclusive code.
 // Store links otherwise go out untouched except for utm_source, which is what a partner conversation starts from.
 import type { Region } from "./regions";
+import { shopifyCartUrl } from "./checkout-link";
 import { awinUrl, clickref, isAwinLink } from "./awin";
 
 export const PLACEMENTS = [
@@ -197,7 +198,7 @@ export const WAYLAND_REGIONS: readonly Region[] = ["uk"];
 
 // ─── Stores ────────────────────────────────────────────────────────────────────
 /** A store link with utm_source (so a store sees us in its own analytics), plus its partner commission parameter if any. */
-export function storeUrl(url: string, ref?: { param: string; value: string } | null): string {
+export function storeUrl(url: string, ref?: { param: string; value: string } | null, opts: { checkout?: boolean } = {}): string {
   try {
     const u = new URL(url);
     if (!u.searchParams.has("utm_source")) {
@@ -205,8 +206,19 @@ export function storeUrl(url: string, ref?: { param: string; value: string } | n
       u.searchParams.set("utm_medium", "referral");
     }
     if (ref) u.searchParams.set(ref.param, ref.value);
-    // No partner code of its own: a store that accepted us on Awin (src/lib/awin.ts) goes through its tracked deep link.
-    else return awinUrl(u.toString(), clickref("wgc", u.hostname.replace(/^www\./, ""))) ?? u.toString();
+    else {
+      // No partner code of its own: a store that accepted us on Awin (src/lib/awin.ts) goes through its tracked deep link.
+      const awin = awinUrl(u.toString(), clickref("wgc", u.hostname.replace(/^www\./, "")));
+      if (awin) return awin;
+      // Straight to checkout (lib/checkout-link.ts, owner 2026-11-06): an in-stock Shopify row
+      // opens the store's cart with its variant in it. Never for a partner code or Awin store.
+      const cart = opts.checkout ? shopifyCartUrl(u.toString()) : null;
+      if (cart) {
+        const c = new URL(cart);
+        c.searchParams.set("utm_content", "checkout");
+        return c.toString();
+      }
+    }
     return u.toString();
   } catch {
     return url;
