@@ -19,6 +19,9 @@ const ROW_LINK = "min-h-11 whitespace-nowrap sm:min-h-10";
 export const PIN_OUTLINE = {
   ebay: "outline outline-2 -outline-offset-2 outline-[#16a34a]",
   amazon: "outline outline-2 -outline-offset-2 outline-[#f59e0b]",
+  /** The cheapest store row (owner, 2026-11-07: "the cheapest listing should also have an outline too"): sky blue, never read as
+   *  eBay's green or Amazon's amber. */
+  cheapest: "outline outline-2 -outline-offset-2 outline-[#0ea5e9]",
 } as const;
 const BADGE = "shrink-0 rounded-full bg-open px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-surface";
 /** Rows shown before the "Show N more" fold. */
@@ -132,7 +135,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
 
 function Row({ o }: { o: StoreRow }) {
   return (
-    <li data-offer-row="" className={`${ROW_GRID} ${o.cheapest ? "bg-open-soft/40" : ""}`}>
+    <li data-offer-row="" className={`${ROW_GRID} ${o.cheapest ? `bg-open-soft/40 ${PIN_OUTLINE.cheapest}` : ""}`}>
       <div className="flex h-5 items-center gap-2 overflow-hidden sm:h-6">
         <span className="truncate text-[15px] font-semibold sm:text-base">{o.name}</span>
         {o.cheapest && <span className={BADGE}>Cheapest</span>}
