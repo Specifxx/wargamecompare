@@ -930,3 +930,11 @@ data files; a culled product's URL 301s to its type page and comes back by itsel
 `scripts/ops-monitor.ts` checked the live site only when the repository variable `SITE_URL` was set, and it never was,
 so "Live site" said "unknown" on every run: the monitor would not have noticed the site going down. Found in the
 all-keys check. It now falls back to the site's canonical origin (`SITE_URL` in `src/lib/site.ts`).
+
+## Black Friday guide (2026-11-07)
+
+Owner: get the Black Friday pages indexed and ranking. The sale pages were already in the sitemap and the daily IndexNow
+run (every sitemap URL). Added the region guide `warhammer-black-friday-2026`: the dates, each store's typical saving under RRP
+today (`storeSavings`, top ten), the cheapest Combat Patrols, Spearheads and starter sets in stock at two or more stores,
+and five checks. The sale pages link it. Its point is that independents already sell under RRP, so a code is a deal only
+when it beats the cheapest store's ordinary price. It makes no claim about what stores will do on the day.

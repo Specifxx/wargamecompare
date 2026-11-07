@@ -305,6 +305,74 @@ function Gifts({ r, all }: { r: RegionInfo; all: Summary[] }) {
   );
 }
 
+/** Black Friday 2026 (2026-11-07): each store's typical saving under RRP today, the cheapest starter boxes, and the checks. */
+function BlackFriday({ r, all }: { r: RegionInfo; all: Summary[] }) {
+  const rows = storeSavings(all, (id) => offersFor(id, r.region)).slice(0, 10);
+  const withRrp = all.filter((s) => s.rrp && s.best != null && s.stores >= 2);
+  const offs = withRrp.map((s) => (s.rrp! - s.best!) / s.rrp!).sort((a, b) => a - b);
+  const typical = offs.length ? offs[Math.floor(offs.length / 2)] : null;
+  const patrols = [...cheapestOfType(all, "combat-patrols", 6, "warhammer-40k"), ...cheapestOfType(all, "combat-patrols", 6, "age-of-sigmar")].sort((a, b) => a.best! - b.best!).slice(0, 8);
+  const starters = [...cheapestOfType(all, "starter-sets", 4, "warhammer-40k", 2), ...cheapestOfType(all, "starter-sets", 4, "age-of-sigmar", 2)].sort((a, b) => a.best! - b.best!).slice(0, 4);
+  const pct = (x: number) => `${Math.round(x * 100)}%`;
+  return (
+    <>
+      <P>
+        Black Friday is Friday 27 November 2026 and Cyber Monday is Monday 30 November. Independent Warhammer stores already sell under Games Workshop&rsquo;s RRP
+        every day of the year
+        {typical != null ? <>: across {withRrp.length.toLocaleString(r.locale)} products sold by two or more stores in {r.inName}, the cheapest store is typically <strong>{pct(typical)} under RRP</strong> today</> : null}.
+        So a &ldquo;Black Friday 20% off&rdquo; is only a deal if it beats what the cheapest store charges on an ordinary day. This guide is today&rsquo;s prices to
+        read a Black Friday price against. Prices are in {r.currency}. {r.taxNote}
+      </P>
+      <P>
+        The deals themselves are on <Link className="text-brand underline" href={`/${r.region}/black-friday`}>Warhammer Black Friday deals</Link>, rebuilt every day
+        through the week, and <Link className="text-brand underline" href={`/${r.region}/cyber-monday`}>Cyber Monday deals</Link> does the same for the Monday.
+      </P>
+      <H2>Where each store already sits against RRP</H2>
+      <P>
+        A store&rsquo;s typical saving is the median across every in-stock product it lists with a stated RRP (stores with fewer than 20 such products are left out). A code
+        on top of a store that is already well under RRP goes further than the same code at a store that sells at RRP.
+      </P>
+      {rows.length ? (
+        <div className="card mt-4 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-line text-left text-faint">
+                <th className="px-3 py-2">Store</th>
+                <th className="px-3 py-2 text-right">Typical saving today</th>
+                <th className="px-3 py-2 text-right">Products compared</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((x) => (
+                <tr key={x.store} className="border-b border-line last:border-0">
+                  <td className="px-3 py-2 font-semibold"><Link href={`/${r.region}/stores/${x.store}`} className="hover:text-brand">{STORE_BY_KEY.get(x.store)?.name ?? x.store}</Link></td>
+                  <td className="tabular px-3 py-2 text-right font-bold">{x.typical > 0 ? `${pct(x.typical)} off` : x.typical < 0 ? `${pct(-x.typical)} over` : "at RRP"}</td>
+                  <td className="tabular px-3 py-2 text-right">{x.compared}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <P>Not enough stated RRPs in {r.inName} today to compare stores.</P>
+      )}
+      <H2>The prices to beat: Combat Patrols and Spearheads</H2>
+      <P>The cheapest whole-army boxes in stock at two or more stores in {r.inName} today:</P>
+      <Grid items={patrols} r={r} />
+      <H2>Starter sets</H2>
+      <Grid items={starters} r={r} />
+      <H2>Five checks before you pay</H2>
+      <ul className="mt-3 max-w-3xl list-disc space-y-2 pl-5 leading-relaxed text-muted">
+        <li>Compare with the cheapest store today, not with the RRP or a struck-through price: the RRP is a price most independents never charge.</li>
+        <li>Add the shipping. A bigger discount can cost more once shipping is added, and free-shipping thresholds differ by store.</li>
+        <li>Check it is in stock. A low price on a pre-order or a backorder ships later, or not at all.</li>
+        <li>Read the code&rsquo;s terms: stores often leave new releases and pre-orders out of site-wide codes.</li>
+        <li>For gifts, check the store&rsquo;s last order date for delivery before the 25th. Our <Link className="text-brand underline" href={`/${r.region}/guides/warhammer-gift-guide`}>gift guide</Link> has ideas at every budget.</li>
+      </ul>
+    </>
+  );
+}
+
 export default function GuidePage({ params }: { params: { region: string; slug: string } }) {
   const { r, g } = load(params);
   const all = summariesFor(r.region);
@@ -317,7 +385,7 @@ export default function GuidePage({ params }: { params: { region: string; slug: 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: "Guides", path: `/${r.region}/guides` }, { name: h1, path: `/${r.region}/guides/${g.slug}` }])) }} />
       <p className="text-xs font-bold uppercase tracking-wide text-faint"><Link href={`/${r.region}/guides`} className="hover:text-brand">Guides</Link> · {r.name}</p>
       <h1 className="mt-1 font-display text-3xl font-extrabold">{h1}</h1>
-      {g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : g.slug === "discount-stores-vs-rrp" ? <Discounts r={r} all={all} /> : g.slug === "warhammer-gift-guide" ? <Gifts r={r} all={all} /> : <Trajectory r={r} all={all} />}
+      {g.slug === "warhammer-black-friday-2026" ? <BlackFriday r={r} all={all} /> : g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : g.slug === "discount-stores-vs-rrp" ? <Discounts r={r} all={all} /> : g.slug === "warhammer-gift-guide" ? <Gifts r={r} all={all} /> : <Trajectory r={r} all={all} />}
       <div className="mt-10">
         <EbayBox region={r.region} query={g.slug === "cheapest-way-to-start" ? "Warhammer Combat Patrol" : "Warhammer"} heading="On eBay" placement="guide-ebay" />
       </div>

@@ -2,7 +2,7 @@
 // question no hub page answers: how to start for the least money, and how much the discount stores really save.
 import type { Summary } from "./data";
 
-export type GuideSlug = "cheapest-way-to-start" | "discount-stores-vs-rrp" | "warhammer-prices-where-they-are-heading" | "warhammer-gift-guide";
+export type GuideSlug = "cheapest-way-to-start" | "discount-stores-vs-rrp" | "warhammer-prices-where-they-are-heading" | "warhammer-gift-guide" | "warhammer-black-friday-2026";
 
 export interface GuideInfo {
   slug: GuideSlug;
@@ -15,6 +15,12 @@ export interface GuideInfo {
 }
 
 export const GUIDES: GuideInfo[] = [
+  {
+    slug: "warhammer-black-friday-2026",
+    title: "Warhammer Black Friday 2026 {in}: the prices to beat",
+    h1: "Warhammer Black Friday 2026 in {in}: the prices to beat",
+    description: "Warhammer Black Friday and Cyber Monday 2026 in {in}: how far under RRP each store sells today, the cheapest starter boxes, and five checks.",
+  },
   {
     slug: "cheapest-way-to-start",
     title: "Cheapest way to start Warhammer in {in}: starter sets and Combat Patrols priced",
