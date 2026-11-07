@@ -48,7 +48,7 @@ export function checkEbay(ebay: EbayFile | null, enabled: boolean, cap: number, 
 }
 
 export function checkLive(status: number | null, body: string | null): Check {
-  if (status == null) return { name: "Live site", status: "unknown", detail: "SITE_URL not set (the domain is not live yet), or the request failed to connect." };
+  if (status == null) return { name: "Live site", status: "unknown", detail: "The live site did not answer (no connection)." };
   const ok = status === 200 && !!body && body.includes("WargameCompare");
   return { name: "Live site", status: ok ? "ok" : "fail", detail: `GET /uk answered ${status}${ok ? "" : body ? ", without the site's name" : ""}.` };
 }

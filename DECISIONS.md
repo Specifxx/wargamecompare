@@ -924,3 +924,9 @@ store and 1,578 at one store only; Search Console (56 days) put 22 product pages
 (`data/focus/demand.json`, refreshed daily from the `demand` branch by `scripts/focus-demand.ts`), on pre-order, newly arrived
 and in stock somewhere, or in stock at two or more stores in one region. ≈6,700 → 4,000 products. Nothing is deleted from the
 data files; a culled product's URL 301s to its type page and comes back by itself when it qualifies.
+
+## 2026-11-07 — The ops monitor checks the live site again
+
+`scripts/ops-monitor.ts` checked the live site only when the repository variable `SITE_URL` was set, and it never was,
+so "Live site" said "unknown" on every run: the monitor would not have noticed the site going down. Found in the
+all-keys check. It now falls back to the site's canonical origin (`SITE_URL` in `src/lib/site.ts`).

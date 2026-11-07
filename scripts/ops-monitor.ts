@@ -5,6 +5,7 @@ import path from "node:path";
 import { readAsinStatus } from "@/lib/amazon-asins";
 import { AMAZON_STORES } from "@/lib/amazon-creators";
 import { checkAmazon, checkCodes, checkEbay, checkFamilyFeed, checkImport, checkLive, type Check } from "@/lib/ops";
+import { SITE_URL } from "@/lib/site";
 import { STORES } from "@/lib/stores";
 import type { EbayFile, Meta } from "@/lib/types";
 
@@ -22,7 +23,9 @@ async function main() {
   checks.push(...checkImport(read<Meta>("meta.json"), STORES.length, now));
   const pacific = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Los_Angeles" }).format(now);
   checks.push(...checkEbay(read<EbayFile>("ebay.json"), process.env.EBAY_ENABLED === "true", Number(process.env.EBAY_DAILY_CAP || 2500), now, pacific));
-  const site = process.env.SITE_URL?.trim();
+  // The repository variable SITE_URL was never set, so the live-site check said "unknown" for weeks; the site's own
+  // canonical origin is the default (DECISIONS.md, 2026-11-07).
+  const site = process.env.SITE_URL?.trim() || SITE_URL;
   if (site) {
     try {
       const res = await fetch(`${site.replace(/\/$/, "")}/uk`, { signal: AbortSignal.timeout(30_000) });
