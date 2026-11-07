@@ -1,0 +1,53 @@
+{
+ "v": 1,
+ "site": "wargamecompare.com",
+ "at": "2026-11-07T13:29:23.849Z",
+ "overall": "warn",
+ "checks": [
+  {
+   "name": "Price import",
+   "status": "ok",
+   "detail": "Last import 13.4 h ago (daily, refresh-prices.yml)."
+  },
+  {
+   "name": "Products",
+   "status": "ok",
+   "detail": "6701 products in data/products.json."
+  },
+  {
+   "name": "Store reads",
+   "status": "warn",
+   "detail": "2 of 405 stores failed: millenniumcomics (429 from millenniumcomics.com.au); southtexastcg (page 1 of /collections/warhammer/products.json unreadable)"
+  },
+  {
+   "name": "eBay listings",
+   "status": "ok",
+   "detail": "Last eBay pass 13.4 h ago."
+  },
+  {
+   "name": "eBay calls",
+   "status": "ok",
+   "detail": "0 of 2500 Browse calls used today (Pacific time)."
+  },
+  {
+   "name": "Live site",
+   "status": "ok",
+   "detail": "GET /uk answered 200."
+  },
+  {
+   "name": "Amazon ASINs",
+   "status": "ok",
+   "detail": "US 277 ASINs (2769 waiting); UK no credential; CA no credential; AU no credential"
+  },
+  {
+   "name": "Store partner codes",
+   "status": "ok",
+   "detail": "No code needs a re-check this week."
+  },
+  {
+   "name": "Family feed (sister sites)",
+   "status": "ok",
+   "detail": "Written 13 hours ago."
+  }
+ ]
+}
