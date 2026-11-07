@@ -61,7 +61,8 @@ export function generateMetadata({ params }: { params: { region: string; slug: s
   return {
     title: { absolute: title.slice(0, 70) },
     description,
-    alternates: regionAlternates(r.region, `/p/${p.id}`, listed.filter((x) => productIndexable(summaryOf(p.id, x)))),
+    // hreflang only between indexable copies; a noindex page advertises none (SEO audit, 2026-11-07).
+    alternates: indexable ? regionAlternates(r.region, `/p/${p.id}`, listed.filter((x) => productIndexable(summaryOf(p.id, x)))) : { canonical: `${SITE_URL}/${r.region}/p/${p.id}` },
     robots: indexable ? undefined : { index: false, follow: true },
     openGraph: { ...ogFor(`/${r.region}/p/${p.id}`, title, description), ...(p.image ? { images: [{ url: p.image }] } : {}) },
   };

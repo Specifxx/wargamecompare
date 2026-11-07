@@ -907,3 +907,12 @@ Black Friday is 27 November 2026 and Cyber Monday 30 November. Three additions, 
 - **More on both pages, nothing taken away**: the URL, title and h1 of `/<region>/black-friday` are unchanged;
   below the existing rows come four visible questions (the dates, whether stores have sales, shipping, how often it updates). No FAQ rich-result markup:
   Google shows those only for government and health sites since 2023, so the text is what ranks.
+
+## 2026-11-07: Three stores to index a product page; hreflang only between indexable copies
+
+The owner's Search Console and Bing audit (2026-11-07): the family's region sites put the same product at five region
+URLs, and a copy one or two stores list reads as thin, so Google samples instead of indexing. `productIndexable`
+(`src/lib/index-tiers.ts`) now needs three stores listing a product in a market, one in stock (`MIN_INDEX_STORES`; was
+two). Below that the page is noindex, follow, out of the sitemap and out of other pages' hreflang; a noindex page now
+advertises no hreflang itself. Indexable product pages 14,477 → 12,971 on today's data (NZ 1,358 → 739). Hubs count
+indexable products, so a hub's tier follows. Every page stays live; URLs unchanged. Recheck Search Console ~25 Nov.
