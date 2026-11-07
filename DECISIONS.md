@@ -916,3 +916,11 @@ URLs, and a copy one or two stores list reads as thin, so Google samples instead
 two). Below that the page is noindex, follow, out of the sitemap and out of other pages' hreflang; a noindex page now
 advertises no hreflang itself. Indexable product pages 14,477 → 12,971 on today's data (NZ 1,358 → 739). Hubs count
 indexable products, so a hub's tier follows. Every page stays live; URLs unchanged. Recheck Search Console ~25 Nov.
+## 2026-11-07 — The low-traction cull: a product needs two in-stock stores in one region
+
+Owner, 2026-11-07: apply Compare Empire's focus cull to every site. On 2026-11-07, 1,464 of 6,701 products were in stock at no
+store and 1,578 at one store only; Search Console (56 days) put 22 product pages over a click or 10 impressions. `lib/focus.ts`
+(read by `lib/data.ts`, so every page, list, search index and the sitemap follow it) keeps a product with search demand
+(`data/focus/demand.json`, refreshed daily from the `demand` branch by `scripts/focus-demand.ts`), on pre-order, newly arrived
+and in stock somewhere, or in stock at two or more stores in one region. ≈6,700 → 4,000 products. Nothing is deleted from the
+data files; a culled product's URL 301s to its type page and comes back by itself when it qualifies.

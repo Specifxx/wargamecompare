@@ -87,6 +87,9 @@ jobs:
       # sister sites, and the hobby sisters' feeds for the deals pages. Never fails the run.
       - name: Family feed
         run: npx tsx scripts/family-sync.ts
+      # Search Console page demand for the low-traction cull (lib/focus.ts): a page people find is never culled.
+      - name: Search demand
+        run: npx tsx scripts/focus-demand.ts
       - name: Save the store reads
         if: always()
         uses: actions/cache/save@v4

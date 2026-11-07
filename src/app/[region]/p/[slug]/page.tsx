@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { EbayStrip } from "@/components/EbayStrip";
 import Link from "@/components/Link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { OutboundLink } from "@/components/OutboundLink";
 import { PriceList, PriceListNote } from "@/components/PriceList";
@@ -26,7 +26,7 @@ import {
   storeUrl,
 } from "@/lib/affiliate";
 import { FACTION_BY_SLUG, SYSTEM_BY_SLUG, TYPE_BY_SLUG } from "@/lib/catalog";
-import { ebayFor, meta, offersFor, product, regionsListing, rrpFor, summariesFor, summaryOf } from "@/lib/data";
+import { culledType, ebayFor, meta, offersFor, product, regionsListing, rrpFor, summariesFor, summaryOf } from "@/lib/data";
 import { thumb } from "@/lib/images";
 import { productIndexable } from "@/lib/index-tiers";
 import { priceRows } from "@/lib/price-rows";
@@ -45,7 +45,12 @@ export const dynamic = "force-dynamic";
 function load(params: { region: string; slug: string }) {
   const r = regionOr404(params.region);
   const p = product(params.slug);
-  if (!p) notFound();
+  if (!p) {
+    // Culled by the low-traction rule (lib/focus.ts): its type page lists what is left.
+    const type = culledType(params.slug);
+    if (type) permanentRedirect(`/${r.region}/type/${type}`);
+    notFound();
+  }
   return { r, p, s: summaryOf(p.id, r.region) };
 }
 
