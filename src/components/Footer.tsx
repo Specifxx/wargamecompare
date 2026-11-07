@@ -31,6 +31,7 @@ export function footerColumns(r: Region): { title: string; links: FooterLink[] }
       links: [
         { href: `/${r}/deals`, label: "Today’s deals" },
         { href: `/${r}/black-friday`, label: "Black Friday deals" },
+        { href: `/${r}/cyber-monday`, label: "Cyber Monday deals" },
         { href: `/${r}/boxing-day`, label: "Boxing Day deals" },
         { href: `/${r}/january-sales`, label: "January sales" },
         { href: `/${r}/lunar-new-year`, label: "Lunar New Year deals" },

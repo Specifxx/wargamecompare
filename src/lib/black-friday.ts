@@ -34,7 +34,48 @@ export function addDays(iso: string, n: number): string {
 }
 
 /** "Friday 27 November" */
-/** "Friday 27 November" */
 export function longDate(iso: string): string {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
+}
+
+export type HolidayEvent = "black-friday" | "cyber-monday";
+
+/**
+ * The one-line strip under the header on every region page, and the header entry (DECISIONS.md, "Black Friday strip and Cyber
+ * Monday page", 2026-11-07): Black Friday from 1 November to the Saturday after it, then Cyber Monday to the day after Cyber
+ * Monday, then nothing. A link in the server HTML, never a pop-up, a countdown or "ends soon".
+ */
+export function saleStrip(today: string): { event: HolidayEvent; name: string } | null {
+  const y = Number(today.slice(0, 4));
+  if (today < `${y}-11-01`) return null;
+  if (today <= addDays(blackFriday(y), 1)) return { event: "black-friday", name: "Black Friday" };
+  if (today <= addDays(cyberMonday(y), 1)) return { event: "cyber-monday", name: "Cyber Monday" };
+  return null;
+}
+
+/** The questions both pages answer in visible text. `where` is the region's name in a sentence ("the UK"). */
+export function holidayFaq(event: HolidayEvent, year: number, where: string): { q: string; a: string }[] {
+  const bf = longDate(blackFriday(year));
+  const cm = longDate(cyberMonday(year));
+  const name = event === "black-friday" ? "Black Friday" : "Cyber Monday";
+  return [
+    {
+      q: `When is ${name} ${year}?`,
+      a: event === "black-friday"
+        ? `Black Friday ${year} is ${bf}, the day after US Thanksgiving. Cyber Monday follows on ${cm}. Many stores start their sales the week before and run them through the weekend.`
+        : `Cyber Monday ${year} is ${cm}, the Monday after Black Friday (${bf}). Online stores often keep their Black Friday prices through the weekend and end them on Cyber Monday night.`,
+    },
+    {
+      q: `Do Warhammer stores in ${where} have ${name} sales?`,
+      a: `Many independent stores already sell under RRP all year, and some cut further for ${name}. This page lists prices, not promises: every row is a real in-stock price from a store we compare in ${where}, read that day.`,
+    },
+    {
+      q: "Are these prices before or after shipping?",
+      a: "Item prices, before shipping. Open a product to compare every store side by side, and check the store's own page before you buy.",
+    },
+    {
+      q: "How often does this page update?",
+      a: "Every day, from that day's store prices, through the sales and after them. The URL stays the same every year, so bookmark it.",
+    },
+  ];
 }

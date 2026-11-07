@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { EbayStrip } from "@/components/EbayStrip";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { HolidayStrip } from "@/components/HolidayStrip";
 import { SideAds } from "@/components/SideAds";
 import { SideNav } from "@/components/SideNav";
 import { summariesFor } from "@/lib/data";
@@ -17,6 +18,7 @@ export default function RegionLayout({ children, params }: { children: React.Rea
   return (
     <>
       <Header region={region} />
+      <HolidayStrip region={region} />
       {/* From xl, the sidebar fills the wide screen's left side; the page keeps its own width beside it. */}
       <div className="mx-auto flex w-full max-w-shell flex-1">
         <SideNav region={region} groups={navGroups(region)} />

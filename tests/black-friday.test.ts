@@ -14,3 +14,14 @@ test("season window and year roll over a week after Cyber Monday", () => {
   assert.equal(inSeason("2026-12-08"), false);
   assert.equal(seasonYear("2026-12-08"), 2027);
 });
+
+test("the strip shows Black Friday from 1 November, then Cyber Monday, then nothing", async () => {
+  const { saleStrip, holidayFaq } = await import("../src/lib/black-friday");
+  assert.equal(saleStrip("2026-10-31"), null);
+  assert.equal(saleStrip("2026-11-01")?.event, "black-friday");
+  assert.equal(saleStrip("2026-11-28")?.event, "black-friday");
+  assert.equal(saleStrip("2026-11-29")?.event, "cyber-monday");
+  assert.equal(saleStrip("2026-12-01")?.event, "cyber-monday");
+  assert.equal(saleStrip("2026-12-02"), null);
+  assert.match(holidayFaq("cyber-monday", 2026, "the UK")[0].a, /Monday 30 November/);
+});

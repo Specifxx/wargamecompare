@@ -65,6 +65,7 @@ export function navGroups(region: Region): NavGroup[] {
         { href: `/${region}/new-releases`, label: "New releases and pre-orders" },
         { href: `/${region}/deals`, label: "Today's deals" },
         { href: `/${region}/black-friday`, label: "Black Friday deals" },
+        { href: `/${region}/cyber-monday`, label: "Cyber Monday deals" },
         { href: `/${region}/stores`, label: "Stores we compare" },
         { href: `/${region}/guides/cheapest-way-to-start`, label: "How to start for less" },
         { href: `/${region}/guides/discount-stores-vs-rrp`, label: "Store savings vs RRP" },
