@@ -65,7 +65,8 @@ export function HolidayDealsPage({ event, region }: { event: HolidayEvent; regio
       <p className="mt-6 text-sm">
         <Link href={`/${r.region}/${event === "black-friday" ? "cyber-monday" : "black-friday"}`} className="underline">{event === "black-friday" ? "Cyber Monday deals" : "Black Friday deals"}</Link> ·{" "}
         <Link href={`/${r.region}/deals`} className="underline">Today&rsquo;s deals</Link> · <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="underline">Store savings vs RRP</Link> ·{" "}
-        <Link href={`/${r.region}/stores`} className="underline">Stores we compare</Link>
+        <Link href={`/${r.region}/stores`} className="underline">Stores we compare</Link> ·{" "}
+        <Link href={`/${r.region}/guides/warhammer-black-friday-2026`} className="underline">Black Friday: the prices to beat</Link>
       </p>
       <section className="mt-8 max-w-3xl">
         <h2 className="font-display text-xl font-bold">{event === "black-friday" ? "Black Friday" : "Cyber Monday"} {year}: questions</h2>
