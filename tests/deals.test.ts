@@ -6,7 +6,7 @@ import type { Summary } from "../src/lib/data";
 
 const S = (id: string, o: Partial<Summary>): Summary => ({
   product: { id, name: id, system: null, faction: null, type: "miniatures", ean: null, codes: [], code: null, image: null, firstSeen: "2026-10-28" },
-  best: 1000, bestStore: "a", inStock: 1, stores: 2, rrp: null, off: null, ...o,
+  best: 1000, bestStore: "a", inStock: 1, stores: 3, rrp: null, off: null, ...o,
 });
 
 test("deals: 10% off a stated RRP or the median, never over half, never sold out", () => {
@@ -19,6 +19,7 @@ test("deals: 10% off a stated RRP or the median, never over half, never sold out
 
 test("index tiers: two stores and one in stock; hubs need six", () => {
   assert.equal(productIndexable(S("a", { stores: 1 })), false);
+  assert.equal(productIndexable(S("a", { stores: 2 })), false, "two stores is thin (2026-11-07)");
   assert.equal(productIndexable(S("a", { inStock: 0, best: null })), false);
   assert.equal(productIndexable(S("a", {})), true);
   assert.equal(productIndexable(null), false);
