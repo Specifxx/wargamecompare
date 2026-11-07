@@ -6,11 +6,10 @@ import type { Region } from "./regions";
 
 /**
  * From MIN_WIDTH (1280px: every common 16:9 and 16:10 laptop and monitor, owner 2026-11-06: "it should appear on regular 16:9
- * screens … 16:10 even") a rail RAIL_W wide sits on each side of the shell, GUTTER from the window's edge and GUTTER from the
- * shell. Below 1864px the shell gives up that room (globals.css: max-width min(1480px, 100vw - 2 × RAIL_ROOM)); from 1864px it is
+ * screens … 16:10 even") a rail RAIL_W wide sits flush against each side of the window (owner, 2026-11-07: no gaps), the shell
+ * keeping GUTTER clear beside it. Below 1864px the shell gives up that room (globals.css: max-width min(1480px, 100vw - 2 × RAIL_ROOM)); from 1864px it is
  * its full 1480px and the rails sit just outside it.
  */
-const SHELL_W = 1480;
 export const RAIL_W = 136;
 export const GUTTER = 12;
 /** The room one rail takes from the shell's side (globals.css says the same: 160px). */
@@ -20,18 +19,18 @@ export const MIN_WIDTH = 1280; // the RAIL class in SideAds.tsx and the globals.
 export const MAX_TILES = 10;
 export const MIN_TILES = 2;
 /** Vertical budget: the sticky header (--hdr, 64px from lg) and a gutter above, a gutter below, the rail's own top line and note. */
-const TOP = 64 + GUTTER;
+const TOP = 64;
 const HEAD = 30;
 const NOTE = 34;
-const PAD = 2 * 8;
+const PAD = 0;
 /** One tile: 8px padding, a (RAIL_W - 16 - 16)px square picture, two title lines (36px) and a price line (20px). */
-export const TILE_H = 8 + (RAIL_W - PAD - 16) + 6 + 36 + 20 + 8;
-/** Where a rail's outer edge sits: a gutter in from the window, or just outside a full-width shell. */
-export const RAIL_EDGE = `max(${GUTTER}px, calc(50% - ${SHELL_W / 2 + GUTTER + RAIL_W}px))`;
+export const TILE_H = 8 + (RAIL_W - 1 - 16) + 6 + 36 + 20 + 8;
+/** Where a rail's outer edge sits: flush against the window's edge (owner, 2026-11-07). */
+export const RAIL_EDGE = "0px";
 
 /** Whether a window this tall holds a rail with at least one whole tile in view (the rest scroll). Pure, for the tests. */
 export function railFits(innerHeight: number): boolean {
-  return innerHeight - TOP - GUTTER - HEAD - NOTE - PAD >= TILE_H;
+  return innerHeight - TOP - HEAD - NOTE - PAD >= TILE_H;
 }
 
 export interface SideRails {
