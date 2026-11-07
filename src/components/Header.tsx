@@ -1,3 +1,4 @@
+import { saleStrip } from "@/lib/black-friday";
 import Link from "@/components/Link";
 import { ebayLabel, ebaySearchUrl, REL_PAID } from "@/lib/affiliate";
 import { navGroups } from "@/lib/nav";
@@ -17,10 +18,13 @@ import { CartHeaderLink } from "@/components/cart/CartHeaderLink";
  * lib/nav.ts), Stores, Forum. `also`: other paths (under the region) that count as the section, for its current state: a game,
  * army or type page is part of "Browse"; the sale-season pages sit with "Deals".
  */
-export function headerNavItems(region: Region): HeaderNavItem[] {
+export function headerNavItems(region: Region, today = new Date().toISOString().slice(0, 10)): HeaderNavItem[] {
   const groups = navGroups(region);
+  // From 1 November to the day after Cyber Monday, the sale page leads the row (lib/black-friday.ts saleStrip).
+  const sale = saleStrip(today);
   return [
-    { href: `/${region}/deals`, label: "Deals", also: [`/${region}/black-friday`, `/${region}/boxing-day`, `/${region}/january-sales`, `/${region}/lunar-new-year`] },
+    ...(sale ? [{ href: `/${region}/${sale.event}`, label: sale.name }] : []),
+    { href: `/${region}/deals`, label: "Deals", also: [`/${region}/black-friday`, `/${region}/cyber-monday`, `/${region}/boxing-day`, `/${region}/january-sales`, `/${region}/lunar-new-year`] },
     { href: `/${region}/new-releases`, label: "New releases" },
     // The Browse item opens the category dropdown (HeaderNav.tsx BrowseMenuPanel): games, kinds of product, armies.
     { href: `/${region}/search`, label: "Browse", also: [`/${region}/game`, `/${region}/type`, `/${region}/faction`], menu: groups.slice(0, 3) },

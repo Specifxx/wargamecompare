@@ -38,6 +38,7 @@ export function sitemapPart(part: string): SitemapUrl[] | null {
   at("/deals");
   at("/new-releases");
   at("/black-friday");
+  at("/cyber-monday");
   for (const p of ["/boxing-day", "/january-sales", "/lunar-new-year"]) at(p);
   at("/stores");
   at("/guides");
