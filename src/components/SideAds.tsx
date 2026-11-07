@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { EBAY_DISCLOSURE, REL_PAID, type Placement } from "@/lib/affiliate";
-import { GUTTER, MAX_TILES, MIN_TILES, MIN_WIDTH, RAIL_EDGE, RAIL_W, railFits, type SideRails } from "@/lib/rails";
+import { MAX_TILES, MIN_TILES, MIN_WIDTH, RAIL_EDGE, RAIL_W, railFits, type SideRails } from "@/lib/rails";
 import { formatPrice, type Region } from "@/lib/regions";
 import type { Tile } from "./EbayStrip";
 import { OutboundLink } from "./OutboundLink";
@@ -63,8 +63,8 @@ export function SoftSideAds({ all }: { all: Record<Region, SideRails> }) {
   return <SideAds rails={all[useSoftRegion()]} />;
 }
 
-const RAIL = "fixed z-30 hidden flex-col rounded-xl border border-ad-line bg-surface p-2 shadow-card min-[1280px]:flex";
-const TILE = "group flex flex-col rounded-lg border border-line bg-surface p-2 transition-colors hover:border-ink/40";
+const RAIL = "fixed z-30 hidden flex-col border-ad-line bg-surface min-[1280px]:flex";
+const TILE = "group flex flex-col border-b border-line bg-surface p-2 transition-colors hover:bg-raised";
 
 function Rail({ side, rails, tiles, placement, heading }: { side: "left" | "right"; rails: SideRails; tiles: Tile[]; placement: Placement; heading: string }) {
   if (tiles.length < MIN_TILES) return null;
@@ -75,15 +75,15 @@ function Rail({ side, rails, tiles, placement, heading }: { side: "left" | "righ
       data-ad={placement}
       aria-label={`Sponsored: ${heading.toLowerCase()} on ${rails.label}`}
       className={RAIL}
-      style={{ top: `calc(var(--hdr) + ${GUTTER}px)`, bottom: GUTTER, width: RAIL_W, ...(side === "left" ? { left: RAIL_EDGE } : { right: RAIL_EDGE }) }}
+      style={{ top: "var(--hdr)", bottom: 0, width: RAIL_W, ...(side === "left" ? { left: RAIL_EDGE, borderRightWidth: 1 } : { right: RAIL_EDGE, borderLeftWidth: 1 }) }}
     >
-      <div className="mb-2 flex h-[22px] shrink-0 items-center justify-between px-1">
+      <div className="flex h-[30px] shrink-0 items-center justify-between px-2">
         <span className="truncate text-[13px] font-black tracking-tight" aria-hidden="true">
           {heading}
         </span>
         <span className="ad-pill">Ad</span>
       </div>
-      <ul role="list" className="rail-scroll grid min-h-0 flex-1 content-start gap-2 overflow-y-auto overscroll-contain">
+      <ul role="list" className="rail-scroll grid min-h-0 flex-1 content-start overflow-y-auto overscroll-contain border-t border-line">
         {tiles.slice(0, MAX_TILES).map((t) => (
           <li key={t.id}>
             <OutboundLink href={t.href} rel={REL_PAID} retailer={rails.label} placement={placement} className={TILE}>
@@ -97,7 +97,7 @@ function Rail({ side, rails, tiles, placement, heading }: { side: "left" | "righ
           </li>
         ))}
       </ul>
-      <p className="mt-2 flex h-[26px] shrink-0 flex-col justify-center px-1 text-[10px] leading-[13px] text-muted" title={EBAY_DISCLOSURE}>
+      <p className="flex h-[34px] shrink-0 flex-col justify-center px-2 text-[10px] leading-[13px] text-muted" title={EBAY_DISCLOSURE}>
         <OutboundLink href={rails.all} rel={REL_PAID} retailer={rails.label} placement={placement} className="truncate font-bold text-brand">
           More on {rails.label} →
         </OutboundLink>
