@@ -9,6 +9,7 @@ import { ebayRowShown } from "./ebay-rows";
 import { STORE_BY_KEY } from "./stores";
 import type { EbayFile, Meta, Offer, OffersFile, Product, RrpFile } from "./types";
 import { firstImportDay, releases } from "./releases";
+import { focusCatalog } from "./focus";
 
 const DIR = path.join(process.cwd(), "data");
 function load<T>(file: string, fallback: T): T {
@@ -21,6 +22,8 @@ function load<T>(file: string, fallback: T): T {
 
 interface Loaded {
   products: Product[];
+  /** Culled product id → its type slug (lib/focus.ts): the product page 301s there. */
+  culled: Map<string, string>;
   byId: Map<string, Product>;
   offers: OffersFile;
   rrp: RrpFile;
@@ -30,11 +33,17 @@ interface Loaded {
 let cache: Loaded | null = null;
 function data(): Loaded {
   if (cache) return cache;
-  const products = load<Product[]>("products.json", []);
+  const all = load<Product[]>("products.json", []);
+  const offers = load<OffersFile>("offers.json", {});
+  // The low-traction cull (lib/focus.ts, owner 2026-11-07): only listed products exist for the pages, lists, search and sitemap.
+  const demand = new Set(load<{ ids?: string[] }>("focus/demand.json", {}).ids ?? []);
+  const { keep, culled } = focusCatalog(all, offers, demand, new Date().toISOString().slice(0, 10), firstImportDay(all));
+  const products = all.filter((p) => keep.has(p.id));
   cache = {
     products,
+    culled,
     byId: new Map(products.map((p) => [p.id, p])),
-    offers: load<OffersFile>("offers.json", {}),
+    offers,
     rrp: load<RrpFile>("rrp.json", {}),
     ebay: load<EbayFile>("ebay.json", { updatedAt: null, items: {} }),
     meta: load<Meta>("meta.json", { updatedAt: "", stores: {}, products: 0 }),
@@ -50,6 +59,10 @@ export function allProducts(): Product[] {
 }
 export function product(id: string): Product | null {
   return data().byId.get(id) ?? null;
+}
+/** A culled product's type slug (its URL 301s to that type page), or null when the id was never culled. */
+export function culledType(id: string): string | null {
+  return data().culled.get(id) ?? null;
 }
 
 /** A product's offers in a market, in stock first, then cheapest; only stores still in the registry. */
