@@ -3,7 +3,6 @@ import { AMAZON_DISCLOSURE, AMAZON_TRADEMARK, EBAY_DISCLOSURE } from "@/lib/affi
 import { SYSTEMS } from "@/lib/catalog";
 import { REGION_LIST, REGIONS, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 import { CONTACT_EMAIL, GW_DISCLAIMER, SITE_NAME } from "@/lib/site";
-import { NETWORK_PAGE } from "@/lib/family-network";
 import { Flag } from "./Flag";
 import { LogoMark } from "./Logo";
 import { RateUsLink } from "./site-reviews/SiteReviews";
@@ -103,9 +102,11 @@ export function Footer({ region }: { region: Region | null }) {
           <p className="mt-3 text-xs text-muted">
             <RateUsLink className="font-semibold text-ink underline decoration-line underline-offset-2 hover:decoration-ink">Rate us</RateUsLink>
             {" · "}
-            <a href={NETWORK_PAGE} rel="noopener" className="underline decoration-line underline-offset-2 hover:decoration-ink">
-              A Compare Empire site →
-            </a>
+            {/* 2026-11-08: one internal link to /our-sites, which lists every Compare Empire site once, instead of a
+                link from every page to another of our domains (DECISIONS.md). */}
+            <Link href="/our-sites" prefetch={false} className="underline decoration-line underline-offset-2 hover:decoration-ink">
+              Our other price comparison sites →
+            </Link>
           </p>
         </div>
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
