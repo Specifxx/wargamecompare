@@ -4,7 +4,7 @@ import Link from "@/components/Link";
 import { ChristmasBanner } from "@/components/ChristmasBanner";
 import { EbayBox } from "@/components/EbayBox";
 import { Flag } from "@/components/Flag";
-import { CategoryTiles, HeroMosaic } from "@/components/HomeVisuals";
+import { CategoryTiles, HeroCards } from "@/components/HomeVisuals";
 import { Icon } from "@/components/Icon";
 import { ProductGrid } from "@/components/ProductCard";
 import { RegionChips } from "@/components/RegionChips";
@@ -41,7 +41,7 @@ export default function RegionHome({ params }: { params: { region: string } }) {
   const stores = storesInMarket(r.market);
   const inStock = all.filter((s) => s.inStock > 0).length;
   const dealt = deals(all, mediansFor(r.region)).map((d) => d.s);
-  const hero = heroPicks(all, dealt);
+  const hero = heroPicks(all, dealt, 2);
   const inHero = new Set(hero.map((s) => s.product.id));
   const top = dealt.filter((s) => !inHero.has(s.product.id)).slice(0, 12);
   const tiles = categoryTiles(all, r.region);
@@ -62,10 +62,10 @@ export default function RegionHome({ params }: { params: { region: string } }) {
 
   return (
     <div>
-      {/* The engine's hero band (Dex and MTG Compare): the words and the search on the left, the day's photo wall on the right. The
+      {/* The engine's hero band (Dex and MTG Compare): the words and the search on the left, two featured products on the right (owner, 2026-11-08). The
           H1, the lead and every link are the same as before the port; only the composition changed. */}
       <section className="relative overflow-hidden border-b border-line bg-surface">
-        <div className="page relative grid gap-8 py-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center">
+        <div className="page relative grid gap-8 py-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(340px,480px)] lg:gap-10 lg:items-center">
           <div className="min-w-0">
             <div className="eyebrow">
               <Flag code={r.region} /> {r.name} · prices in {r.currency}
@@ -119,7 +119,7 @@ export default function RegionHome({ params }: { params: { region: string } }) {
               <p id="top-savings" className="eyebrow mb-3">
                 Top savings today
               </p>
-              <HeroMosaic items={hero} region={r.region} />
+              <HeroCards items={hero} region={r.region} />
             </aside>
           )}
         </div>
