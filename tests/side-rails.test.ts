@@ -24,7 +24,7 @@ test("the side rails show on every regular 16:9 and 16:10 screen and scroll thro
   assert.match(src, /min-\[1280px\]:flex/);
   assert.match(src, /overflow-y-auto/, "the list scrolls inside the rail");
   const css = read("src/app/globals.css");
-  assert.match(css, /@media \(min-width: 1280px\) \{\s*[\s\S]*?\.max-w-shell \{\s*max-width: min\(1480px, calc\(100vw - 320px\)\);/, "the shell leaves the rails their room");
+  assert.match(css, /@media \(min-width: 1280px\) \{\s*\.max-w-shell \{\s*max-width: none;\s*width: auto;\s*margin-left: 136px;\s*margin-right: 136px;/, "the shell runs flush from rail to rail");
   assert.match(src, /rel=\{REL_PAID\}/);
   assert.doesNotMatch(src, /from "@\/lib\/data"/, "the client rail never reads data/");
   // A value imported from a "use client" module into server code is a client reference, not the value (it emptied the rails once).

@@ -3,7 +3,7 @@ import Link from "@/components/Link";
 import { ChristmasBanner } from "@/components/ChristmasBanner";
 import { CreatorsTeaser } from "@/components/creators/CreatorsTeaser";
 import { Flag } from "@/components/Flag";
-import { CategoryTiles, HeroMosaic } from "@/components/HomeVisuals";
+import { CategoryTiles, HeroCards } from "@/components/HomeVisuals";
 import { ProductGrid } from "@/components/ProductCard";
 import { RegionSuggest } from "@/components/RegionSuggest";
 import { Section } from "@/components/Section";
@@ -52,16 +52,16 @@ export default function Landing() {
   const blocks = REGION_LIST.map((r) => {
     const all = summariesFor(r.region);
     const top = deals(all, mediansFor(r.region)).map((d) => d.s);
-    const hero = heroPicks(all, top);
+    const hero = heroPicks(all, top, 2);
     const shown = new Set(hero.map((s) => s.product.id));
     const savings = top.filter((s) => !shown.has(s.product.id) && productIndexable(s)).slice(0, 12);
     return { r, hero, savings, tiles: categoryTiles(all, r.region) };
   });
   return (
     <div>
-      {/* The engine's hero band: the words and the country search on the left, the visitor's country's photo wall on the right. */}
+      {/* The engine's hero band: the words and the country search on the left, two featured products in the visitor's country on the right (owner, 2026-11-08). */}
       <section className="relative overflow-hidden border-b border-line bg-surface">
-        <div className="page relative grid gap-8 py-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center">
+        <div className="page relative grid gap-8 py-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(340px,480px)] lg:gap-10 lg:items-center">
           <div className="min-w-0">
             <div className="eyebrow">Stop paying full price for plastic</div>
             <h1 className="mt-3 max-w-3xl font-display text-3xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
@@ -82,7 +82,7 @@ export default function Landing() {
                   <p className="eyebrow mb-3 flex items-center gap-1.5">
                     <Flag code={r.region} /> Top savings in {r.inName} today
                   </p>
-                  <HeroMosaic items={hero} region={r.region} />
+                  <HeroCards items={hero} region={r.region} />
                 </div>
               ) : null,
             )}

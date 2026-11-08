@@ -967,3 +967,15 @@ logo, candy-cane stripes and seasonal palette swaps) is gone, with its art in `p
 touch, drawn in the site's own colours: the home pages' gifts line (`ChristmasBanner`, now a plain `.xmas-pill` instead of a winter-night card), and the brand keeps its own red instead of turning holly red. It still starts and ends by itself (`lib/season.ts`, 1 November to
 Boxing Day), and the tests pin that nothing else comes back. Black Friday and Cyber Monday (strip, pages, nav) are
 unchanged. The same rule went to every sister site: the site's own identity first.
+
+## 2026-11-08 — Full-width shell and a featured-product hero
+
+Owner, 2026-11-08: KaeYoung and ScentCompare's hero ("feature some products on the hero … uses the full screen") on the Dex / MTG
+engine family (DexCompare #154, MTG Compare #104, YGO Compare #125, Gundam Compare #118), ported by hand:
+
+- From 1280px the shell runs from the eBay rail's edge to the right rail's (`.max-w-shell` margins of 136px, not a max-width:
+  `100vw` counts a desktop scrollbar), the sidebar flush against the left rail; `.page` 1440px.
+- The hero's six-photo wall is now two big product cards (`HeroCards` in `components/HomeVisuals.tsx`: photo, saving on RRP,
+  faction or type, cheapest in-stock price, in-stock store count), the first two of `heroPicks` (`n = 2`, so the deals grid below
+  keeps the rest). Region home and landing alike (the landing's per-region blocks unchanged). Nothing in the cards is a heading;
+  URLs, titles and metadata unchanged. Seasonal decor unchanged.

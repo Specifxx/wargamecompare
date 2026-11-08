@@ -1,6 +1,7 @@
 import Link from "@/components/Link";
 import type { Summary } from "@/lib/data";
 import type { CategoryTile } from "@/lib/home";
+import { FACTIONS, TYPES } from "@/lib/catalog";
 import { thumb } from "@/lib/images";
 import { formatPrice, type Region } from "@/lib/regions";
 
@@ -9,14 +10,21 @@ import { formatPrice, type Region } from "@/lib/regions";
 // Vercel image work. Every tile is a plain server-rendered link (crawlers read it; a plain click opens the quick view).
 // The picks themselves are lib/home.ts.
 
-/** Six kits with a photo, on plates: the hero's aside on a desktop, a 3×2 wall under the hero on a phone. */
-export function HeroMosaic({ items, region, className = "" }: { items: Summary[]; region: Region; className?: string }) {
+/**
+ * The hero's two featured products (owner, 2026-11-08: KaeYoung and ScentCompare's hero, "feature some products on the hero", as on
+ * DexCompare and MTG Compare): big product cards with the photo, the saving on RRP, the type and faction, the cheapest in-stock price
+ * and how many stores have it. Plain links to the product pages in the server HTML, with the quick view's data attributes. Nothing
+ * here is a heading. Styles: globals.css .hc-*.
+ */
+export function HeroCards({ items, region }: { items: Summary[]; region: Region }) {
   if (!items.length) return null;
   return (
-    <ul role="list" className={`grid grid-cols-3 gap-2 sm:gap-3 ${className}`}>
+    <ul role="list" className="grid grid-cols-2 gap-3 sm:gap-4">
       {items.map((s, i) => {
         const p = s.product;
         const src = thumb(p.image, 400) ?? undefined;
+        const kind = TYPES.find((t) => t.slug === p.type)?.name;
+        const faction = p.faction ? FACTIONS.find((f) => f.slug === p.faction)?.name : null;
         return (
           <li key={p.id} className="min-w-0">
             <Link
@@ -26,14 +34,21 @@ export function HeroMosaic({ items, region, className = "" }: { items: Summary[]
               data-qv-region={region}
               data-qv-name={p.name}
               data-qv-img={src}
-              title={p.name}
-              className="plate group relative block aspect-square overflow-hidden rounded-xl shadow-card transition-all hover:-translate-y-0.5 hover:shadow-lift"
+              className="hc-card group"
             >
-              {/* The first row is above the fold on a phone: load it at once; the rest lazily. */}
-              <img src={src} alt={p.name} width={400} height={400} loading={i < 3 ? "eager" : "lazy"} fetchPriority={i < 3 ? "high" : "auto"} decoding="async" className="h-full w-full object-contain p-2 mix-blend-multiply transition-transform duration-300 group-hover:scale-105" />
-              <span className="absolute inset-x-1.5 bottom-1.5 flex items-center justify-between gap-1">
-                <span className="tabular rounded-md bg-black/80 px-1.5 py-0.5 text-[11px] font-bold text-white sm:text-xs">{formatPrice(s.best!, region)}</span>
-                {s.off != null && s.off >= 0.05 && <span className="rounded-md bg-open px-1.5 py-0.5 text-[11px] font-bold text-white sm:text-xs">−{Math.round(s.off * 100)}%</span>}
+              <span className="hc-art plate">
+                {src && <img src={src} alt={p.name} width={400} height={400} loading="eager" fetchPriority={i === 0 ? "high" : "auto"} decoding="async" className="h-full w-full object-contain p-3 mix-blend-multiply transition-transform duration-300 group-hover:scale-[1.04] sm:p-4" />}
+                {s.off != null && s.off >= 0.05 && <span className="hc-save">Save {Math.round(s.off * 100)}%</span>}
+              </span>
+              <span className="flex flex-1 flex-col gap-1 border-t border-line p-3 text-left">
+                <span className="eyebrow truncate">{faction ?? kind}</span>
+                <span className="line-clamp-2 text-[13.5px] font-semibold leading-snug text-ink group-hover:text-brand sm:text-sm">{p.name}</span>
+                <span className="mt-auto pt-1">
+                  <span className="tabular font-display text-lg font-bold text-ink sm:text-xl">{formatPrice(s.best!, region)}</span>
+                </span>
+                <span className="text-xs text-muted">
+                  In stock at {s.inStock} store{s.inStock === 1 ? "" : "s"}
+                </span>
               </span>
             </Link>
           </li>
