@@ -46,6 +46,7 @@ export function footerColumns(r: Region): { title: string; links: FooterLink[] }
         { href: "/terms", label: "Terms" },
         { href: "/creators", label: "Creators we feature" },
         { href: "/price-report", label: "Monthly price report" },
+        { href: "/is-this-a-good-price", label: "Is this a good price?" },
         { href: "/embed", label: "Free price widgets" },
         { href: "/forum", label: "Community forum (beta)" },
         { href: "/contact", label: "Contact and store listings" },

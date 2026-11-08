@@ -999,3 +999,19 @@ collection worth"; Scryfall grew on free data credited with a link; price sites 
   (cold outreach stays stopped).
 - **Per-store badge.** A store's own page ends with "Add this badge to <store>'s site" (`components/StoreBadgeBox.tsx`): the
   same badge, pointing at that store's page here (`storeBadge(…, path)`), so a store that adds it links to its own listing.
+
+## 2026-11-08 — "Is this a good price?": paste a store link
+
+Owner, 2026-11-08 (the competitor scan's gap #7, "implement all of this"), ported from MTG Compare (mtgcompare #106): a visitor
+pastes a store's product link at `/is-this-a-good-price` (`components/LinkChecker.tsx`, `lib/link-check.ts`)
+and sees whether it is a good price.
+
+- The browser asks `/api/check/<host>` for that store's listings: our own stored rows, only for a store in `src/data/stores.json`
+  (anything else is a 404), force-dynamic and kept by the CDN for a day, never ISR. It never fetches the pasted
+  page. Each listed product comes with its cheapest and median in-stock store price in that region (eBay, Amazon and Wayland never count).
+- A link is keyed by host and path (`linkPath`: a Shopify product is `/products/<handle>` from any collection or market prefix); two
+  products under one path need the `?variant=` to tell them apart, or there is no answer (a wrong product is worse than none).
+- Verdict (`priceVerdict`): within 1% of the cheapest in stock is the best price; under the median fair; within 3% of it typical;
+  above it "you can pay less", with the saving. A listing that was out of stock says so instead. eBay, Amazon, marketplaces, stores
+  we don't read and unmatched pages fall back to a search from the link's words, and the visitor gets a search of their region with those words.
+- Pasting a link into the header search opens the checker (`#link=` in the fragment, so the CDN keeps one copy of the page).
