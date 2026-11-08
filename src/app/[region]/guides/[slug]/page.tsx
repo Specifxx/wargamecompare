@@ -10,6 +10,7 @@ import { formatPrice, REGION_LIST, type RegionInfo } from "@/lib/regions";
 import { breadcrumbLd, jsonLd, ogFor, regionAlternates } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { STORE_BY_KEY } from "@/lib/stores";
+import { detailIndexed } from "@/lib/index-tiers";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,14 @@ export function generateMetadata({ params }: { params: { region: string; slug: s
   const { r, g } = load(params);
   const title = fill(g.title, r.inName);
   const description = fill(g.description, r.inName);
-  return { title: { absolute: title }, description, alternates: regionAlternates(r.region, `/guides/${g.slug}`, REGION_LIST.map((x) => x.region)), openGraph: ogFor(`/${r.region}/guides/${g.slug}`, title, description, g.image) };
+  return {
+    title: { absolute: title },
+    description,
+    // Indexed in INDEXED_DETAIL_REGIONS only (2026-11-08): New Zealand's copy is noindex, its own canonical, no hreflang.
+    alternates: detailIndexed(r.region) ? regionAlternates(r.region, `/guides/${g.slug}`, REGION_LIST.map((x) => x.region).filter(detailIndexed)) : { canonical: `${SITE_URL}/${r.region}/guides/${g.slug}` },
+    robots: detailIndexed(r.region) ? undefined : { index: false, follow: true },
+    openGraph: ogFor(`/${r.region}/guides/${g.slug}`, title, description, g.image),
+  };
 }
 
 const Grid = ({ items, r }: { items: Summary[]; r: RegionInfo }) =>

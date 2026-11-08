@@ -28,7 +28,7 @@ import {
 import { FACTION_BY_SLUG, SYSTEM_BY_SLUG, TYPE_BY_SLUG } from "@/lib/catalog";
 import { culledType, ebayFor, meta, offersFor, product, regionsListing, rrpFor, summariesFor, summaryOf } from "@/lib/data";
 import { thumb } from "@/lib/images";
-import { productIndexable } from "@/lib/index-tiers";
+import { detailIndexed, productIndexable } from "@/lib/index-tiers";
 import { priceRows } from "@/lib/price-rows";
 import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGIONS, type Region } from "@/lib/regions";
@@ -57,7 +57,8 @@ function load(params: { region: string; slug: string }) {
 export function generateMetadata({ params }: { params: { region: string; slug: string } }): Metadata {
   const { r, p, s } = load(params);
   const listed = regionsListing(p.id);
-  const indexable = productIndexable(s);
+  // New Zealand product pages are noindex whatever their stock (INDEXED_DETAIL_REGIONS, 2026-11-08).
+  const indexable = detailIndexed(r.region) && productIndexable(s);
   const n = s?.stores ?? 0;
   const title = s?.best != null ? `${p.name}: ${formatPrice(s.best, r.region)} at ${n} ${n === 1 ? "store" : "stores"} in ${r.inName}` : `${p.name} price in ${r.inName}`;
   const description = s
@@ -67,7 +68,7 @@ export function generateMetadata({ params }: { params: { region: string; slug: s
     title: { absolute: title.slice(0, 70) },
     description,
     // hreflang only between indexable copies; a noindex page advertises none (SEO audit, 2026-11-07).
-    alternates: indexable ? regionAlternates(r.region, `/p/${p.id}`, listed.filter((x) => productIndexable(summaryOf(p.id, x)))) : { canonical: `${SITE_URL}/${r.region}/p/${p.id}` },
+    alternates: indexable ? regionAlternates(r.region, `/p/${p.id}`, listed.filter((x) => detailIndexed(x) && productIndexable(summaryOf(p.id, x)))) : { canonical: `${SITE_URL}/${r.region}/p/${p.id}` },
     robots: indexable ? undefined : { index: false, follow: true },
     openGraph: { ...ogFor(`/${r.region}/p/${p.id}`, title, description), ...(p.image ? { images: [{ url: p.image }] } : {}) },
   };

@@ -17,3 +17,13 @@ export function productIndexable(s: Summary | null): boolean {
 export function hubIndexable(items: Summary[], min = 6): boolean {
   return items.filter(productIndexable).length >= min;
 }
+
+/**
+ * The regions whose product and guide pages Google is asked to index (2026-11-08, ported from DexCompare after the owner's
+ * Search Console audit there: a new site with no outside links offering a near-identical copy of every product and guide in
+ * every region gets cautious treatment). New Zealand keeps every page for visitors, but its product and guide pages are
+ * `noindex`, out of the sitemap and out of every hreflang set; its home, game, faction, type, store and sale hubs stay
+ * indexable. Add it back once the core is indexed (recheck ~2026-11-25).
+ */
+export const INDEXED_DETAIL_REGIONS: readonly string[] = ["uk", "au", "ca", "us"];
+export const detailIndexed = (region: string): boolean => INDEXED_DETAIL_REGIONS.includes(region);

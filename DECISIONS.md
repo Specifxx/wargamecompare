@@ -949,3 +949,12 @@ DexCompare's footer went first (CompareEmpire #153); every other site now does t
 internal page, `/our-sites`, and that page links each other family site once, by its plain name, from
 `FAMILY_SITES` (`lib/family-network.ts`, unchanged; `footerSisters` stays for the shared test). Every other footer
 link, page URL and title is unchanged. Cross-traffic still comes from the price blocks on the deals and pre-order pages.
+
+## 2026-11-08 — New Zealand product and guide pages noindex
+
+Ported from DexCompare (CompareEmpire #153), after the owner's Search Console audit there: a new site with no outside
+links offering a near-identical copy of every product and guide in every region gets cautious treatment.
+`INDEXED_DETAIL_REGIONS` (`lib/index-tiers.ts`) is uk, au, ca, us. New Zealand keeps every page for visitors, but its
+product and guide pages are `noindex`, out of its sitemap part and out of every hreflang set (739 NZ product pages and
+every NZ guide copy, on the day); its home, game, faction, type, store and sale hubs stay. The 3-store product rule
+(`MIN_INDEX_STORES`) is unchanged. Add New Zealand back once the core is indexed (recheck ~2026-11-25).
