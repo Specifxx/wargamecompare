@@ -980,6 +980,15 @@ engine family (DexCompare #154, MTG Compare #104, YGO Compare #125, Gundam Compa
   keeps the rest). Region home and landing alike (the landing's per-region blocks unchanged). Nothing in the cards is a heading;
   URLs, titles and metadata unchanged. Seasonal decor unchanged.
 
+## 2026-11-08 — The alert form asks, unticked, for a weekly price drops email
+
+Owner, on the 2026-11-08 competitor scan: "implement all of this" (gap #5, a weekly email of the biggest price drops).
+The shared `PriceAlertForm.tsx` (byte-identical on every sister site) gains one UNTICKED box, "Also email me this site's
+biggest price drops once a week", sent as `weekly` beside the alert. RiftCompare's alert service does the rest
+(TCGEmpire DECISIONS.md, "A weekly biggest-drops email for the sister sites"): it rides the same double opt-in, builds
+one edition a week from this site's own `/alert-feed.json`, links only to this site's pages (no eBay or Amazon), and
+every email has a one-click stop. This site still stores no address and holds no mail key, and nothing new pops up.
+
 ## 2026-11-08 — Store badges, free price data and My collection (competitor scan)
 
 The owner approved the competitor scan's ideas (Collectr and PriceCharting keep people coming back with "what is my
