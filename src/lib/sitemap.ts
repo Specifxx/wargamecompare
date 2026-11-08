@@ -1,7 +1,7 @@
 import { FACTIONS, SYSTEMS, TYPES } from "@/lib/catalog";
 import { meta, summariesFor } from "@/lib/data";
 import { GUIDES } from "@/lib/guides";
-import { hubIndexable, productIndexable } from "@/lib/index-tiers";
+import { detailIndexed, hubIndexable, productIndexable } from "@/lib/index-tiers";
 import { REGION_LIST, isRegion, type Region } from "@/lib/regions";
 import { SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
@@ -42,12 +42,13 @@ export function sitemapPart(part: string): SitemapUrl[] | null {
   for (const p of ["/boxing-day", "/january-sales", "/lunar-new-year"]) at(p);
   at("/stores");
   at("/guides");
-  for (const g of GUIDES) at(`/guides/${g.slug}`);
+  // Product and guide pages only where they are indexed (INDEXED_DETAIL_REGIONS, 2026-11-08).
+  if (detailIndexed(region)) for (const g of GUIDES) at(`/guides/${g.slug}`);
   for (const s of storesInMarket(r.market)) if (all.filter((x) => x.bestStore === s.key && x.stores >= 2).length >= 6) at(`/stores/${s.key}`);
   for (const s of SYSTEMS) if (hubIndexable(all.filter((x) => x.product.system === s.slug))) at(`/game/${s.slug}`);
   for (const f of FACTIONS) if (hubIndexable(all.filter((x) => x.product.faction === f.slug))) at(`/faction/${f.slug}`);
   for (const t of TYPES) if (hubIndexable(all.filter((x) => x.product.type === t.slug))) at(`/type/${t.slug}`);
-  for (const s of all) if (productIndexable(s)) at(`/p/${s.product.id}`);
+  if (detailIndexed(region)) for (const s of all) if (productIndexable(s)) at(`/p/${s.product.id}`);
   return out;
 }
 

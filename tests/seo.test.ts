@@ -57,3 +57,17 @@ test("llms.txt exists and the CDN holds it and the sitemap parts", () => {
   assert.match(read("next.config.js"), /"\/llms\.txt"/);
   assert.match(read("next.config.js"), /"\/sitemaps\/:path\*"/);
 });
+
+test("New Zealand product and guide pages are noindex and out of the sitemap; its hubs stay (2026-11-08)", async () => {
+  const { INDEXED_DETAIL_REGIONS, detailIndexed } = await import("../src/lib/index-tiers");
+  assert.deepEqual([...INDEXED_DETAIL_REGIONS], ["uk", "au", "ca", "us"]);
+  assert.equal(detailIndexed("nz"), false);
+  const nz = (sitemapPart("nz") ?? []).map((u) => u.url);
+  assert.ok(nz.includes(`${SITE_URL}/nz`), "the NZ home stays");
+  assert.ok(!nz.some((u) => u.includes("/nz/p/") || u.includes("/nz/guides/")), "no NZ product or guide page");
+  const uk = (sitemapPart("uk") ?? []).map((u) => u.url);
+  assert.ok(uk.some((u) => u.includes("/uk/guides/")), "UK guides listed");
+  const src = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
+  assert.match(src("src/app/[region]/p/[slug]/page.tsx"), /const indexable = detailIndexed\(r\.region\) && productIndexable\(s\)/);
+  assert.match(src("src/app/[region]/guides/[slug]/page.tsx"), /robots: detailIndexed\(r\.region\) \? undefined : \{ index: false, follow: true \}/);
+});

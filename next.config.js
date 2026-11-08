@@ -14,7 +14,7 @@ const securityHeaders = [
 // not ISR"): every data page is force-dynamic, and this header keeps its response at the CDN. The data changes only with
 // a release, and a release empties the CDN. Safe because no page reads a cookie, a header or the session.
 const CDN_CACHE = "public, s-maxage=86400, stale-while-revalidate=86400";
-const CDN_PAGES = ["/", "/:region(uk|au|nz|ca|us)", "/:region(uk|au|nz|ca|us)/:path*", "/sitemap.xml", "/sitemaps/:path*", "/robots.txt", "/llms.txt", "/about", "/privacy", "/terms", "/affiliate-disclosure", "/contact", "/creators", "/forum", "/forum/:path*", "/embed", "/embed/:path*", "/price-report", "/how-we-pick-stores"];
+const CDN_PAGES = ["/", "/:region(uk|au|nz|ca|us)", "/:region(uk|au|nz|ca|us)/:path*", "/sitemap.xml", "/sitemaps/:path*", "/robots.txt", "/llms.txt", "/about", "/privacy", "/terms", "/affiliate-disclosure", "/contact", "/creators", "/forum", "/forum/:path*", "/embed", "/embed/:path*", "/price-report", "/how-we-pick-stores", "/our-sites"];
 
 module.exports = {
   reactStrictMode: true,
