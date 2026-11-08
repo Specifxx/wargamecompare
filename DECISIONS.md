@@ -958,3 +958,12 @@ links offering a near-identical copy of every product and guide in every region 
 product and guide pages are `noindex`, out of its sitemap part and out of every hreflang set (739 NZ product pages and
 every NZ guide copy, on the day); its home, game, faction, type, store and sale hubs stay. The 3-store product rule
 (`MIN_INDEX_STORES`) is unchanged. Add New Zealand back once the core is indexed (recheck ~2026-11-25).
+
+## 2026-11-08 — Christmas is one quiet line, not a costume
+
+Owner: "some of the christmas themes on our websites are a bit too much - the theme must match the domain". The
+2026-11-01 Christmas look (falling snow, a strand of lights, trees, presents, candy canes, stockings, a Santa hat on the
+logo, candy-cane stripes and seasonal palette swaps) is gone, with its art in `public/xmas/`. The season keeps at most ONE
+touch, drawn in the site's own colours: the home pages' gifts line (`ChristmasBanner`, now a plain `.xmas-pill` instead of a winter-night card), and the brand keeps its own red instead of turning holly red. It still starts and ends by itself (`lib/season.ts`, 1 November to
+Boxing Day), and the tests pin that nothing else comes back. Black Friday and Cyber Monday (strip, pages, nav) are
+unchanged. The same rule went to every sister site: the site's own identity first.
