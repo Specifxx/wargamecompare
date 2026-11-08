@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "wargame",
- "generatedAt": "2026-11-07T23:26:43.776Z",
+ "generatedAt": "2026-11-08T23:38:40.892Z",
  "links": {
   "UK": {
    "deals": "https://wargamecompare.com/uk/deals"
@@ -20,6 +20,20 @@
   }
  },
  "items": [
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Tyranids: Termagants and Ripper Swarm + Paints Set",
+   "url": "https://wargamecompare.com/uk/p/tyranids-termagants-and-ripper-swarm-paints-set",
+   "cents": 1125,
+   "currency": "GBP",
+   "store": "Lvl Up Gaming",
+   "image": "https://cdn.shopify.com/s/files/1/1704/1809/files/Warhammer-40000-Tyranids-Termagants-and-Ripper-Swarm-Paints-Set-ETB.jpg?v=1698687656&width=200",
+   "refCents": 2250,
+   "refLabel": "RRP",
+   "savingPct": 50
+  },
   {
    "kind": "deal",
    "cluster": "hobby",
@@ -87,20 +101,6 @@
    "store": "Marionville Models",
    "image": "https://cdn.shopify.com/s/files/1/0931/5267/4090/files/rn-image_picker_lib_temp_ce4bf706-fa2a-473f-87d9-9ed275bfc4b6.jpg?v=1764875006&width=200",
    "refCents": 3800,
-   "refLabel": "RRP",
-   "savingPct": 49
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Space Marines: Infernus Squad",
-   "url": "https://wargamecompare.com/uk/p/space-marines-infernus-squad",
-   "cents": 2000,
-   "currency": "GBP",
-   "store": "Collector Clash",
-   "image": "https://cdn.shopify.com/s/files/1/0931/5267/4090/files/SMInfernusPaintSet07.jpg?v=1762200998&width=200",
-   "refCents": 3950,
    "refLabel": "RRP",
    "savingPct": 49
   },
