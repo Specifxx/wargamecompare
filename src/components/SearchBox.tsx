@@ -126,6 +126,11 @@ export function SearchBox({ region, size = "sm", autoFocus = false }: { region: 
   const goAll = () => {
     close();
     inputRef.current?.blur();
+    // A pasted store link goes to the "Is this a good price?" checker (lib/link-check.ts), in the fragment: one CDN copy.
+    if (/^\s*(https?:\/\/|[a-z0-9-]+(\.[a-z0-9-]+)+\/)/i.test(term)) {
+      router.push(`/is-this-a-good-price#link=${encodeURIComponent(term.trim())}`);
+      return;
+    }
     router.push(term ? allHref : `/${region}/search`);
   };
 
