@@ -7,7 +7,9 @@ import { storeRel, storeUrl } from "@/lib/affiliate";
 import { meta, offersFor, summariesFor } from "@/lib/data";
 import { regionOr404 } from "@/lib/page";
 import { breadcrumbLd, jsonLd, ogFor } from "@/lib/seo";
-import { SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { StoreBadgeBox } from "@/components/StoreBadgeBox";
+import { storeBadge } from "@/lib/embed";
 import { STORE_BY_KEY, storeHost } from "@/lib/stores";
 import { dealForHost } from "@/lib/store-partner-deals";
 
@@ -50,6 +52,7 @@ export default function StorePage({ params }: { params: { region: string; store:
         <h2 className="mb-4 font-display text-xl font-bold">Cheapest at {s.name} today ({cheapest.length})</h2>
         <ProductGrid items={cheapest.slice(0, 48)} region={r.region} />
       </section>
+      <StoreBadgeBox html={storeBadge(SITE_URL, SITE_NAME, "Tabletop", `/${r.region}/stores/${s.key}`)} storeName={s.name} />
     </div>
   );
 }
