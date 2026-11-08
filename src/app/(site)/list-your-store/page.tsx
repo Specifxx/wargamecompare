@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { CONTACT_EMAIL } from "@/lib/site";
+import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from "@/lib/site";
 import { REGION_LIST } from "@/lib/regions";
 import { STORES } from "@/lib/stores";
 import { ListYourStore } from "@/components/ListYourStore";
+import { storeBadge } from "@/lib/embed";
 
 // The store-owner page every Compare Empire site shares (owner, 2026-11-04).
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function Page() {
   return (
     <div className="page prose-wg max-w-3xl py-10">
       <ListYourStore
+        badge={storeBadge(SITE_URL, SITE_NAME, "Tabletop")}
         site="WargameCompare"
         what="Games Workshop products"
         markets={markets}

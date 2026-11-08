@@ -979,3 +979,14 @@ engine family (DexCompare #154, MTG Compare #104, YGO Compare #125, Gundam Compa
   faction or type, cheapest in-stock price, in-stock store count), the first two of `heroPicks` (`n = 2`, so the deals grid below
   keeps the rest). Region home and landing alike (the landing's per-region blocks unchanged). Nothing in the cards is a heading;
   URLs, titles and metadata unchanged. Seasonal decor unchanged.
+
+## 2026-11-08 — Store badges, free price data and My collection (competitor scan)
+
+The owner approved the competitor scan's ideas (Collectr and PriceCharting keep people coming back with "what is my
+collection worth"; Scryfall grew on free data credited with a link; price sites earn links from the stores they list).
+- **Store badge.** `/list-your-store` ends with "Already listed? Add our badge": the site's plain-HTML "prices compared on"
+  badge (an ordinary link: no iframe, script, image or tracking) and its code to copy. `ListYourStore.tsx` takes it as the
+  optional `badge` prop and stays the same file in every site. Stores see it when they come to us; nobody is emailed about it
+  (cold outreach stays stopped).
+- **Per-store badge.** A store's own page ends with "Add this badge to <store>'s site" (`components/StoreBadgeBox.tsx`): the
+  same badge, pointing at that store's page here (`storeBadge(…, path)`), so a store that adds it links to its own listing.
