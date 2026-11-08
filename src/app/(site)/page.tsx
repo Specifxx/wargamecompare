@@ -95,7 +95,6 @@ export default function Landing() {
         <div className="mt-8">
           <ChristmasBanner
             title="Christmas gifts for the hobby"
-            text="Combat Patrols, starter sets and paints, matched by box code across the discount stores, cheapest in stock first."
             href="/us/deals"
             cta="See the biggest savings"
           />
