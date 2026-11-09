@@ -1015,3 +1015,18 @@ and sees whether it is a good price.
   above it "you can pay less", with the saving. A listing that was out of stock says so instead. eBay, Amazon, marketplaces, stores
   we don't read and unmatched pages fall back to a search from the link's words, and the visitor gets a search of their region with those words.
 - Pasting a link into the header search opens the checker (`#link=` in the fragment, so the CDN keeps one copy of the page).
+
+## 2026-11-09 — Navigation audit (Bill): Games, Armies and Products in the header; no dead-end menu links; hubs link onward
+
+Bill: a collector deep in one space must reach it fast. A Games Workshop buyer looks by game system, then army, then kind of kit.
+
+- The header's one "Browse" dropdown became three: **Games**, **Armies**, **Products** (real links in the server HTML, opening on hover
+  and focus), then Deals and New releases; Stores and Forum from xl (the sidebar and footer carry them below). Never more than seven
+  items below xl, the Black Friday / Cyber Monday page included. Each dropdown's label goes to its first hub.
+- Menus (header, sidebar, phone sheet) link only a game, army or kind of kit that holds a product in that market (`lib/nav-live.ts`,
+  computed from the summaries already loaded). A region-less page (home, About) uses every market together. `navGroups(region)` with no
+  filter is still the whole list.
+- Hub pages say where to go next (`HubPage` `more`): a game lists its kinds of kit and the other games, an army its game and the
+  other armies of that game, a kind of kit its games and the other kinds. The BreadcrumbList, titles, canonicals and h1 are unchanged.
+- Not done: an "all armies" index page (the sidebar holds the ten popular ones), and the footer's one link to /our-sites (the
+  owner's 2026-11-08 call) is untouched.

@@ -7,6 +7,7 @@ import { SideAds } from "@/components/SideAds";
 import { SideNav } from "@/components/SideNav";
 import { summariesFor } from "@/lib/data";
 import { navGroups } from "@/lib/nav";
+import { liveHubs } from "@/lib/nav-live";
 import { sideRailsFor } from "@/lib/side-rails";
 import { isRegion, REGIONS } from "@/lib/regions";
 
@@ -21,7 +22,7 @@ export default function RegionLayout({ children, params }: { children: React.Rea
       <HolidayStrip region={region} />
       {/* From xl, the sidebar fills the wide screen's left side; the page keeps its own width beside it. */}
       <div className="mx-auto flex w-full max-w-shell flex-1">
-        <SideNav region={region} groups={navGroups(region)} />
+        <SideNav region={region} groups={navGroups(region, liveHubs(region))} />
         <main id="main" className="min-w-0 flex-1">
           {children}
           <div className="page mt-12" data-ebay-prefooter="">

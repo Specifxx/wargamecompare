@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HubPage } from "@/components/HubPage";
-import { FACTIONS, SYSTEM_BY_SLUG, TYPES } from "@/lib/catalog";
+import { FACTIONS, SYSTEMS, SYSTEM_BY_SLUG, TYPES } from "@/lib/catalog";
 import { summariesFor } from "@/lib/data";
 import { hubIndexable } from "@/lib/index-tiers";
 import { regionOr404 } from "@/lib/page";
@@ -49,6 +49,10 @@ export default function GamePage({ params }: { params: { region: string; system:
       ebayQuery={s.slug === "citadel" ? "Citadel paint" : `Warhammer ${s.short}`}
       placement="category-ebay"
       chips={chips}
+      more={[
+        { title: "By kind of kit", chips: TYPES.map((t) => ({ href: `/${r.region}/search?system=${s.slug}&type=${t.slug}`, label: t.name, n: items.filter((x) => x.product.type === t.slug).length })).filter((c) => c.n > 0) },
+        { title: "Other games", chips: SYSTEMS.filter((o) => o.slug !== s.slug).map((o) => ({ href: `/${r.region}/game/${o.slug}`, label: o.name, n: summariesFor(r.region).filter((x) => x.product.system === o.slug).length })).filter((c) => c.n > 0) },
+      ]}
     />
   );
 }

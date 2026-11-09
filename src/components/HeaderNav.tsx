@@ -25,13 +25,13 @@ export interface HeaderNavItem {
 export function BrowseMenuPanel({ columns }: { columns: NavGroup[] }) {
   return (
     <div className="invisible absolute left-0 top-full z-50 pt-2 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-      <div className="grid w-[44rem] grid-cols-3 gap-6 rounded-2xl border border-line bg-surface p-5 shadow-lg" data-menu="browse">
+      <div className={`rounded-2xl border border-line bg-surface p-5 shadow-lg ${columns.length > 1 ? "grid w-[44rem] grid-cols-3 gap-6" : columns[0].links.length > 8 ? "w-[27rem]" : "w-64"}`} data-menu="browse">
         {columns.map((col) => (
           <div key={col.title}>
             <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">{col.title}</p>
-            <ul className="space-y-0.5">
+            <ul className={`space-y-0.5 ${columns.length === 1 && col.links.length > 8 ? "columns-2 gap-4" : ""}`}>
               {col.links.map((l) => (
-                <li key={l.href}>
+                <li key={l.href} className="break-inside-avoid">
                   <Link href={l.href} className="block rounded-lg px-2 py-1.5 text-sm text-ink hover:bg-raised">
                     {l.label}
                   </Link>

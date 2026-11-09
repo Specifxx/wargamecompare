@@ -56,3 +56,32 @@ test("eBay goes first: pinned above the store rows and beside the best price, ne
     assert.ok(s.indexOf("<EbayStrip") < s.indexOf(grid), `${f}: eBay strip above the first list`);
   }
 });
+
+test("header: Games, Armies and Products dropdowns, seven items at most, every dropdown link a real hub (Bill, 2026-11-09)", async () => {
+  const { headerNavItems } = await import("../src/components/Header");
+  for (const today of ["2026-06-01", "2026-11-20"]) {
+    const items = headerNavItems("uk", today);
+    // Below xl the xl-only items hide, and the row must stay short enough to hold the search box.
+    assert.ok(items.length <= 8 && items.filter((i) => !i.xl).length <= 7, `${today}: ${items.map((i) => i.label)}`);
+    for (const label of ["Games", "Armies", "Products"]) {
+      const it = items.find((i) => i.label === label);
+      assert.ok(it?.menu?.[0]?.links.length, label);
+      assert.equal(it.href, it.menu[0].links[0].href, `${label} goes to its first hub`);
+    }
+  }
+});
+
+test("menus link only hubs that hold products (no dead ends)", () => {
+  const live = { game: new Set(["warhammer-40k"]), faction: new Set(["necrons"]), type: new Set(["paints"]) };
+  const links = navGroups("au", live).flatMap((g) => g.links.map((l) => l.href));
+  assert.ok(links.includes("/au/game/warhammer-40k") && links.includes("/au/faction/necrons") && links.includes("/au/type/paints"));
+  assert.ok(!links.includes("/au/game/warcry") && !links.includes("/au/faction/orks") && !links.includes("/au/type/terrain"));
+  assert.ok(navGroups("au").flatMap((g) => g.links).length > links.length, "no filter: the whole list");
+});
+
+test("hub pages say where to go next: the game, the other armies, the kinds of kit", () => {
+  assert.match(read("src/app/[region]/faction/[faction]/page.tsx"), /title: "Game"/);
+  assert.match(read("src/app/[region]/game/[system]/page.tsx"), /By kind of kit/);
+  assert.match(read("src/app/[region]/type/[type]/page.tsx"), /By game/);
+  assert.match(read("src/components/HubPage.tsx"), /more\?\.map/);
+});

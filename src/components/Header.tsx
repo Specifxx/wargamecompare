@@ -2,6 +2,7 @@ import { saleStrip } from "@/lib/black-friday";
 import Link from "@/components/Link";
 import { ebayLabel, ebaySearchUrl, REL_PAID } from "@/lib/affiliate";
 import { navGroups } from "@/lib/nav";
+import { liveHubs } from "@/lib/nav-live";
 import { REGIONS, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
@@ -14,22 +15,25 @@ import { SearchBox } from "./SearchBox";
 import { CartHeaderLink } from "@/components/cart/CartHeaderLink";
 
 /**
- * The desktop nav (lg and up), in order: Deals, New releases, Browse (the dropdown: every game, product type and popular army,
- * lib/nav.ts), Stores, Forum. `also`: other paths (under the region) that count as the section, for its current state: a game,
- * army or type page is part of "Browse"; the sale-season pages sit with "Deals".
+ * The desktop nav (lg and up), in order: Games, Armies and Products (each a dropdown of real links, lib/nav.ts: the way a Games
+ * Workshop buyer looks, system first, then faction, then kind of kit), Deals, New releases, then Stores and Forum from xl (the
+ * sidebar and the footer carry them below). Seven at most, the sale page counted (it leads the row from 1 November). `also`: other
+ * paths (under the region) that count as the section, for its current state.
  */
 export function headerNavItems(region: Region, today = new Date().toISOString().slice(0, 10)): HeaderNavItem[] {
-  const groups = navGroups(region);
+  const groups = navGroups(region, liveHubs(region));
   // From 1 November to the day after Cyber Monday, the sale page leads the row (lib/black-friday.ts saleStrip).
   const sale = saleStrip(today);
   return [
     ...(sale ? [{ href: `/${region}/${sale.event}`, label: sale.name }] : []),
+    // The dropdowns open on hover and on focus; the label itself goes to the first hub in the list.
+    { href: groups[0].links[0]?.href ?? `/${region}/search`, label: "Games", also: [`/${region}/game`], menu: [groups[0]] },
+    { href: groups[2].links[0]?.href ?? `/${region}/search`, label: "Armies", also: [`/${region}/faction`], menu: [groups[2]] },
+    { href: groups[1].links[0]?.href ?? `/${region}/search`, label: "Products", also: [`/${region}/type`], menu: [groups[1]] },
     { href: `/${region}/deals`, label: "Deals", also: [`/${region}/black-friday`, `/${region}/cyber-monday`, `/${region}/boxing-day`, `/${region}/january-sales`, `/${region}/lunar-new-year`] },
-    { href: `/${region}/new-releases`, label: "New releases" },
-    // The Browse item opens the category dropdown (HeaderNav.tsx BrowseMenuPanel): games, kinds of product, armies.
-    { href: `/${region}/search`, label: "Browse", also: [`/${region}/game`, `/${region}/type`, `/${region}/faction`], menu: groups.slice(0, 3) },
-    { href: `/${region}/stores`, label: "Stores" },
-    { href: "/forum", label: "Forum" },
+    { href: `/${region}/new-releases`, label: "New releases", xl: !!sale },
+    { href: `/${region}/stores`, label: "Stores", xl: true },
+    { href: "/forum", label: "Forum", xl: true },
   ];
 }
 
@@ -49,7 +53,7 @@ export function Header({ region }: { region: Region | null }) {
   const home = region ? `/${region}` : "/";
   const built = region ?? X_DEFAULT_REGION;
   const items = headerNavItems(built);
-  const groups = navGroups(built);
+  const groups = navGroups(built, liveHubs(region));
   return (
     <header className="sticky top-0 z-40 h-[var(--hdr)] border-b border-line bg-surface/90 backdrop-blur-md">
       <div className="page flex h-full items-center gap-2 sm:gap-3 lg:gap-4 xl:max-w-shell">

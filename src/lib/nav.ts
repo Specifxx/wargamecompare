@@ -9,54 +9,62 @@ export type NavGroup = { title: string; links: NavItem[] };
  * list, so they never disagree. Static: no data read, and every link is a page that exists (a thin hub is still served, noindex).
  * Owner, 2026-10-28: navigation from the first page, no "Continue to <region>" step first (as on MTG Compare and DexCompare).
  */
-export function navGroups(region: Region): NavGroup[] {
-  const game = (slug: string, label: string): NavItem => ({ href: `/${region}/game/${slug}`, label });
-  const army = (slug: string, label: string): NavItem => ({ href: `/${region}/faction/${slug}`, label });
-  const type = (slug: string, label: string): NavItem => ({ href: `/${region}/type/${slug}`, label });
+/** The hubs that hold at least one product (lib/nav-live.ts): a menu links only to a hub with something on it (no dead ends). */
+export interface LiveHubs {
+  game: ReadonlySet<string>;
+  faction: ReadonlySet<string>;
+  type: ReadonlySet<string>;
+}
+
+export function navGroups(region: Region, live?: LiveHubs): NavGroup[] {
+  const item = (kind: keyof LiveHubs, slug: string, label: string): NavItem[] => (live && !live[kind].has(slug) ? [] : [{ href: `/${region}/${kind}/${slug}`, label }]);
+  const game = (slug: string, label: string) => item("game", slug, label);
+  const army = (slug: string, label: string) => item("faction", slug, label);
+  const type = (slug: string, label: string) => item("type", slug, label);
   return [
     {
       title: "Games",
       links: [
-        game("warhammer-40k", "Warhammer 40,000"),
-        game("age-of-sigmar", "Age of Sigmar"),
-        game("kill-team", "Kill Team"),
-        game("horus-heresy", "The Horus Heresy"),
-        game("old-world", "The Old World"),
-        game("middle-earth", "Middle-earth"),
-        game("necromunda", "Necromunda"),
-        game("blood-bowl", "Blood Bowl"),
-        game("underworlds", "Underworlds"),
-        game("warcry", "Warcry"),
-        game("citadel", "Paints and tools"),
-        game("black-library", "Black Library novels"),
+        ...game("warhammer-40k", "Warhammer 40,000"),
+        ...game("age-of-sigmar", "Age of Sigmar"),
+        ...game("kill-team", "Kill Team"),
+        ...game("horus-heresy", "The Horus Heresy"),
+        ...game("old-world", "The Old World"),
+        ...game("middle-earth", "Middle-earth"),
+        ...game("necromunda", "Necromunda"),
+        ...game("blood-bowl", "Blood Bowl"),
+        ...game("underworlds", "Underworlds"),
+        ...game("warcry", "Warcry"),
+        ...game("citadel", "Paints and tools"),
+        ...game("black-library", "Black Library novels"),
       ],
     },
     {
       title: "Shop by product",
       links: [
-        type("combat-patrols", "Combat Patrols"),
-        type("army-sets", "Army sets and Battleforces"),
-        type("starter-sets", "Starter sets"),
-        type("books", "Codexes and battletomes"),
-        type("paints", "Paints"),
-        type("paint-sets", "Paint sets"),
-        type("tools", "Brushes and tools"),
-        type("terrain", "Terrain"),
+        ...type("combat-patrols", "Combat Patrols"),
+        ...type("army-sets", "Army sets and Battleforces"),
+        ...type("starter-sets", "Starter sets"),
+        ...type("books", "Codexes and battletomes"),
+        ...type("paints", "Paints"),
+        ...type("paint-sets", "Paint sets"),
+        ...type("tools", "Brushes and tools"),
+        ...type("terrain", "Terrain"),
       ],
     },
     {
       title: "Popular armies",
       links: [
-        army("space-marines", "Space Marines"),
-        army("necrons", "Necrons"),
-        army("orks", "Orks"),
-        army("tyranids", "Tyranids"),
-        army("astra-militarum", "Astra Militarum"),
-        army("chaos-space-marines", "Chaos Space Marines"),
-        army("aeldari", "Aeldari"),
-        army("tau-empire", "T'au Empire"),
-        army("stormcast-eternals", "Stormcast Eternals"),
-        army("skaven", "Skaven"),
+        ...army("space-marines", "Space Marines"),
+        ...army("necrons", "Necrons"),
+        ...army("orks", "Orks"),
+        ...army("tyranids", "Tyranids"),
+        ...army("astra-militarum", "Astra Militarum"),
+        ...army("chaos-space-marines", "Chaos Space Marines"),
+        ...army("aeldari", "Aeldari"),
+        ...army("tau-empire", "T'au Empire"),
+        ...army("stormcast-eternals", "Stormcast Eternals"),
+        ...army("skaven", "Skaven"),
       ],
     },
     {
