@@ -6,6 +6,7 @@ import { SoftSideNav } from "@/components/SideNav";
 import { sideRailsFor } from "@/lib/side-rails";
 import type { SideRails } from "@/lib/rails";
 import { navGroups } from "@/lib/nav";
+import { liveHubs } from "@/lib/nav-live";
 import { REGIONS, X_DEFAULT_REGION, type Region } from "@/lib/regions";
 
 // The pages with no region of their own (the landing page, About, the legal pages) get the whole navigation too (owner,
@@ -16,7 +17,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <>
       <Header region={null} />
       <div className="mx-auto flex w-full max-w-shell flex-1">
-        <SoftSideNav built={X_DEFAULT_REGION} groups={navGroups(X_DEFAULT_REGION)} />
+        <SoftSideNav built={X_DEFAULT_REGION} groups={navGroups(X_DEFAULT_REGION, liveHubs(null))} />
         <main id="main" className="min-w-0 flex-1">
           {children}
           <div className="page mt-12">

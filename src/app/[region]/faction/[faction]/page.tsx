@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HubPage } from "@/components/HubPage";
-import { FACTION_BY_SLUG, SYSTEM_BY_SLUG, TYPES } from "@/lib/catalog";
+import { FACTIONS, FACTION_BY_SLUG, SYSTEM_BY_SLUG, TYPES } from "@/lib/catalog";
 import { summariesFor } from "@/lib/data";
 import { hubIndexable } from "@/lib/index-tiers";
 import { regionOr404 } from "@/lib/page";
@@ -45,6 +45,10 @@ export default function FactionPage({ params }: { params: { region: string; fact
       ebayQuery={`Warhammer ${f.name}`}
       placement="category-ebay"
       chips={chips}
+      more={[
+        { title: "Game", chips: sys ? [{ href: `/${r.region}/game/${sys.slug}`, label: sys.name }] : [] },
+        { title: `More ${sys?.short ?? ""} armies`, chips: FACTIONS.filter((o) => o.system === f.system && o.slug !== f.slug).map((o) => ({ href: `/${r.region}/faction/${o.slug}`, label: o.name, n: summariesFor(r.region).filter((x) => x.product.faction === o.slug).length })).filter((c) => c.n > 0) },
+      ]}
     />
   );
 }

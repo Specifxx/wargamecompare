@@ -20,6 +20,7 @@ export function HubPage({
   ebayQuery,
   placement,
   chips,
+  more,
   path,
 }: {
   r: RegionInfo;
@@ -32,6 +33,8 @@ export function HubPage({
   ebayQuery: string;
   placement: Placement;
   chips?: { href: string; label: string; n: number }[];
+  /** Labelled rows of related hubs (this army's game, this game's kinds of kit): where to go next from here. Not in the BreadcrumbList. */
+  more?: { title: string; chips: { href: string; label: string; n?: number }[] }[];
 }) {
   const inStock = items.filter((s) => s.inStock > 0);
   const sold = items.filter((s) => s.inStock === 0);
@@ -53,6 +56,21 @@ export function HubPage({
             </Link>
           ))}
         </div>
+      )}
+      {more?.map(
+        (row) =>
+          row.chips.length > 0 && (
+            <nav key={row.title} aria-label={row.title} className="mt-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">{row.title}</p>
+              <div className="flex flex-wrap gap-2">
+                {row.chips.map((c) => (
+                  <Link key={c.href} href={c.href} className="chip">
+                    {c.label} {c.n != null && <span className="text-faint">{c.n}</span>}
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          ),
       )}
       <div className="mt-8">
         <EbayStrip region={r.region} items={inStock} placement="ebay-strip-hub" heading={`${ebayQuery} on eBay`} />

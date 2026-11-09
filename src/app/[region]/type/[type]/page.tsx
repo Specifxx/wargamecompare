@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HubPage } from "@/components/HubPage";
-import { TYPE_BY_SLUG } from "@/lib/catalog";
+import { SYSTEMS, TYPES, TYPE_BY_SLUG } from "@/lib/catalog";
 import { summariesFor } from "@/lib/data";
 import { hubIndexable } from "@/lib/index-tiers";
 import { regionOr404 } from "@/lib/page";
@@ -42,6 +42,10 @@ export default function TypePage({ params }: { params: { region: string; type: s
       searchHref={`/${r.region}/search?type=${t.slug}`}
       ebayQuery={`Warhammer ${t.name.split(/[,&]/)[0].trim()}`}
       placement="category-ebay"
+      more={[
+        { title: "By game", chips: SYSTEMS.map((g) => ({ href: `/${r.region}/search?system=${g.slug}&type=${t.slug}`, label: g.name, n: items.filter((x) => x.product.system === g.slug).length })).filter((c) => c.n > 0) },
+        { title: "Other kinds of product", chips: TYPES.filter((o) => o.slug !== t.slug && o.slug !== "miniatures").map((o) => ({ href: `/${r.region}/type/${o.slug}`, label: o.name })) },
+      ]}
     />
   );
 }
