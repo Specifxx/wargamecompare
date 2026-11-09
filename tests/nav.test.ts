@@ -85,3 +85,17 @@ test("hub pages say where to go next: the game, the other armies, the kinds of k
   assert.match(read("src/app/[region]/type/[type]/page.tsx"), /By game/);
   assert.match(read("src/components/HubPage.tsx"), /more\?\.map/);
 });
+
+test("header: Deals and Guides open dropdowns of real links; no link is lost from the Deals & more group (Bill, 2026-11-09)", async () => {
+  const { headerNavItems } = await import("../src/components/Header");
+  const items = headerNavItems("au", "2026-06-01");
+  const labels = items.map((i) => i.label);
+  assert.deepEqual(labels, ["Games", "Armies", "Products", "Deals", "Guides", "Stores"]);
+  const hrefs = items.flatMap((i) => i.menu?.flatMap((c) => c.links.map((l) => l.href)) ?? []);
+  for (const h of ["/au/deals", "/au/new-releases", "/au/guides/cheapest-way-to-start", "/forum", "/creators", "/about", "/contact"]) assert.ok(hrefs.includes(h), h);
+});
+
+test("NavMenu: hover intent, click toggle, Escape, arrow keys, focus-out and aria, one file for the family", () => {
+  const src = read("src/components/NavMenu.tsx");
+  for (const needle of ["OPEN_MS", "CLOSE_MS", 'e.key === "Escape"', "ArrowDown", "aria-expanded", "aria-controls", "pointerdown", "onBlur", "usePathname"]) assert.ok(src.includes(needle), needle);
+});

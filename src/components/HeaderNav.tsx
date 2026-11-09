@@ -4,6 +4,7 @@ import Link from "@/components/Link";
 import { retargetHref, type NavGroup } from "@/lib/nav";
 import type { Region } from "@/lib/regions";
 import { NavLink } from "./NavLink";
+import { NavMenu } from "./NavMenu";
 import { RegionSwitcher } from "./RegionSwitcher";
 import { useSoftRegion } from "./SoftRegion";
 import { SearchBox } from "./SearchBox";
@@ -24,7 +25,7 @@ export interface HeaderNavItem {
  */
 export function BrowseMenuPanel({ columns }: { columns: NavGroup[] }) {
   return (
-    <div className="invisible absolute left-0 top-full z-50 pt-2 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+    <>
       <div className={`rounded-2xl border border-line bg-surface p-5 shadow-lg ${columns.length > 1 ? "grid w-[44rem] grid-cols-3 gap-6" : columns[0].links.length > 8 ? "w-[27rem]" : "w-64"}`} data-menu="browse">
         {columns.map((col) => (
           <div key={col.title}>
@@ -41,7 +42,7 @@ export function BrowseMenuPanel({ columns }: { columns: NavGroup[] }) {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 
@@ -49,17 +50,16 @@ export function BrowseMenuPanel({ columns }: { columns: NavGroup[] }) {
 export function HeaderNavItems({ items }: { items: HeaderNavItem[] }) {
   return (
     <>
-      {items.map((n) => {
+      {items.map((n, i) => {
         const link = (
-          <NavLink key={n.label} href={n.href} also={n.also} className={`${n.xl ? "hidden xl:inline-flex" : ""} whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-colors`}>
+          <NavLink key={n.label} href={n.href} also={n.also} className={`${n.xl ? "hidden xl:inline-flex" : ""} ${n.menu ? "pr-6" : ""} whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-colors`}>
             {n.label}
           </NavLink>
         );
         return n.menu ? (
-          <div key={n.label} className="group relative">
-            {link}
-            <BrowseMenuPanel columns={n.menu} />
-          </div>
+          <NavMenu key={n.label} label={n.label} link={link} xl={n.xl} align={i >= items.length - 1 ? "right" : "left"}>
+              <BrowseMenuPanel columns={n.menu} />
+          </NavMenu>
         ) : (
           link
         );
