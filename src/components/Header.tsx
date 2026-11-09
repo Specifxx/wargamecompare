@@ -24,16 +24,23 @@ export function headerNavItems(region: Region, today = new Date().toISOString().
   const groups = navGroups(region, liveHubs(region));
   // From 1 November to the day after Cyber Monday, the sale page leads the row (lib/black-friday.ts saleStrip).
   const sale = saleStrip(today);
+  const more = groups[3].links;
+  const pick = (hrefs: string[]) => hrefs.map((h) => more.find((l) => l.href === h)).filter((l): l is NonNullable<typeof l> => !!l);
+  const dealsColumn = { title: "Deals & releases", links: pick([`/${region}/deals`, `/${region}/new-releases`, `/${region}/black-friday`, `/${region}/cyber-monday`]) };
+  const guidesColumn = {
+    title: "Guides & community",
+    links: more.filter((l) => !dealsColumn.links.includes(l) && l.href !== `/${region}/stores`),
+  };
   return [
     ...(sale ? [{ href: `/${region}/${sale.event}`, label: sale.name }] : []),
     // The dropdowns open on hover and on focus; the label itself goes to the first hub in the list.
     { href: groups[0].links[0]?.href ?? `/${region}/search`, label: "Games", also: [`/${region}/game`], menu: [groups[0]] },
     { href: groups[2].links[0]?.href ?? `/${region}/search`, label: "Armies", also: [`/${region}/faction`], menu: [groups[2]] },
     { href: groups[1].links[0]?.href ?? `/${region}/search`, label: "Products", also: [`/${region}/type`], menu: [groups[1]] },
-    { href: `/${region}/deals`, label: "Deals", also: [`/${region}/black-friday`, `/${region}/cyber-monday`, `/${region}/boxing-day`, `/${region}/january-sales`, `/${region}/lunar-new-year`] },
-    { href: `/${region}/new-releases`, label: "New releases", xl: !!sale },
-    { href: `/${region}/stores`, label: "Stores", xl: true },
-    { href: "/forum", label: "Forum", xl: true },
+    // Deals and Guides open dropdowns too (owner, 2026-11-09); the "Deals & more" group of lib/nav.ts is split between them.
+    { href: `/${region}/deals`, label: "Deals", also: [`/${region}/new-releases`, `/${region}/black-friday`, `/${region}/cyber-monday`, `/${region}/boxing-day`, `/${region}/january-sales`, `/${region}/lunar-new-year`], menu: [dealsColumn] },
+    { href: `/${region}/guides`, label: "Guides", also: ["/forum", "/creators", "/about"], menu: [guidesColumn] },
+    { href: `/${region}/stores`, label: "Stores" },
   ];
 }
 
