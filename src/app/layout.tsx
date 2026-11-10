@@ -12,6 +12,7 @@ import { RateCard } from "@/components/site-reviews/RateCard";
 import "./globals.css";
 // The cart list's styles (components/cart): imported here, never from a component, so node tests can load them.
 import "@/components/cart/cart.css";
+import "@/components/store-vote.css";
 import "@/components/site-reviews/site-reviews.css";
 
 // The engine's two faces (DexCompare and MTG Compare: Bricolage Grotesque for headings, Inter for text), bundled as the latin
