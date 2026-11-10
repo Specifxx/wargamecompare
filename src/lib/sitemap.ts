@@ -1,7 +1,7 @@
 import { FACTIONS, SYSTEMS, TYPES } from "@/lib/catalog";
-import { meta, summariesFor } from "@/lib/data";
+import { demandProductIds, meta, summariesFor } from "@/lib/data";
 import { GUIDES } from "@/lib/guides";
-import { detailIndexed, hubIndexable, productIndexable } from "@/lib/index-tiers";
+import { detailIndexed, hubIndexable, sitemapProducts } from "@/lib/index-tiers";
 import { REGION_LIST, isRegion, type Region } from "@/lib/regions";
 import { SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
@@ -48,7 +48,8 @@ export function sitemapPart(part: string): SitemapUrl[] | null {
   for (const s of SYSTEMS) if (hubIndexable(all.filter((x) => x.product.system === s.slug))) at(`/game/${s.slug}`);
   for (const f of FACTIONS) if (hubIndexable(all.filter((x) => x.product.faction === f.slug))) at(`/faction/${f.slug}`);
   for (const t of TYPES) if (hubIndexable(all.filter((x) => x.product.type === t.slug))) at(`/type/${t.slug}`);
-  if (detailIndexed(region)) for (const s of all) if (productIndexable(s)) at(`/p/${s.product.id}`);
+  // At most SITEMAP_PRODUCTS per region (SEO-5): demand first, then the most widely stocked.
+  if (detailIndexed(region)) for (const s of sitemapProducts(all, demandProductIds())) at(`/p/${s.product.id}`);
   return out;
 }
 

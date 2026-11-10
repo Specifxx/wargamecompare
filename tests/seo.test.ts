@@ -71,3 +71,18 @@ test("New Zealand product and guide pages are noindex and out of the sitemap; it
   assert.match(src("src/app/[region]/p/[slug]/page.tsx"), /const indexable = detailIndexed\(r\.region\) && productIndexable\(s\)/);
   assert.match(src("src/app/[region]/guides/[slug]/page.tsx"), /robots: detailIndexed\(r\.region\) \? undefined : \{ index: false, follow: true \}/);
 });
+
+test("each region's sitemap lists at most SITEMAP_PRODUCTS products, demand first (SEO-5, 2026-11-10)", async () => {
+  const { SITEMAP_PRODUCTS, sitemapProducts } = await import("../src/lib/index-tiers");
+  assert.equal(SITEMAP_PRODUCTS, 450);
+  const mk = (id: string, inStock: number) => ({ product: { id }, stores: 3, inStock }) as never;
+  const items = [mk("a", 9), mk("b", 1), mk("c", 5), mk("d", 3)];
+  assert.deepEqual(sitemapProducts(items, new Set(["b"]), 3).map((s) => (s as { product: { id: string } }).product.id), ["b", "a", "c"]);
+  let total = 0;
+  for (const p of sitemapParts()) {
+    const urls = sitemapPart(p)!;
+    total += urls.length;
+    assert.ok(urls.filter((u) => u.url.includes("/p/")).length <= SITEMAP_PRODUCTS, `${p} product cap`);
+  }
+  assert.ok(total < 2500, `sitemap has ${total} URLs`);
+});

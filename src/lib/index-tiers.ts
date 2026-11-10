@@ -27,3 +27,21 @@ export function hubIndexable(items: Summary[], min = 6): boolean {
  */
 export const INDEXED_DETAIL_REGIONS: readonly string[] = ["uk", "au", "ca", "us"];
 export const detailIndexed = (region: string): boolean => INDEXED_DETAIL_REGIONS.includes(region);
+
+/**
+ * Product pages listed in each region's sitemap (SEO-5, 2026-11-10): 12,015 of the sitemap's 12,625 URLs were products,
+ * Google held 7,540 and had 7,197 queued, for 44 clicks a week. A region lists at most this many (450: with each region's ~130 hub URLs the whole sitemap stays under 2,500), first every product
+ * with search demand (a click or 10+ impressions), then the rest by stores with it in stock. A product left out stays
+ * live and indexable under the three-store rule; it just isn't announced.
+ */
+export const SITEMAP_PRODUCTS = 450;
+
+/** The products a region's sitemap lists, in order: demand first, then stock breadth, then id (stable). */
+export function sitemapProducts(items: readonly Summary[], demand: ReadonlySet<string>, cap = SITEMAP_PRODUCTS): Summary[] {
+  return items
+    .filter(productIndexable)
+    .map((s) => ({ s, d: demand.has(s.product.id) ? 1 : 0 }))
+    .sort((a, b) => b.d - a.d || b.s.inStock - a.s.inStock || (a.s.product.id < b.s.product.id ? -1 : 1))
+    .slice(0, cap)
+    .map((x) => x.s);
+}
