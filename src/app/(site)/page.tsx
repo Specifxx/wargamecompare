@@ -95,8 +95,8 @@ export default function Landing() {
         <div className="mt-8">
           <ChristmasBanner
             title="Christmas gifts for the hobby"
-            href="/us/deals"
-            cta="See the biggest savings"
+            href="/us/guides/warhammer-gift-guide"
+            cta="Gifts at every budget, priced today"
           />
         </div>
 
