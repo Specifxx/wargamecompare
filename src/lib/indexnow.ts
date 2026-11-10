@@ -9,7 +9,7 @@ export const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 /** IndexNow takes at most 10,000 URLs per request. */
 export const INDEXNOW_MAX_URLS = 10_000;
 
-/** One request body per 10,000 of the site's own URLs (the sitemap holds about 14,000). */
+/** One request body per 10,000 of the site's own URLs (the sitemap held about 14,000 before SEO-5; now about 2,000). */
 export function indexNowBodies(siteUrl: string, urls: string[]) {
   const host = new URL(siteUrl).host;
   const own = [...new Set(urls)].filter((u) => {

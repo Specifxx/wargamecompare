@@ -51,6 +51,10 @@ function data(): Loaded {
   return cache;
 }
 
+/** Product ids Search Console shows people finding (data/focus/demand.json): the sitemap lists these first. */
+export function demandProductIds(): ReadonlySet<string> {
+  return new Set(load<{ ids?: string[] }>("focus/demand.json", {}).ids ?? []);
+}
 export function meta(): Meta {
   return data().meta;
 }

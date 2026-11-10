@@ -1061,6 +1061,19 @@ pointed at the deals list), and the gift guide's "big present" section shows eig
 two or more stores (four before), cheapest first, with a link to the full army sets page. When Games Workshop's Christmas
 battleforces appear in stores they show there the same day. No URL, title or metadata changed.
 
+## 2026-11-10: A lean sitemap, 450 products per region (SEO indexing plan, SEO-5)
+
+- The sitemap listed 12,625 URLs, 12,015 of them product pages across four regions. Google held 7,540 pages and had 7,197
+  queued ("discovered, currently not indexed"), for 44 clicks a week from 855 pages with impressions.
+- `SITEMAP_PRODUCTS = 450` (`lib/index-tiers.ts`, as KaeYoung and Figure name theirs; the card said 500, but with about 130
+  hub URLs a region the whole sitemap came to 2,610, so 450 keeps it under 2,500: now 2,410). `sitemapProducts` lists, per
+  region, every product with search demand first (`data/focus/demand.json`: a click or 10+ impressions), then the rest by
+  stores with it in stock, then id. Every hub (game, faction, type, store, guides) stays.
+- A product left out is still live and indexable under the three-store rule (`productIndexable`); it is just not announced.
+  IndexNow sends the sitemap's URLs, so its batch shrank with it. No URL, title, canonical or noindex rule changed.
+- Pinned in `tests/seo.test.ts` (the cap, the demand-first order, the total under 2,500). Widen the cap one step when the
+  recheck (~25 Nov) shows the queued pages being indexed.
+
 ## 2026-11-10: Product page weight cut, every store row kept (site review X1, ported from DexCompare)
 
 Measured on a local production build with today's data: /uk/p/tau-empire-commander (46 stores) went from 590 KB (305 KB payload) to 363 KB (214 KB payload); / 737 KB to 552 KB of HTML. The title, meta tags, canonical,
