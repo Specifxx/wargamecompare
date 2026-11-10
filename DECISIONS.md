@@ -1047,3 +1047,16 @@ Bill: a collector deep in one space must reach it fast. A Games Workshop buyer l
 - Not done: removing the side panel (the menus do not yet cover its deep groups, and it carries the current-section state for the
   deep levels; revisit once the menus have been in use), a phone bottom sheet (the `<dialog>` menu stays), and the side rails and
   footer links, which are the owner's own decisions. Deals is a hover menu: nothing is added to the deploy cadence.
+
+## 2026-11-10: Christmas: the banner opens the gift guide, which lists battleforces (site review WGC-1)
+
+The three Black Friday pages won 26 of the site's 64 Google clicks (positions 4.6 to 9.3). They already refresh every
+day: each is drawn from the day's prices, the daily data commit is the release, and the CDN holds a page one day. Nothing
+to change there through 1 December.
+
+A separate "Christmas battleforce" page was not built: `/<region>/type/army-sets` already lists every battleforce and army
+set at the cheapest store price, and this year's Christmas boxes cannot be told from earlier ones in our data until stores
+list them (`firstSeen` restarted on 5 November). Instead the Christmas banner on the home pages opens the gift guide (it
+pointed at the deals list), and the gift guide's "big present" section shows eight battleforces and army sets in stock at
+two or more stores (four before), cheapest first, with a link to the full army sets page. When Games Workshop's Christmas
+battleforces appear in stores they show there the same day. No URL, title or metadata changed.

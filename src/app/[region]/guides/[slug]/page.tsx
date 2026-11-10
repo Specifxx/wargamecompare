@@ -251,7 +251,7 @@ function Gifts({ r, all }: { r: RegionInfo; all: Summary[] }) {
   const kits = mostStockedOfType(all, "miniatures", 8, 4);
   const patrols = [...cheapestOfType(all, "combat-patrols", 8, "warhammer-40k"), ...cheapestOfType(all, "combat-patrols", 8, "age-of-sigmar")].sort((a, b) => a.best! - b.best!).slice(0, 8);
   const starters = [...cheapestOfType(all, "starter-sets", 4, "warhammer-40k", 2), ...cheapestOfType(all, "starter-sets", 4, "age-of-sigmar", 2)].sort((a, b) => a.best! - b.best!).slice(0, 4);
-  const armies = cheapestOfType(all, "army-sets", 4);
+  const armies = cheapestOfType(all, "army-sets", 8);
   const books = mostStockedOfType(all, "books", 4);
   const p = (s: Summary | undefined) => (s?.best != null ? formatPrice(s.best, r.region) : null);
   const deals = all.filter((s) => s.off != null && s.off >= 0.15 && s.stores >= 2).sort((a, b) => b.off! - a.off!).slice(0, 8);
@@ -294,6 +294,10 @@ function Gifts({ r, all }: { r: RegionInfo; all: Summary[] }) {
         one in stock is worth taking.
       </P>
       <Grid items={starters} r={r} />
+      <P>
+        Battleforces and army sets in stock at two or more stores today, cheapest first. Games Workshop&rsquo;s Christmas battleforces appear here the day stores
+        list them; every army set we compare is on <Link className="text-brand underline" href={`/${r.region}/type/army-sets`}>the army sets page</Link>.
+      </P>
       <Grid items={armies} r={r} />
       <H2>Today&rsquo;s biggest savings, if you are flexible</H2>
       <P>

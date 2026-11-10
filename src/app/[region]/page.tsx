@@ -130,8 +130,8 @@ export default function RegionHome({ params }: { params: { region: string } }) {
         <div className="mt-8">
           <ChristmasBanner
             title="Christmas gifts for the hobby"
-            href={`/${r.region}/deals`}
-            cta="Today's biggest savings"
+            href={`/${r.region}/guides/warhammer-gift-guide`}
+            cta="Gifts at every budget, priced today"
           />
         </div>
 
