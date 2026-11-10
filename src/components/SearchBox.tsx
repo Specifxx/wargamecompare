@@ -4,7 +4,6 @@ import Link from "@/components/Link";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { formatPrice, REGIONS, type Region } from "@/lib/regions";
-import { compareSearchHref } from "@/lib/compare-search";
 import { Icon } from "./Icon";
 import { StockPill } from "./StockPill";
 
@@ -192,11 +191,6 @@ export function SearchBox({ region, size = "sm", autoFocus = false }: { region: 
           <p className="px-4 pt-3 text-sm text-muted">
             No product names match &ldquo;{term}&rdquo; in {REGIONS[region].inName}. Try a kit, an army or a paint name.
           </p>
-        )}
-        {rows && ranked.total === 0 && term.length > 1 && (
-          <a href={compareSearchHref(term, "wargame", region)} rel="nofollow" className="block px-4 pt-2 text-sm font-semibold text-brand-strong underline-offset-2 hover:underline">
-            Search every Compare Empire site for &ldquo;{term}&rdquo; &rarr;
-          </a>
         )}
         <div role="listbox" id={listId} aria-label="Search suggestions" className="py-1.5">
           {ranked.hits.map((r, i) => {
