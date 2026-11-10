@@ -47,7 +47,8 @@ test("breadcrumbs: absolute URLs, positions from 1", () => {
 });
 
 test("every product photo has descriptive alt text", () => {
-  for (const f of [...walk("src/components"), ...walk("src/app")].filter((f) => f.endsWith(".tsx") && !f.endsWith("QuickView.tsx"))) {
+  for (const f of [...walk("src/components"), ...walk("src/app")].filter((f) => f.endsWith(".tsx") && !f.endsWith("QuickView.tsx") && !f.endsWith("Flag.tsx"))) {
+    // Flag.tsx: a decorative flag beside its region's written name (alt="" so the name is not read twice), not a product photo.
     assert.ok(!/<img[^>]*alt=""/.test(read(f)), f);
   }
 });

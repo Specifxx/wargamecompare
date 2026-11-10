@@ -11,19 +11,21 @@ import { CartAddButton } from "./cart/CartAddButton";
 // The engine's price table rows (from MTG Compare's OfferRows): a grid whose cells are placed by grid-area. On a phone, two columns:
 // the store and its stock pill; the price; the host line; the button, 44 px, beside the last two. From sm one line: the store over
 // its line, then the pill, the price, the button.
-const ROW_GRID = "grid grid-cols-[1fr_auto] items-center gap-x-3 px-4 py-3 sm:grid-cols-[1fr_auto_10rem_auto] sm:gap-x-4 sm:px-5 sm:py-3.5";
+// Short classes from globals.css (.or-*, site review X1 2026-11-10), built from the same utilities: a table repeated them on every row.
+const ROW_GRID = "or-row";
 const ROW_BUTTON = "min-h-11 justify-self-end whitespace-nowrap [grid-area:2/2/4] sm:min-h-10 sm:[grid-area:1/4/3]";
-const ROW_ACTIONS = "flex items-center gap-2 justify-self-end [grid-area:2/2/4] sm:[grid-area:1/4/3]";
-const ROW_LINK = "min-h-11 whitespace-nowrap sm:min-h-10";
-/** The pinned rows' outlines (owner, 2026-11-06): eBay green, Amazon amber. Inset, so the row keeps its grid. */
+const ROW_ACTIONS = "or-act";
+const ROW_LINK = "or-btn";
+/** The pinned rows' outlines (owner, 2026-11-06): eBay green, Amazon amber; the cheapest store row (owner, 2026-11-07) sky blue with
+ *  the tint. Inset, so the row keeps its grid. */
 export const PIN_OUTLINE = {
-  ebay: "outline outline-2 -outline-offset-2 outline-[#16a34a]",
-  amazon: "outline outline-2 -outline-offset-2 outline-[#f59e0b]",
-  /** The cheapest store row (owner, 2026-11-07: "the cheapest listing should also have an outline too"): sky blue, never read as
-   *  eBay's green or Amazon's amber. */
-  cheapest: "outline outline-2 -outline-offset-2 outline-[#0ea5e9]",
+  ebay: "or-ebay",
+  amazon: "or-amz",
+  cheapest: "or-hl",
 } as const;
-const BADGE = "shrink-0 rounded-full bg-open px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-surface";
+const BADGE = "or-badge";
+/** Store rows past this many (price order) are drawn lean: store, stock, price, button (site review X1, 2026-11-10). */
+export const FULL_ROWS = 20;
 /** Rows shown before the "Show N more" fold. */
 const SHOWN = 8;
 
@@ -42,19 +44,19 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
       <ul className="divide-y divide-line">
         {/* eBay and Amazon work like a store row (owner, 2026-11-06): stock pill, thumbs, cart; on top, green and amber outlines. */}
         <li className={`${ROW_GRID} ${PIN_OUTLINE.ebay}`} data-row="ebay">
-          <div className="flex h-5 items-center gap-2 overflow-hidden sm:h-6">
-            <span className="truncate text-[15px] font-semibold sm:text-base">{ebay.label}</span>
+          <div className="or-top">
+            <span className="or-name">{ebay.label}</span>
             <span className="ad-pill">Ad</span>
           </div>
-          <div className="truncate text-[11px] leading-4 text-faint sm:text-xs" title={ebay.title ?? undefined}>
+          <div className="or-host" title={ebay.title ?? undefined}>
             <StoreVote url={ebay.cart?.productUrl ?? ebay.href} name="eBay" className="-ml-1 mr-1 text-muted" />
             {ebay.title ?? "New, Buy It Now listings"}
             {ebay.vs && <span className="text-muted"> · {ebay.vs}</span>}
           </div>
-          <div className="flex h-5 items-center justify-self-end [grid-area:1/2] sm:[grid-area:1/2/3]">
+          <div className="or-stock">
             {ebay.found ? <StockPill state="open">In stock</StockPill> : <SearchPill />}
           </div>
-          <div className="mt-1 flex min-w-0 items-baseline gap-2 [grid-area:2/1] sm:mt-0 sm:block sm:text-right sm:[grid-area:1/3/3]">
+          <div className="or-pc">
             {ebay.price ? (
               <>
                 <span className="tabular font-display text-lg font-bold leading-6">{ebay.price}</span>
@@ -73,18 +75,18 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
         </li>
         {amazon && (
           <li className={`${ROW_GRID} ${PIN_OUTLINE.amazon}`} data-row="amazon">
-            <div className="flex h-5 items-center gap-2 overflow-hidden sm:h-6">
-              <span className="truncate text-[15px] font-semibold sm:text-base">{amazon.label}</span>
+            <div className="or-top">
+              <span className="or-name">{amazon.label}</span>
               <span className="ad-pill">Ad</span>
             </div>
-            <div className="truncate text-[11px] leading-4 text-faint sm:text-xs">
+            <div className="or-host">
               <StoreVote url={amazon.href} name="Amazon" className="-ml-1 mr-1 text-muted" />
               {amazon.found ? "Amazon\u2019s own listing of this exact product; price and stock are Amazon\u2019s." : "Also check the price on Amazon: price and stock are Amazon\u2019s own."}
             </div>
-            <div className="flex h-5 items-center justify-self-end [grid-area:1/2] sm:[grid-area:1/2/3]">
+            <div className="or-stock">
               {amazon.live ? <StockPill state="open">In stock</StockPill> : <SearchPill />}
             </div>
-            <div className="mt-1 flex min-w-0 items-baseline gap-2 [grid-area:2/1] sm:mt-0 sm:block sm:text-right sm:[grid-area:1/3/3]">
+            <div className="or-pc">
               {amazon.live ? (
                 <AmazonPrice price={amazon.live.price} at={amazon.live.at} timeZone={amazon.live.timeZone} zoneLabel={amazon.live.zoneLabel} />
               ) : (
@@ -99,28 +101,28 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
             </div>
           </li>
         )}
-        {stores.map((o, i) => (i < limit ? <Row key={o.key} o={o} /> : null))}
+        {stores.map((o, i) => (i < limit ? <Row key={o.key} o={o} lean={i >= FULL_ROWS} /> : null))}
       </ul>
       {amazon?.live && <p className="px-4 py-2 text-[11px] leading-4 text-faint sm:px-5">* {AMAZON_PRICE_DISCLAIMER}</p>}
       {more.length > 0 && (
         <MoreRows label={moreOpen > 0 ? `Show ${more.length} more ${more.length === 1 ? "store" : "stores"} (${moreOpen} in stock)` : `Show ${more.length} more sold out`}>
-          {more.map((o) => (
-            <Row key={o.key} o={o} />
+          {more.map((o, i) => (
+            <Row key={o.key} o={o} lean={limit + i >= FULL_ROWS} />
           ))}
         </MoreRows>
       )}
       {wayland && (
         <ul>
           <li className={ROW_GRID} data-row="wayland">
-            <div className="flex h-5 items-center gap-2 overflow-hidden sm:h-6">
-              <span className="truncate text-[15px] font-semibold sm:text-base">Wayland Games</span>
+            <div className="or-top">
+              <span className="or-name">Wayland Games</span>
               <span className="ad-pill">Ad</span>
             </div>
-            <div className="truncate text-[11px] leading-4 text-faint sm:text-xs">A UK discounter we cannot read prices from; search it directly.</div>
-            <div className="flex h-5 items-center justify-self-end [grid-area:1/2] sm:[grid-area:1/2/3]">
+            <div className="or-host">A UK discounter we cannot read prices from; search it directly.</div>
+            <div className="or-stock">
               <SearchPill />
             </div>
-            <div className="mt-1 flex min-w-0 items-baseline gap-2 [grid-area:2/1] sm:mt-0 sm:block sm:text-right sm:[grid-area:1/3/3]">
+            <div className="or-pc">
               <span className="block truncate text-sm leading-6 text-muted sm:text-xs">Wayland&rsquo;s own price</span>
             </div>
             <OutboundLink href={wayland.href} rel={REL_PAID} retailer={wayland.label} placement={wayland.placement} className={`btn-soft ${ROW_BUTTON}`}>
@@ -133,15 +135,16 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
   );
 }
 
-function Row({ o }: { o: StoreRow }) {
+function Row({ o, lean = false }: { o: StoreRow; lean?: boolean }) {
+  if (lean && !o.cheapest) return <LeanRow o={o} />;
   return (
-    <li data-offer-row="" className={`${ROW_GRID} ${o.cheapest ? `bg-open-soft/40 ${PIN_OUTLINE.cheapest}` : ""}`}>
-      <div className="flex h-5 items-center gap-2 overflow-hidden sm:h-6">
-        <span className="truncate text-[15px] font-semibold sm:text-base">{o.name}</span>
+    <li data-offer-row="" className={o.cheapest ? "or-row or-hl" : "or-row"}>
+      <div className="or-top">
+        <span className="or-name">{o.name}</span>
         {o.cheapest && <span className={BADGE}>Cheapest</span>}
         {isAwinLink(o.href) && <span className="text-[11px] text-faint">Paid link</span>}
       </div>
-      <div className="truncate text-[11px] leading-4 text-faint sm:text-xs" title={o.title}>
+      <div className="or-host" title={o.title}>
         <StoreVote url={o.vote} name={o.name} className="-ml-1 mr-1 text-muted" />
         {o.title}
         {o.code && (
@@ -150,23 +153,55 @@ function Row({ o }: { o: StoreRow }) {
           </span>
         )}
       </div>
-      <div className="flex h-5 items-center justify-self-end [grid-area:1/2] sm:[grid-area:1/2/3]">
+      <div className="or-stock">
         <StockPill state={o.inStock ? "open" : "soldout"}>{o.inStock ? "In stock" : "Sold out"}</StockPill>
       </div>
-      <div className="mt-1 flex min-w-0 items-baseline gap-2 [grid-area:2/1] sm:mt-0 sm:block sm:text-right sm:[grid-area:1/3/3]">
+      <div className="or-pc">
         {o.price ? (
-          <span className={`tabular font-display text-lg font-bold leading-6 ${o.inStock ? "" : "text-faint line-through decoration-1"}`}>{o.price}</span>
+          <span className={o.inStock ? "or-price" : "or-price text-faint line-through decoration-1"}>{o.price}</span>
         ) : (
           <span className="block text-sm leading-6 text-muted sm:text-xs">No price</span>
         )}
-        {o.was && <span className="tabular truncate text-[11px] leading-4 text-muted line-through sm:block sm:text-xs">was {o.was}</span>}
+        {o.was && <span className="or-sub text-muted line-through">was {o.was}</span>}
       </div>
       {/* The row's button, and beside it the cart list's "Add to cart" (components/cart) on an in-stock row. */}
       <div className={ROW_ACTIONS}>
         {o.cart && (
           <CartAddButton href={o.href} productUrl={o.vote} storeName={o.name} title={o.cart.title} priceCents={o.cart.priceCents} currency={o.cart.currency} image={o.cart.image} className="text-muted" />
         )}
-        <OutboundLink href={o.href} rel={storeRel(o.href)} retailer={o.name} placement={o.placement} className={`${o.cheapest ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} min-h-11 whitespace-nowrap sm:min-h-10`}>
+        <OutboundLink href={o.href} rel={storeRel(o.href)} retailer={o.name} placement={o.placement} className={`${o.cheapest ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} or-btn`}>
+          {o.inStock ? "View deal" : "View"} <span aria-hidden="true">↗</span>
+        </OutboundLink>
+      </div>
+    </li>
+  );
+}
+
+/**
+ * A store row past FULL_ROWS: the store, its stock, its price and its button (no thumbs, cart or listing title; a paid link's label and a store's code stay). Still a real
+ * row with its link in the server HTML, on the full row's grid so the columns line up (site review X1, 2026-11-10).
+ */
+function LeanRow({ o }: { o: StoreRow }) {
+  return (
+    <li data-offer-row="" data-lean="" data-open={o.inStock ? "" : undefined} className="or-row or-lean">
+      <div className="or-top">
+        <span className="or-name">{o.name}</span>
+        {/* The disclosure stays beside a paid link, and a store's code stays beside its price, lean or not. */}
+        {isAwinLink(o.href) && <span className="text-[11px] text-faint">Paid link</span>}
+        {o.code && (
+          <span className="truncate text-[11px] font-semibold text-brand-strong" title={`Checked ${o.code.checked}`}>
+            {o.code.offer}, code <span className="font-mono">{o.code.code}</span>
+          </span>
+        )}
+      </div>
+      <div className="or-stock">
+        <StockPill state={o.inStock ? "open" : "soldout"}>{o.inStock ? "In stock" : "Sold out"}</StockPill>
+      </div>
+      <div className="or-pc">
+        {o.price ? <span className={o.inStock ? "or-price" : "or-price text-faint line-through decoration-1"}>{o.price}</span> : <span className="block text-sm leading-6 text-muted sm:text-xs">No price</span>}
+      </div>
+      <div className="or-act">
+        <OutboundLink href={o.href} rel={storeRel(o.href)} retailer={o.name} placement={o.placement} className={`${o.inStock ? "btn-soft" : "btn-ghost"} or-btn`}>
           {o.inStock ? "View deal" : "View"} <span aria-hidden="true">↗</span>
         </OutboundLink>
       </div>

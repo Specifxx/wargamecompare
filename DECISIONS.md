@@ -1060,3 +1060,14 @@ list them (`firstSeen` restarted on 5 November). Instead the Christmas banner on
 pointed at the deals list), and the gift guide's "big present" section shows eight battleforces and army sets in stock at
 two or more stores (four before), cheapest first, with a link to the full army sets page. When Games Workshop's Christmas
 battleforces appear in stores they show there the same day. No URL, title or metadata changed.
+
+## 2026-11-10: Product page weight cut, every store row kept (site review X1, ported from DexCompare)
+
+Measured on a local production build with today's data: /uk/p/tau-empire-commander (46 stores) went from 590 KB (305 KB payload) to 363 KB (214 KB payload); / 737 KB to 552 KB of HTML. The title, meta tags, canonical,
+hreflang, JSON-LD, headings and every link are byte-identical (compared). The same change as DexCompare's entry of the same day:
+
+- Price-table rows past `FULL_ROWS` (20, `PriceList.tsx`) in the server's price order are lean (`PriceList.tsx` LeanRow, here; the lean row keeps the "Paid link" label and a store's code):
+  store, stock pill, price, button (no thumbs, cart or listing title). Every row stays in the server HTML, folded as before.
+- Row cells, `StockPill` and `ProductCard` use short `@apply` classes in `globals.css` (`.or-*`, `.sp-*`, `.pc-*`); `StoreVote`
+  reads `components/store-vote.css` (imported by the root layout so node tests can load the component).
+- `Flag` is an `<img>` of `public/flags/<code>.svg`, written by `scripts/write-flags.tsx`, not ~2 KB of inline SVG per flag.
