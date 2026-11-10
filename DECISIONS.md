@@ -1084,3 +1084,15 @@ hreflang, JSON-LD, headings and every link are byte-identical (compared). The sa
 - Row cells, `StockPill` and `ProductCard` use short `@apply` classes in `globals.css` (`.or-*`, `.sp-*`, `.pc-*`); `StoreVote`
   reads `components/store-vote.css` (imported by the root layout so node tests can load the component).
 - `Flag` is an `<img>` of `public/flags/<code>.svg`, written by `scripts/write-flags.tsx`, not ~2 KB of inline SVG per flag.
+
+## 2026-11-10: The nearest paid price under the cheapest store (best-price card and phone buy bar)
+
+The zero-earnings diagnosis (10 Nov) found 214 buy clicks in 30 days, 57 of them to a link that can earn. RiftCompare's
+paid-alternative rule (owner 2026-10-27) is ported (`paidAlternativeFor` in `lib/price-rows.ts`, the one file that reads
+Amazon prices): when the cheapest in-stock store is not a paid link, a line names the cheapest paid row of the same list
+within 20% of its item price, "or £29.71 delivered on eBay" with the Ad pill. eBay counts in the phone buy bar (product
+`product-sticky-alt`), which had no eBay button; on the best-price card (`product-best-alt`) eBay already has its own
+button, so only Amazon's own listing (hidden in the browser after 24 hours) and stores on Awin count there. A row in
+another currency (NZ reads eBay and Amazon Australia) is never compared. It is the row's real price, never "Cheapest",
+never a reorder. On the day's data the phone bar shows it on 4,615 of 17,106 product pages; the card on none until an
+Amazon price or an Awin store qualifies.

@@ -11,6 +11,7 @@ import { ALERT_SITE_KEY } from "@/lib/alert-feed";
 import { ProductGrid } from "@/components/ProductCard";
 import { Section } from "@/components/Section";
 import { StickyBuyBar } from "@/components/StickyBuyBar";
+import { PaidAlt } from "@/components/PaidAlt";
 import { StockPill } from "@/components/StockPill";
 import { StoreCode } from "@/components/StoreCode";
 import {
@@ -29,7 +30,7 @@ import { FACTION_BY_SLUG, SYSTEM_BY_SLUG, TYPE_BY_SLUG } from "@/lib/catalog";
 import { culledType, ebayFor, meta, offersFor, product, regionsListing, rrpFor, summariesFor, summaryOf } from "@/lib/data";
 import { thumb } from "@/lib/images";
 import { detailIndexed, productIndexable } from "@/lib/index-tiers";
-import { priceRows } from "@/lib/price-rows";
+import { paidAlternativeFor, priceRows } from "@/lib/price-rows";
 import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGIONS, type Region } from "@/lib/regions";
 import { jsonLd, ogFor, regionAlternates } from "@/lib/seo";
@@ -196,6 +197,11 @@ export default function ProductPage({ params }: { params: { region: string; slug
                   <span className="ad-pill">Ad</span>
                   <StoreCode code={activeStoreCode(best.u)} />
                 </div>
+                {(() => {
+                  // Amazon or a store on Awin within 20% when the cheapest store pays nothing; eBay has its own button above.
+                  const alt = paidAlternativeFor(p, region, "product-best-alt", false);
+                  return alt ? <PaidAlt className="mt-3 text-sm" price={formatPrice(alt.c.p, region)} name={alt.c.name} note={alt.c.note} pctMore={alt.pctMore} href={alt.c.href} at={alt.c.at} placement="product-best-alt" /> : null;
+                })()}
                 <p className="mt-3 text-xs text-faint">Item price only; shipping is added at the store&rsquo;s checkout. {r.taxNote}</p>
                 <a href="#prices" className="mt-3 inline-flex min-h-10 items-center text-sm font-semibold text-brand hover:underline">
                   Compare all {offers.length} {offers.length === 1 ? "price" : "prices"} ↓
@@ -267,7 +273,11 @@ export default function ProductPage({ params }: { params: { region: string; slug
         />
       </div>
 
-      {best && bestHref && <StickyBuyBar price={formatPrice(best.p, region)} store={storeName(best.s)} href={bestHref} />}
+      {best && bestHref && (() => {
+        // The phone bar has no eBay button, so eBay counts here (lib/price-rows.ts paidAlternativeFor).
+        const alt = paidAlternativeFor(p, region, "product-sticky-alt", true);
+        return <StickyBuyBar price={formatPrice(best.p, region)} store={storeName(best.s)} href={bestHref} alt={alt ? { ...alt, price: formatPrice(alt.c.p, region) } : null} />;
+      })()}
 
       {ld && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ld) }} />}
     </div>
