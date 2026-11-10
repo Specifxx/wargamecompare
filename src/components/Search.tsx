@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { formatPrice, type Region } from "@/lib/regions";
+import { compareSearchHref } from "@/lib/compare-search";
 import { OutboundLink } from "./OutboundLink";
 
 type Row = [string, string, string, string, string, number | null, number, number, number | null, string | null];
@@ -172,6 +173,13 @@ export function Search({
             Search eBay for “{q}”
           </OutboundLink>
         </div>
+      )}
+      {rows && !results.length && q.trim().length > 1 && (
+        <p className="mt-4 text-sm">
+          <a href={compareSearchHref(q, "wargame", region)} rel="nofollow" className="font-semibold text-brand-strong underline-offset-2 hover:underline">
+            Search every Compare Empire site for &ldquo;{q.trim()}&rdquo; &rarr;
+          </a>
+        </p>
       )}
     </div>
   );
