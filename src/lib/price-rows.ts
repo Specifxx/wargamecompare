@@ -17,6 +17,7 @@ import {
 import { AMAZON_CLOCK, amazonLive, storeFor } from "./amazon-live";
 import { ebayFor, offersFor } from "./data";
 import { formatPrice, REGIONS, type Region } from "./regions";
+import { isAwinLink } from "./awin";
 import { STORE_BY_KEY } from "./stores";
 import { activeStoreCode, dealForHost, type ActiveStoreCode } from "./store-partner-deals";
 import type { Product } from "./types";
@@ -137,4 +138,55 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
     })),
     wayland: wayland ? { label: "Wayland Games", href: wayland, placement: at("wayland") } : null,
   };
+}
+
+// ─── The nearest paid price under the cheapest store (2026-11-10) ──────────────────────────────────────────────────
+// Ported from RiftCompare's lib/paid-alternative.ts (owner 2026-10-27). The 30 days to 10 Nov: 214 buy clicks, 57 to a
+// link that can earn. When the cheapest in-stock store is not a paid link, name the cheapest paid row of the same list
+// (eBay delivered, Amazon's own listing, a store on Awin) within PAID_ALTERNATIVE_BAND of its price: its real price,
+// labelled, never called cheaper, never "Cheapest", never a reorder. A row in another currency (NZ shows eBay and Amazon
+// Australia) is never compared. On the best-price card eBay already has its own button, so `withEbay` is false there.
+
+/** At most 20% above the cheapest in-stock store's item price. */
+export const PAID_ALTERNATIVE_BAND = 1.2;
+
+export interface PaidCandidate {
+  name: string;
+  /** cents, in the region's currency */
+  p: number;
+  href: string;
+  /** Amazon only: when its price was fetched (shown 24 hours, then hidden in the browser) */
+  at?: string;
+  /** "delivered" for eBay */
+  note?: string;
+}
+export interface PaidAlternative {
+  c: PaidCandidate;
+  pctMore: number;
+}
+
+/** The cheapest paid candidate within the band, or null when the cheapest store pays or none qualifies. */
+export function paidAlternative(cheapest: { p: number; paid: boolean } | null, candidates: PaidCandidate[]): PaidAlternative | null {
+  if (!cheapest || cheapest.paid || !(cheapest.p > 0)) return null;
+  let pick: PaidCandidate | null = null;
+  for (const c of candidates) if (c.p > 0 && c.p <= cheapest.p * PAID_ALTERNATIVE_BAND && (!pick || c.p < pick.p)) pick = c;
+  return pick ? { c: pick, pctMore: Math.max(0, Math.round(((pick.p - cheapest.p) / cheapest.p) * 100)) } : null;
+}
+
+/** The product page's paid alternative to the region's cheapest in-stock store. */
+export function paidAlternativeFor(p: Product, region: Region, placement: "product-best-alt" | "product-sticky-alt", withEbay: boolean): PaidAlternative | null {
+  const offers = offersFor(p.id, region);
+  const best = offers.find((o) => o.in) ?? null;
+  if (!best) return null;
+  const href = (o: (typeof offers)[number]) => storeUrl(o.u, dealForHost(new URL(o.u).hostname)?.ref, { checkout: o.in });
+  if (isAwinLink(href(best))) return null;
+  const out: PaidCandidate[] = [];
+  const ebay = withEbay && region !== "nz" ? ebayFor(p.id, region) : null;
+  if (ebay && ebay.sh != null) out.push({ name: "eBay", p: ebay.p + ebay.sh, href: ebayAffiliateUrl(ebay.u, region, placement), note: "delivered" });
+  const az = storeFor(region) === region ? amazonLive(p.ean, region) : null;
+  const azHref = az && amazonItemUrl(az.asin, region, placement);
+  if (az && azHref) out.push({ name: "Amazon", p: az.p, href: azHref, at: az.at });
+  const storeName = (k: string) => STORE_BY_KEY.get(k)?.name ?? k;
+  for (const o of offers) if (o.in && o !== best && isAwinLink(href(o))) out.push({ name: storeName(o.s), p: o.p, href: href(o) });
+  return paidAlternative({ p: best.p, paid: false }, out);
 }

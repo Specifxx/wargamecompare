@@ -22,6 +22,8 @@ export const PLACEMENTS = [
   "product-amazon", // product page: the Amazon row
   "product-wayland", // product page: the Wayland Games row
   "product-sticky", // product page, phones: the buy bar
+  "product-best-alt", // product page: the nearest paid price under the best price (lib/price-rows.ts paidAlternativeFor)
+  "product-sticky-alt", // product page, phones: the same line in the buy bar
   "product-soldout", // product page, sold out everywhere: the eBay / Amazon box
   "browse-empty", // browse with no results: eBay search
   "browse-ebay", // browse with a query: the eBay row above the results
