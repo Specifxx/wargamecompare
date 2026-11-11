@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "wargame",
- "generatedAt": "2026-11-10T02:53:41.836Z",
+ "generatedAt": "2026-11-11T00:47:13.523Z",
  "links": {
   "UK": {
    "deals": "https://wargamecompare.com/uk/deals"
@@ -220,6 +220,20 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "NZ",
+   "title": "Citadel Crusade Figure Case",
+   "url": "https://wargamecompare.com/nz/p/citadel-battle-figure-case-4690",
+   "cents": 14700,
+   "currency": "NZD",
+   "store": "Goblin Games NZ",
+   "image": "https://cdn.shopify.com/s/files/1/0635/4812/9501/products/1923.jpg?v=1723818431&width=200",
+   "refCents": 25750,
+   "refLabel": "median store price",
+   "savingPct": 43
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "NZ",
    "title": "Codex: Emperor's Children",
    "url": "https://wargamecompare.com/nz/p/codex-emperors-children",
    "cents": 7299,
@@ -257,20 +271,6 @@
    "refCents": 9450,
    "refLabel": "median store price",
    "savingPct": 31
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "NZ",
-   "title": "Astra Militarum: Cadian Shock Troops",
-   "url": "https://wargamecompare.com/nz/p/astra-militarum-cadian-shock-troops",
-   "cents": 7299,
-   "currency": "NZD",
-   "store": "PlayX",
-   "image": "https://cdn.shopify.com/s/files/1/0740/1619/4849/files/69DAB1F1-DC5A-44EF-AEC3-62E0AFA97B71.png?v=1735419118&width=200",
-   "refCents": 10500,
-   "refLabel": "RRP",
-   "savingPct": 30
   },
   {
    "kind": "deal",
