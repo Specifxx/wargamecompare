@@ -68,7 +68,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
           </div>
           <div className={ROW_ACTIONS}>
             {ebay.cart && <CartAddButton href={ebay.href} productUrl={ebay.cart.productUrl} storeName="eBay" title={ebay.cart.title} priceCents={ebay.cart.priceCents} currency={ebay.cart.currency} image={ebay.cart.image} className="text-muted" />}
-            <OutboundLink href={ebay.href} rel={REL_PAID} retailer={ebay.label} placement={ebay.placement} className={`btn-soft ${ROW_LINK}`}>
+            <OutboundLink href={ebay.href} rel={REL_PAID} retailer={ebay.label} placement={ebay.placement} className={`btn-ad ${ROW_LINK}`}>
               {ebay.found ? "View deal" : "Search"} <span aria-hidden="true">↗</span>
             </OutboundLink>
           </div>
@@ -95,7 +95,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
             </div>
             <div className={ROW_ACTIONS}>
               {amazon.cart && <CartAddButton href={amazon.href} productUrl={amazon.cart.productUrl} storeName="Amazon" title={amazon.cart.title} priceCents={amazon.cart.priceCents} currency={amazon.cart.currency} image={amazon.cart.image} className="text-muted" />}
-              <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-soft ${ROW_LINK}`}>
+              <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-primary ${ROW_LINK}`}>
                 {amazon.found ? "View deal" : "Check Amazon"} <span aria-hidden="true">↗</span>
               </OutboundLink>
             </div>
@@ -125,7 +125,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
             <div className="or-pc">
               <span className="block truncate text-sm leading-6 text-muted sm:text-xs">Wayland&rsquo;s own price</span>
             </div>
-            <OutboundLink href={wayland.href} rel={REL_PAID} retailer={wayland.label} placement={wayland.placement} className={`btn-soft ${ROW_BUTTON}`}>
+            <OutboundLink href={wayland.href} rel={REL_PAID} retailer={wayland.label} placement={wayland.placement} className={`btn-primary ${ROW_BUTTON}`}>
               Search <span aria-hidden="true">↗</span>
             </OutboundLink>
           </li>
