@@ -16,11 +16,11 @@ const ROW_GRID = "or-row";
 const ROW_BUTTON = "min-h-11 justify-self-end whitespace-nowrap [grid-area:2/2/4] sm:min-h-10 sm:[grid-area:1/4/3]";
 const ROW_ACTIONS = "or-act";
 const ROW_LINK = "or-btn";
-/** The pinned rows' outlines (owner, 2026-11-06): eBay green, Amazon amber; the cheapest store row (owner, 2026-11-07) sky blue with
- *  the tint. Inset, so the row keeps its grid. */
+/** The rows' marks. Since 2026-11-12 (owner: too many colours) the pinned eBay and Amazon rows carry no outline, only their "Ad"
+ *  tag; the cheapest store row keeps the one mark, a soft ground and a green edge. */
 export const PIN_OUTLINE = {
-  ebay: "or-ebay",
-  amazon: "or-amz",
+  ebay: "",
+  amazon: "",
   cheapest: "or-hl",
 } as const;
 const BADGE = "or-badge";
@@ -42,7 +42,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
   return (
     <div className={`divide-y divide-line overflow-hidden ${compact ? "rounded-xl border border-line bg-surface" : "card"}`}>
       <ul className="divide-y divide-line">
-        {/* eBay and Amazon work like a store row (owner, 2026-11-06): stock pill, thumbs, cart; on top, green and amber outlines. */}
+        {/* eBay and Amazon work like a store row (owner, 2026-11-06): stock pill, thumbs, cart; on top, no outline (2026-11-12). */}
         <li className={`${ROW_GRID} ${PIN_OUTLINE.ebay}`} data-row="ebay">
           <div className="or-top">
             <span className="or-name">{ebay.label}</span>
@@ -95,7 +95,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
             </div>
             <div className={ROW_ACTIONS}>
               {amazon.cart && <CartAddButton href={amazon.href} productUrl={amazon.cart.productUrl} storeName="Amazon" title={amazon.cart.title} priceCents={amazon.cart.priceCents} currency={amazon.cart.currency} image={amazon.cart.image} className="text-muted" />}
-              <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-primary ${ROW_LINK}`}>
+              <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-ad ${ROW_LINK}`}>
                 {amazon.found ? "View deal" : "Check Amazon"} <span aria-hidden="true">↗</span>
               </OutboundLink>
             </div>
