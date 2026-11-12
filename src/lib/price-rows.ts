@@ -5,7 +5,6 @@
 import {
   amazonItemUrl,
   amazonLabel,
-  amazonSearchUrl,
   ebayAffiliateUrl,
   ebayLabel,
   ebaySearchUrl,
@@ -94,7 +93,8 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
   const found = amazonLive(p.ean, region);
   const liveHref = found && amazonItemUrl(found.asin, region, at("amazon"));
   const live = surface === "quickview" ? null : found;
-  const amazon = liveHref ?? amazonSearchUrl(p.name, region, at("amazon"));
+  // Only with a live price (owner, 2026-11-12): an unpriced Amazon search row is not shown.
+  const amazon = live && liveHref ? liveHref : null;
   const clock = AMAZON_CLOCK[storeFor(region)];
   const wayland = WAYLAND_REGIONS.includes(region) ? waylandSearchUrl(p.name) : null;
   const isBook = p.system === "black-library";
