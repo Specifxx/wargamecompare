@@ -26,6 +26,12 @@ export function isChristmas(d: Date): boolean {
   return k >= CHRISTMAS_FROM && k <= CHRISTMAS_TO;
 }
 
+// Festive layer (owner, 2026-11-12): the gift-guide card, the 3px cranberry-and-pine hairline and the pill and strip accents,
+// all behind the Christmas window above. ONE off switch: set this to false (after New Year) and the card falls back to the
+// plain gifts pill and the layout stops stamping data-festive, so every festive rule in globals.css stops matching. The
+// window ending on 26 December removes it too, with no deploy.
+export const CHRISTMAS_FESTIVE_LAYER = true;
+
 export type Season = "halloween" | "christmas";
 
 /** The season a local date falls in, or null. */

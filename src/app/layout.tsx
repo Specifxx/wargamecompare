@@ -4,7 +4,7 @@ import { VercelPageViews } from "@/components/VercelPageViews";
 import { ShareArrival } from "@/components/ShareArrival";
 import { jsonLd, siteJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
-import { SEASON_BOOT_SCRIPT } from "@/lib/season";
+import { SEASON_BOOT_SCRIPT, CHRISTMAS_FESTIVE_LAYER } from "@/lib/season";
 import { THEME_BOOT_SCRIPT } from "@/lib/theme";
 import { HOME_REGION_SCRIPT, REGION_BOOT_SCRIPT } from "@/lib/regions";
 import { QuickView } from "@/components/QuickView";
@@ -45,7 +45,7 @@ export const viewport: Viewport = { themeColor: "#0f1013" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // The boot scripts below stamp data-theme, data-season, data-hr on this element before React hydrates; React must not report that.
-    <html lang="en" className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${display.variable} ${sans.variable}`} data-festive={CHRISTMAS_FESTIVE_LAYER ? "" : undefined} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT + SEASON_BOOT_SCRIPT + REGION_BOOT_SCRIPT + HOME_REGION_SCRIPT }} />
         {/* Product photos are the stores' own, on Shopify's CDN: warming that connection is the cheapest LCP win there is. */}
