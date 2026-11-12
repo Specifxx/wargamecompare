@@ -1096,3 +1096,12 @@ button, so only Amazon's own listing (hidden in the browser after 24 hours) and 
 another currency (NZ reads eBay and Amazon Australia) is never compared. It is the row's real price, never "Cheapest",
 never a reorder. On the day's data the phone bar shows it on 4,615 of 17,106 product pages; the card on none until an
 Amazon price or an Awin store qualifies.
+
+## 2026-11-12: The home page features the dearer kits (owner)
+
+A bigger ticket pays a bigger commission, so each region's home page (hero picks, "Biggest savings today", new releases and
+pre-orders, "Stocked by the most stores" and the top-kits eBay strip, which reads the same lists) now keeps to products whose
+cheapest in-stock price is at or above the market's MEDIAN (`homeFloor` / `dearer` in `lib/home.ts`; own currency, never
+converted; on 2026-11-12 data about US$40, CA$48, A$59, £23, NZ$80). A shelf with too few qualifying products falls back to
+the old list. Cheaper kits stay listed, searchable and on /deals, /new-releases and every hub; URLs, titles, metadata, the
+alert feed and the price order inside a product's table are unchanged, and nothing ranks by commission.

@@ -62,3 +62,19 @@ export function categoryTiles(all: Summary[], region: Region): CategoryTile[] {
     return { label: c.label, href: `/${region}${c.path}`, count: items.length, image: pic ? thumb(pic.product.image, 400) : null, alt: pic?.product.name };
   }).filter((t) => t.count > 0);
 }
+
+/**
+ * The dearer half of a market's in-stock range (owner, 2026-11-12: a bigger ticket pays a bigger commission). The floor is
+ * the market's MEDIAN cheapest in-stock price, in its own currency, so it follows the real data. Cheaper products stay
+ * listed, searchable and on every hub and deals page; they are only left off the home page's shelves.
+ */
+export function homeFloor(all: Summary[]): number {
+  const xs = all.filter((s) => s.best != null && s.inStock > 0).map((s) => s.best as number).sort((a, b) => a - b);
+  return xs.length ? xs[Math.floor(xs.length / 2)] : 0;
+}
+
+/** Keep the products at or above the floor, in their order, and fall back to the whole list when fewer than `min` qualify. */
+export function dearer(list: Summary[], floor: number, min = 4): Summary[] {
+  const kept = list.filter((s) => (s.best ?? 0) >= floor);
+  return kept.length >= min ? kept : list;
+}

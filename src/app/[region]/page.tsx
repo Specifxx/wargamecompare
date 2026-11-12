@@ -14,7 +14,7 @@ import { SiteReviews } from "@/components/site-reviews/SiteReviews";
 import { FACTIONS, SYSTEMS } from "@/lib/catalog";
 import { mediansFor, meta, releasesFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
-import { categoryTiles, heroPicks } from "@/lib/home";
+import { categoryTiles, dearer, heroPicks, homeFloor } from "@/lib/home";
 import { regionOr404 } from "@/lib/page";
 import { homeAlternates, ogFor } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
@@ -40,12 +40,13 @@ export default function RegionHome({ params }: { params: { region: string } }) {
   const all = summariesFor(r.region);
   const stores = storesInMarket(r.market);
   const inStock = all.filter((s) => s.inStock > 0).length;
-  const dealt = deals(all, mediansFor(r.region)).map((d) => d.s);
-  const hero = heroPicks(all, dealt, 2);
+  const floor = homeFloor(all);
+  const dealt = dearer(deals(all, mediansFor(r.region)).map((d) => d.s), floor);
+  const hero = heroPicks(dearer(all, floor), dealt, 2);
   const inHero = new Set(hero.map((s) => s.product.id));
   const top = dealt.filter((s) => !inHero.has(s.product.id)).slice(0, 12);
   const tiles = categoryTiles(all, r.region);
-  const popular = all.filter((s) => s.inStock > 0).slice(0, 12);
+  const popular = dearer(all.filter((s) => s.inStock > 0), floor).slice(0, 12);
   const count = (pred: (s: (typeof all)[number]) => boolean) => all.filter(pred).length;
   const systems = SYSTEMS.map((s) => ({ s, n: count((x) => x.product.system === s.slug) })).filter((x) => x.n > 0);
   const factions = FACTIONS.map((f) => ({ f, n: count((x) => x.product.faction === f.slug) }))
@@ -56,7 +57,7 @@ export default function RegionHome({ params }: { params: { region: string } }) {
   // New releases and pre-orders (lib/releases.ts): the soonest pre-orders, else the newest arrivals, as product tiles.
   const rel = releasesFor(r.region);
   const ids = new Set([...rel.preorders, ...rel.arrivals].slice(0, 6).map((x) => x.product.id));
-  const fresh = all.filter((s) => ids.has(s.product.id));
+  const fresh = dearer(all.filter((s) => ids.has(s.product.id)), floor, 2);
   const freshOrder = [...rel.preorders, ...rel.arrivals].map((x) => x.product.id);
   fresh.sort((a, b) => freshOrder.indexOf(a.product.id) - freshOrder.indexOf(b.product.id));
 
