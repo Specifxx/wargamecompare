@@ -62,3 +62,20 @@ test("Christmas is at most one quiet line, never a costume (owner, 2026-11-08: t
   assert.doesNotMatch(css, /data-season="christmas"\][^{]*\{[^}]*--(brand|spark|lilac)/, "no palette swap");
   assert.match(css, /\.xmas-pill \{[^}]*color: inherit;/, "the one line is drawn in the site's own colours");
 });
+
+test("the festive layer (owner, 2026-11-12) is CSS-only accents behind one switch, and the 8 November effects stay gone", () => {
+  const css = readFileSync("src/app/globals.css", "utf8");
+  const season = readFileSync("src/lib/season.ts", "utf8");
+  const layout = readFileSync("src/app/layout.tsx", "utf8");
+  const banner = readFileSync("src/components/ChristmasBanner.tsx", "utf8");
+  assert.match(season, /export const CHRISTMAS_FESTIVE_LAYER = true;/, "one off switch");
+  assert.match(layout, /data-festive=\{CHRISTMAS_FESTIVE_LAYER/, "the layout stamps data-festive from the switch");
+  assert.match(banner, /if \(!CHRISTMAS_FESTIVE_LAYER\)/, "the switch gates the banner markup");
+  assert.doesNotMatch(banner, /<h[1-6]/, "the banner is not a heading");
+  assert.match(banner, /currentColor/, "the gift icon is inline SVG in currentColor");
+  assert.match(css, /\[data-season="christmas"\]\[data-festive\]::before \{[^}]*height: 3px;[^}]*rgb\(var\(--xmas-red\)\) 50%, rgb\(var\(--xmas-green\)\) 50%/, "a 3px two-tone hairline, hard stop");
+  assert.match(css, /\[data-festive\]:not\(\[data-theme="light"\]\) \{[^}]*--xmas-red/, "dark theme has its own tokens");
+  const block = css.slice(css.indexOf("/* xmas-common:start"), css.indexOf("/* xmas-common:end */")).replace(/\/\*[\s\S]*?\*\//g, "");
+  assert.doesNotMatch(block, /@keyframes|animation:|repeating-linear-gradient|canvas|url\(/, "no animation, stripes, canvas or images");
+  assert.doesNotMatch(block, /--(brand|spark|lilac)\s*:/, "no palette swap");
+});

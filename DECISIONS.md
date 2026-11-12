@@ -1105,3 +1105,18 @@ cheapest in-stock price is at or above the market's MEDIAN (`homeFloor` / `deare
 converted; on 2026-11-12 data about US$40, CA$48, A$59, £23, NZ$80). A shelf with too few qualifying products falls back to
 the old list. Cheaper kits stay listed, searchable and on /deals, /new-releases and every hub; URLs, titles, metadata, the
 alert feed and the price order inside a product's table are unchanged, and nothing ranks by commission.
+
+## 2026-11-12: A tasteful Christmas layer, more festive than the 8 November pill (owner)
+
+On 2026-11-08 the owner had the first Christmas look stripped ("a bit too much: the theme must match the domain"); on
+2026-11-12 he asked for it to be more festive again. The answer is accents, not a costume: the same shape on every Compare site,
+in this site's own colours. Inside the existing window (`lib/season.ts`, 1 November to 26 December by the visitor's date,
+`?season=christmas|off`), `ChristmasBanner` is now a one-line gift-guide card on the home page (inline SVG gift in
+`currentColor`, "Christmas gift guide", a short subline from 640px, a pine "Gifts" badge, a cranberry 3px left border; a link
+to the existing `/<region>/guides/warhammer-gift-guide`, not a heading). `globals.css` adds a 3px two-tone cranberry-then-pine
+hairline at the very top of the page (a hard-stop gradient on `html::before`, absolutely positioned, so no layout shift) with
+light and dark colour tokens (`--xmas-red`, `--xmas-green`), and the gifts pill and the Black Friday strip take the same tokens
+for their border only. No new element, request, script, image or font. Still gone, and pinned in `tests/season.test.ts`: snow,
+lights, Santa hats, candy stripes, palette swaps, sparkles, keyframes and canvas. ONE off switch: `CHRISTMAS_FESTIVE_LAYER` in
+`lib/season.ts` gates the banner markup (false renders the old pill) and the `data-festive` attribute every rule keys on; set it
+false after New Year, or let the window end on 26 December. No URL, title, meta, h1 or h2 changes; no `revalidate` touched.
