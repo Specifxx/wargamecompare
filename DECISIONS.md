@@ -1125,3 +1125,16 @@ false after New Year, or let the window end on 26 December. No URL, title, meta,
 ## 2026-11-12: the festive layer is released urgently (owner)
 
 The owner said to deploy the festive layer urgently once every site had it, so this merge carries `[deploy] [urgent]` in its subject: one production build now, instead of waiting for the next release. No other change.
+
+
+## 2026-11-12: a calmer price table (owner)
+
+The owner opened DexCompare and its quick view and said there was too much going on: too many colours, a colour per row. DexCompare's
+rule now applies here too: the accent is for the one thing to press, green is for money (the best price), everything else is neutral.
+This replaces the coloured outlines of 2026-11-06 and 2026-11-07.
+
+The pinned eBay and Amazon rows lose their green and amber outlines (`PIN_OUTLINE`, `.or-ebay` and `.or-amz` are gone); the cheapest store row trades its sky-blue outline for a soft ground and a green edge (`.or-hl`). `.btn-ad` is filled with the ink colour instead of eBay blue, and the Amazon row uses it too, so the paid rows stay as easy to press without adding colours.
+
+Order, labels, links, tags, URLs, titles, metadata and headings are unchanged; what we earn still never decides order. Measure outbound
+clicks per placement on 19 November against the week before: if the pinned eBay row's clicks fall, strengthen its button before
+bringing any outline back.

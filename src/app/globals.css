@@ -175,14 +175,10 @@ body {
   .or-lean[data-open] .or-act {
     @apply sm:pl-12;
   }
+  /* A calmer table (owner, 2026-11-12): no coloured outlines. The cheapest store row is the one marked row (a soft ground and a
+     green edge, green being the colour of money here); the pinned eBay and Amazon rows are told apart by their "Ad" tag alone. */
   .or-hl {
-    @apply bg-open-soft/40 outline outline-2 -outline-offset-2 outline-[#0ea5e9];
-  }
-  .or-amz {
-    @apply outline outline-2 -outline-offset-2 outline-[#f59e0b];
-  }
-  .or-ebay {
-    @apply outline outline-2 -outline-offset-2 outline-[#16a34a];
+    @apply bg-raised shadow-[inset_3px_0_0_rgb(var(--open))];
   }
   .or-top {
     @apply flex h-5 items-center gap-2 overflow-hidden sm:h-6;
@@ -247,12 +243,11 @@ body {
   .ad-box {
     @apply rounded-xl border border-dashed border-ad-line bg-ad;
   }
-  /* An ad's own button: eBay's button blue, #3665f3 with white text (4.9:1; #2a50c8 on hover, 6.8:1), the blue of eBay's own
-     buttons, the price table's eBay row and the hot buttons. It never passes for the site's own actions (.btn-primary) and every
-     unit around one carries its "Ad" label. (Until the growth release it was a grey outline.) The transparent border keeps the
-     box the size the outline gave it. */
+  /* An ad's own button (owner, 2026-11-12: a calmer palette): filled with the page's ink, never a marketplace's own colour, so it
+     is as easy to press as before without adding a colour. It never passes for the site's own actions (.btn-primary) and every
+     unit around one carries its "Ad" label. The transparent border keeps the box the size the outline gave it. */
   .btn-ad {
-    @apply btn border border-transparent bg-[#3665f3] text-white hover:bg-[#2a50c8];
+    @apply btn border border-transparent bg-ink text-surface hover:bg-ink/85;
   }
   /* Never Amazon's own orange (2026-11-02): the Associates Operating Agreement forbids styling that could pass for Amazon's site. */
   .btn-amazon {
