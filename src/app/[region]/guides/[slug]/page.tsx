@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { EbayBox } from "@/components/EbayBox";
 import { ProductCard } from "@/components/ProductCard";
 import { offersFor, summariesFor, type Summary } from "@/lib/data";
 import { cheapestOfType, fill, GUIDE_BY_SLUG, GUIDES, mostStockedOfType, storeSavings, type GuideInfo } from "@/lib/guides";
@@ -398,9 +397,6 @@ export default function GuidePage({ params }: { params: { region: string; slug: 
       <p className="text-xs font-bold uppercase tracking-wide text-faint"><Link href={`/${r.region}/guides`} className="hover:text-brand">Guides</Link> · {r.name}</p>
       <h1 className="mt-1 font-display text-3xl font-extrabold">{h1}</h1>
       {g.slug === "warhammer-black-friday-2026" ? <BlackFriday r={r} all={all} /> : g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : g.slug === "discount-stores-vs-rrp" ? <Discounts r={r} all={all} /> : g.slug === "warhammer-gift-guide" ? <Gifts r={r} all={all} /> : <Trajectory r={r} all={all} />}
-      <div className="mt-10">
-        <EbayBox region={r.region} query={g.slug === "cheapest-way-to-start" ? "Warhammer Combat Patrol" : "Warhammer"} heading="On eBay" placement="guide-ebay" />
-      </div>
       <p className="mt-8 text-sm text-faint">
         Other guides: {GUIDES.filter((x) => x.slug !== g.slug).map((x) => <Link key={x.slug} className="text-brand underline" href={`/${r.region}/guides/${x.slug}`}>{fill(x.h1, r.inName)}</Link>)}
       </p>

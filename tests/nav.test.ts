@@ -30,12 +30,15 @@ test("no 'continue to region' step: the landing page has shortcuts and the full 
   assert.match(read("src/components/Header.tsx"), /MobileMenu/);
 });
 
-test("eBay strips: above every region page's footer, labelled Ad, never a store's photo", () => {
-  assert.match(read("src/app/[region]/layout.tsx"), /<EbayStrip[^>]*placement="ebay-strip-footer"/);
-  const strip = read("src/components/EbayStrip.tsx");
-  assert.match(strip, /ad-pill/);
-  assert.doesNotMatch(strip, /product\.image|p\.image/);
-  for (const f of ["src/app/[region]/page.tsx", "src/components/HubPage.tsx", "src/app/[region]/p/[slug]/page.tsx", "src/app/[region]/deals/page.tsx"]) assert.match(read(f), /<EbayStrip/, f);
+test("the one ad block: below every page's content and above the footer, labelled Ad, never a store's photo, no other strip or box (owner, 2026-11-13)", () => {
+  const layout = read("src/app/[region]/layout.tsx");
+  assert.match(layout, /<InlineAds tiles=\{tiles\} \/>/);
+  assert.ok(layout.indexOf("<InlineAds ") > layout.indexOf("{children}") && layout.indexOf("<InlineAds ") < layout.indexOf("<Footer"));
+  assert.match(read("src/app/(site)/layout.tsx"), /<SoftInlineAds all=\{all\} \/>/);
+  const block = read("src/components/InlineAds.tsx");
+  assert.match(block, /ad-pill/);
+  assert.doesNotMatch(block, /product\.image|p\.image/);
+  for (const f of ["src/app/[region]/page.tsx", "src/components/HubPage.tsx", "src/app/[region]/p/[slug]/page.tsx", "src/app/[region]/deals/page.tsx", "src/app/[region]/new-releases/page.tsx", "src/app/[region]/guides/[slug]/page.tsx"]) assert.doesNotMatch(read(f), /<EbayStrip|<EbayBox|<InlineAds/, f);
 });
 
 test("eBay goes first: pinned above the store rows and beside the best price, never the Cheapest badge", () => {
@@ -51,10 +54,6 @@ test("eBay goes first: pinned above the store rows and beside the best price, ne
   assert.match(read("src/lib/price-rows.ts"), /cheapest: o\.in && i === 0/);
   assert.match(list, /o\.cheapest && <span[^>]*>Cheapest</);
   assert.match(read("src/components/Search.tsx"), /placement="browse-ebay"/);
-  for (const [f, grid] of [["src/app/[region]/page.tsx", "<ProductGrid"], ["src/components/HubPage.tsx", "<ProductGrid"], ["src/app/[region]/deals/page.tsx", "list.map("]]) {
-    const s = read(f);
-    assert.ok(s.indexOf("<EbayStrip") < s.indexOf(grid), `${f}: eBay strip above the first list`);
-  }
 });
 
 test("header: Games, Armies and Products dropdowns, seven items at most, every dropdown link a real hub (Bill, 2026-11-09)", async () => {

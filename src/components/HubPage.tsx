@@ -1,10 +1,7 @@
 import Link from "@/components/Link";
-import { EbayStrip } from "@/components/EbayStrip";
 import type { Summary } from "@/lib/data";
-import type { Placement } from "@/lib/affiliate";
 import type { RegionInfo } from "@/lib/regions";
 import { Breadcrumbs } from "./Breadcrumbs";
-import { EbayBox } from "./EbayBox";
 import { ProductGrid } from "./ProductCard";
 import { Empty, Section } from "./Section";
 
@@ -17,8 +14,6 @@ export function HubPage({
   intro,
   items,
   searchHref,
-  ebayQuery,
-  placement,
   chips,
   more,
   path,
@@ -30,8 +25,6 @@ export function HubPage({
   intro: string;
   items: Summary[];
   searchHref: string;
-  ebayQuery: string;
-  placement: Placement;
   chips?: { href: string; label: string; n: number }[];
   /** Labelled rows of related hubs (this army's game, this game's kinds of kit): where to go next from here. Not in the BreadcrumbList. */
   more?: { title: string; chips: { href: string; label: string; n?: number }[] }[];
@@ -72,9 +65,6 @@ export function HubPage({
             </nav>
           ),
       )}
-      <div className="mt-8">
-        <EbayStrip region={r.region} items={inStock} placement="ebay-strip-hub" heading={`${ebayQuery} on eBay`} />
-      </div>
       <Section title={`In stock (${inStock.length.toLocaleString("en")})`} href={inStock.length > SHOWN ? searchHref : undefined} linkLabel={`See all ${inStock.length.toLocaleString("en")} in stock`}>
         {inStock.length ? (
           <ProductGrid items={inStock.slice(0, SHOWN)} region={r.region} eager={4} />
@@ -84,9 +74,6 @@ export function HubPage({
           </Empty>
         )}
       </Section>
-      <div className="mt-10">
-        <EbayBox region={r.region} query={ebayQuery} heading={`${ebayQuery} on eBay`} placement={placement} />
-      </div>
       {sold.length > 0 && (
         <Section title={`Sold out everywhere today (${sold.length.toLocaleString("en")})`}>
           <ProductGrid items={sold.slice(0, 24)} region={r.region} />

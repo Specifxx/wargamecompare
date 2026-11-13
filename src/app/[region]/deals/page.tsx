@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EbayBox } from "@/components/EbayBox";
 import { FamilyCluster } from "@/components/FamilyCluster";
-import { EbayStrip } from "@/components/EbayStrip";
 import { mediansFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
 import { thumb } from "@/lib/images";
@@ -30,9 +28,6 @@ export default function DealsPage({ params }: { params: { region: string } }) {
         In-stock products whose cheapest price is at least 10% under the RRP two or more stores state, or under the median price of three or more stores today.
         Nothing here is history: it is today&rsquo;s prices only. Item price; shipping extra.
       </p>
-      <div className="mt-6">
-        <EbayStrip region={r.region} items={list.map((d) => d.s)} placement="ebay-strip-deals" heading="These kits on eBay" />
-      </div>
       <div className="card mt-6 divide-y divide-line overflow-hidden">
         {list.map((d) => (
           <Link key={d.s.product.id} href={`/${r.region}/p/${d.s.product.id}`} className="flex items-center gap-3 px-3 py-3 hover:bg-raised">
@@ -50,9 +45,6 @@ export default function DealsPage({ params }: { params: { region: string } }) {
           </Link>
         ))}
         {!list.length && <p className="p-4 text-muted">No deals today.</p>}
-      </div>
-      <div className="mt-6">
-        <EbayBox region={r.region} query="Warhammer" heading="More deals on eBay" placement="deals" />
       </div>
       <FamilyCluster region={r.region} />
     </div>

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { EbayStrip } from "@/components/EbayStrip";
 import Link from "@/components/Link";
 import { ChristmasBanner } from "@/components/ChristmasBanner";
-import { EbayBox } from "@/components/EbayBox";
 import { Flag } from "@/components/Flag";
 import { CategoryTiles, HeroCards } from "@/components/HomeVisuals";
 import { Icon } from "@/components/Icon";
@@ -135,12 +133,6 @@ export default function RegionHome({ params }: { params: { region: string } }) {
             cta="Gifts at every budget, priced today"
           />
         </div>
-
-        {/* eBay first (owner, 2026-10-28): the strip sits above the page's first product grid. */}
-        <div className="mt-8">
-          <EbayStrip region={r.region} items={[...top, ...popular]} placement="ebay-strip-home" heading="Today's top kits on eBay" />
-        </div>
-
         {top.length > 0 && (
           <Section title="Biggest savings today" kicker="In stock now, furthest under RRP, every store's own price" href={`/${r.region}/deals`} linkLabel="All deals">
             <ProductGrid items={top} region={r.region} eager={4} />
@@ -186,11 +178,6 @@ export default function RegionHome({ params }: { params: { region: string } }) {
             <ProductGrid items={popular} region={r.region} />
           </Section>
         )}
-
-        <div className="mt-14">
-          <EbayBox region={r.region} query="Warhammer" heading={`Warhammer on eBay ${r.region === "nz" ? "Australia" : r.short}`} placement="home-ebay" />
-        </div>
-
         {/* The site's own star score and approved reviews (owner, 2026-11-03), loaded in the browser; nothing until there is a rating. */}
         <SiteReviews className="mt-14" />
 

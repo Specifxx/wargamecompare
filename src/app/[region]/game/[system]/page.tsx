@@ -46,8 +46,6 @@ export default function GamePage({ params }: { params: { region: string; system:
       intro={`Every ${s.name} product the stores we compare list in ${r.inName}, matched by box code and sorted by how many stores stock it. Prices are the stores' own, in ${r.currency}.`}
       items={items}
       searchHref={`/${r.region}/search?system=${s.slug}`}
-      ebayQuery={s.slug === "citadel" ? "Citadel paint" : `Warhammer ${s.short}`}
-      placement="category-ebay"
       chips={chips}
       more={[
         { title: "By kind of kit", chips: TYPES.map((t) => ({ href: `/${r.region}/search?system=${s.slug}&type=${t.slug}`, label: t.name, n: items.filter((x) => x.product.type === t.slug).length })).filter((c) => c.n > 0) },

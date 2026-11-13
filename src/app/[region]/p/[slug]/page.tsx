@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { EbayStrip } from "@/components/EbayStrip";
 import Link from "@/components/Link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -263,15 +262,6 @@ export default function ProductPage({ params }: { params: { region: string; slug
           <ProductGrid items={related} region={region} />
         </Section>
       )}
-
-      <div className="mt-14">
-        <EbayStrip
-          region={region}
-          items={[...(s ? [s] : []), ...related, ...summariesFor(region).filter((x) => x.product.id !== p.id && x.product.system === p.system && x.inStock > 0).slice(0, 12)]}
-          placement="ebay-strip-product"
-          heading="This kit and similar on eBay"
-        />
-      </div>
 
       {best && bestHref && (() => {
         // The phone bar has no eBay button, so eBay counts here (lib/price-rows.ts paidAlternativeFor).
