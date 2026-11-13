@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "wargame",
- "generatedAt": "2026-11-12T02:10:36.903Z",
+ "generatedAt": "2026-11-13T01:06:45.758Z",
  "links": {
   "UK": {
    "deals": "https://wargamecompare.com/uk/deals"
@@ -178,29 +178,15 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "AU",
-   "title": "Path to Glory: Blighted Wilds",
-   "url": "https://wargamecompare.com/au/p/path-to-glory-blighted-wilds",
-   "cents": 4400,
+   "title": "Gloomspite Gitz: Loonboss on Giant Cave Squig",
+   "url": "https://wargamecompare.com/au/p/gloomspite-gitz-loonboss-on-giant-cave-squig",
+   "cents": 3795,
    "currency": "AUD",
-   "store": "Mperor.cc",
-   "image": "https://cdn.shopify.com/s/files/1/0931/5267/4090/files/rn-image_picker_lib_temp_ce4bf706-fa2a-473f-87d9-9ed275bfc4b6.jpg?v=1764875006&width=200",
-   "refCents": 8466,
-   "refLabel": "median store price",
-   "savingPct": 48
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "NZ",
-   "title": "Getting Started with Warhammer 40,000",
-   "url": "https://wargamecompare.com/nz/p/getting-started-with-warhammer-40-000",
-   "cents": 1750,
-   "currency": "NZD",
-   "store": "Kapiti Hobbies",
-   "image": "https://cdn.shopify.com/s/files/1/1704/1809/files/Warhammer-40000-Getting-Started-With-Warhammer-40000-2023.jpg?v=1698695972&width=200",
-   "refCents": 3500,
+   "store": "Good Games",
+   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/GloomspiteGitzLoonbossonGiantCaveSquig.jpg?v=1766987177&width=200",
+   "refCents": 7300,
    "refLabel": "RRP",
-   "savingPct": 50
+   "savingPct": 48
   },
   {
    "kind": "deal",
@@ -275,30 +261,44 @@
   {
    "kind": "deal",
    "cluster": "hobby",
-   "region": "CA",
-   "title": "Battletome: Kharadron Overlords",
-   "url": "https://wargamecompare.com/ca/p/battletome-kharadron-overlords",
-   "cents": 3987,
-   "currency": "CAD",
-   "store": "JR Toy Company",
-   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/BattletomeOrderKharadronOverlords.jpg?v=1752813275&width=200",
-   "refCents": 7800,
+   "region": "NZ",
+   "title": "Getting Started With Age Of Sigmar",
+   "url": "https://wargamecompare.com/nz/p/getting-started-with-age-of-sigmar",
+   "cents": 2499,
+   "currency": "NZD",
+   "store": "PlayX",
+   "image": "https://cdn.shopify.com/s/files/1/0922/0905/3975/files/81H1lTV7sSL._AC_SY300_SX300_QL70_FMwebp.webp?v=1775796034&width=200",
+   "refCents": 3500,
    "refLabel": "RRP",
-   "savingPct": 49
+   "savingPct": 29
   },
   {
    "kind": "deal",
    "cluster": "hobby",
    "region": "CA",
-   "title": "Battletome: Gloomspite Gitz",
-   "url": "https://wargamecompare.com/ca/p/battletome-gloomspite-gitz",
-   "cents": 3987,
+   "title": "Tomb Kings of Khemri: Skeleton Warriors",
+   "url": "https://wargamecompare.com/ca/p/tomb-kings-of-khemri-skeleton-warriors",
+   "cents": 5697,
    "currency": "CAD",
    "store": "JR Toy Company",
-   "image": "https://cdn.shopify.com/s/files/1/0509/7111/5709/files/BattletomeEngGSG01.jpg?v=1741345499&width=200",
-   "refCents": 7800,
+   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/SkeletonWarriors.jpg?v=1728301803&width=200",
+   "refCents": 11300,
    "refLabel": "RRP",
-   "savingPct": 49
+   "savingPct": 50
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "CA",
+   "title": "Orc & Goblin Tribes: Orc Boyz & Orc Arrer Boyz Mobs",
+   "url": "https://wargamecompare.com/ca/p/orc-and-goblin-tribes-orc-boyz-and-orc-arrer-boyz-mobs",
+   "cents": 5697,
+   "currency": "CAD",
+   "store": "JR Toy Company",
+   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/OrcsandGoblinsOrcArrerBoyzMobz.jpg?v=1728301516&width=200",
+   "refCents": 11300,
+   "refLabel": "RRP",
+   "savingPct": 50
   },
   {
    "kind": "deal",
@@ -310,23 +310,23 @@
    "currency": "CAD",
    "store": "Multizone: Comics And Games",
    "image": "https://cdn.shopify.com/s/files/1/0509/7111/5709/files/KTHearthkynSalvagers6.jpg?v=1733483315&width=200",
-   "refCents": 7307,
+   "refCents": 7395,
    "refLabel": "median store price",
-   "savingPct": 48
+   "savingPct": 49
   },
   {
    "kind": "deal",
    "cluster": "hobby",
    "region": "CA",
-   "title": "Codex: Chaos Knights",
-   "url": "https://wargamecompare.com/ca/p/codex-chaos-knights",
-   "cents": 3499,
+   "title": "Kingdom of Bretonnia: Peasant Bowmen",
+   "url": "https://wargamecompare.com/ca/p/kingdom-of-bretonnia-peasant-bowmen",
+   "cents": 5797,
    "currency": "CAD",
-   "store": "Event Horizon Hobbies CA",
-   "image": "https://cdn.shopify.com/s/files/1/1704/1809/files/2025_06_60030102031_ENGChaosKnightsHBCodex1.jpg?v=1749234856&width=200",
-   "refCents": 6630,
-   "refLabel": "median store price",
-   "savingPct": 47
+   "store": "JR Toy Company",
+   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/KingdomofBretonniaPeasantBowmen.jpg?v=1728301488&width=200",
+   "refCents": 11300,
+   "refLabel": "RRP",
+   "savingPct": 49
   },
   {
    "kind": "deal",
@@ -346,29 +346,15 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "CA",
-   "title": "Kill Team: Fellgor Ravagers",
-   "url": "https://wargamecompare.com/ca/p/kill-team-fellgor-ravagers",
-   "cents": 3799,
+   "title": "Ossiarch Bonereapers: Mortek Guard",
+   "url": "https://wargamecompare.com/ca/p/ossiarch-bonereapers-mortek-guard",
+   "cents": 4297,
    "currency": "CAD",
-   "store": "Multizone: Comics And Games",
-   "image": "https://cdn.shopify.com/s/files/1/0509/7111/5709/files/KTFellgorRavagers6.jpg?v=1733483406&width=200",
-   "refCents": 7055,
-   "refLabel": "median store price",
-   "savingPct": 46
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "US",
-   "title": "Blood Bowl: Chaos Dwarf Cards",
-   "url": "https://wargamecompare.com/us/p/blood-bowl-chaos-dwarf-cards",
-   "cents": 1759,
-   "currency": "USD",
-   "store": "Wargame Portal",
-   "image": "https://cdn.shopify.com/s/files/1/1704/1809/files/2024_09_60050911001_BBChaosDwarfTeamCards04.jpg?v=1727535321&width=200",
-   "refCents": 3500,
+   "store": "JR Toy Company",
+   "image": "https://cdn.shopify.com/s/files/1/0931/5267/4090/files/rn-image_picker_lib_temp_1bda5cb4-06ff-471e-94d5-7f519a180db6.jpg?v=1780257344&width=200",
+   "refCents": 8100,
    "refLabel": "RRP",
-   "savingPct": 50
+   "savingPct": 47
   },
   {
    "kind": "deal",
@@ -439,6 +425,20 @@
    "refCents": 6200,
    "refLabel": "RRP",
    "savingPct": 49
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "US",
+   "title": "Warcry: Core Book",
+   "url": "https://wargamecompare.com/us/p/warcry-core-book",
+   "cents": 2495,
+   "currency": "USD",
+   "store": "Digital Heroes",
+   "image": "https://cdn.shopify.com/s/files/1/0635/4812/9501/products/19239.jpg?v=1723834309&width=200",
+   "refCents": 4800,
+   "refLabel": "median store price",
+   "savingPct": 48
   }
  ]
 }
