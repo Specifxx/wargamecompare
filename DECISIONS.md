@@ -1138,3 +1138,7 @@ The pinned eBay and Amazon rows lose their green and amber outlines (`PIN_OUTLIN
 Order, labels, links, tags, URLs, titles, metadata and headings are unchanged; what we earn still never decides order. Measure outbound
 clicks per placement on 19 November against the week before: if the pinned eBay row's clicks fall, strengthen its button before
 bringing any outline back.
+
+## 2026-11-13: urgent release
+
+Owner asked for every site to be released now: the unpriced-Amazon fix, Fetch as an ordinary store row and the blue TCGplayer button had been merged without a deploy marker. One build, via this commit's subject.
