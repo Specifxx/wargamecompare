@@ -620,8 +620,7 @@ html[data-hr="us"] .hr-us {
 
 /* ── The full-width layout and the featured-product hero (owner, 2026-11-08: "how they feature some products on the hero and how it
    uses the full screen", KaeYoung and ScentCompare's) ─────────────────────────────────────────────────────────────────────────────
-   From 1280px the shell runs from the eBay rail's edge to the TCGplayer rail's at every width, so the sidebar sits flush against the
-   left rail and nothing floats in a gap. Margins, not a max-width of 100vw - 272px: 100vw counts a desktop scrollbar, which would push
+   From 1280px the shell runs the full width of the window (the side rails are gone, owner 2026-11-13). Margins, not a max-width of 100vw - 272px: 100vw counts a desktop scrollbar, which would push
    the shell under a rail. The header keeps its full width (its own xl:max-w-shell is a different class). */
 @media (min-width: 1280px) {
   .max-w-shell {
@@ -652,12 +651,6 @@ html[data-hr="us"] .hr-us {
   .hc-card { transition: none; }
   .hc-card:hover { transform: none; }
 }
-/* A rail's list scrolls inside it (up to ten tiles): a thin bar, and the page does not scroll on past the list's end. */
-.rail-scroll {
-  scrollbar-width: thin;
-  scrollbar-gutter: stable;
-}
-
 /* components/Flag.tsx: a flag image the height of the text beside it. */
 .flag {
   width: 1.35em;

@@ -42,8 +42,6 @@ export default function FactionPage({ params }: { params: { region: string; fact
       intro={`${f.name} (${sys?.name ?? ""}) at the stores we compare in ${r.inName}: units, Combat Patrols and army sets, books and dice, matched by box code.`}
       items={items}
       searchHref={`/${r.region}/search?faction=${f.slug}`}
-      ebayQuery={`Warhammer ${f.name}`}
-      placement="category-ebay"
       chips={chips}
       more={[
         { title: "Game", chips: sys ? [{ href: `/${r.region}/game/${sys.slug}`, label: sys.name }] : [] },

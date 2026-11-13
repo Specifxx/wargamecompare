@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EbayBox } from "@/components/EbayBox";
 import { FamilyCluster } from "@/components/FamilyCluster";
 import { releasesFor } from "@/lib/data";
 import { thumb } from "@/lib/images";
@@ -71,10 +70,6 @@ export default function NewReleasesPage({ params }: { params: { region: string }
         <p className="mt-1 text-sm text-muted">Products the stores listed for the first time in the last 45 days, newest first.</p>
         {arrivals.length ? <Rows items={arrivals.slice(0, 120)} region={r.region} kind="new" /> : <p className="card mt-4 p-4 text-muted">Nothing new in the last 45 days.</p>}
       </section>
-
-      <div className="mt-8">
-        <EbayBox region={r.region} query="Warhammer new release" heading="New releases on eBay" placement="new-releases" />
-      </div>
       <FamilyCluster region={r.region} />
     </div>
   );

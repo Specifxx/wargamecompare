@@ -30,25 +30,16 @@ export const PLACEMENTS = [
   "deals", // deals page rows
   "header", // the eBay item in the header
   "store-page", // a store page's visit link
-  "home-ebay", // region home: the eBay block
-  "category-ebay", // game / faction / type pages: the eBay line
-  "ebay-strip-home", // region home: the eBay strip
-  "ebay-strip-hub", // game / faction / type pages: the eBay strip
-  "ebay-strip-product", // product page: this kit and related kits on eBay
-  "ebay-strip-deals", // deals page: the eBay strip
-  "ebay-strip-footer", // every region page: the strip above the footer
-  "landing-ebay", // the landing page and pages with no region: the eBay block
   "menu-ebay", // the sidebar and the phone menu: the eBay link
   "quickview-ebay", // the quick view (a tile click): the eBay row pinned first
   "quickview-amazon", // the quick view: the Amazon row, second
   "quickview-table", // the quick view: the store rows
   "quickview-wayland", // the quick view: the Wayland Games row
-  "guide-ebay", // a region guide: the eBay block
-  "new-releases", // new releases and pre-orders page: the eBay block
-  "side-ebay", // the left side rail on a wide screen: popular kits on eBay
-  "side-ebay-deals", // the right side rail on a wide screen: today's deals on eBay
-  "dock-ebay", // the phone dock below 1280px (components/AdDock.tsx, owner 2026-11-06): the left rail's popular kits
-  "dock-ebay-deals", // the phone dock: the right rail's deals
+  "inline-ebay", // the one ad block of every page (components/InlineAds.tsx, owner 2026-11-13): popular kits
+  "inline-ebay-deals", // the ad block: today's deals
+  "inline-ebay-all", // the ad block: the "All on eBay" link
+  "dock-ebay", // the phone dock below 1280px (components/AdDock.tsx, owner 2026-11-06): the ad block's popular kits
+  "dock-ebay-deals", // the phone dock: the ad block's deals
 ] as const;
 export type Placement = (typeof PLACEMENTS)[number];
 

@@ -1146,3 +1146,23 @@ Owner asked for every site to be released now: the unpriced-Amazon fix, Fetch as
 ## 2026-11-13: the side rails are off; the ads are the strips inside the page
 
 Owner: visitors looked down, the side banners "don't look as good" and spoil the site's look, so the eBay and TCGplayer (or Amazon) rails come off every site and the page column gets the side space back. The ads that stay are the horizontal strips inside the page and, on small screens, the phone dock (after a scroll, never on a product page). The rail code stays behind one constant (`SIDE_RAILS = false` in the rail component, or `SITE.sideRails` on MotorCompare): nothing is rendered or fetched while it is false, and the CSS that narrowed the column for them is gone. Measured before the change (Vercel Web Analytics, unique visitors, Oct 30 to Nov 5 against Nov 6 to Nov 12, the rails having shipped Nov 6): DexCompare 4,200 to 4,972 with bounce 57% to 43%; RiftCompare 3,399 to 3,179 (its fall was Oct 29, a week before the rails); OP Compare 1,123 to 1,016. The measure to watch next is clicks per placement for the strips, not visitors. Never re-add rails, a floating banner or a gutter ad without the owner.
+
+## 2026-11-13: one native horizontal ad block inside the page, in place of the side rails, the strips and the boxes
+
+Owner: with the side rails off, replace them with ONE bigger, subtler horizontal ad that sits in the page content and looks like the
+site: its own card, border and surface tokens, a small muted "Ad" pill, no loud colours, nothing floating, no side space.
+`components/InlineAds.tsx` (picked by `lib/inline-ads.ts`, filled by `lib/inline-tiles.ts`) is that block: a full-column-width card of
+up to six larger tiles (172px, a 154px photo, two title lines, the delivered price and "eBay · delivered" or "eBay · deal"), popular
+kits and today's deals taking turns, scrolling sideways on a narrow column (`.scroller`). eBay only: Games Workshop has no TCGplayer
+and Amazon and Wayland have no stored prices. Links are rel sponsored under `inline-ebay`, `inline-ebay-deals` and `inline-ebay-all`
+(EPN customid `wgc-<region>-inline-ebay…`), so the report counts it apart from the retired `side-ebay*`, `ebay-strip-*`, `home-ebay`,
+`category-ebay`, `landing-ebay`, `guide-ebay` and `new-releases` placements.
+
+Browser-only like the rails were: the server sends an empty box of the block's exact height (`INLINE_H`) and the tiles draw after
+hydration, only when three exist: no SEO change, CLS 0. ONE per page, mounted by the two layouts (`[region]/layout.tsx`, and
+`(site)/layout.tsx` in the visitor's region for the home and About pages) below the page's content and above the footer, so it is
+never beside a buy button, above a price or in the quick view; the home page's block is therefore at the foot of the page rather than
+between sections (a per-page slot would have meant a second block on the others). Every `EbayStrip` and `EbayBox` (home, hubs,
+deals, product, new releases, guides, the footer strip) and the rail code are deleted; the pinned eBay rows of the price tables and
+search are not strips and stay. The phone dock stays (`DockAds.tsx`) and yields to the block. `tests/inline-ads.test.ts` and
+`tests/nav.test.ts` pin it. Measure clicks per `inline-*` placement against the old strips on 20 November.

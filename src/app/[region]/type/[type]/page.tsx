@@ -40,8 +40,6 @@ export default function TypePage({ params }: { params: { region: string; type: s
       intro={`Every ${t.name.toLowerCase()} product the stores we compare list in ${r.inName}, in ${r.currency}, cheapest in stock first.`}
       items={items}
       searchHref={`/${r.region}/search?type=${t.slug}`}
-      ebayQuery={`Warhammer ${t.name.split(/[,&]/)[0].trim()}`}
-      placement="category-ebay"
       more={[
         { title: "By game", chips: SYSTEMS.map((g) => ({ href: `/${r.region}/search?system=${g.slug}&type=${t.slug}`, label: g.name, n: items.filter((x) => x.product.system === g.slug).length })).filter((c) => c.n > 0) },
         { title: "Other kinds of product", chips: TYPES.filter((o) => o.slug !== t.slug && o.slug !== "miniatures").map((o) => ({ href: `/${r.region}/type/${o.slug}`, label: o.name })) },
