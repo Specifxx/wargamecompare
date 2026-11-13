@@ -627,8 +627,8 @@ html[data-hr="us"] .hr-us {
   .max-w-shell {
     max-width: none;
     width: auto;
-    margin-left: 136px;
-    margin-right: 136px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 /* The hero's stat line, as chips. */
