@@ -26,6 +26,13 @@ import { useSoftRegion } from "./SoftRegion";
 
 export { MAX_TILES, MIN_WIDTH, TILE_H, railFits, type SideRails } from "@/lib/rails";
 
+/**
+ * The side rails are OFF (owner, 2026-11-13: "banner ads on the side … doesn't look as good … fill in that space on the side again").
+ * The ads are the horizontal strips inside the page (and the phone dock on small screens). The rail code below stays so a rail can
+ * be tried again; nothing renders it while this is false, and globals.css gives the page column the whole width.
+ */
+export const SIDE_RAILS = false;
+
 export function SideAds({ rails }: { rails: SideRails }) {
   const [fit, setFit] = useState(false);
   const [narrow, setNarrow] = useState(false);
@@ -45,7 +52,7 @@ export function SideAds({ rails }: { rails: SideRails }) {
   }, []);
   // Too narrow for the rails (phones, tablets, a small window): the same tiles in the phone dock (AdDock.tsx).
   if (narrow) return <PhoneDock rails={rails} />;
-  if (!fit) return null;
+  if (!SIDE_RAILS || !fit) return null;
   return (
     <>
       <Rail side="left" rails={rails} tiles={rails.left} placement="side-ebay" heading="Popular kits" />
