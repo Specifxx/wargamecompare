@@ -31,7 +31,7 @@ export default function EmbedPage() {
   return (
     <div className="page flex max-w-3xl flex-col gap-8 py-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-display text-3xl font-extrabold">Free tabletop price widgets</h1>
+        <h1 className="ph-title">Free tabletop price widgets</h1>
         <p className="text-muted">
           Put a live kit or paint price on any page with one line of HTML. It shows the cheapest in-stock store price in your readers&apos; region and
           updates itself every day. Free, no signup, no tracking. The widget is noindex, so it never competes with your own pages in search.

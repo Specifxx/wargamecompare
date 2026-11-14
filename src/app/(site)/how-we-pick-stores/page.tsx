@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="page prose-wg max-w-3xl py-10">
+    <div className="page prose-wg py-8 sm:py-10">
       <HowWePickStores
         site="WargameCompare"
         what="miniatures and hobby supplies"

@@ -8,13 +8,13 @@ export default function NotFound() {
   return (
     <>
       <Header region={null} />
-      <main id="main" className="page flex-1 py-16">
+      <main id="main" className="page flex-1 py-12 sm:py-16">
         <div className="card mx-auto max-w-xl px-6 py-10 text-center">
           <span className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-sold-soft text-sold" aria-hidden="true">
             <Icon name="search" size={22} />
           </span>
-          <h1 className="font-display text-3xl font-extrabold tracking-tight">That page isn&rsquo;t here</h1>
-          <p className="mt-3 text-muted">The product may no longer be listed by any store we compare.</p>
+          <h1 className="ph-title">That page isn&rsquo;t here</h1>
+          <p className="mx-auto mt-3 max-w-[40ch] leading-7 text-muted">The product may no longer be listed by any store we compare. Pick your country to carry on, or search from the top of the page.</p>
           <ul className="mt-6 flex flex-wrap justify-center gap-2">
             {REGION_LIST.map((r) => (
               <li key={r.region}>

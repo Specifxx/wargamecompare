@@ -291,23 +291,140 @@ body {
     flex: none;
     scroll-snap-align: start;
   }
+  /* ── Article and prose (2026-11-14): one reading measure (~68 characters), one heading scale, one rhythm, for guides, About and
+     the legal pages. .art-* are the pieces; .prose-wg applies them to plain HTML. */
+  .art-p {
+    @apply mt-4 max-w-[68ch] text-[15.5px] leading-7 text-muted sm:text-base;
+  }
+  .art-p strong,
+  .art-list strong {
+    @apply font-semibold text-ink;
+  }
+  .art-h2 {
+    @apply mt-12 max-w-[68ch] scroll-mt-24 font-display text-[22px] font-bold leading-tight tracking-tight text-ink sm:text-[26px];
+  }
+  .art-h3 {
+    @apply mt-8 font-display text-lg font-bold leading-snug text-ink;
+  }
+  .art-list {
+    @apply mt-4 max-w-[68ch] list-disc space-y-2 pl-5 text-[15.5px] leading-7 text-muted marker:text-faint sm:text-base;
+  }
+  .art-link,
+  .art-p a,
+  .art-list a {
+    @apply font-medium text-brand underline decoration-brand/40 underline-offset-2 transition-colors hover:decoration-brand;
+  }
   .prose-wg p {
-    @apply mb-4 leading-7 text-muted;
+    @apply art-p mb-0 first:mt-0;
   }
   .prose-wg h2 {
-    @apply mb-3 mt-8 font-display text-xl font-bold text-ink;
+    @apply art-h2 mb-0 mt-10;
+  }
+  .prose-wg h2 + p,
+  .prose-wg h3 + p {
+    @apply mt-2;
   }
   .prose-wg a {
-    @apply font-medium text-brand underline underline-offset-2;
+    @apply font-medium text-brand underline decoration-brand/40 underline-offset-2 transition-colors hover:decoration-brand;
   }
   .prose-wg ul {
-    @apply mb-4 list-disc space-y-1 pl-5 text-muted;
+    @apply art-list;
   }
   .prose-wg ol {
-    @apply mb-4 list-decimal space-y-1 pl-5 text-muted;
+    @apply art-list list-decimal;
   }
   .prose-wg h3 {
-    @apply mb-1 mt-4 font-semibold text-ink;
+    @apply art-h3 mt-6;
+  }
+  /* A table of numbers in an article: its own rounded box that scrolls sideways on a phone instead of squeezing the columns. */
+  .data-table {
+    @apply mt-5 overflow-x-auto rounded-xl border border-line bg-surface shadow-card;
+  }
+  .data-table table {
+    @apply w-full min-w-[30rem] border-collapse text-sm;
+  }
+  .data-table th {
+    @apply whitespace-nowrap border-b border-line bg-raised px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wide text-muted;
+  }
+  .data-table td {
+    @apply border-b border-line px-4 py-2.5 align-middle;
+  }
+  .data-table tr:last-child td {
+    @apply border-b-0;
+  }
+  .data-table tbody tr {
+    @apply transition-colors hover:bg-raised;
+  }
+  .data-table .num {
+    @apply whitespace-nowrap text-right tabular-nums;
+  }
+  /* A section's h2 (components/Section.tsx and the pages that draw their own): the home page's section voice. */
+  .sec-title {
+    @apply font-display text-2xl font-bold tracking-tight sm:text-[28px];
+  }
+  /* A guide in a list of guides: the home page's card, lifted on hover. */
+  .guide-card {
+    @apply card flex h-full flex-col p-5 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-lift;
+  }
+  /* A line of related links under a list ("Today's deals · Black Friday deals · …"). */
+  .link-line {
+    @apply text-sm leading-8 text-muted;
+  }
+  /* The one page header of an inner page (components/PageHead.tsx): the home page's h1 voice, a step smaller. */
+  .ph-title {
+    @apply font-display text-[28px] font-bold leading-[1.12] tracking-tight sm:text-4xl lg:text-[42px];
+    text-wrap: balance;
+  }
+  .ph-lead {
+    @apply mt-3 max-w-[68ch] text-[15px] leading-7 text-muted sm:text-base;
+  }
+  /* The product page's key facts under the h1: game, army, kind of kit (links) and the box code, one quiet dotted line. */
+  .pf-facts {
+    @apply mt-1 flex flex-wrap items-center text-sm leading-5 text-muted;
+  }
+  .pf-facts > * {
+    @apply inline-flex min-h-10 items-center;
+  }
+  .pf-facts > a {
+    @apply transition-colors hover:text-ink;
+  }
+  /* The dot follows an item, so a wrapped line never starts with one. */
+  .pf-facts > :not(:last-child)::after {
+    content: "·";
+    @apply mx-2 text-faint;
+  }
+  /* A quiet tool under a price table (price alert, report a price): the ghost button's shape, a 44px target. */
+  .tool-btn {
+    @apply btn-ghost min-h-11 cursor-pointer list-none;
+  }
+  .tool-btn::-webkit-details-marker {
+    display: none;
+  }
+  /* A compact row list (deals, new releases, stores): a 56px plate, a two-line name, the money on the right. */
+  .lr {
+    @apply flex min-h-[4.5rem] items-center gap-3 px-3 py-3 transition-colors hover:bg-raised sm:px-4;
+  }
+  .lr-name {
+    @apply line-clamp-2 text-[15px] font-semibold leading-snug;
+  }
+  .lr-sub {
+    @apply mt-0.5 text-xs leading-5 text-muted;
+  }
+  /* A labelled row of chips under a page header (a hub's armies, kinds of kit, other games): one sideways row on a phone, so the
+     products are not pushed a screen down; wrapped from lg, where there is room. Every chip is a plain link in the server HTML. */
+  .chip-row {
+    @apply mt-4 min-w-0;
+  }
+  .chip-row > p {
+    @apply mb-2 text-xs font-semibold uppercase tracking-wide text-muted;
+  }
+  @media (min-width: 1024px) {
+    .chip-row > div {
+      flex-wrap: wrap;
+      overflow: visible;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
   }
 }
 

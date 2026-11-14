@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 export default function Page() {
   const sites = FAMILY_SITES.filter((s) => s.id !== "wargame");
   return (
-    <div className="page prose-wg max-w-3xl py-10">
-      <h1 className="mb-6 font-display text-3xl font-extrabold text-ink">Our other sites</h1>
+    <div className="page prose-wg py-8 sm:py-10">
+      <h1 className="ph-title mb-2 text-ink">Our other sites</h1>
       <p>WargameCompare is one of the Compare Empire sites: independent price comparison, the same rules on every site, no paid ranking.</p>
       <ul>
         {sites.map((s) => (

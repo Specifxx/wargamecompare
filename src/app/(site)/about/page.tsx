@@ -4,8 +4,8 @@ export const metadata: Metadata = { title: "About WargameCompare and how prices 
 
 export default function Page() {
   return (
-    <div className="page prose-wg max-w-3xl py-10">
-      <h1 className="mb-6 font-display text-3xl font-extrabold text-ink">About WargameCompare and how prices work</h1>
+    <div className="page prose-wg py-8 sm:py-10">
+      <h1 className="ph-title mb-2 text-ink">About WargameCompare and how prices work</h1>
       <p>WargameCompare compares the prices of new Games Workshop products (Warhammer 40,000, Age of Sigmar, Kill Team, The Horus Heresy, The Old World, Middle-earth, Necromunda, Blood Bowl and Citadel paints and tools) across independent stores in the United Kingdom, Australia, New Zealand, Canada and the United States.</p>
 <h2>Where the prices come from</h2>
 <p>Once a day we read each store&rsquo;s public product catalogue. Every listing is matched to one product by the code printed on the box (for example 48-75), the item number or the barcode the store gives. A listing we cannot match with certainty is left out: a wrong match is worse than a missing one. Second-hand, painted, on-sprue, damaged and store-made bundle listings are left out too.</p>

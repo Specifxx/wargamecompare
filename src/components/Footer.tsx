@@ -117,7 +117,7 @@ export function Footer({ region }: { region: Region | null }) {
               <ul className="text-sm">
                 {c.links.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} data-region-pick={l.pick} className="flex min-h-10 items-center gap-1.5 text-muted transition-colors hover:text-ink sm:min-h-8">
+                    <Link href={l.href} data-region-pick={l.pick} className="flex min-h-10 items-center gap-2 py-1.5 leading-snug text-muted transition-colors hover:text-ink sm:min-h-8 sm:py-1">
                       {l.pick && <Flag code={l.pick} />}
                       {l.label}
                     </Link>

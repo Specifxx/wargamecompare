@@ -30,34 +30,34 @@ export function SaleSeasonPage({ slug, params }: { slug: SaleSlug; params: { reg
   const year = saleYear(slug, now);
   const list = deals(summariesFor(r.region), mediansFor(r.region)).slice(0, 100);
   return (
-    <div className="page py-8">
-      <h1 className="font-display text-3xl font-extrabold">Warhammer {SALE_SEASONS[slug].name} deals in {r.inName}, {year}</h1>
-      <p className="mt-2 max-w-3xl text-muted">
+    <div className="page py-6 sm:py-8">
+      <h1 className="ph-title">Warhammer {SALE_SEASONS[slug].name} deals in {r.inName}, {year}</h1>
+      <p className="ph-lead">
         {saleIntro(slug, year, r.inName)} Below is every
         in-stock product at least 10% under the RRP stores state, or under the median price of three or more stores, today. The page updates every day through the
         sales, so bookmark it. We only see what a store asks when we read its prices: check the store&rsquo;s page before you buy. Item price; shipping extra.
       </p>
       <div className="card mt-6 divide-y divide-line overflow-hidden">
         {list.map((d) => (
-          <Link key={d.s.product.id} href={`/${r.region}/p/${d.s.product.id}`} className="flex items-center gap-3 px-3 py-3 hover:bg-raised">
-            <div className="plate h-14 w-14 shrink-0">{d.s.product.image && <img src={thumb(d.s.product.image, 120) ?? undefined} alt={d.s.product.name} loading="lazy" className="h-full w-full object-contain p-1" />}</div>
+          <Link key={d.s.product.id} href={`/${r.region}/p/${d.s.product.id}`} className="lr group">
+            <div className="plate h-14 w-14 shrink-0">{d.s.product.image && <img src={thumb(d.s.product.image, 120) ?? undefined} alt={d.s.product.name} width={56} height={56} loading="lazy" className="h-full w-full object-contain p-1 mix-blend-multiply" />}</div>
             <div className="min-w-0 flex-1">
-              <p className="truncate font-semibold">{d.s.product.name}</p>
-              <p className="text-xs text-faint">
-                at {STORE_BY_KEY.get(d.s.bestStore ?? "")?.name ?? d.s.bestStore} · {d.basis === "rrp" ? "RRP" : "median"} {formatPrice(d.ref, r.region)}
+              <p className="lr-name group-hover:text-brand">{d.s.product.name}</p>
+              <p className="lr-sub">
+                at {STORE_BY_KEY.get(d.s.bestStore ?? "")?.name ?? d.s.bestStore} · {d.basis === "rrp" ? "RRP" : "median"} <span className="tabular">{formatPrice(d.ref, r.region)}</span>
               </p>
             </div>
-            <div className="text-right">
-              <p className="tabular font-bold">{formatPrice(d.s.best!, r.region)}</p>
-              <p className="text-xs font-bold text-open">−{Math.round(d.saving * 100)}%</p>
+            <div className="shrink-0 text-right">
+              <p className="tabular font-display text-lg font-bold leading-6">{formatPrice(d.s.best!, r.region)}</p>
+              <p className="tabular text-xs font-bold text-open">−{Math.round(d.saving * 100)}%</p>
             </div>
           </Link>
         ))}
-        {!list.length && <p className="p-4 text-muted">No product is 10% under RRP or the median store price in {r.inName} today.</p>}
+        {!list.length && <p className="px-5 py-6 text-muted">No product is 10% under RRP or the median store price in {r.inName} today.</p>}
       </div>
-      <p className="mt-6 text-sm">
-        <Link href={`/${r.region}/deals`} className="underline">Today&rsquo;s deals</Link> · <Link href={`/${r.region}/black-friday`} className="underline">Black Friday deals</Link> · <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="underline">Store savings vs RRP</Link> ·{" "}
-        <Link href={`/${r.region}/stores`} className="underline">Stores we compare</Link>
+      <p className="link-line mt-8">
+        <Link href={`/${r.region}/deals`} className="art-link">Today&rsquo;s deals</Link> · <Link href={`/${r.region}/black-friday`} className="art-link">Black Friday deals</Link> · <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="art-link">Store savings vs RRP</Link> ·{" "}
+        <Link href={`/${r.region}/stores`} className="art-link">Stores we compare</Link>
       </p>
     </div>
   );

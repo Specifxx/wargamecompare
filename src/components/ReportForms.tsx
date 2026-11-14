@@ -57,6 +57,7 @@ export function ReportPrice({
   region,
   className,
   buttonClassName,
+  summaryClassName,
   summary = "Report a wrong price",
 }: {
   /** the product's name (and id, if useful to us) */
@@ -65,6 +66,8 @@ export function ReportPrice({
   region?: string;
   className?: string;
   buttonClassName?: string;
+  /** Draw the summary with this class (a button-like chip) instead of the plain underlined text. */
+  summaryClassName?: string;
   summary?: string;
 }) {
   const [state, setState] = useState<State>({ status: "idle" });
@@ -92,8 +95,8 @@ export function ReportPrice({
   }
 
   return (
-    <details className={className} style={{ marginTop: 12, fontSize: 14 }} data-report-price>
-      <summary style={{ cursor: "pointer", opacity: 0.8, textDecoration: "underline", textUnderlineOffset: 3, width: "fit-content" }}>{summary}</summary>
+    <details className={className} style={summaryClassName ? { fontSize: 14 } : { marginTop: 12, fontSize: 14 }} data-report-price>
+      <summary className={summaryClassName} style={summaryClassName ? undefined : { cursor: "pointer", opacity: 0.8, textDecoration: "underline", textUnderlineOffset: 3, width: "fit-content" }}>{summary}</summary>
       {state.status === "sent" ? (
         <div style={box}>
           <Result state={state} sentText="Thanks. We check every report and fix the price if it's wrong." />

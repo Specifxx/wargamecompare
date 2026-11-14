@@ -24,6 +24,7 @@ export function Search({
   types,
   ebayBase,
   ebayBrowse,
+  suggest = [],
 }: {
   region: Region;
   systems: [string, string][];
@@ -31,6 +32,8 @@ export function Search({
   types: [string, string][];
   ebayBase: string;
   ebayBrowse: string;
+  /** Where to go when nothing matches: the region's own lists (deals, new releases, the biggest games). */
+  suggest?: { href: string; label: string }[];
 }) {
   const [rows, setRows] = useState<Row[] | null>(null);
   const [q, setQ] = useState("");
@@ -83,34 +86,51 @@ export function Search({
     return out;
   }, [rows, q, system, faction, type, stock, sort]);
 
-  const sel = "h-10 rounded-full border border-line bg-surface px-3 text-sm";
+  const sel = "h-11 w-full min-w-0 rounded-full border border-line bg-surface px-3.5 text-sm text-ink transition-colors hover:border-ink/30 sm:w-auto";
+  // How many would match with sold-out kits included: a forgiving way out of "0 results" when "In stock only" hid them.
+  const soldOutMatches = useMemo(() => {
+    if (!rows || !stock || results.length) return 0;
+    const words = norm(q).split(" ").filter(Boolean);
+    return rows.filter((r) => (!system || r[2] === system) && (!faction || r[3] === faction) && (!type || r[4] === type) && words.every((w) => norm(r[1]).includes(w))).length;
+  }, [rows, stock, results.length, q, system, faction, type]);
+  const filtered = Boolean(system || faction || type);
   return (
     <div>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-5 space-y-2.5">
         <label className="sr-only" htmlFor="sq">Search</label>
-        <input id="sq" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search…" className="h-10 min-w-0 flex-1 rounded-full border border-line bg-surface px-4 text-base sm:text-sm" />
-        <select aria-label="Game" value={system} onChange={(e) => setSystem(e.target.value)} className={sel}>
-          <option value="">All games</option>
-          {systems.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
-        </select>
-        <select aria-label="Army" value={faction} onChange={(e) => setFaction(e.target.value)} className={sel}>
-          <option value="">All armies</option>
-          {factions.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
-        </select>
-        <select aria-label="Type" value={type} onChange={(e) => setType(e.target.value)} className={sel}>
-          <option value="">All types</option>
-          {types.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
-        </select>
-        <select aria-label="Sort" value={sort} onChange={(e) => setSort(e.target.value)} className={sel}>
-          <option value="relevance">Most stocked</option>
-          <option value="price">Cheapest</option>
-          <option value="saving">Biggest saving</option>
-        </select>
-        <label className="chip cursor-pointer">
-          <input type="checkbox" checked={stock} onChange={(e) => setStock(e.target.checked)} /> In stock only
-        </label>
+        <div className="relative">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted">
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" />
+          </svg>
+          <input id="sq" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search kits, paints, codexes…" className="h-12 w-full min-w-0 rounded-full border border-line bg-surface pl-11 pr-4 text-base transition-colors placeholder:text-muted hover:border-ink/30" />
+        </div>
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+          <select aria-label="Game" value={system} onChange={(e) => setSystem(e.target.value)} className={sel}>
+            <option value="">All games</option>
+            {systems.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+          </select>
+          <select aria-label="Army" value={faction} onChange={(e) => setFaction(e.target.value)} className={sel}>
+            <option value="">All armies</option>
+            {factions.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+          </select>
+          <select aria-label="Type" value={type} onChange={(e) => setType(e.target.value)} className={sel}>
+            <option value="">All types</option>
+            {types.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+          </select>
+          <select aria-label="Sort" value={sort} onChange={(e) => setSort(e.target.value)} className={sel}>
+            <option value="relevance">Most stocked</option>
+            <option value="price">Cheapest</option>
+            <option value="saving">Biggest saving</option>
+          </select>
+          <label className="chip col-span-2 min-h-11 cursor-pointer justify-center sm:justify-start">
+            <input type="checkbox" checked={stock} onChange={(e) => setStock(e.target.checked)} className="h-4 w-4 accent-[rgb(var(--brand))]" /> In stock only
+          </label>
+        </div>
       </div>
-      <p className="mt-4 text-sm text-faint">{rows ? `${results.length.toLocaleString("en")} results` : "Loading…"}</p>
+      <p className="tabular mt-4 h-5 text-sm text-muted" aria-live="polite">{rows ? `${results.length.toLocaleString("en")} ${results.length === 1 ? "result" : "results"}` : "Loading…"}</p>
+      {/* The results area keeps its height while the index loads, so nothing below it jumps when the results arrive. */}
+      <div className="min-h-[70vh]">
       {q && (results.length > 0 || !rows) && (
         <div className="ad-box mt-3 flex flex-wrap items-center gap-3 px-4 py-3">
           <p className="flex min-w-0 flex-1 items-center gap-2 text-sm font-semibold">
@@ -173,6 +193,41 @@ export function Search({
           </OutboundLink>
         </div>
       )}
+      {rows && !results.length && (
+        <div className="card mt-4 px-6 py-8 text-center">
+          <p className="font-display text-lg font-bold">{q ? <>Nothing matches &ldquo;{q}&rdquo;</> : "Nothing matches those filters"}</p>
+          <p className="mx-auto mt-1.5 max-w-[46ch] text-sm leading-6 text-muted">
+            {q ? "Check the spelling, try fewer words or a box code like 48-75" : "Try fewer filters"}
+            {filtered ? ", or clear the filters" : ""}. Or start from one of these:
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
+            {soldOutMatches > 0 && (
+              <button type="button" className="chip min-h-10 font-semibold" onClick={() => setStock(false)}>
+                Show {soldOutMatches.toLocaleString("en")} sold out
+              </button>
+            )}
+            {filtered && (
+              <button
+                type="button"
+                className="chip min-h-10"
+                onClick={() => {
+                  setSystem("");
+                  setFaction("");
+                  setType("");
+                }}
+              >
+                Clear filters
+              </button>
+            )}
+            {suggest.map((x) => (
+              <Link key={x.href} href={x.href} prefetch={false} className="chip min-h-10">
+                {x.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+      </div>
     </div>
   );
 }

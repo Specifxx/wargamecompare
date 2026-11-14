@@ -1,7 +1,7 @@
 import Link from "@/components/Link";
 import type { Summary } from "@/lib/data";
 import type { RegionInfo } from "@/lib/regions";
-import { Breadcrumbs } from "./Breadcrumbs";
+import { PageHead } from "./PageHead";
 import { ProductGrid } from "./ProductCard";
 import { Empty, Section } from "./Section";
 
@@ -33,38 +33,43 @@ export function HubPage({
   const sold = items.filter((s) => s.inStock === 0);
   return (
     <div className="page py-6 sm:py-8">
-      <Breadcrumbs
-        items={[
+      <PageHead
+        ld
+        crumbs={[
           { path: `/${r.region}`, label: r.name },
           { path, label: title },
         ]}
-      />
-      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{title}</h1>
-      <p className="mt-3 max-w-3xl text-[15px] leading-7 text-muted">{intro}</p>
-      {chips && chips.length > 0 && (
-        <div className="mt-5 flex flex-wrap gap-2">
-          {chips.map((c) => (
-            <Link key={c.href} href={c.href} className="chip">
-              {c.label} <span className="text-faint">{c.n}</span>
-            </Link>
-          ))}
-        </div>
-      )}
-      {more?.map(
-        (row) =>
-          row.chips.length > 0 && (
-            <nav key={row.title} aria-label={row.title} className="mt-4">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">{row.title}</p>
-              <div className="flex flex-wrap gap-2">
-                {row.chips.map((c) => (
-                  <Link key={c.href} href={c.href} className="chip">
-                    {c.label} {c.n != null && <span className="text-faint">{c.n}</span>}
-                  </Link>
-                ))}
-              </div>
-            </nav>
-          ),
-      )}
+        title={title}
+        lead={intro}
+      >
+        {/* The page's ways onward, as a compact toolbar: one sideways row each on a phone, wrapped from lg (globals.css .chip-row). */}
+        {chips && chips.length > 0 && (
+          <nav aria-label="Narrow it down" className="chip-row mt-5">
+            <div className="scroller gap-2">
+              {chips.map((c) => (
+                <Link key={c.href} href={c.href} className="chip min-h-10">
+                  {c.label} <span className="tabular text-faint">{c.n}</span>
+                </Link>
+              ))}
+            </div>
+          </nav>
+        )}
+        {more?.map(
+          (row) =>
+            row.chips.length > 0 && (
+              <nav key={row.title} aria-label={row.title} className="chip-row">
+                <p>{row.title}</p>
+                <div className="scroller gap-2">
+                  {row.chips.map((c) => (
+                    <Link key={c.href} href={c.href} className="chip min-h-10">
+                      {c.label} {c.n != null && <span className="tabular text-faint">{c.n}</span>}
+                    </Link>
+                  ))}
+                </div>
+              </nav>
+            ),
+        )}
+      </PageHead>
       <Section title={`In stock (${inStock.length.toLocaleString("en")})`} href={inStock.length > SHOWN ? searchHref : undefined} linkLabel={`See all ${inStock.length.toLocaleString("en")} in stock`}>
         {inStock.length ? (
           <ProductGrid items={inStock.slice(0, SHOWN)} region={r.region} eager={4} />

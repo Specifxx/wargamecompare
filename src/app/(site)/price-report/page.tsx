@@ -30,30 +30,30 @@ export default function PriceReport() {
   });
   const citation = `${SITE_NAME}, "Tabletop Price Report, ${month}", ${SITE_URL}/price-report`;
   return (
-    <article className="page flex max-w-4xl flex-col gap-8 py-10">
+    <article className="page flex flex-col gap-10 py-6 sm:py-8">
       <header className="flex flex-col gap-2">
-        <h1 className="font-display text-3xl font-extrabold">Tabletop price report, {month}</h1>
-        <p className="text-muted">
+        <h1 className="ph-title">Tabletop price report, {month}</h1>
+        <p className="ph-lead">
           How far independent stores sell miniatures, paints and books under the recommended retail price, in five regions. Rebuilt from each day&apos;s
           store prices; last updated {asOf}. Free to quote with a link.
         </p>
       </header>
 
       <section className="flex flex-col gap-2">
-        <h2 className="text-lg font-bold">Discount off RRP, by region</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[560px] text-left text-sm">
-            <thead className="text-xs uppercase text-muted">
-              <tr><th className="py-1 pr-3">Region</th><th className="py-1 pr-3 text-right">Stores in stock</th><th className="py-1 pr-3 text-right">Products in stock</th><th className="py-1 pr-3 text-right">Sold under RRP</th><th className="py-1 text-right">Median saving</th></tr>
+        <h2 className="sec-title">Discount off RRP, by region</h2>
+        <div className="data-table !mt-1">
+          <table>
+            <thead>
+              <tr><th>Region</th><th className="num">Stores in stock</th><th className="num">Products in stock</th><th className="num">Sold under RRP</th><th className="num">Median saving</th></tr>
             </thead>
             <tbody>
               {regions.map(({ r, stats }) => (
-                <tr key={r.region} className="border-t border-line">
-                  <td className="py-1.5 pr-3"><Link className="underline" href={`/${r.region}`}>{r.name}</Link></td>
-                  <td className="py-1.5 pr-3 text-right tabular-nums">{stats.stores}</td>
-                  <td className="py-1.5 pr-3 text-right tabular-nums">{stats.inStock.toLocaleString("en-GB")}</td>
-                  <td className="py-1.5 pr-3 text-right tabular-nums">{stats.withRrp ? pctText(stats.underRrp / stats.withRrp) : "—"}</td>
-                  <td className="py-1.5 text-right tabular-nums">{pctText(stats.medianOff)}</td>
+                <tr key={r.region}>
+                  <td><Link className="underline" href={`/${r.region}`}>{r.name}</Link></td>
+                  <td className="num">{stats.stores}</td>
+                  <td className="num">{stats.inStock.toLocaleString("en-GB")}</td>
+                  <td className="num">{stats.withRrp ? pctText(stats.underRrp / stats.withRrp) : "—"}</td>
+                  <td className="num">{pctText(stats.medianOff)}</td>
                 </tr>
               ))}
             </tbody>
@@ -67,13 +67,13 @@ export default function PriceReport() {
 
       {regions.filter((x) => x.top.length).map(({ r, top }) => (
         <section key={r.region} className="flex flex-col gap-2">
-          <h2 className="text-lg font-bold">The most widely stocked products in {r.inName}</h2>
+          <h2 className="sec-title">The most widely stocked products in {r.inName}</h2>
           <ol className="card divide-y divide-line">
             {top.map((s) => (
-              <li key={s.product.id} className="flex items-center justify-between gap-3 px-3 py-2 text-sm">
-                <Link className="flex-1 truncate hover:underline" href={`/${r.region}/p/${s.product.id}`}>{s.product.name}</Link>
+              <li key={s.product.id} className="flex min-h-12 items-center justify-between gap-3 px-4 py-2.5 text-sm">
+                <Link className="line-clamp-2 min-w-0 flex-1 hover:underline" href={`/${r.region}/p/${s.product.id}`}>{s.product.name}</Link>
                 <span className="hidden text-muted sm:inline">{s.inStock} stores</span>
-                <span className="tabular-nums font-semibold">{formatPrice(s.best!, r.region)}</span>
+                <span className="shrink-0 tabular-nums font-semibold">{formatPrice(s.best!, r.region)}</span>
                 <span className="w-24 text-right text-xs text-muted">{s.off ? `${pctText(s.off)} under RRP` : s.bestStore ? STORE_BY_KEY.get(s.bestStore)?.name ?? "" : ""}</span>
               </li>
             ))}
@@ -82,7 +82,7 @@ export default function PriceReport() {
       ))}
 
       <section className="card flex flex-col gap-2 p-4">
-        <h2 className="text-lg font-bold">Quote this report</h2>
+        <h2 className="font-display text-lg font-bold">Quote this report</h2>
         <p className="text-sm">You&apos;re welcome to use any number here in an article, video or club post, with a link to this page. It updates itself, so the link stays current.</p>
         <p className="rounded bg-raised p-2 font-mono text-xs">{citation}</p>
         <p className="text-sm"><Link className="underline" href="/embed">Free price widgets for your site →</Link></p>
