@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "wargame",
- "generatedAt": "2026-11-14T01:02:08.851Z",
+ "generatedAt": "2026-11-14T23:47:52.479Z",
  "links": {
   "UK": {
    "deals": "https://wargamecompare.com/uk/deals"
@@ -360,20 +360,6 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "US",
-   "title": "Blood Bowl: Chaos Dwarf Cards",
-   "url": "https://wargamecompare.com/us/p/blood-bowl-chaos-dwarf-cards",
-   "cents": 1759,
-   "currency": "USD",
-   "store": "Wargame Portal",
-   "image": "https://cdn.shopify.com/s/files/1/1704/1809/files/2024_09_60050911001_BBChaosDwarfTeamCards04.jpg?v=1727535321&width=200",
-   "refCents": 3500,
-   "refLabel": "RRP",
-   "savingPct": 50
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "US",
    "title": "Broken Realms: Kragnos",
    "url": "https://wargamecompare.com/us/p/broken-realms-kragnos",
    "cents": 2000,
@@ -438,6 +424,20 @@
    "image": "https://cdn.shopify.com/s/files/1/0931/5267/4090/files/SMInfernusPaintSet07.jpg?v=1762200998&width=200",
    "refCents": 6200,
    "refLabel": "RRP",
+   "savingPct": 49
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "US",
+   "title": "Horus Heresy: Age of Darkness Rulebook",
+   "url": "https://wargamecompare.com/us/p/horus-heresy-age-of-darkness-rulebook",
+   "cents": 3495,
+   "currency": "USD",
+   "store": "Lazarus Games",
+   "image": "https://cdn.shopify.com/s/files/1/0663/4301/0534/files/HorusHeresy-AgeofDarkness-Rulebook.jpg?v=1751859750&width=200",
+   "refCents": 6812,
+   "refLabel": "median store price",
    "savingPct": 49
   }
  ]
