@@ -1,779 +1,779 @@
 {
- "updatedAt": "2026-11-13T00:49:02.435Z",
+ "updatedAt": "2026-11-14T00:40:13.078Z",
  "stores": {
   "401games": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:31.909Z",
+   "lastOkAt": "2026-11-14T00:21:05.132Z",
    "listed": 496,
-   "inStock": 423
+   "inStock": 422
   },
   "88gamesarena": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:33.023Z",
+   "lastOkAt": "2026-11-14T00:21:05.871Z",
    "listed": 79,
    "inStock": 79
   },
   "seventhcity": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:48.339Z",
-   "listed": 2244,
-   "inStock": 1908
+   "lastOkAt": "2026-11-14T00:21:20.430Z",
+   "listed": 2228,
+   "inStock": 1888
   },
   "alchemistsrefuge": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:27:32.892Z",
-   "listed": 8887,
-   "inStock": 269
+   "lastOkAt": "2026-11-14T00:22:02.059Z",
+   "listed": 9502,
+   "inStock": 384
   },
   "alphaomegahobby": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:27:39.770Z",
+   "lastOkAt": "2026-11-14T00:22:08.029Z",
    "listed": 1296,
    "inStock": 588
   },
   "animeimports": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:02.158Z",
+   "lastOkAt": "2026-11-14T00:22:26.808Z",
    "listed": 6053,
-   "inStock": 1248
+   "inStock": 1246
   },
   "armada": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:31.782Z",
+   "lastOkAt": "2026-11-14T00:22:52.589Z",
    "listed": 186,
    "inStock": 124
   },
   "astralgamesonline": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:41.704Z",
-   "listed": 1506,
-   "inStock": 1488
+   "lastOkAt": "2026-11-14T00:23:02.181Z",
+   "listed": 1536,
+   "inStock": 1520
   },
   "amusengames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:56.319Z",
+   "lastOkAt": "2026-11-14T00:21:31.348Z",
    "listed": 15210,
    "inStock": 510
   },
   "aussiehobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:57.664Z",
+   "lastOkAt": "2026-11-14T00:23:14.369Z",
    "listed": 288,
    "inStock": 275
   },
   "axionnow": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:07.978Z",
+   "lastOkAt": "2026-11-14T00:23:23.132Z",
    "listed": 3268,
-   "inStock": 594
+   "inStock": 613
   },
   "battleground": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:26.694Z",
-   "listed": 1509,
-   "inStock": 1161
+   "lastOkAt": "2026-11-14T00:23:37.876Z",
+   "listed": 1514,
+   "inStock": 1166
   },
   "blackvaultgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:39.892Z",
+   "lastOkAt": "2026-11-14T00:23:48.765Z",
    "listed": 1097,
    "inStock": 983
   },
   "baxtersrealm": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:27.134Z",
+   "lastOkAt": "2026-11-14T00:23:39.062Z",
    "listed": 877,
-   "inStock": 474
+   "inStock": 475
   },
   "boutiquefdb": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:55.770Z",
+   "lastOkAt": "2026-11-14T00:24:03.886Z",
    "listed": 703,
    "inStock": 236
   },
   "manacore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:57.242Z",
+   "lastOkAt": "2026-11-14T00:24:03.932Z",
    "listed": 127,
    "inStock": 127
   },
   "brimstonegames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:03.810Z",
+   "lastOkAt": "2026-11-14T00:24:09.472Z",
    "listed": 1115,
    "inStock": 908
   },
   "boardsandswords": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:52.978Z",
-   "listed": 1962,
-   "inStock": 417
+   "lastOkAt": "2026-11-14T00:23:59.911Z",
+   "listed": 1964,
+   "inStock": 427
   },
   "bulwark": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:06.112Z",
+   "lastOkAt": "2026-11-14T00:24:12.324Z",
    "listed": 416,
    "inStock": 140
   },
   "bristolindependentgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:10.700Z",
+   "lastOkAt": "2026-11-14T00:24:15.115Z",
    "listed": 1135,
-   "inStock": 359
+   "inStock": 358
   },
   "gamebridge": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:13.103Z",
+   "lastOkAt": "2026-11-14T00:24:17.388Z",
    "listed": 360,
    "inStock": 154
   },
   "cardbrawlers": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:31.127Z",
+   "lastOkAt": "2026-11-14T00:24:32.213Z",
    "listed": 1662,
-   "inStock": 1058
+   "inStock": 1055
   },
   "carddynasty": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:21.188Z",
+   "lastOkAt": "2026-11-14T00:24:24.307Z",
    "listed": 199,
-   "inStock": 156
+   "inStock": 165
   },
   "cardboardclassics": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:33.466Z",
+   "lastOkAt": "2026-11-14T00:24:34.101Z",
    "listed": 852,
    "inStock": 811
   },
   "capefear": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:20.318Z",
+   "lastOkAt": "2026-11-14T00:24:23.680Z",
    "listed": 1990,
    "inStock": 875
   },
   "cartessportivesrivesud": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:36.846Z",
+   "lastOkAt": "2026-11-14T00:24:37.068Z",
    "listed": 807,
-   "inStock": 575
+   "inStock": 573
   },
   "carlitosgamecafe": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:37.361Z",
+   "lastOkAt": "2026-11-14T00:24:36.944Z",
    "listed": 2935,
    "inStock": 358
   },
   "championcardcollector": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:41.360Z",
+   "lastOkAt": "2026-11-14T00:24:40.609Z",
    "listed": 945,
    "inStock": 686
   },
   "chimeragamingonline": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:45.351Z",
-   "listed": 624,
-   "inStock": 624
+   "lastOkAt": "2026-11-14T00:24:44.307Z",
+   "listed": 623,
+   "inStock": 623
   },
   "collectorclash": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:56.047Z",
+   "lastOkAt": "2026-11-14T00:24:52.661Z",
    "listed": 116,
    "inStock": 116
   },
   "collecteebles": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:54.529Z",
+   "lastOkAt": "2026-11-14T00:24:51.734Z",
    "listed": 837,
-   "inStock": 342
+   "inStock": 339
   },
   "collectorsemporium": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:05.076Z",
-   "listed": 664,
-   "inStock": 664
+   "lastOkAt": "2026-11-14T00:24:59.925Z",
+   "listed": 661,
+   "inStock": 661
   },
   "comicsandbeyond": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:13.929Z",
-   "listed": 215,
-   "inStock": 215
+   "lastOkAt": "2026-11-14T00:25:09.842Z",
+   "listed": 216,
+   "inStock": 216
   },
   "cgcemporium": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:16.698Z",
-   "listed": 1187,
-   "inStock": 1173
+   "lastOkAt": "2026-11-14T00:25:09.118Z",
+   "listed": 1186,
+   "inStock": 1172
   },
   "cosmiccollectables": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:19.868Z",
+   "lastOkAt": "2026-11-14T00:25:12.225Z",
    "listed": 345,
    "inStock": 244
   },
   "boardgamesdallas": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:40.852Z",
+   "lastOkAt": "2026-11-14T00:25:30.381Z",
    "listed": 2963,
-   "inStock": 2356
+   "inStock": 2354
   },
   "danireonca": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:47.221Z",
+   "lastOkAt": "2026-11-14T00:25:33.738Z",
    "listed": 809,
-   "inStock": 711
+   "inStock": 710
   },
   "darkfoxtcg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:42.220Z",
+   "lastOkAt": "2026-11-14T00:25:31.433Z",
    "listed": 304,
    "inStock": 244
   },
   "dvgtcg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:46.444Z",
-   "listed": 796,
-   "inStock": 764
+   "lastOkAt": "2026-11-14T00:25:35.668Z",
+   "listed": 797,
+   "inStock": 768
   },
   "darkholdgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:54.705Z",
+   "lastOkAt": "2026-11-14T00:25:41.022Z",
    "listed": 1176,
    "inStock": 446
   },
   "desertcitygamestcg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:49.660Z",
+   "lastOkAt": "2026-11-14T00:25:37.432Z",
    "listed": 326,
    "inStock": 233
   },
   "doublesleeved": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:07.605Z",
+   "lastOkAt": "2026-11-14T00:25:51.274Z",
    "listed": 469,
    "inStock": 401
   },
   "elemental": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:10.822Z",
+   "lastOkAt": "2026-11-14T00:25:53.506Z",
    "listed": 359,
    "inStock": 273
   },
   "enterthebattlefield": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:19.771Z",
-   "listed": 1806,
-   "inStock": 1597
+   "lastOkAt": "2026-11-14T00:26:01.175Z",
+   "listed": 1823,
+   "inStock": 1624
   },
   "entoyment": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:16.941Z",
+   "lastOkAt": "2026-11-14T00:26:00.222Z",
    "listed": 365,
-   "inStock": 348
+   "inStock": 345
   },
   "dicesaloon": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:04.729Z",
+   "lastOkAt": "2026-11-14T00:25:49.793Z",
    "listed": 3023,
    "inStock": 265
   },
   "eternalmagic": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:20.466Z",
+   "lastOkAt": "2026-11-14T00:26:02.545Z",
    "listed": 1245,
    "inStock": 157
   },
   "ettingames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:23.143Z",
+   "lastOkAt": "2026-11-14T00:26:04.774Z",
    "listed": 578,
    "inStock": 356
   },
   "everythinggames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:24.841Z",
+   "lastOkAt": "2026-11-14T00:26:05.782Z",
    "listed": 213,
    "inStock": 106
   },
   "eventhorizonhobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:27.868Z",
-   "listed": 1104,
-   "inStock": 1077
+   "lastOkAt": "2026-11-14T00:26:08.668Z",
+   "listed": 1105,
+   "inStock": 1078
   },
   "fabledgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:36.713Z",
+   "lastOkAt": "2026-11-14T00:26:16.650Z",
    "listed": 8540,
    "inStock": 171
   },
   "fanofthesport": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:40.922Z",
-   "listed": 291,
-   "inStock": 291
+   "lastOkAt": "2026-11-14T00:26:20.300Z",
+   "listed": 292,
+   "inStock": 292
   },
   "fafnirshoard": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:46.790Z",
+   "lastOkAt": "2026-11-14T00:26:25.990Z",
    "listed": 15165,
-   "inStock": 136
+   "inStock": 135
   },
   "vaultcollectables": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:55.333Z",
+   "lastOkAt": "2026-11-14T00:26:30.834Z",
    "listed": 271,
    "inStock": 125
   },
   "firstgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:57.939Z",
+   "lastOkAt": "2026-11-14T00:26:32.780Z",
    "listed": 398,
-   "inStock": 295
+   "inStock": 294
   },
   "fantasyforged": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:52.955Z",
+   "lastOkAt": "2026-11-14T00:26:28.789Z",
    "listed": 1207,
-   "inStock": 701
+   "inStock": 699
   },
   "flukeandbox": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:07.906Z",
+   "lastOkAt": "2026-11-14T00:26:44.436Z",
    "listed": 150,
    "inStock": 117
   },
   "shop": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:11.468Z",
+   "lastOkAt": "2026-11-14T00:26:46.984Z",
    "listed": 674,
-   "inStock": 261
+   "inStock": 263
   },
   "freshbrewed": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:14.956Z",
+   "lastOkAt": "2026-11-14T00:26:49.330Z",
    "listed": 105,
    "inStock": 93
   },
   "funtimetoysandgifts": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:25.224Z",
+   "lastOkAt": "2026-11-14T00:26:57.903Z",
    "listed": 699,
    "inStock": 691
   },
   "fusiongamingonline": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:28.498Z",
+   "lastOkAt": "2026-11-14T00:27:00.682Z",
    "listed": 3255,
-   "inStock": 158
+   "inStock": 161
   },
   "galactictoys": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:33.696Z",
-   "listed": 740,
-   "inStock": 740
+   "lastOkAt": "2026-11-14T00:27:05.353Z",
+   "listed": 739,
+   "inStock": 739
   },
   "flipsidegaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:38.968Z",
+   "lastOkAt": "2026-11-14T00:27:10.700Z",
    "listed": 5443,
-   "inStock": 2443
+   "inStock": 2461
   },
   "galleongames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:43.516Z",
-   "listed": 1595,
-   "inStock": 438
+   "lastOkAt": "2026-11-14T00:27:13.881Z",
+   "listed": 1601,
+   "inStock": 455
   },
   "gamerealm": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:52.821Z",
-   "listed": 648,
-   "inStock": 646
+   "lastOkAt": "2026-11-14T00:27:20.700Z",
+   "listed": 661,
+   "inStock": 659
   },
   "gameshack": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:56.154Z",
+   "lastOkAt": "2026-11-14T00:27:23.033Z",
    "listed": 240,
    "inStock": 47
   },
   "game3": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:55.654Z",
-   "listed": 15847,
+   "lastOkAt": "2026-11-14T00:27:24.065Z",
+   "listed": 15851,
    "inStock": 660
   },
   "gameknight": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:04.999Z",
+   "lastOkAt": "2026-11-14T00:27:31.451Z",
    "listed": 1609,
-   "inStock": 1131
+   "inStock": 1125
   },
   "gamelandia": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:02.624Z",
+   "lastOkAt": "2026-11-14T00:27:28.727Z",
    "listed": 469,
    "inStock": 130
   },
   "gamerholic": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:06.431Z",
+   "lastOkAt": "2026-11-14T00:27:31.977Z",
    "listed": 132,
    "inStock": 48
   },
   "gameology": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:05.762Z",
+   "lastOkAt": "2026-11-14T00:27:31.043Z",
    "listed": 528,
-   "inStock": 376
+   "inStock": 375
   },
   "gamersguildaz": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:11.435Z",
+   "lastOkAt": "2026-11-14T00:27:36.311Z",
    "listed": 959,
    "inStock": 744
   },
   "gamersgrove": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:11.783Z",
+   "lastOkAt": "2026-11-14T00:27:35.810Z",
    "listed": 1110,
-   "inStock": 590
+   "inStock": 589
   },
   "gamersparadisela": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:15.879Z",
-   "listed": 627,
-   "inStock": 449
+   "lastOkAt": "2026-11-14T00:27:39.504Z",
+   "listed": 624,
+   "inStock": 446
   },
   "gamersngeeks": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:19.267Z",
-   "listed": 1648,
-   "inStock": 1222
+   "lastOkAt": "2026-11-14T00:27:42.608Z",
+   "listed": 1645,
+   "inStock": 1220
   },
   "gamesempire": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:30.603Z",
-   "listed": 1686,
+   "lastOkAt": "2026-11-14T00:27:51.189Z",
+   "listed": 1687,
    "inStock": 1280
   },
   "gamersvillage": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:21.552Z",
-   "listed": 728,
-   "inStock": 323
+   "lastOkAt": "2026-11-14T00:27:43.049Z",
+   "listed": 719,
+   "inStock": 330
   },
   "gamesportal": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:33.041Z",
-   "listed": 1523,
-   "inStock": 1413
+   "lastOkAt": "2026-11-14T00:27:53.837Z",
+   "listed": 1531,
+   "inStock": 1419
   },
   "gamescape": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:37.867Z",
+   "lastOkAt": "2026-11-14T00:27:57.089Z",
    "listed": 1129,
-   "inStock": 810
+   "inStock": 808
   },
   "gamesland": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:38.158Z",
+   "lastOkAt": "2026-11-14T00:27:58.675Z",
    "listed": 579,
-   "inStock": 389
+   "inStock": 387
   },
   "gapgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:53.983Z",
+   "lastOkAt": "2026-11-14T00:28:11.464Z",
    "listed": 588,
-   "inStock": 493
+   "inStock": 490
   },
   "gametime": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:44.775Z",
+   "lastOkAt": "2026-11-14T00:28:04.062Z",
    "listed": 8610,
    "inStock": 321
   },
   "geekerygames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:07.504Z",
-   "listed": 604,
-   "inStock": 595
+   "lastOkAt": "2026-11-14T00:28:21.046Z",
+   "listed": 600,
+   "inStock": 591
   },
   "generalgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:09.477Z",
+   "lastOkAt": "2026-11-14T00:28:22.357Z",
    "listed": 493,
    "inStock": 239
   },
   "goblingames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:28.248Z",
+   "lastOkAt": "2026-11-14T00:28:38.564Z",
    "listed": 1300,
-   "inStock": 839
+   "inStock": 838
   },
   "gatheringgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:12.841Z",
+   "lastOkAt": "2026-11-14T00:28:28.116Z",
    "listed": 1625,
-   "inStock": 406
+   "inStock": 405
   },
   "goodgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:40.732Z",
-   "listed": 1618,
-   "inStock": 574
+   "lastOkAt": "2026-11-14T00:28:49.278Z",
+   "listed": 1617,
+   "inStock": 567
   },
   "gotitemgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:42.963Z",
+   "lastOkAt": "2026-11-14T00:28:51.271Z",
    "listed": 1555,
    "inStock": 311
   },
   "grimdice": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:45.991Z",
+   "lastOkAt": "2026-11-14T00:28:54.571Z",
    "listed": 321,
-   "inStock": 309
+   "inStock": 308
   },
   "goblingaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:41.518Z",
+   "lastOkAt": "2026-11-14T00:28:52.699Z",
    "listed": 2607,
-   "inStock": 2539
+   "inStock": 2543
   },
   "grognardgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:52.806Z",
-   "listed": 980,
-   "inStock": 977
+   "lastOkAt": "2026-11-14T00:28:59.368Z",
+   "listed": 979,
+   "inStock": 976
   },
   "guf": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:59.823Z",
+   "lastOkAt": "2026-11-14T00:29:04.506Z",
    "listed": 5044,
-   "inStock": 647
+   "inStock": 645
   },
   "harlequinsgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:02.153Z",
+   "lastOkAt": "2026-11-14T00:29:07.201Z",
    "listed": 184,
    "inStock": 151
   },
   "gtgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:57.525Z",
-   "listed": 1187,
-   "inStock": 1048
+   "lastOkAt": "2026-11-14T00:29:05.732Z",
+   "listed": 1188,
+   "inStock": 1049
   },
   "herrick": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:10.333Z",
+   "lastOkAt": "2026-11-14T00:29:14.736Z",
    "listed": 1285,
-   "inStock": 594
+   "inStock": 592
   },
   "hfxgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:15.717Z",
+   "lastOkAt": "2026-11-14T00:29:19.556Z",
    "listed": 1297,
    "inStock": 622
   },
   "highlandergames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:13.974Z",
+   "lastOkAt": "2026-11-14T00:29:17.654Z",
    "listed": 476,
    "inStock": 476
   },
   "hoarditall": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:16.161Z",
+   "lastOkAt": "2026-11-14T00:29:18.945Z",
    "listed": 310,
    "inStock": 292
   },
   "hobbycollectorsaustralia": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:27.481Z",
+   "lastOkAt": "2026-11-14T00:29:28.574Z",
    "listed": 1041,
-   "inStock": 865
+   "inStock": 871
   },
   "hobbiesvilleca": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:28.718Z",
+   "lastOkAt": "2026-11-14T00:29:29.620Z",
    "listed": 5027,
    "inStock": 174
   },
   "hrgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:40.851Z",
+   "lastOkAt": "2026-11-14T00:29:39.708Z",
    "listed": 598,
-   "inStock": 347
+   "inStock": 346
   },
   "impactleague": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:47.761Z",
+   "lastOkAt": "2026-11-14T00:29:45.422Z",
    "listed": 161,
-   "inStock": 135
+   "inStock": 133
   },
   "incom": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:58.946Z",
+   "lastOkAt": "2026-11-14T00:29:53.837Z",
    "listed": 471,
-   "inStock": 342
+   "inStock": 340
   },
   "inngames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:00.308Z",
+   "lastOkAt": "2026-11-14T00:29:54.606Z",
    "listed": 242,
    "inStock": 120
   },
   "invasioncnc": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:05.009Z",
+   "lastOkAt": "2026-11-14T00:29:58.507Z",
    "listed": 502,
-   "inStock": 484
+   "inStock": 483
   },
   "jacksonqueen": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:18.600Z",
+   "lastOkAt": "2026-11-14T00:30:10.687Z",
    "listed": 619,
    "inStock": 576
   },
   "3dragons": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:22.322Z",
+   "lastOkAt": "2026-11-14T00:30:13.743Z",
    "listed": 2114,
    "inStock": 217
   },
   "impactgamingcenter": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:06.073Z",
+   "lastOkAt": "2026-11-14T00:30:02.584Z",
    "listed": 2812,
-   "inStock": 2172
+   "inStock": 2179
   },
   "jeuxaz": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:24.186Z",
+   "lastOkAt": "2026-11-14T00:30:16.608Z",
    "listed": 1245,
-   "inStock": 1158
+   "inStock": 1157
   },
   "justplay": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:31.373Z",
+   "lastOkAt": "2026-11-14T00:30:22.200Z",
    "listed": 366,
    "inStock": 333
   },
   "kirton": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:01.395Z",
+   "lastOkAt": "2026-11-14T00:30:47.715Z",
    "listed": 736,
-   "inStock": 705
+   "inStock": 704
   },
   "koolthings": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:03.148Z",
+   "lastOkAt": "2026-11-14T00:30:49.124Z",
    "listed": 214,
    "inStock": 171
   },
   "journeysendgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:56.708Z",
+   "lastOkAt": "2026-11-14T00:30:43.707Z",
    "listed": 6206,
-   "inStock": 2374
+   "inStock": 2358
   },
   "laboutiquemythique": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:12.262Z",
-   "listed": 6055,
-   "inStock": 1022
+   "lastOkAt": "2026-11-14T00:30:56.518Z",
+   "listed": 6030,
+   "inStock": 1016
   },
   "cryptmtg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:13.454Z",
+   "lastOkAt": "2026-11-14T00:30:57.230Z",
    "listed": 80,
    "inStock": 80
   },
   "larrysgamestore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:21.841Z",
+   "lastOkAt": "2026-11-14T00:31:04.779Z",
    "listed": 992,
    "inStock": 988
   },
   "lazarusgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:33.534Z",
+   "lastOkAt": "2026-11-14T00:31:14.762Z",
    "listed": 2135,
-   "inStock": 1968
+   "inStock": 1965
   },
   "lecoindujeu": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:52.248Z",
+   "lastOkAt": "2026-11-14T00:31:35.029Z",
    "listed": 2192,
-   "inStock": 1355
+   "inStock": 1352
   },
   "legendarycollectables": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:41.001Z",
+   "lastOkAt": "2026-11-14T00:31:22.111Z",
    "listed": 11600,
    "inStock": 176
   },
   "levelonegameshop": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:01.690Z",
-   "listed": 1384,
-   "inStock": 1111
+   "lastOkAt": "2026-11-14T00:31:38.116Z",
+   "listed": 1387,
+   "inStock": 1115
   },
   "lotsmoore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:20.317Z",
-   "listed": 736,
-   "inStock": 689
+   "lastOkAt": "2026-11-14T00:31:57.748Z",
+   "listed": 740,
+   "inStock": 692
   },
   "lvlupgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:33.337Z",
+   "lastOkAt": "2026-11-14T00:32:08.837Z",
    "listed": 2499,
-   "inStock": 812
+   "inStock": 808
   },
   "lvlup": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:43.275Z",
+   "lastOkAt": "2026-11-14T00:32:15.234Z",
    "listed": 3119,
-   "inStock": 2773
+   "inStock": 2769
   },
   "managaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:44.120Z",
+   "lastOkAt": "2026-11-14T00:32:17.898Z",
    "listed": 8920,
    "inStock": 678
   },
   "manamarket": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:50.136Z",
+   "lastOkAt": "2026-11-14T00:32:21.575Z",
    "listed": 855,
-   "inStock": 671
+   "inStock": 672
   },
   "manyrealms": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:52.575Z",
+   "lastOkAt": "2026-11-14T00:32:24.712Z",
    "listed": 1087,
-   "inStock": 383
+   "inStock": 382
   },
   "metagames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:40:05.191Z",
+   "lastOkAt": "2026-11-14T00:32:35.175Z",
    "listed": 259,
    "inStock": 259
   },
   "megagames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:40:02.220Z",
-   "listed": 541,
-   "inStock": 541
+   "lastOkAt": "2026-11-14T00:32:32.989Z",
+   "listed": 552,
+   "inStock": 552
   },
   "mightylancer": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:40:08.295Z",
+   "lastOkAt": "2026-11-14T00:32:36.742Z",
    "listed": 213,
-   "inStock": 177
+   "inStock": 180
   },
   "millenniumcomics": {
    "ok": false,
@@ -784,1213 +784,1213 @@
   },
   "mindgamesandmagic": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:41:03.549Z",
+   "lastOkAt": "2026-11-14T00:33:26.086Z",
    "listed": 2370,
-   "inStock": 1119
+   "inStock": 1118
   },
   "minmax": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:41:04.641Z",
+   "lastOkAt": "2026-11-14T00:33:26.972Z",
    "listed": 109,
    "inStock": 106
   },
   "metrohobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:40:06.335Z",
+   "lastOkAt": "2026-11-14T00:32:35.756Z",
    "listed": 107,
    "inStock": 66
   },
   "moxinthehole": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:41:21.845Z",
+   "lastOkAt": "2026-11-14T00:33:42.080Z",
    "listed": 4390,
    "inStock": 176
   },
   "multizone": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:12.435Z",
-   "listed": 2243,
-   "inStock": 1999
+   "lastOkAt": "2026-11-14T00:34:27.986Z",
+   "listed": 2240,
+   "inStock": 1996
   },
   "mperor": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:41:39.752Z",
+   "lastOkAt": "2026-11-14T00:33:58.236Z",
    "listed": 2631,
-   "inStock": 1942
+   "inStock": 1941
   },
   "nabemacollectibles": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:22.024Z",
-   "listed": 718,
-   "inStock": 629
+   "lastOkAt": "2026-11-14T00:34:35.088Z",
+   "listed": 743,
+   "inStock": 654
   },
   "narthex": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:26.265Z",
+   "lastOkAt": "2026-11-14T00:34:37.906Z",
    "listed": 730,
    "inStock": 705
   },
   "obsidiangames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:49.736Z",
+   "lastOkAt": "2026-11-14T00:34:57.824Z",
    "listed": 154,
    "inStock": 66
   },
   "ocare": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:50.861Z",
+   "lastOkAt": "2026-11-14T00:34:58.561Z",
    "listed": 132,
    "inStock": 77
   },
   "novagames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:47.283Z",
-   "listed": 722,
-   "inStock": 663
+   "lastOkAt": "2026-11-14T00:34:56.284Z",
+   "listed": 729,
+   "inStock": 664
   },
   "onboardgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:00.050Z",
+   "lastOkAt": "2026-11-14T00:35:08.579Z",
    "listed": 1460,
-   "inStock": 1255
+   "inStock": 1253
   },
   "otakumart": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:02.127Z",
+   "lastOkAt": "2026-11-14T00:35:16.570Z",
    "listed": 422,
-   "inStock": 218
+   "inStock": 216
   },
   "onyxdawngames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:03.896Z",
+   "lastOkAt": "2026-11-14T00:35:15.499Z",
    "listed": 662,
    "inStock": 49
   },
   "outpostgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:07.848Z",
+   "lastOkAt": "2026-11-14T00:35:21.340Z",
    "listed": 579,
    "inStock": 129
   },
   "pandorasboox": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:09.857Z",
+   "lastOkAt": "2026-11-14T00:35:22.818Z",
    "listed": 345,
-   "inStock": 112
+   "inStock": 111
   },
   "paragoncity": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:12.443Z",
-   "listed": 532,
-   "inStock": 179
+   "lastOkAt": "2026-11-14T00:35:24.858Z",
+   "listed": 533,
+   "inStock": 184
   },
   "overthebrick": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:15.349Z",
+   "lastOkAt": "2026-11-14T00:35:27.481Z",
    "listed": 1800,
-   "inStock": 714
+   "inStock": 713
   },
   "pendulumgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:23.426Z",
-   "listed": 974,
-   "inStock": 950
+   "lastOkAt": "2026-11-14T00:35:33.800Z",
+   "listed": 968,
+   "inStock": 944
   },
   "pastime": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:24.869Z",
-   "listed": 1611,
+   "lastOkAt": "2026-11-14T00:35:35.334Z",
+   "listed": 1613,
    "inStock": 1371
   },
   "playx": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:44.318Z",
+   "lastOkAt": "2026-11-14T00:35:52.584Z",
    "listed": 100,
    "inStock": 83
   },
   "playmantis": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:43.236Z",
+   "lastOkAt": "2026-11-14T00:35:53.061Z",
    "listed": 1984,
-   "inStock": 257
+   "inStock": 255
   },
   "progamers": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:56.607Z",
+   "lastOkAt": "2026-11-14T00:36:03.011Z",
    "listed": 284,
    "inStock": 252
   },
   "prosoulgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:01.904Z",
-   "listed": 782,
-   "inStock": 413
+   "lastOkAt": "2026-11-14T00:36:07.590Z",
+   "listed": 780,
+   "inStock": 411
   },
   "pucapucagames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:03.019Z",
+   "lastOkAt": "2026-11-14T00:36:08.198Z",
    "listed": 238,
    "inStock": 85
   },
   "rnrhobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:06.201Z",
+   "lastOkAt": "2026-11-14T00:36:10.408Z",
    "listed": 497,
    "inStock": 321
   },
   "plentyofgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:00.022Z",
+   "lastOkAt": "2026-11-14T00:36:06.071Z",
    "listed": 1461,
-   "inStock": 1365
+   "inStock": 1367
   },
   "redfoxgamingonline": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:25.725Z",
+   "lastOkAt": "2026-11-14T00:36:28.358Z",
    "listed": 16840,
-   "inStock": 243
+   "inStock": 242
   },
   "reefsidegames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:27.940Z",
+   "lastOkAt": "2026-11-14T00:36:29.406Z",
    "listed": 240,
-   "inStock": 214
+   "inStock": 213
   },
   "reddragon": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:32.059Z",
+   "lastOkAt": "2026-11-14T00:36:33.509Z",
    "listed": 1995,
-   "inStock": 1329
+   "inStock": 1325
   },
   "retrofixgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:36.757Z",
+   "lastOkAt": "2026-11-14T00:36:37.139Z",
    "listed": 1387,
-   "inStock": 843
+   "inStock": 838
   },
   "rollnplay": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:42.962Z",
+   "lastOkAt": "2026-11-14T00:36:41.142Z",
    "listed": 115,
    "inStock": 91
   },
   "riftgate": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:45.641Z",
-   "listed": 1072,
-   "inStock": 584
+   "lastOkAt": "2026-11-14T00:36:44.694Z",
+   "listed": 1074,
+   "inStock": 586
   },
   "seatoskygames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:58.150Z",
+   "lastOkAt": "2026-11-14T00:36:54.119Z",
    "listed": 1294,
    "inStock": 100
   },
   "shuffled": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:02.499Z",
+   "lastOkAt": "2026-11-14T00:36:57.717Z",
    "listed": 238,
    "inStock": 0
   },
   "skyfoxgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:04.294Z",
-   "listed": 177,
-   "inStock": 141
+   "lastOkAt": "2026-11-14T00:36:58.887Z",
+   "listed": 176,
+   "inStock": 140
   },
   "spellroo": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:07.796Z",
+   "lastOkAt": "2026-11-14T00:37:01.781Z",
    "listed": 423,
-   "inStock": 270
+   "inStock": 269
   },
   "stylecreep": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:11.037Z",
-   "listed": 164,
-   "inStock": 141
+   "lastOkAt": "2026-11-14T00:37:04.406Z",
+   "listed": 165,
+   "inStock": 142
   },
   "roningames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:56.840Z",
+   "lastOkAt": "2026-11-14T00:36:53.918Z",
    "listed": 1456,
-   "inStock": 846
+   "inStock": 844
   },
   "tabletopdominion": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:19.032Z",
+   "lastOkAt": "2026-11-14T00:37:09.917Z",
    "listed": 137,
    "inStock": 2
   },
   "sweetsandgeeks": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:22.542Z",
+   "lastOkAt": "2026-11-14T00:37:14.428Z",
    "listed": 1341,
-   "inStock": 904
+   "inStock": 915
   },
   "tcgandgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:29.740Z",
+   "lastOkAt": "2026-11-14T00:37:19.497Z",
    "listed": 209,
    "inStock": 122
   },
   "tcgcollectornz": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:30.732Z",
+   "lastOkAt": "2026-11-14T00:37:20.225Z",
    "listed": 97,
    "inStock": 27
   },
   "tabletopheaven": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:24.297Z",
+   "lastOkAt": "2026-11-14T00:37:14.250Z",
    "listed": 1151,
-   "inStock": 1003
+   "inStock": 999
   },
   "theboardgamehut": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:35.387Z",
+   "lastOkAt": "2026-11-14T00:37:22.511Z",
    "listed": 84,
    "inStock": 11
   },
   "cgrealm": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:37.440Z",
-   "listed": 180,
-   "inStock": 177
+   "lastOkAt": "2026-11-14T00:37:24.108Z",
+   "listed": 179,
+   "inStock": 176
   },
   "combatcompany": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:39.231Z",
+   "lastOkAt": "2026-11-14T00:37:25.296Z",
    "listed": 223,
-   "inStock": 193
+   "inStock": 190
   },
   "thecardhubaustralia": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:40.044Z",
-   "listed": 1892,
-   "inStock": 315
+   "lastOkAt": "2026-11-14T00:37:26.825Z",
+   "listed": 1886,
+   "inStock": 312
   },
   "thegamecornergames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:44.205Z",
+   "lastOkAt": "2026-11-14T00:37:30.050Z",
    "listed": 642,
-   "inStock": 249
+   "inStock": 250
   },
   "evvgamingguild": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:02.624Z",
+   "lastOkAt": "2026-11-14T00:37:44.702Z",
    "listed": 734,
    "inStock": 663
   },
   "thegamingvault": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:01.827Z",
+   "lastOkAt": "2026-11-14T00:37:44.068Z",
    "listed": 208,
-   "inStock": 78
+   "inStock": 77
   },
   "thegrumpygoblin": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:03.034Z",
+   "lastOkAt": "2026-11-14T00:37:45.438Z",
    "listed": 453,
-   "inStock": 59
+   "inStock": 58
   },
   "thegamestore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:59.243Z",
+   "lastOkAt": "2026-11-14T00:37:40.922Z",
    "listed": 1511,
    "inStock": 1046
   },
   "thehallofheroes": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:15.144Z",
+   "lastOkAt": "2026-11-14T00:37:56.152Z",
    "listed": 2038,
-   "inStock": 2002
+   "inStock": 2001
   },
   "hauntedgamecafe": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:21.291Z",
+   "lastOkAt": "2026-11-14T00:38:01.037Z",
    "listed": 1221,
-   "inStock": 800
+   "inStock": 798
   },
   "thetcggroup": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:27.717Z",
+   "lastOkAt": "2026-11-14T00:38:06.277Z",
    "listed": 411,
    "inStock": 402
   },
   "manalounge": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:20.146Z",
+   "lastOkAt": "2026-11-14T00:38:00.478Z",
    "listed": 590,
    "inStock": 430
   },
   "tierzerogames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:36.029Z",
+   "lastOkAt": "2026-11-14T00:38:13.076Z",
    "listed": 904,
    "inStock": 476
   },
   "thewarp": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:33.753Z",
+   "lastOkAt": "2026-11-14T00:38:11.286Z",
    "listed": 824,
-   "inStock": 776
+   "inStock": 775
   },
   "torchlight": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:40.619Z",
-   "listed": 882,
+   "lastOkAt": "2026-11-14T00:38:17.999Z",
+   "listed": 881,
    "inStock": 317
   },
   "topshelf": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:46.720Z",
-   "listed": 1768,
-   "inStock": 1023
+   "lastOkAt": "2026-11-14T00:38:22.566Z",
+   "listed": 1769,
+   "inStock": 1018
   },
   "totalcards": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:45.091Z",
+   "lastOkAt": "2026-11-14T00:38:21.824Z",
    "listed": 891,
    "inStock": 199
   },
   "travellingman": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:57.629Z",
+   "lastOkAt": "2026-11-14T00:38:32.490Z",
    "listed": 1030,
-   "inStock": 886
+   "inStock": 883
   },
   "trinity": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:06.715Z",
-   "listed": 1239,
-   "inStock": 1173
+   "lastOkAt": "2026-11-14T00:38:40.367Z",
+   "listed": 1238,
+   "inStock": 1172
   },
   "trolltradercards": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:12.698Z",
+   "lastOkAt": "2026-11-14T00:38:45.448Z",
    "listed": 3109,
-   "inStock": 1395
+   "inStock": 1389
   },
   "turtletcg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:13.573Z",
+   "lastOkAt": "2026-11-14T00:38:46.629Z",
    "listed": 1462,
-   "inStock": 754
+   "inStock": 747
   },
   "unpluggedgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:15.317Z",
+   "lastOkAt": "2026-11-14T00:38:47.934Z",
    "listed": 320,
-   "inStock": 232
+   "inStock": 255
   },
   "vaultgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:38.744Z",
+   "lastOkAt": "2026-11-14T00:39:08.168Z",
    "listed": 1694,
-   "inStock": 371
+   "inStock": 367
   },
   "wanderingadventures": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:40.959Z",
+   "lastOkAt": "2026-11-14T00:39:10.164Z",
    "listed": 495,
    "inStock": 477
   },
   "wizardtower": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:10.955Z",
+   "lastOkAt": "2026-11-14T00:39:34.819Z",
    "listed": 2600,
-   "inStock": 312
+   "inStock": 311
   },
   "vortex": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:44.005Z",
-   "listed": 2051,
-   "inStock": 1647
+   "lastOkAt": "2026-11-14T00:39:12.278Z",
+   "listed": 2049,
+   "inStock": 1655
   },
   "yardsgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:19.800Z",
+   "lastOkAt": "2026-11-14T00:39:40.782Z",
    "listed": 598,
    "inStock": 598
   },
   "wulfgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:16.743Z",
+   "lastOkAt": "2026-11-14T00:39:37.690Z",
    "listed": 511,
-   "inStock": 192
+   "inStock": 188
   },
   "zatu": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:29.616Z",
-   "listed": 2775,
-   "inStock": 1713
+   "lastOkAt": "2026-11-14T00:39:49.590Z",
+   "listed": 2749,
+   "inStock": 1687
   },
   "1stcapitalgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:30.658Z",
+   "lastOkAt": "2026-11-14T00:21:04.155Z",
    "listed": 52,
    "inStock": 45
   },
   "4gsgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:31.774Z",
+   "lastOkAt": "2026-11-14T00:21:05.111Z",
    "listed": 131,
    "inStock": 73
   },
   "aztoyhobby": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:55.065Z",
+   "lastOkAt": "2026-11-14T00:21:25.690Z",
    "listed": 772,
-   "inStock": 695
+   "inStock": 694
   },
   "accentgamingdunferml": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:57.647Z",
+   "lastOkAt": "2026-11-14T00:21:32.389Z",
    "listed": 207,
-   "inStock": 193
+   "inStock": 192
   },
   "accessmodels": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:27:00.531Z",
-   "listed": 627,
-   "inStock": 587
+   "lastOkAt": "2026-11-14T00:21:34.586Z",
+   "listed": 609,
+   "inStock": 569
   },
   "accidentallycoolgame": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:27:06.685Z",
+   "lastOkAt": "2026-11-14T00:21:40.041Z",
    "listed": 874,
-   "inStock": 591
+   "inStock": 589
   },
   "afk": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:27:24.701Z",
-   "listed": 1828,
-   "inStock": 1826
+   "lastOkAt": "2026-11-14T00:21:55.059Z",
+   "listed": 1822,
+   "inStock": 1820
   },
   "archerongames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:27.122Z",
-   "listed": 2321,
-   "inStock": 2295
+   "lastOkAt": "2026-11-14T00:22:49.037Z",
+   "listed": 2318,
+   "inStock": 2291
   },
   "cobbco": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:30.228Z",
-   "listed": 565,
-   "inStock": 447
+   "lastOkAt": "2026-11-14T00:22:51.742Z",
+   "listed": 566,
+   "inStock": 448
   },
   "abyssgamestore2": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:33.858Z",
-   "listed": 15878,
-   "inStock": 3643
+   "lastOkAt": "2026-11-14T00:22:55.386Z",
+   "listed": 15913,
+   "inStock": 3662
   },
   "ashdowngaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:39.053Z",
-   "listed": 955,
+   "lastOkAt": "2026-11-14T00:22:58.475Z",
+   "listed": 956,
    "inStock": 908
   },
   "athenagames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:28:55.182Z",
-   "listed": 1677,
-   "inStock": 1349
+   "lastOkAt": "2026-11-14T00:23:12.629Z",
+   "listed": 1678,
+   "inStock": 1396
   },
   "badwolfgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:08.955Z",
+   "lastOkAt": "2026-11-14T00:23:23.827Z",
    "listed": 53,
    "inStock": 12
   },
   "bamcards": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:09.642Z",
-   "listed": 92,
-   "inStock": 92
+   "lastOkAt": "2026-11-14T00:23:24.356Z",
+   "listed": 93,
+   "inStock": 93
   },
   "bardsandcards": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:11.382Z",
-   "listed": 524,
-   "inStock": 515
+   "lastOkAt": "2026-11-14T00:23:25.403Z",
+   "listed": 523,
+   "inStock": 514
   },
   "atlantiscomics": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:22.495Z",
+   "lastOkAt": "2026-11-14T00:23:35.220Z",
    "listed": 2938,
-   "inStock": 1194
+   "inStock": 1202
   },
   "bazookagamestore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:29.556Z",
+   "lastOkAt": "2026-11-14T00:23:40.320Z",
    "listed": 697,
-   "inStock": 626
+   "inStock": 624
   },
   "blackknightgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:36.567Z",
+   "lastOkAt": "2026-11-14T00:23:46.296Z",
    "listed": 1682,
    "inStock": 1085
   },
   "bluejayscauldron": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:40.574Z",
+   "lastOkAt": "2026-11-14T00:23:49.213Z",
    "listed": 59,
    "inStock": 11
   },
   "bdcosmos": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:50.619Z",
+   "lastOkAt": "2026-11-14T00:24:00.003Z",
    "listed": 2786,
-   "inStock": 1071
+   "inStock": 1070
   },
   "abbyboardwalk": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:51.584Z",
+   "lastOkAt": "2026-11-14T00:24:00.665Z",
    "listed": 51,
    "inStock": 51
   },
   "bonafidecomicstore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:52.334Z",
+   "lastOkAt": "2026-11-14T00:24:00.599Z",
    "listed": 105,
    "inStock": 71
   },
   "bootownsgamesandhobb": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:55.231Z",
-   "listed": 319,
-   "inStock": 316
+   "lastOkAt": "2026-11-14T00:24:02.565Z",
+   "listed": 318,
+   "inStock": 315
   },
   "boutiqueartefact": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:55.749Z",
+   "lastOkAt": "2026-11-14T00:24:02.940Z",
    "listed": 40,
    "inStock": 40
   },
   "brickandboardgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:59.754Z",
+   "lastOkAt": "2026-11-14T00:24:05.996Z",
    "listed": 285,
-   "inStock": 241
+   "inStock": 244
   },
   "brazosvalleyhobbyand": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:03.830Z",
+   "lastOkAt": "2026-11-14T00:24:11.001Z",
    "listed": 1569,
-   "inStock": 623
+   "inStock": 617
   },
   "bytheboardgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:10.382Z",
+   "lastOkAt": "2026-11-14T00:24:15.829Z",
    "listed": 791,
    "inStock": 710
   },
   "capesandcrepes": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:14.580Z",
+   "lastOkAt": "2026-11-14T00:24:18.616Z",
    "listed": 304,
    "inStock": 194
   },
   "cardmerchantnelson": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:22.173Z",
+   "lastOkAt": "2026-11-14T00:24:24.938Z",
    "listed": 368,
    "inStock": 242
   },
   "cardboardmemories": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:32.256Z",
+   "lastOkAt": "2026-11-14T00:24:32.887Z",
    "listed": 98,
    "inStock": 78
   },
   "collectbinghamton": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:49.441Z",
+   "lastOkAt": "2026-11-14T00:24:47.587Z",
    "listed": 283,
    "inStock": 199
   },
   "coldfoilheroes": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:30:48.038Z",
+   "lastOkAt": "2026-11-14T00:24:46.554Z",
    "listed": 542,
-   "inStock": 504
+   "inStock": 503
   },
   "collectorstore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:00.670Z",
+   "lastOkAt": "2026-11-14T00:24:56.723Z",
    "listed": 1064,
    "inStock": 636
   },
   "cosmicgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:29.064Z",
-   "listed": 1050,
-   "inStock": 756
+   "lastOkAt": "2026-11-14T00:25:18.490Z",
+   "listed": 1048,
+   "inStock": 761
   },
   "creatorpultgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:34.445Z",
-   "listed": 1179,
-   "inStock": 153
+   "lastOkAt": "2026-11-14T00:25:23.549Z",
+   "listed": 1215,
+   "inStock": 160
   },
   "criticalhitgaminglou": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:35.428Z",
+   "lastOkAt": "2026-11-14T00:25:24.201Z",
    "listed": 46,
    "inStock": 46
   },
   "crypticcabin": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:36.316Z",
+   "lastOkAt": "2026-11-14T00:25:24.967Z",
    "listed": 59,
    "inStock": 53
   },
   "curiousminds": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:37.360Z",
+   "lastOkAt": "2026-11-14T00:25:25.771Z",
    "listed": 280,
-   "inStock": 254
+   "inStock": 253
   },
   "dejouer": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:47.856Z",
+   "lastOkAt": "2026-11-14T00:25:36.225Z",
    "listed": 119,
    "inStock": 96
   },
   "diablosvault": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:53.105Z",
+   "lastOkAt": "2026-11-14T00:25:40.199Z",
    "listed": 540,
-   "inStock": 483
+   "inStock": 482
   },
   "diceanddestiny": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:57.487Z",
+   "lastOkAt": "2026-11-14T00:25:44.153Z",
    "listed": 571,
-   "inStock": 351
+   "inStock": 350
   },
   "dicehead": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:01.991Z",
+   "lastOkAt": "2026-11-14T00:25:47.558Z",
    "listed": 748,
    "inStock": 600
   },
   "digitalheroes": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:05.147Z",
-   "listed": 625,
-   "inStock": 616
+   "lastOkAt": "2026-11-14T00:25:50.204Z",
+   "listed": 623,
+   "inStock": 614
   },
   "diostreasures": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:05.374Z",
+   "lastOkAt": "2026-11-14T00:25:50.318Z",
    "listed": 178,
    "inStock": 178
   },
   "empiretradings": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:11.449Z",
+   "lastOkAt": "2026-11-14T00:25:53.984Z",
    "listed": 62,
    "inStock": 62
   },
   "envycardstore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:18.958Z",
+   "lastOkAt": "2026-11-14T00:26:02.260Z",
    "listed": 415,
    "inStock": 308
   },
   "epictradingcollectib": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:20.142Z",
+   "lastOkAt": "2026-11-14T00:26:01.882Z",
    "listed": 80,
    "inStock": 80
   },
   "expresstcg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:30.529Z",
+   "lastOkAt": "2026-11-14T00:26:10.873Z",
    "listed": 543,
    "inStock": 360
   },
   "exorgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:39.035Z",
-   "listed": 2948,
-   "inStock": 1578
+   "lastOkAt": "2026-11-14T00:26:18.658Z",
+   "listed": 2949,
+   "inStock": 1581
   },
   "five6gaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:58.846Z",
+   "lastOkAt": "2026-11-14T00:26:33.411Z",
    "listed": 167,
    "inStock": 167
   },
   "fonefunshop": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:09.965Z",
+   "lastOkAt": "2026-11-14T00:26:45.966Z",
    "listed": 178,
-   "inStock": 167
+   "inStock": 166
   },
   "shop2": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:12.645Z",
+   "lastOkAt": "2026-11-14T00:26:47.804Z",
    "listed": 119,
    "inStock": 119
   },
   "foxfablehaven": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:13.392Z",
-   "listed": 142,
+   "lastOkAt": "2026-11-14T00:26:48.633Z",
+   "listed": 144,
    "inStock": 121
   },
   "frontlinegaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:19.869Z",
+   "lastOkAt": "2026-11-14T00:26:53.505Z",
    "listed": 818,
-   "inStock": 620
+   "inStock": 625
   },
   "gambitgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:40.021Z",
+   "lastOkAt": "2026-11-14T00:27:11.541Z",
    "listed": 54,
    "inStock": 52
   },
   "gglayton": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:45.489Z",
+   "lastOkAt": "2026-11-14T00:27:15.014Z",
    "listed": 55,
    "inStock": 55
   },
   "gameguru": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:46.112Z",
+   "lastOkAt": "2026-11-14T00:27:15.434Z",
    "listed": 55,
    "inStock": 31
   },
   "gameonarizona": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:47.219Z",
+   "lastOkAt": "2026-11-14T00:27:16.211Z",
    "listed": 209,
    "inStock": 67
   },
   "gameroost": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:54.761Z",
-   "listed": 387,
-   "inStock": 383
+   "lastOkAt": "2026-11-14T00:27:21.980Z",
+   "listed": 385,
+   "inStock": 381
   },
   "itsgametime": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:56.882Z",
+   "lastOkAt": "2026-11-14T00:27:23.826Z",
    "listed": 96,
    "inStock": 85
   },
   "gamecraftgamestore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:57.957Z",
-   "listed": 175,
-   "inStock": 171
+   "lastOkAt": "2026-11-14T00:27:25.148Z",
+   "listed": 178,
+   "inStock": 174
   },
   "gamersgauntlet": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:06.289Z",
+   "lastOkAt": "2026-11-14T00:27:31.627Z",
    "listed": 60,
    "inStock": 45
   },
   "gclegion": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:21.373Z",
+   "lastOkAt": "2026-11-14T00:27:43.930Z",
    "listed": 459,
    "inStock": 318
   },
   "gameskingstore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:22.042Z",
+   "lastOkAt": "2026-11-14T00:27:44.279Z",
    "listed": 44,
    "inStock": 11
   },
   "gamezilla": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:49.108Z",
+   "lastOkAt": "2026-11-14T00:28:07.899Z",
    "listed": 851,
-   "inStock": 714
+   "inStock": 713
   },
   "gaminggiant": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:34:50.861Z",
+   "lastOkAt": "2026-11-14T00:28:09.219Z",
    "listed": 344,
    "inStock": 303
   },
   "gamezenter": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:01.186Z",
+   "lastOkAt": "2026-11-14T00:28:15.574Z",
    "listed": 1775,
    "inStock": 412
   },
   "gatorscardden": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:01.960Z",
+   "lastOkAt": "2026-11-14T00:28:16.134Z",
    "listed": 52,
    "inStock": 40
   },
   "bentonville": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:02.560Z",
+   "lastOkAt": "2026-11-14T00:28:16.720Z",
    "listed": 0,
    "inStock": 0
   },
   "fayetteville": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:03.218Z",
+   "lastOkAt": "2026-11-14T00:28:17.185Z",
    "listed": 0,
    "inStock": 0
   },
   "gigante": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:18.030Z",
+   "lastOkAt": "2026-11-14T00:28:32.348Z",
    "listed": 721,
-   "inStock": 573
+   "inStock": 572
   },
   "gnomegames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:18.986Z",
+   "lastOkAt": "2026-11-14T00:28:31.528Z",
    "listed": 44,
    "inStock": 21
   },
   "goforgame": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:19.773Z",
+   "lastOkAt": "2026-11-14T00:28:32.088Z",
    "listed": 53,
    "inStock": 51
   },
   "store": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:19.612Z",
-   "listed": 1302,
-   "inStock": 796
+   "lastOkAt": "2026-11-14T00:28:30.946Z",
+   "listed": 1303,
+   "inStock": 795
   },
   "goldengategames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:28.768Z",
+   "lastOkAt": "2026-11-14T00:28:38.938Z",
    "listed": 69,
    "inStock": 61
   },
   "gongaii": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:32.418Z",
-   "listed": 624,
-   "inStock": 624
+   "lastOkAt": "2026-11-14T00:28:42.552Z",
+   "listed": 621,
+   "inStock": 621
   },
   "graygauntletgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:44.269Z",
+   "lastOkAt": "2026-11-14T00:28:53.521Z",
    "listed": 640,
    "inStock": 392
   },
   "greendoorcollectible": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:35:45.798Z",
+   "lastOkAt": "2026-11-14T00:28:55.336Z",
    "listed": 373,
    "inStock": 363
   },
   "hairyt": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:00.609Z",
+   "lastOkAt": "2026-11-14T00:29:06.444Z",
    "listed": 124,
    "inStock": 124
   },
   "gumnut": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:03.236Z",
+   "lastOkAt": "2026-11-14T00:29:09.121Z",
    "listed": 966,
-   "inStock": 721
+   "inStock": 746
   },
   "heroesworld": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:10.779Z",
+   "lastOkAt": "2026-11-14T00:29:15.407Z",
    "listed": 1603,
    "inStock": 469
   },
   "hobbishack": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:19.412Z",
+   "lastOkAt": "2026-11-14T00:29:21.641Z",
    "listed": 316,
    "inStock": 294
   },
   "hobbykitz": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:28.439Z",
+   "lastOkAt": "2026-11-14T00:29:29.347Z",
    "listed": 79,
    "inStock": 58
   },
   "holohaven": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:35.182Z",
+   "lastOkAt": "2026-11-14T00:29:35.389Z",
    "listed": 1348,
    "inStock": 388
   },
   "huntsbookshop": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:46.474Z",
+   "lastOkAt": "2026-11-14T00:29:44.637Z",
    "listed": 525,
-   "inStock": 374
+   "inStock": 397
   },
   "hullpops": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:47.025Z",
+   "lastOkAt": "2026-11-14T00:29:44.819Z",
    "listed": 656,
    "inStock": 644
   },
   "impulsegames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:54.919Z",
+   "lastOkAt": "2026-11-14T00:29:51.085Z",
    "listed": 42,
    "inStock": 27
   },
   "inperspectiveart": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:56.167Z",
+   "lastOkAt": "2026-11-14T00:29:51.978Z",
    "listed": 129,
    "inStock": 129
   },
   "ironhorsehobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:09.323Z",
-   "listed": 778,
-   "inStock": 607
+   "lastOkAt": "2026-11-14T00:30:01.989Z",
+   "listed": 785,
+   "inStock": 614
   },
   "irresistibleforce": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:08.688Z",
+   "lastOkAt": "2026-11-14T00:30:03.629Z",
    "listed": 419,
-   "inStock": 280
+   "inStock": 278
   },
   "jandjgamingfactory": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:11.326Z",
+   "lastOkAt": "2026-11-14T00:30:04.870Z",
    "listed": 348,
    "inStock": 154
   },
   "j2games": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:10.306Z",
+   "lastOkAt": "2026-11-14T00:30:04.361Z",
    "listed": 126,
    "inStock": 19
   },
   "jacstores": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:15.779Z",
-   "listed": 813,
+   "lastOkAt": "2026-11-14T00:30:08.484Z",
+   "listed": 823,
    "inStock": 759
   },
   "jajascollectables": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:19.416Z",
+   "lastOkAt": "2026-11-14T00:30:12.355Z",
    "listed": 870,
    "inStock": 854
   },
   "jnstoys": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:23.258Z",
+   "lastOkAt": "2026-11-14T00:30:14.447Z",
    "listed": 81,
    "inStock": 73
   },
   "kingstablegames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:48.177Z",
+   "lastOkAt": "2026-11-14T00:30:36.370Z",
    "listed": 62,
    "inStock": 28
   },
   "krakendice": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:04.220Z",
-   "listed": 112,
-   "inStock": 96
+   "lastOkAt": "2026-11-14T00:30:49.865Z",
+   "listed": 111,
+   "inStock": 94
   },
   "kryptonitekollectibl": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:05.329Z",
+   "lastOkAt": "2026-11-14T00:30:50.661Z",
    "listed": 211,
    "inStock": 211
   },
   "lthobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:08.492Z",
+   "lastOkAt": "2026-11-14T00:30:52.998Z",
    "listed": 465,
-   "inStock": 341
+   "inStock": 339
   },
   "leisuregames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:45.882Z",
+   "lastOkAt": "2026-11-14T00:31:26.327Z",
    "listed": 655,
-   "inStock": 634
+   "inStock": 633
   },
   "skafexpress": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:50.705Z",
+   "lastOkAt": "2026-11-14T00:31:29.773Z",
    "listed": 546,
    "inStock": 539
   },
   "livingrealms": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:02.723Z",
+   "lastOkAt": "2026-11-14T00:31:38.876Z",
    "listed": 125,
    "inStock": 109
   },
   "shopofmagic": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:15.402Z",
-   "listed": 3859,
-   "inStock": 1780
+   "lastOkAt": "2026-11-14T00:31:54.908Z",
+   "listed": 3860,
+   "inStock": 1782
   },
   "loadeddice": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:19.803Z",
-   "listed": 2617,
-   "inStock": 2192
+   "lastOkAt": "2026-11-14T00:31:53.649Z",
+   "listed": 2616,
+   "inStock": 2189
   },
   "lotuspetalgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:20.619Z",
+   "lastOkAt": "2026-11-14T00:31:55.400Z",
    "listed": 46,
    "inStock": 38
   },
   "mainephasehobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:34.051Z",
+   "lastOkAt": "2026-11-14T00:32:09.419Z",
    "listed": 92,
    "inStock": 91
   },
   "manaconfluence": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:37.273Z",
+   "lastOkAt": "2026-11-14T00:32:12.111Z",
    "listed": 328,
    "inStock": 219
   },
   "manathril": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:45.156Z",
+   "lastOkAt": "2026-11-14T00:32:18.718Z",
    "listed": 133,
    "inStock": 120
   },
   "maziply": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:54.934Z",
-   "listed": 338,
-   "inStock": 296
+   "lastOkAt": "2026-11-14T00:32:26.921Z",
+   "listed": 336,
+   "inStock": 294
   },
   "mechagames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:57.100Z",
+   "lastOkAt": "2026-11-14T00:32:28.719Z",
    "listed": 502,
-   "inStock": 295
+   "inStock": 294
   },
   "marionvillemodels": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:40:13.685Z",
+   "lastOkAt": "2026-11-14T00:32:41.353Z",
    "listed": 2510,
-   "inStock": 1414
+   "inStock": 1412
   },
   "millenniumgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:40:19.933Z",
+   "lastOkAt": "2026-11-14T00:32:47.017Z",
    "listed": 1344,
-   "inStock": 760
+   "inStock": 754
   },
   "motorcitygaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:41:05.822Z",
-   "listed": 190,
-   "inStock": 185
+   "lastOkAt": "2026-11-14T00:33:28.106Z",
+   "listed": 189,
+   "inStock": 184
   },
   "moxboardinghouse": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:41:10.631Z",
+   "lastOkAt": "2026-11-14T00:33:32.001Z",
    "listed": 793,
-   "inStock": 661
+   "inStock": 662
   },
   "moxvalleygames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:41:23.547Z",
-   "listed": 261,
-   "inStock": 256
+   "lastOkAt": "2026-11-14T00:33:43.265Z",
+   "listed": 262,
+   "inStock": 257
   },
   "mrmuffinstrains": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:02.601Z",
+   "lastOkAt": "2026-11-14T00:34:19.346Z",
    "listed": 2385,
-   "inStock": 2304
+   "inStock": 2303
   },
   "mythicos": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:13.512Z",
+   "lastOkAt": "2026-11-14T00:34:28.630Z",
    "listed": 631,
    "inStock": 266
   },
   "nerdvanacardsandgame": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:26.798Z",
+   "lastOkAt": "2026-11-14T00:34:38.352Z",
    "listed": 72,
    "inStock": 37
   },
   "nexuslgs": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:32.006Z",
-   "listed": 265,
-   "inStock": 249
+   "lastOkAt": "2026-11-14T00:34:43.088Z",
+   "listed": 266,
+   "inStock": 252
   },
   "nerdzoic": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:30.331Z",
-   "listed": 739,
-   "inStock": 620
+   "lastOkAt": "2026-11-14T00:34:41.360Z",
+   "listed": 736,
+   "inStock": 619
   },
   "nexustabletopgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:33.560Z",
+   "lastOkAt": "2026-11-14T00:34:44.228Z",
    "listed": 213,
    "inStock": 104
   },
   "northernwartable": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:34.200Z",
+   "lastOkAt": "2026-11-14T00:34:44.770Z",
    "listed": 49,
    "inStock": 36
   },
   "northumbriantinsoldi": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:42.704Z",
-   "listed": 1175,
-   "inStock": 704
+   "lastOkAt": "2026-11-14T00:34:51.935Z",
+   "listed": 1190,
+   "inStock": 718
   },
   "nutmeggames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:48.449Z",
+   "lastOkAt": "2026-11-14T00:34:57.057Z",
    "listed": 672,
    "inStock": 452
   },
   "oeshop": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:52.781Z",
+   "lastOkAt": "2026-11-14T00:34:59.703Z",
    "listed": 200,
    "inStock": 60
   },
   "omegagames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:55.543Z",
+   "lastOkAt": "2026-11-14T00:35:02.442Z",
    "listed": 478,
    "inStock": 271
   },
   "onlinecoinsandcollec": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:42:57.381Z",
-   "listed": 272,
-   "inStock": 165
+   "lastOkAt": "2026-11-14T00:35:10.087Z",
+   "listed": 271,
+   "inStock": 189
   },
   "phatcatzgaming": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:24.774Z",
+   "lastOkAt": "2026-11-14T00:35:35.028Z",
    "listed": 322,
    "inStock": 322
   },
@@ -2003,109 +2003,109 @@
   },
   "planetcomicsdirect": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:44.445Z",
-   "listed": 1891,
-   "inStock": 1363
+   "lastOkAt": "2026-11-14T00:35:51.834Z",
+   "listed": 1894,
+   "inStock": 1390
   },
   "progressccg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:59.208Z",
+   "lastOkAt": "2026-11-14T00:36:05.496Z",
    "listed": 490,
    "inStock": 489
   },
   "portalsshop": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:43:54.802Z",
+   "lastOkAt": "2026-11-14T00:36:02.044Z",
    "listed": 1340,
-   "inStock": 925
+   "inStock": 924
   },
   "prohobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:03.325Z",
+   "lastOkAt": "2026-11-14T00:36:08.228Z",
    "listed": 506,
-   "inStock": 333
+   "inStock": 332
   },
   "pfcomics": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:07.897Z",
+   "lastOkAt": "2026-11-14T00:36:12.046Z",
    "listed": 690,
    "inStock": 690
   },
   "raincity": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:11.440Z",
+   "lastOkAt": "2026-11-14T00:36:14.986Z",
    "listed": 1037,
-   "inStock": 433
+   "inStock": 443
   },
   "reapergamestore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:13.596Z",
-   "listed": 597,
-   "inStock": 319
+   "lastOkAt": "2026-11-14T00:36:17.454Z",
+   "listed": 603,
+   "inStock": 329
   },
   "recessgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:20.465Z",
-   "listed": 1084,
-   "inStock": 953
+   "lastOkAt": "2026-11-14T00:36:22.765Z",
+   "listed": 1081,
+   "inStock": 950
   },
   "redraccoongames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:22.027Z",
+   "lastOkAt": "2026-11-14T00:36:24.095Z",
    "listed": 322,
    "inStock": 314
   },
   "retrogamingofdenver": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:28.467Z",
+   "lastOkAt": "2026-11-14T00:36:29.802Z",
    "listed": 79,
    "inStock": 29
   },
   "retronorthgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:41.549Z",
+   "lastOkAt": "2026-11-14T00:36:40.101Z",
    "listed": 1284,
-   "inStock": 686
+   "inStock": 683
   },
   "rollthedicecornwall": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:48.661Z",
+   "lastOkAt": "2026-11-14T00:36:45.933Z",
    "listed": 691,
    "inStock": 644
   },
   "sagaconcepts": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:53.031Z",
-   "listed": 901,
-   "inStock": 667
+   "lastOkAt": "2026-11-14T00:36:49.768Z",
+   "listed": 905,
+   "inStock": 662
   },
   "saltcitygames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:44:54.933Z",
+   "lastOkAt": "2026-11-14T00:36:51.382Z",
    "listed": 440,
    "inStock": 440
   },
   "shallweplaygames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:00.931Z",
+   "lastOkAt": "2026-11-14T00:36:57.471Z",
    "listed": 679,
    "inStock": 438
   },
   "shufflenroll": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:01.181Z",
+   "lastOkAt": "2026-11-14T00:36:56.707Z",
    "listed": 468,
    "inStock": 219
   },
   "sidequestgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:03.601Z",
+   "lastOkAt": "2026-11-14T00:36:59.243Z",
    "listed": 331,
    "inStock": 298
   },
   "sleevedupcollectible": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:04.499Z",
+   "lastOkAt": "2026-11-14T00:36:59.777Z",
    "listed": 319,
    "inStock": 302
   },
@@ -2118,322 +2118,322 @@
   },
   "spacecoast": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:06.401Z",
+   "lastOkAt": "2026-11-14T00:37:01.055Z",
    "listed": 213,
    "inStock": 129
   },
   "stateofcomics": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:08.592Z",
+   "lastOkAt": "2026-11-14T00:37:02.449Z",
    "listed": 223,
    "inStock": 223
   },
   "stevensongames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:09.922Z",
+   "lastOkAt": "2026-11-14T00:37:03.501Z",
    "listed": 210,
    "inStock": 187
   },
   "superanimestore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:14.553Z",
+   "lastOkAt": "2026-11-14T00:37:07.813Z",
    "listed": 698,
    "inStock": 430
   },
   "spraygunner": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:16.435Z",
-   "listed": 968,
+   "lastOkAt": "2026-11-14T00:37:07.983Z",
+   "listed": 852,
    "inStock": 638
   },
   "swordsandspoons": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:17.647Z",
+   "lastOkAt": "2026-11-14T00:37:08.966Z",
    "listed": 133,
    "inStock": 64
   },
   "tcwarroom": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:35.434Z",
+   "lastOkAt": "2026-11-14T00:37:21.714Z",
    "listed": 1310,
-   "inStock": 605
+   "inStock": 603
   },
   "cardcooptcg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:36.179Z",
+   "lastOkAt": "2026-11-14T00:37:23.024Z",
    "listed": 79,
    "inStock": 79
   },
   "arcanumsanctorum": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:34.012Z",
+   "lastOkAt": "2026-11-14T00:37:22.578Z",
    "listed": 498,
    "inStock": 272
   },
   "dragonstrove": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:41.256Z",
+   "lastOkAt": "2026-11-14T00:37:27.611Z",
    "listed": 117,
-   "inStock": 33
+   "inStock": 32
   },
   "thedragonsbeard": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:46.788Z",
+   "lastOkAt": "2026-11-14T00:37:31.990Z",
    "listed": 825,
-   "inStock": 468
+   "inStock": 461
   },
   "thegameroom": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:50.587Z",
+   "lastOkAt": "2026-11-14T00:37:35.412Z",
    "listed": 873,
-   "inStock": 634
+   "inStock": 631
   },
   "thegamersden": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:57.604Z",
+   "lastOkAt": "2026-11-14T00:37:41.876Z",
    "listed": 1022,
-   "inStock": 922
+   "inStock": 920
   },
   "thegamerslodge": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:00.039Z",
+   "lastOkAt": "2026-11-14T00:37:42.705Z",
    "listed": 567,
    "inStock": 318
   },
   "theguardtower": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:10.438Z",
+   "lastOkAt": "2026-11-14T00:37:51.728Z",
    "listed": 1296,
-   "inStock": 685
+   "inStock": 684
   },
   "themightyhobby": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:21.519Z",
+   "lastOkAt": "2026-11-14T00:38:01.577Z",
    "listed": 87,
    "inStock": 65
   },
   "theportalcomicsandga": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:25.084Z",
+   "lastOkAt": "2026-11-14T00:38:04.328Z",
    "listed": 865,
    "inStock": 330
   },
   "theswordandboardtoro": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:37.774Z",
-   "listed": 2267,
+   "lastOkAt": "2026-11-14T00:38:15.542Z",
+   "listed": 2268,
    "inStock": 947
   },
   "tistaminis": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:36.875Z",
+   "lastOkAt": "2026-11-14T00:38:13.812Z",
    "listed": 104,
-   "inStock": 75
+   "inStock": 76
   },
   "totalescapegames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:46:52.069Z",
+   "lastOkAt": "2026-11-14T00:38:27.710Z",
    "listed": 774,
-   "inStock": 566
+   "inStock": 565
   },
   "toysoldiergames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:01.763Z",
+   "lastOkAt": "2026-11-14T00:38:36.067Z",
    "listed": 2656,
-   "inStock": 1550
+   "inStock": 1577
   },
   "unpluggedgamestore": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:17.020Z",
+   "lastOkAt": "2026-11-14T00:38:49.478Z",
    "listed": 375,
    "inStock": 349
   },
   "undiscoveredrealm": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:17.042Z",
+   "lastOkAt": "2026-11-14T00:38:49.005Z",
    "listed": 783,
    "inStock": 176
   },
   "untappedmarket": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:18.143Z",
+   "lastOkAt": "2026-11-14T00:38:49.728Z",
    "listed": 99,
    "inStock": 75
   },
   "uppercrust": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:19.169Z",
+   "lastOkAt": "2026-11-14T00:38:50.506Z",
    "listed": 222,
    "inStock": 91
   },
   "upnorthgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:22.367Z",
-   "listed": 803,
-   "inStock": 349
+   "lastOkAt": "2026-11-14T00:38:54.144Z",
+   "listed": 804,
+   "inStock": 352
   },
   "upscalehobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:24.497Z",
-   "listed": 594,
-   "inStock": 522
+   "lastOkAt": "2026-11-14T00:38:55.022Z",
+   "listed": 593,
+   "inStock": 521
   },
   "wargamesusa": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:47.091Z",
+   "lastOkAt": "2026-11-14T00:39:14.314Z",
    "listed": 621,
-   "inStock": 465
+   "inStock": 461
   },
   "warsen": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:12.951Z",
+   "lastOkAt": "2026-11-14T00:39:33.808Z",
    "listed": 640,
    "inStock": 532
   },
   "waypointgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:06.164Z",
+   "lastOkAt": "2026-11-14T00:39:31.073Z",
    "listed": 55,
    "inStock": 55
   },
   "wolfdentcg": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:16.224Z",
+   "lastOkAt": "2026-11-14T00:39:38.497Z",
    "listed": 798,
-   "inStock": 718
+   "inStock": 717
   },
   "wargameportal": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:05.005Z",
+   "lastOkAt": "2026-11-14T00:39:30.637Z",
    "listed": 2100,
    "inStock": 1852
   },
   "zeroedingames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:20.738Z",
+   "lastOkAt": "2026-11-14T00:39:41.745Z",
    "listed": 134,
-   "inStock": 111
+   "inStock": 110
   },
   "zulusgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:23.178Z",
+   "lastOkAt": "2026-11-14T00:39:43.776Z",
    "listed": 393,
    "inStock": 47
   },
   "afistfulofdice": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:26:43.555Z",
+   "lastOkAt": "2026-11-14T00:21:15.201Z",
    "listed": 1697,
-   "inStock": 667
+   "inStock": 659
   },
   "battlereadygames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:29:18.916Z",
+   "lastOkAt": "2026-11-14T00:23:31.594Z",
    "listed": 1123,
-   "inStock": 953
+   "inStock": 950
   },
   "castlecomics": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:31:12.963Z",
-   "listed": 4397,
-   "inStock": 4213
+   "lastOkAt": "2026-11-14T00:25:09.848Z",
+   "listed": 4409,
+   "inStock": 4225
   },
   "doublestarhobby": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:32:15.065Z",
-   "listed": 1822,
-   "inStock": 1418
+   "lastOkAt": "2026-11-14T00:25:58.879Z",
+   "listed": 1821,
+   "inStock": 1414
   },
   "fenrisworkshop": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:07.149Z",
-   "listed": 3770,
-   "inStock": 2467
+   "lastOkAt": "2026-11-14T00:26:43.796Z",
+   "listed": 3758,
+   "inStock": 2459
   },
   "gamecorner": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:33:44.752Z",
+   "lastOkAt": "2026-11-14T00:27:14.581Z",
    "listed": 100,
    "inStock": 53
   },
   "hobbycity": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:21.596Z",
+   "lastOkAt": "2026-11-14T00:29:23.615Z",
    "listed": 294,
    "inStock": 294
   },
   "hobbytechtoys": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:42.942Z",
+   "lastOkAt": "2026-11-14T00:29:41.939Z",
    "listed": 2681,
-   "inStock": 1837
+   "inStock": 1846
   },
   "imperialhobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:36:54.344Z",
+   "lastOkAt": "2026-11-14T00:29:50.753Z",
    "listed": 820,
    "inStock": 758
   },
   "jrtoycanada": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:29.623Z",
+   "lastOkAt": "2026-11-14T00:30:21.156Z",
    "listed": 564,
-   "inStock": 427
+   "inStock": 424
   },
   "kapitihobbies": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:37:47.051Z",
-   "listed": 3365,
-   "inStock": 3244
+   "lastOkAt": "2026-11-14T00:30:35.789Z",
+   "listed": 3380,
+   "inStock": 3256
   },
   "kingdomtitans": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:38:22.951Z",
+   "lastOkAt": "2026-11-14T00:31:09.559Z",
    "listed": 3942,
-   "inStock": 2596
+   "inStock": 2590
   },
   "mapleairbrush": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:39:51.455Z",
+   "lastOkAt": "2026-11-14T00:32:22.606Z",
    "listed": 266,
    "inStock": 222
   },
   "mindgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:40:41.950Z",
+   "lastOkAt": "2026-11-14T00:33:07.427Z",
    "listed": 113,
    "inStock": 52
   },
   "tabletoprenaissance": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:45:28.840Z",
-   "listed": 962,
-   "inStock": 745
+   "lastOkAt": "2026-11-14T00:37:18.766Z",
+   "listed": 963,
+   "inStock": 746
   },
   "warandpeacegames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:43.313Z",
+   "lastOkAt": "2026-11-14T00:39:11.892Z",
    "listed": 443,
-   "inStock": 417
+   "inStock": 416
   },
   "wargamershub": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:47:59.610Z",
+   "lastOkAt": "2026-11-14T00:39:23.853Z",
    "listed": 2443,
-   "inStock": 1519
+   "inStock": 1603
   },
   "wargamesemporium": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:05.613Z",
-   "listed": 1122,
-   "inStock": 433
+   "lastOkAt": "2026-11-14T00:39:28.390Z",
+   "listed": 1114,
+   "inStock": 429
   },
   "westcoastgames": {
    "ok": true,
-   "lastOkAt": "2026-11-13T00:48:07.965Z",
+   "lastOkAt": "2026-11-14T00:39:32.091Z",
    "listed": 42,
    "inStock": 42
   }
  },
- "products": 6716
+ "products": 6717
 }

@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "wargame",
- "generatedAt": "2026-11-13T01:06:45.758Z",
+ "generatedAt": "2026-11-14T01:02:08.851Z",
  "links": {
   "UK": {
    "deals": "https://wargamecompare.com/uk/deals"
@@ -360,6 +360,20 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "US",
+   "title": "Blood Bowl: Chaos Dwarf Cards",
+   "url": "https://wargamecompare.com/us/p/blood-bowl-chaos-dwarf-cards",
+   "cents": 1759,
+   "currency": "USD",
+   "store": "Wargame Portal",
+   "image": "https://cdn.shopify.com/s/files/1/1704/1809/files/2024_09_60050911001_BBChaosDwarfTeamCards04.jpg?v=1727535321&width=200",
+   "refCents": 3500,
+   "refLabel": "RRP",
+   "savingPct": 50
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "US",
    "title": "Broken Realms: Kragnos",
    "url": "https://wargamecompare.com/us/p/broken-realms-kragnos",
    "cents": 2000,
@@ -425,20 +439,6 @@
    "refCents": 6200,
    "refLabel": "RRP",
    "savingPct": 49
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "US",
-   "title": "Warcry: Core Book",
-   "url": "https://wargamecompare.com/us/p/warcry-core-book",
-   "cents": 2495,
-   "currency": "USD",
-   "store": "Digital Heroes",
-   "image": "https://cdn.shopify.com/s/files/1/0635/4812/9501/products/19239.jpg?v=1723834309&width=200",
-   "refCents": 4800,
-   "refLabel": "median store price",
-   "savingPct": 48
   }
  ]
 }
