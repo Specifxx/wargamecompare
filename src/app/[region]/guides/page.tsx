@@ -30,7 +30,6 @@ export default function GuidesIndex({ params }: { params: { region: string } }) 
             <Link href={`/${r.region}/guides/${g.slug}`} className="guide-card group">
               <p className="font-display text-lg font-bold leading-snug group-hover:text-brand">{fill(g.h1, r.inName)}</p>
               <p className="mt-1.5 text-sm leading-6 text-muted">{fill(g.description, r.inName)}</p>
-              <span aria-hidden="true" className="mt-auto pt-3 text-sm font-semibold text-brand">Read the guide →</span>
             </Link>
           </li>
         ))}

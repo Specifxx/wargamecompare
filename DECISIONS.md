@@ -1215,3 +1215,26 @@ Checked against main with scripts off on 18 URLs: identical title, meta descript
 JSON-LD and h1; no h2 lost; the same set of internal links; no indexed words lost; and every outbound link (eBay, Amazon, stores,
 the sticky bar, the ad block) in the same order with the same words and href. No paid link, ad block, placement name, URL, metadata
 or `revalidate` changed, so the 19 November clicks-per-placement recheck is unaffected.
+
+## 2026-11-14: review of the inner-page design pass, and what it left unfinished
+
+An independent check of #111 against the build before it (`7d5a4a7`), on 34 URLs with scripts off and 17 page types at 390 and
+1440px in both themes. Server HTML: identical title, meta description, canonical, hreflang, robots, Open Graph, JSON-LD and h1 on
+all 34; no h2, internal link or indexed word lost; every outbound link the same words, href, rel and order (53 on a many-store UK
+product page, 119 on a US one, 18 sold out). In the browser: no sideways scroll, no layout shift, no console or hydration error,
+no new text under 4.5:1 and a visible focus ring everywhere it was tabbed. robots.txt, the sitemaps (576 UK URLs; a sample of
+40 all 200, indexable and self-canonical) and the 404s were already right.
+
+What it got wrong or left half done, now fixed:
+
+- Guides: "Other guides" was still one run-on line ("…the prices to beatThe cheapest way…"), though the pass said it had become
+  cards. It is now a labelled list of title-only cards in the guides index's style (a `<nav>`, same links, same words).
+- Guides index: the "Read the guide →" line added to every card is gone; the whole card is already the link. Quieter.
+- Search with no results: the new suggestions sit under the eBay box as plain text and chips, not a second framed card, so a
+  dead end shows one box, not two. The eBay box keeps its place, words and button.
+- Price report: the region names no longer break onto two lines in the table.
+- Reduced motion: the new guide cards' hover lift, and the product cards' lift and photo zoom the site already had, are still for a
+  visitor who asks for less motion (`globals.css`, the reduced-motion block after `.hc-card`).
+
+No paid link, ad block, placement name, URL, metadata or `revalidate` changed, so the 19 November clicks-per-placement recheck is
+unaffected.

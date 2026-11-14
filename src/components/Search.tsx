@@ -194,7 +194,7 @@ export function Search({
         </div>
       )}
       {rows && !results.length && (
-        <div className="card mt-4 px-6 py-8 text-center">
+        <div className="mt-8 px-2 text-center">
           <p className="font-display text-lg font-bold">{q ? <>Nothing matches &ldquo;{q}&rdquo;</> : "Nothing matches those filters"}</p>
           <p className="mx-auto mt-1.5 max-w-[46ch] text-sm leading-6 text-muted">
             {q ? "Check the spelling, try fewer words or a box code like 48-75" : "Try fewer filters"}
