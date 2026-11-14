@@ -16,7 +16,7 @@ export default function Page() {
   const names = REGION_LIST.map((r) => r.inName);
   const markets = `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
   return (
-    <div className="page prose-wg max-w-3xl py-10">
+    <div className="page prose-wg py-8 sm:py-10">
       <ListYourStore
         badge={storeBadge(SITE_URL, SITE_NAME, "Tabletop")}
         site="WargameCompare"

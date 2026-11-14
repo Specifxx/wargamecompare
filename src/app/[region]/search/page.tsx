@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHead } from "@/components/PageHead";
 import { Search } from "@/components/Search";
 import { FACTIONS, SYSTEMS, TYPES } from "@/lib/catalog";
 import { ebaySearchUrl } from "@/lib/affiliate";
@@ -17,8 +18,8 @@ export function generateMetadata({ params }: { params: { region: string } }): Me
 export default function SearchPage({ params }: { params: { region: string } }) {
   const r = regionOr404(params.region);
   return (
-    <div className="page py-8">
-      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">Search {r.inName}</h1>
+    <div className="page py-6 sm:py-8">
+      <PageHead crumbs={[{ path: `/${r.region}`, label: r.name }, { path: `/${r.region}/search`, label: "Search" }]} title={<>Search {r.inName}</>} />
       <Search
         region={r.region}
         systems={SYSTEMS.map((s) => [s.slug, s.name])}
@@ -26,6 +27,14 @@ export default function SearchPage({ params }: { params: { region: string } }) {
         types={TYPES.map((t) => [t.slug, t.name])}
         ebayBase={ebaySearchUrl("QUERY", r.region, "browse-empty")}
         ebayBrowse={ebaySearchUrl("QUERY", r.region, "browse-ebay")}
+        suggest={[
+          { href: `/${r.region}/deals`, label: "Today’s deals" },
+          { href: `/${r.region}/new-releases`, label: "New releases" },
+          { href: `/${r.region}/type/combat-patrols`, label: "Combat Patrols" },
+          { href: `/${r.region}/game/warhammer-40k`, label: "Warhammer 40,000" },
+          { href: `/${r.region}/game/age-of-sigmar`, label: "Age of Sigmar" },
+          { href: `/${r.region}/type/paints`, label: "Paints" },
+        ]}
       />
     </div>
   );

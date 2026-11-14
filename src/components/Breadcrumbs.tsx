@@ -17,7 +17,7 @@ export function parentCrumb(items: Crumb[]): Crumb | null {
  * and one line instead of a wrapping trail above the H1); from sm, the whole trail. The BreadcrumbList JSON-LD (seo.ts breadcrumbLd)
  * is emitted once, whichever shows, with the same names and paths the pages carried before.
  */
-export function Breadcrumbs({ items }: { items: Crumb[] }) {
+export function Breadcrumbs({ items, ld = true }: { items: Crumb[]; /** false: the page already emits its own BreadcrumbList (or none), so draw the trail only. */ ld?: boolean }) {
   const parent = parentCrumb(items);
   const last = items.length - 1;
   return (
@@ -48,7 +48,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
           </li>
         ))}
       </ol>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd(items.map((c) => ({ name: c.label, path: c.path })))) }} />
+      {ld && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd(items.map((c) => ({ name: c.label, path: c.path })))) }} />}
     </nav>
   );
 }

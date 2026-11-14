@@ -1184,3 +1184,34 @@ With "Add to cart" beside the store's button, a phone row's second column took t
 PRICE" on the cheapest row). Below 640px a full row is now name and stock, price, host, then the cart button and the store's
 button side by side at full width (`globals.css`, after `.or-act`). The name keeps the whole row and the cart button says "Add to
 cart" in full. Lean rows, the order of rows and every paid row's wording are unchanged.
+
+## 2026-11-14: every inner page brought up to the home page's design (owner: "make all the other pages more aesthetic as well")
+
+The home page's language is now the spec for the rest of the site: one page header (`components/PageHead.tsx`: the trail, the h1
+in the home page's voice, one line of lead, then any key facts or toolbar), the home page's section title (`.sec-title`, now also
+used by `Section`), its cards and chips, and one article style (`.art-*` in `globals.css`, applied to plain HTML by `.prose-wg`:
+a ~68-character measure, one heading scale, styled lists, `.data-table` for numbers, which scrolls in its own box on a phone).
+
+- Product pages: on a phone the photo is a 216px plate instead of a full-width square, and the game, army, kind of kit and box code
+  are one quiet dotted line under the h1 (they were chips above it), so the name, photo, stock and best price fit the first screen.
+  The price alert and "Report a wrong price" are two matching buttons (`.tool-btn`; `triggerClassName` / `summaryClassName` props,
+  off by default, so the forms are unchanged elsewhere).
+- Game, army and kind-of-kit pages: the armies, kinds of kit and other games are one sideways row each on a phone, wrapped from
+  1024px (`.chip-row`), so the first products sit about one screen down instead of three. Every chip is still a link in the server HTML.
+- Deals, new releases, Black Friday, Cyber Monday and the other sale pages: product names wrap to two lines instead of being cut off,
+  prices are the display face and tabular, the secondary line reads in `muted` instead of `faint`.
+- Guides index and guides: the shared header with a visible trail (drawn without a second BreadcrumbList: `Breadcrumbs ld={false}`),
+  article typography, tables in `.data-table`, and "Other guides" as cards instead of a run-on line of links.
+- Stores and a store: the shared header, roomier rows with the count in tabular figures; a store that is the cheapest for nothing
+  today now says so with two ways on, instead of an empty heading.
+- Search: the box is full width with an icon, the filters a two-column grid on a phone with 44px targets; a search with no results
+  says so and offers sold-out matches, clearing the filters and six of the region's own lists; the results area keeps its height
+  while the index loads (layout shift 0.376 to 0 on a phone).
+- About, legal, contact, price report and the 404: the same h1 and prose; the footer's two-line links get breathing room.
+- Home (polish only): the Deals and New releases chips are neutral like the others (they were brand pink and green), per the
+  three-colour rule.
+
+Checked against main with scripts off on 18 URLs: identical title, meta description, canonical, hreflang, robots, Open Graph,
+JSON-LD and h1; no h2 lost; the same set of internal links; no indexed words lost; and every outbound link (eBay, Amazon, stores,
+the sticky bar, the ad block) in the same order with the same words and href. No paid link, ad block, placement name, URL, metadata
+or `revalidate` changed, so the 19 November clicks-per-placement recheck is unaffected.

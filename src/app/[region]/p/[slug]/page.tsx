@@ -134,37 +134,26 @@ export default function ProductPage({ params }: { params: { region: string; slug
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10">
         <div>
-          <div className="plate relative mx-auto aspect-square max-w-md">
+          <div className="plate relative mx-auto aspect-square w-full max-w-[13.5rem] sm:max-w-md">
             {p.image ? (
               <img src={thumb(p.image, 800) ?? undefined} alt={p.name} width={800} height={800} className="absolute inset-0 h-full w-full object-contain p-4 mix-blend-multiply" fetchPriority="high" />
             ) : (
               <div className="flex h-full items-center justify-center text-sm text-sold">No photo</div>
             )}
           </div>
-          {p.image && photoStore && <p className="mt-2 text-center text-xs text-faint">Photo: {storeName(photoStore)}</p>}
+          {p.image && photoStore && <p className="mt-1.5 text-center text-xs text-faint sm:mt-2">Photo: {storeName(photoStore)}</p>}
         </div>
 
         <div className="min-w-0">
-          <div className="flex flex-wrap gap-2 text-xs">
-            {system && (
-              <Link href={`/${region}/game/${system.slug}`} className="chip py-1 text-xs">
-                {system.name}
-              </Link>
-            )}
-            {faction && (
-              <Link href={`/${region}/faction/${faction.slug}`} className="chip py-1 text-xs">
-                {faction.name}
-              </Link>
-            )}
-            {type && (
-              <Link href={`/${region}/type/${type.slug}`} className="chip py-1 text-xs">
-                {type.name}
-              </Link>
-            )}
-            {p.code && <span className="chip py-1 text-xs">Box code {p.code}</span>}
-          </div>
-          <h1 className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight sm:text-4xl">{p.name}</h1>
-          <div className="mt-3 flex flex-wrap items-center gap-3">
+          <h1 className="font-display text-[26px] font-bold leading-[1.15] tracking-tight [text-wrap:balance] sm:text-4xl">{p.name}</h1>
+          {/* Key facts: the game, the army and the kind of kit (links to their lists) and the box code, as one quiet line. */}
+          <p className="pf-facts">
+            {system && <Link href={`/${region}/game/${system.slug}`}>{system.name}</Link>}
+            {faction && <Link href={`/${region}/faction/${faction.slug}`}>{faction.name}</Link>}
+            {type && <Link href={`/${region}/type/${type.slug}`}>{type.name}</Link>}
+            {p.code && <span className="tabular">Box code {p.code}</span>}
+          </p>
+          <div className="mt-2 flex flex-wrap items-center gap-2.5">
             <StockPill state={best ? "open" : "soldout"}>{best ? `In stock at ${inStock} of ${offers.length} ${offers.length === 1 ? "store" : "stores"}` : offers.length ? `Sold out at all ${offers.length} ${offers.length === 1 ? "store" : "stores"}` : "Not in stock"}</StockPill>
             <ShareButton title={p.name} path={`/${region}/p/${p.id}`} text={productShareText(p.name, offers, storeName, (c) => formatPrice(c, region))} />
           </div>
@@ -234,10 +223,10 @@ export default function ProductPage({ params }: { params: { region: string; slug
         <PriceListNote>
           {updated && <p>Store prices checked {new Date(updated).toUTCString().slice(5, 22)} UTC.</p>}
         </PriceListNote>
-        <div className="mt-4 flex flex-wrap items-start gap-3">
-          <ReportPrice product={`${p.name}${p.code ? ` (${p.code})` : ""}`} region={r.short} buttonClassName="btn-ghost" stores={rows.stores.map((x) => ({ name: x.name, price: x.price ?? "sold out" }))} />
+        <div className="pf-tools mt-5 flex flex-wrap items-start gap-2">
           {/* RiftCompare's shared alert service emails when it drops (lib/alert-feed.ts, DECISIONS.md 2026-11-02). */}
-          <PriceAlertForm site={ALERT_SITE_KEY} productId={p.id} region={r.market} priceCents={s?.best ?? null} buttonClassName="btn-ghost" />
+          <PriceAlertForm site={ALERT_SITE_KEY} productId={p.id} region={r.market} priceCents={s?.best ?? null} buttonClassName="btn-primary" triggerClassName="tool-btn" />
+          <ReportPrice product={`${p.name}${p.code ? ` (${p.code})` : ""}`} region={r.short} buttonClassName="btn-ghost" summaryClassName="tool-btn" stores={rows.stores.map((x) => ({ name: x.name, price: x.price ?? "sold out" }))} />
         </div>
         <p className="mt-3 text-xs text-faint">
           eBay and Amazon are pinned first as labelled ads; the stores under them are sorted by price, in stock first, never by what we earn. {EBAY_DISCLOSURE} {amazon ? AMAZON_DISCLOSURE : ""}

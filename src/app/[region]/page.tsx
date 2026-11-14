@@ -81,10 +81,10 @@ export default function RegionHome({ params }: { params: { region: string } }) {
             </div>
             <RegionChips region={r.region} className="mt-4" />
             <nav aria-label="Jump to" className="mt-4 flex flex-wrap gap-2">
-              <Link href={`/${r.region}/deals`} prefetch={false} className="chip min-h-10 border-brand/30 bg-brand-soft font-semibold text-brand-strong hover:border-brand/60">
+              <Link href={`/${r.region}/deals`} prefetch={false} className="chip min-h-10 font-semibold">
                 <Icon name="tag" size={16} /> Deals
               </Link>
-              <Link href={`/${r.region}/new-releases`} prefetch={false} className="chip min-h-10 border-open/30 bg-open-soft font-semibold text-open hover:border-open/60">
+              <Link href={`/${r.region}/new-releases`} prefetch={false} className="chip min-h-10 font-semibold">
                 <Icon name="calendar" size={16} /> New releases
               </Link>
               <Link href={`/${r.region}/type/combat-patrols`} prefetch={false} className="chip min-h-10">

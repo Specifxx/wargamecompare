@@ -64,9 +64,9 @@ export default function Page() {
     })),
   };
   return (
-    <div className="page py-8">
+    <div className="page py-6 sm:py-8">
       <div className="max-w-3xl">
-        <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+        <h1 className="ph-title">
           Is this a good price?
         </h1>
         <p className="mt-3 text-lg leading-8 text-muted">

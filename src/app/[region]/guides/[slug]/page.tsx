@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PageHead } from "@/components/PageHead";
 import { ProductCard } from "@/components/ProductCard";
 import { offersFor, summariesFor, type Summary } from "@/lib/data";
 import { cheapestOfType, fill, GUIDE_BY_SLUG, GUIDES, mostStockedOfType, storeSavings, type GuideInfo } from "@/lib/guides";
@@ -36,15 +37,16 @@ export function generateMetadata({ params }: { params: { region: string; slug: s
 
 const Grid = ({ items, r }: { items: Summary[]; r: RegionInfo }) =>
   items.length ? (
-    <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+    <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
       {items.map((s) => <ProductCard key={s.product.id} s={s} region={r.region} />)}
     </div>
   ) : (
-    <p className="mt-3 text-muted">None in stock at two or more stores today.</p>
+    <p className="card mt-5 px-5 py-6 text-muted">None in stock at two or more stores today.</p>
   );
 
-const H2 = ({ children }: { children: React.ReactNode }) => <h2 className="mt-10 font-display text-2xl font-extrabold">{children}</h2>;
-const P = ({ children }: { children: React.ReactNode }) => <p className="mt-3 max-w-3xl leading-relaxed text-muted">{children}</p>;
+// Article typography (globals.css .art-*): one ~68-character measure, one heading scale, one rhythm.
+const H2 = ({ children }: { children: React.ReactNode }) => <h2 className="art-h2">{children}</h2>;
+const P = ({ children }: { children: React.ReactNode }) => <p className="art-p">{children}</p>;
 
 function Start({ r, all }: { r: RegionInfo; all: Summary[] }) {
   const starters40k = cheapestOfType(all, "starter-sets", 4, "warhammer-40k", 3);
@@ -66,9 +68,9 @@ function Start({ r, all }: { r: RegionInfo; all: Summary[] }) {
         A starter set holds two small armies, the core rules and a battle map, so two people can play from one box. It is the best value per model in the range, and
         many stores sell it under RRP. The cheapest in stock today:
       </P>
-      <h3 className="mt-6 font-display text-lg font-bold">Warhammer 40,000</h3>
+      <h3 className="art-h3">Warhammer 40,000</h3>
       <Grid items={starters40k} r={r} />
-      <h3 className="mt-6 font-display text-lg font-bold">Age of Sigmar</h3>
+      <h3 className="art-h3">Age of Sigmar</h3>
       <Grid items={startersAos} r={r} />
       <H2>2. A Combat Patrol or Spearhead if you know your army</H2>
       <P>
@@ -79,16 +81,16 @@ function Start({ r, all }: { r: RegionInfo; all: Summary[] }) {
       <P>And the cheapest Spearheads:</P>
       <Grid items={spearheads} r={r} />
       <P>
-        Every Combat Patrol and Spearhead we compare is on <Link className="text-brand underline" href={`/${r.region}/type/combat-patrols`}>one page</Link>, cheapest first.
+        Every Combat Patrol and Spearhead we compare is on <Link className="art-link" href={`/${r.region}/type/combat-patrols`}>one page</Link>, cheapest first.
       </P>
       <H2>3. A paint set</H2>
       <P>A paint set with a brush covers your first army. Add a primer spray when you can; it makes paint go on far more evenly.</P>
       <Grid items={paints} r={r} />
       <H2>How to spend less</H2>
-      <ul className="mt-3 max-w-3xl list-disc space-y-2 pl-5 leading-relaxed text-muted">
-        <li>Buy from an independent store: most sell under RRP. See <Link className="text-brand underline" href={`/${r.region}/guides/discount-stores-vs-rrp`}>how much each store saves</Link>.</li>
+      <ul className="art-list">
+        <li>Buy from an independent store: most sell under RRP. See <Link className="art-link" href={`/${r.region}/guides/discount-stores-vs-rrp`}>how much each store saves</Link>.</li>
         <li>Skip the codex or battletome at first: the box rules are enough to learn on.</li>
-        <li>Check <Link className="text-brand underline" href={`/${r.region}/deals`}>today&rsquo;s deals</Link> before buying: a starter set or patrol is often among them.</li>
+        <li>Check <Link className="art-link" href={`/${r.region}/deals`}>today&rsquo;s deals</Link> before buying: a starter set or patrol is often among them.</li>
         <li>Add the store&rsquo;s shipping before comparing: our prices are item prices.</li>
       </ul>
     </>
@@ -112,23 +114,23 @@ function Discounts({ r, all }: { r: RegionInfo; all: Summary[] }) {
       <H2>Every store against RRP</H2>
       <P>A store&rsquo;s typical saving is the median across every in-stock product it lists that has a stated RRP. Stores with fewer than 20 such products are left out.</P>
       {rows.length ? (
-        <div className="card mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+        <div className="data-table">
+          <table>
             <thead>
-              <tr className="border-b border-line text-left text-faint">
-                <th className="px-3 py-2">Store</th>
-                <th className="px-3 py-2 text-right">Typical saving</th>
-                <th className="px-3 py-2 text-right">Under RRP</th>
-                <th className="px-3 py-2 text-right">Products compared</th>
+              <tr>
+                <th>Store</th>
+                <th className="num">Typical saving</th>
+                <th className="num">Under RRP</th>
+                <th className="num">Products compared</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((x) => (
-                <tr key={x.store} className="border-b border-line last:border-0">
-                  <td className="px-3 py-2 font-semibold"><Link href={`/${r.region}/stores/${x.store}`} className="hover:text-brand">{STORE_BY_KEY.get(x.store)?.name ?? x.store}</Link></td>
-                  <td className="tabular px-3 py-2 text-right font-bold">{x.typical > 0 ? `${pct(x.typical)} off` : x.typical < 0 ? `${pct(-x.typical)} over` : "at RRP"}</td>
-                  <td className="tabular px-3 py-2 text-right">{pct(x.under)}</td>
-                  <td className="tabular px-3 py-2 text-right">{x.compared}</td>
+                <tr key={x.store}>
+                  <td className="font-semibold"><Link href={`/${r.region}/stores/${x.store}`} className="hover:text-brand hover:underline">{STORE_BY_KEY.get(x.store)?.name ?? x.store}</Link></td>
+                  <td className="num font-bold">{x.typical > 0 ? `${pct(x.typical)} off` : x.typical < 0 ? `${pct(-x.typical)} over` : "at RRP"}</td>
+                  <td className="num">{pct(x.under)}</td>
+                  <td className="num">{x.compared}</td>
                 </tr>
               ))}
             </tbody>
@@ -140,8 +142,8 @@ function Discounts({ r, all }: { r: RegionInfo; all: Summary[] }) {
       <H2>The biggest savings on RRP today</H2>
       <Grid items={biggest} r={r} />
       <P>
-        All of today&rsquo;s savings of 10% or more are on <Link className="text-brand underline" href={`/${r.region}/deals`}>the deals page</Link>, and every store is
-        on <Link className="text-brand underline" href={`/${r.region}/stores`}>stores we compare</Link>.
+        All of today&rsquo;s savings of 10% or more are on <Link className="art-link" href={`/${r.region}/deals`}>the deals page</Link>, and every store is
+        on <Link className="art-link" href={`/${r.region}/stores`}>stores we compare</Link>.
       </P>
       <H2>Read the saving with shipping</H2>
       <P>
@@ -187,11 +189,11 @@ function Trajectory({ r, all }: { r: RegionInfo; all: Summary[] }) {
           Across {gap.n.toLocaleString(r.locale)} products that two or more of the stores we compare list in stock with a stated RRP, the cheapest store is
           typically <strong>{pct(gap.typical)} under RRP</strong>. {pct(gap.under)} of those products can be had under RRP somewhere, {pct(gap.deep)} at 20% off or
           more, and the best tenth of savings run to {pct(gap.top)} or better. {stores.length ? <>The deepest typical discounter in {r.inName} today is{" "}
-          <Link href={`/${r.region}/stores/${stores[0].store}`} className="text-brand underline">{STORE_BY_KEY.get(stores[0].store)?.name ?? stores[0].store}</Link> at {pct(stores[0].typical)} off across {stores[0].compared} products; every store is ranked in{" "}
-          <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="text-brand underline">store savings vs RRP</Link>.</> : null}
+          <Link href={`/${r.region}/stores/${stores[0].store}`} className="art-link">{STORE_BY_KEY.get(stores[0].store)?.name ?? stores[0].store}</Link> at {pct(stores[0].typical)} off across {stores[0].compared} products; every store is ranked in{" "}
+          <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="art-link">store savings vs RRP</Link>.</> : null}
         </P>
       ) : (
-        <P>Too few stores in {r.inName} state an RRP today for a fair measure of the discount; the <Link href={`/${r.region}/deals`} className="text-brand underline">deals page</Link> lists what is under the median of the stores we compare.</P>
+        <P>Too few stores in {r.inName} state an RRP today for a fair measure of the discount; the <Link href={`/${r.region}/deals`} className="art-link">deals page</Link> lists what is under the median of the stores we compare.</P>
       )}
       <P>
         The pattern inside those numbers has held since we started comparing: a core of long-established discounters sells almost everything at a fixed percentage
@@ -201,23 +203,23 @@ function Trajectory({ r, all }: { r: RegionInfo; all: Summary[] }) {
       </P>
       <H2>How {r.inName} compares</H2>
       {others.length ? (
-        <div className="card mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+        <div className="data-table">
+          <table>
             <thead>
-              <tr className="border-b border-line text-left text-faint">
-                <th className="px-3 py-2">Country</th>
-                <th className="px-3 py-2 text-right">Typical saving under RRP</th>
-                <th className="px-3 py-2 text-right">Products 20%+ off</th>
-                <th className="px-3 py-2 text-right">Products compared</th>
+              <tr>
+                <th>Country</th>
+                <th className="num">Typical saving under RRP</th>
+                <th className="num">Products 20%+ off</th>
+                <th className="num">Products compared</th>
               </tr>
             </thead>
             <tbody>
               {[{ r, gap }, ...others].filter((x) => x.gap).map((x) => (
-                <tr key={x.r.region} className={`border-b border-line last:border-0 ${x.r.region === r.region ? "font-semibold" : ""}`}>
-                  <td className="px-3 py-2"><Link href={`/${x.r.region}/guides/warhammer-prices-where-they-are-heading`} className="hover:text-brand">{x.r.name}</Link></td>
-                  <td className="tabular px-3 py-2 text-right">{pct(x.gap!.typical)}</td>
-                  <td className="tabular px-3 py-2 text-right">{pct(x.gap!.deep)}</td>
-                  <td className="tabular px-3 py-2 text-right">{x.gap!.n.toLocaleString(r.locale)}</td>
+                <tr key={x.r.region} className={x.r.region === r.region ? "font-semibold" : undefined}>
+                  <td><Link href={`/${x.r.region}/guides/warhammer-prices-where-they-are-heading`} className="hover:text-brand hover:underline">{x.r.name}</Link></td>
+                  <td className="num">{pct(x.gap!.typical)}</td>
+                  <td className="num">{pct(x.gap!.deep)}</td>
+                  <td className="num">{x.gap!.n.toLocaleString(r.locale)}</td>
                 </tr>
               ))}
             </tbody>
@@ -237,8 +239,8 @@ function Trajectory({ r, all }: { r: RegionInfo; all: Summary[] }) {
         prices move the same day, so the only way to buy at the old price is before it. Second, the discount gap holds: nothing in four years of rises has narrowed
         it, and tariff costs fall on GW&rsquo;s own US prices, not on what an independent store chooses to take off them. Third, the sales calendar matters more than
         the rise. Black Friday, Boxing Day and the January sales are when the stores that normally sit at 10% off go to 20% or more, and those are a bigger swing than
-        any annual rise. The <Link href={`/${r.region}/black-friday`} className="text-brand underline">Black Friday page</Link> and{" "}
-        <Link href={`/${r.region}/deals`} className="text-brand underline">deals page</Link> show what is actually under RRP each morning, never a sale we invented.
+        any annual rise. The <Link href={`/${r.region}/black-friday`} className="art-link">Black Friday page</Link> and{" "}
+        <Link href={`/${r.region}/deals`} className="art-link">deals page</Link> show what is actually under RRP each morning, never a sale we invented.
       </P>
     </>
   );
@@ -265,7 +267,7 @@ function Gifts({ r, all }: { r: RegionInfo; all: Summary[] }) {
       <H2>Stocking fillers: paint sets, tools and books</H2>
       <P>
         A paint set is the one gift no player returns: every army needs more of it. The sets below bundle a brush with the colours; a single pot or a primer spray
-        is cheaper still, and every paint we compare is on <Link className="text-brand underline" href={`/${r.region}/type/paints`}>the paints page</Link>.
+        is cheaper still, and every paint we compare is on <Link className="art-link" href={`/${r.region}/type/paints`}>the paints page</Link>.
       </P>
       <Grid items={paints} r={r} />
       <P>Tools and hobby supplies the most stores stock, which is the best sign that players actually buy them:</P>
@@ -275,7 +277,7 @@ function Gifts({ r, all }: { r: RegionInfo; all: Summary[] }) {
       <H2>A kit for their own army</H2>
       <P>
         If you know which army they play, one box of it is the gift that gets used first. These are the kits the most stores in {r.inName} have in stock today,
-        a fair proxy for what players are buying this season; filter by system on <Link className="text-brand underline" href={`/${r.region}/type/miniatures`}>the kits page</Link>
+        a fair proxy for what players are buying this season; filter by system on <Link className="art-link" href={`/${r.region}/type/miniatures`}>the kits page</Link>
         to find their faction.
       </P>
       <Grid items={kits} r={r} />
@@ -295,20 +297,20 @@ function Gifts({ r, all }: { r: RegionInfo; all: Summary[] }) {
       <Grid items={starters} r={r} />
       <P>
         Battleforces and army sets in stock at two or more stores today, cheapest first. Games Workshop&rsquo;s Christmas battleforces appear here the day stores
-        list them; every army set we compare is on <Link className="text-brand underline" href={`/${r.region}/type/army-sets`}>the army sets page</Link>.
+        list them; every army set we compare is on <Link className="art-link" href={`/${r.region}/type/army-sets`}>the army sets page</Link>.
       </P>
       <Grid items={armies} r={r} />
       <H2>Today&rsquo;s biggest savings, if you are flexible</H2>
       <P>
         If the budget matters more than the box, these are the products furthest under RRP at a store in {r.inName} this morning. The full list is on{" "}
-        <Link className="text-brand underline" href={`/${r.region}/deals`}>the deals page</Link>, and <Link className="text-brand underline" href={`/${r.region}/black-friday`}>Black Friday</Link> is
+        <Link className="art-link" href={`/${r.region}/deals`}>the deals page</Link>, and <Link className="art-link" href={`/${r.region}/black-friday`}>Black Friday</Link> is
         when the stores that normally sit at 10% off go deeper.
       </P>
       <Grid items={deals} r={r} />
       <H2>Before you order a gift</H2>
-      <ul className="mt-3 max-w-3xl list-disc space-y-2 pl-5 leading-relaxed text-muted">
+      <ul className="art-list">
         <li>Check the store&rsquo;s last order date for delivery before the 25th; it is usually on the shipping page, and it moves earlier every week of December.</li>
-        <li>Add shipping before comparing: our prices are item prices, and free-shipping thresholds differ by store. See <Link className="text-brand underline" href={`/${r.region}/guides/discount-stores-vs-rrp`}>how much each store saves</Link>.</li>
+        <li>Add shipping before comparing: our prices are item prices, and free-shipping thresholds differ by store. See <Link className="art-link" href={`/${r.region}/guides/discount-stores-vs-rrp`}>how much each store saves</Link>.</li>
         <li>Buy the box, not the codex: the rules in a Combat Patrol, Spearhead or starter set are enough to learn on, and the army book they want changes with each edition.</li>
         <li>When in doubt, a store gift card from the shop they already use keeps the discount: most independents sell under RRP, so the card buys more than it would at GW.</li>
       </ul>
@@ -335,8 +337,8 @@ function BlackFriday({ r, all }: { r: RegionInfo; all: Summary[] }) {
         read a Black Friday price against. Prices are in {r.currency}. {r.taxNote}
       </P>
       <P>
-        The deals themselves are on <Link className="text-brand underline" href={`/${r.region}/black-friday`}>Warhammer Black Friday deals</Link>, rebuilt every day
-        through the week, and <Link className="text-brand underline" href={`/${r.region}/cyber-monday`}>Cyber Monday deals</Link> does the same for the Monday.
+        The deals themselves are on <Link className="art-link" href={`/${r.region}/black-friday`}>Warhammer Black Friday deals</Link>, rebuilt every day
+        through the week, and <Link className="art-link" href={`/${r.region}/cyber-monday`}>Cyber Monday deals</Link> does the same for the Monday.
       </P>
       <H2>Where each store already sits against RRP</H2>
       <P>
@@ -344,21 +346,21 @@ function BlackFriday({ r, all }: { r: RegionInfo; all: Summary[] }) {
         on top of a store that is already well under RRP goes further than the same code at a store that sells at RRP.
       </P>
       {rows.length ? (
-        <div className="card mt-4 overflow-x-auto">
-          <table className="w-full text-sm">
+        <div className="data-table">
+          <table>
             <thead>
-              <tr className="border-b border-line text-left text-faint">
-                <th className="px-3 py-2">Store</th>
-                <th className="px-3 py-2 text-right">Typical saving today</th>
-                <th className="px-3 py-2 text-right">Products compared</th>
+              <tr>
+                <th>Store</th>
+                <th className="num">Typical saving today</th>
+                <th className="num">Products compared</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((x) => (
-                <tr key={x.store} className="border-b border-line last:border-0">
-                  <td className="px-3 py-2 font-semibold"><Link href={`/${r.region}/stores/${x.store}`} className="hover:text-brand">{STORE_BY_KEY.get(x.store)?.name ?? x.store}</Link></td>
-                  <td className="tabular px-3 py-2 text-right font-bold">{x.typical > 0 ? `${pct(x.typical)} off` : x.typical < 0 ? `${pct(-x.typical)} over` : "at RRP"}</td>
-                  <td className="tabular px-3 py-2 text-right">{x.compared}</td>
+                <tr key={x.store}>
+                  <td className="font-semibold"><Link href={`/${r.region}/stores/${x.store}`} className="hover:text-brand hover:underline">{STORE_BY_KEY.get(x.store)?.name ?? x.store}</Link></td>
+                  <td className="num font-bold">{x.typical > 0 ? `${pct(x.typical)} off` : x.typical < 0 ? `${pct(-x.typical)} over` : "at RRP"}</td>
+                  <td className="num">{x.compared}</td>
                 </tr>
               ))}
             </tbody>
@@ -373,12 +375,12 @@ function BlackFriday({ r, all }: { r: RegionInfo; all: Summary[] }) {
       <H2>Starter sets</H2>
       <Grid items={starters} r={r} />
       <H2>Five checks before you pay</H2>
-      <ul className="mt-3 max-w-3xl list-disc space-y-2 pl-5 leading-relaxed text-muted">
+      <ul className="art-list">
         <li>Compare with the cheapest store today, not with the RRP or a struck-through price: the RRP is a price most independents never charge.</li>
         <li>Add the shipping. A bigger discount can cost more once shipping is added, and free-shipping thresholds differ by store.</li>
         <li>Check it is in stock. A low price on a pre-order or a backorder ships later, or not at all.</li>
         <li>Read the code&rsquo;s terms: stores often leave new releases and pre-orders out of site-wide codes.</li>
-        <li>For gifts, check the store&rsquo;s last order date for delivery before the 25th. Our <Link className="text-brand underline" href={`/${r.region}/guides/warhammer-gift-guide`}>gift guide</Link> has ideas at every budget.</li>
+        <li>For gifts, check the store&rsquo;s last order date for delivery before the 25th. Our <Link className="art-link" href={`/${r.region}/guides/warhammer-gift-guide`}>gift guide</Link> has ideas at every budget.</li>
       </ul>
     </>
   );
@@ -391,14 +393,14 @@ export default function GuidePage({ params }: { params: { region: string; slug: 
   const url = `${SITE_URL}/${r.region}/guides/${g.slug}`;
   const ld = { "@context": "https://schema.org", "@type": "Article", headline: h1, description: fill(g.description, r.inName), url, mainEntityOfPage: url, publisher: { "@type": "Organization", name: "WargameCompare", url: SITE_URL } };
   return (
-    <article className="page py-8">
+    <article className="page py-6 sm:py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ld) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd([{ name: r.name, path: `/${r.region}` }, { name: "Guides", path: `/${r.region}/guides` }, { name: h1, path: `/${r.region}/guides/${g.slug}` }])) }} />
-      <p className="text-xs font-bold uppercase tracking-wide text-faint"><Link href={`/${r.region}/guides`} className="hover:text-brand">Guides</Link> · {r.name}</p>
-      <h1 className="mt-1 font-display text-3xl font-extrabold">{h1}</h1>
+      {/* The trail only: this page writes its own BreadcrumbList above. */}
+      <PageHead crumbs={[{ path: `/${r.region}`, label: r.name }, { path: `/${r.region}/guides`, label: "Guides" }, { path: `/${r.region}/guides/${g.slug}`, label: h1 }]} title={h1} />
       {g.slug === "warhammer-black-friday-2026" ? <BlackFriday r={r} all={all} /> : g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : g.slug === "discount-stores-vs-rrp" ? <Discounts r={r} all={all} /> : g.slug === "warhammer-gift-guide" ? <Gifts r={r} all={all} /> : <Trajectory r={r} all={all} />}
       <p className="mt-8 text-sm text-faint">
-        Other guides: {GUIDES.filter((x) => x.slug !== g.slug).map((x) => <Link key={x.slug} className="text-brand underline" href={`/${r.region}/guides/${x.slug}`}>{fill(x.h1, r.inName)}</Link>)}
+        Other guides: {GUIDES.filter((x) => x.slug !== g.slug).map((x) => <Link key={x.slug} className="art-link" href={`/${r.region}/guides/${x.slug}`}>{fill(x.h1, r.inName)}</Link>)}
       </p>
     </article>
   );

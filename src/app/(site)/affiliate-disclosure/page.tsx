@@ -4,8 +4,8 @@ export const metadata: Metadata = { title: "Affiliate disclosure", alternates: {
 
 export default function Page() {
   return (
-    <div className="page prose-wg max-w-3xl py-10">
-      <h1 className="mb-6 font-display text-3xl font-extrabold text-ink">Affiliate disclosure</h1>
+    <div className="page prose-wg py-8 sm:py-10">
+      <h1 className="ph-title mb-2 text-ink">Affiliate disclosure</h1>
       <p>WargameCompare is free and earns money from some of the links on it. When you buy through one of them we may earn a commission, at no extra cost to you.</p>
 <ul><li><strong>eBay</strong>: as an eBay Partner Network affiliate, WargameCompare earns from qualifying purchases. eBay rows and boxes are labelled &ldquo;Ad&rdquo;.</li>
 <li><strong>Amazon</strong>: as an Amazon Associate WargameCompare earns from qualifying purchases. Amazon rows are labelled &ldquo;Ad&rdquo;; we do not check Amazon&rsquo;s price or stock.</li>

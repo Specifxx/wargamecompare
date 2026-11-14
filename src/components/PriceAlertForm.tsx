@@ -46,6 +46,7 @@ export function PriceAlertForm({
   priceCents,
   className,
   buttonClassName,
+  triggerClassName,
   summary = "Email me when the price drops",
 }: {
   /** this site's key in the alert service ("mtg", "gundam", …) */
@@ -57,6 +58,8 @@ export function PriceAlertForm({
   priceCents: number | null;
   className?: string;
   buttonClassName?: string;
+  /** Draw the closed state's button with this class instead of the plain underlined text (the product page's tools row). */
+  triggerClassName?: string;
   summary?: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -88,7 +91,7 @@ export function PriceAlertForm({
   if (!open) {
     return (
       <div className={className}>
-        <button type="button" onClick={() => setOpen(true)} style={{ background: "none", border: 0, padding: 0, color: "inherit", font: "inherit", fontSize: 14, fontWeight: 600, textDecoration: "underline", cursor: "pointer" }}>
+        <button type="button" onClick={() => setOpen(true)} className={triggerClassName} style={triggerClassName ? undefined : { background: "none", border: 0, padding: 0, color: "inherit", font: "inherit", fontSize: 14, fontWeight: 600, textDecoration: "underline", cursor: "pointer" }}>
           {summary}
         </button>
       </div>

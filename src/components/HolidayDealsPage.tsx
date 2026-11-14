@@ -34,9 +34,9 @@ export function HolidayDealsPage({ event, region }: { event: HolidayEvent; regio
   const bf = blackFriday(year);
   const list = deals(summariesFor(r.region), mediansFor(r.region)).slice(0, 100);
   return (
-    <div className="page py-8">
-      <h1 className="font-display text-3xl font-extrabold">Warhammer {event === "black-friday" ? "Black Friday" : "Cyber Monday"} deals in {r.inName}, {year}</h1>
-      <p className="mt-2 max-w-3xl text-muted">
+    <div className="page py-6 sm:py-8">
+      <h1 className="ph-title">Warhammer {event === "black-friday" ? "Black Friday" : "Cyber Monday"} deals in {r.inName}, {year}</h1>
+      <p className="ph-lead">
         {event === "black-friday"
           ? <>Black Friday is {longDate(bf)} and Cyber Monday is {longDate(cyberMonday(year))} {year}.{now < bf ? " Many stores start their sales earlier." : ""}</>
           : <>Cyber Monday is {longDate(cyberMonday(year))} {year}, the Monday after Black Friday ({longDate(bf)}).{now < cyberMonday(year) ? " Many stores start their sales earlier." : ""}</>}{" "}Below is every
@@ -45,35 +45,35 @@ export function HolidayDealsPage({ event, region }: { event: HolidayEvent; regio
       </p>
       <div className="card mt-6 divide-y divide-line overflow-hidden">
         {list.map((d) => (
-          <Link key={d.s.product.id} href={`/${r.region}/p/${d.s.product.id}`} className="flex items-center gap-3 px-3 py-3 hover:bg-raised">
-            <div className="plate h-14 w-14 shrink-0">{d.s.product.image && <img src={thumb(d.s.product.image, 120) ?? undefined} alt={d.s.product.name} loading="lazy" className="h-full w-full object-contain p-1" />}</div>
+          <Link key={d.s.product.id} href={`/${r.region}/p/${d.s.product.id}`} className="lr group">
+            <div className="plate h-14 w-14 shrink-0">{d.s.product.image && <img src={thumb(d.s.product.image, 120) ?? undefined} alt={d.s.product.name} width={56} height={56} loading="lazy" className="h-full w-full object-contain p-1 mix-blend-multiply" />}</div>
             <div className="min-w-0 flex-1">
-              <p className="truncate font-semibold">{d.s.product.name}</p>
-              <p className="text-xs text-faint">
-                at {STORE_BY_KEY.get(d.s.bestStore ?? "")?.name ?? d.s.bestStore} · {d.basis === "rrp" ? "RRP" : "median"} {formatPrice(d.ref, r.region)}
+              <p className="lr-name group-hover:text-brand">{d.s.product.name}</p>
+              <p className="lr-sub">
+                at {STORE_BY_KEY.get(d.s.bestStore ?? "")?.name ?? d.s.bestStore} · {d.basis === "rrp" ? "RRP" : "median"} <span className="tabular">{formatPrice(d.ref, r.region)}</span>
               </p>
             </div>
-            <div className="text-right">
-              <p className="tabular font-bold">{formatPrice(d.s.best!, r.region)}</p>
-              <p className="text-xs font-bold text-open">−{Math.round(d.saving * 100)}%</p>
+            <div className="shrink-0 text-right">
+              <p className="tabular font-display text-lg font-bold leading-6">{formatPrice(d.s.best!, r.region)}</p>
+              <p className="tabular text-xs font-bold text-open">−{Math.round(d.saving * 100)}%</p>
             </div>
           </Link>
         ))}
-        {!list.length && <p className="p-4 text-muted">No product is 10% under RRP or the median store price in {r.inName} today.</p>}
+        {!list.length && <p className="px-5 py-6 text-muted">No product is 10% under RRP or the median store price in {r.inName} today.</p>}
       </div>
       <FamilyCluster region={r.region} />
-      <p className="mt-6 text-sm">
-        <Link href={`/${r.region}/${event === "black-friday" ? "cyber-monday" : "black-friday"}`} className="underline">{event === "black-friday" ? "Cyber Monday deals" : "Black Friday deals"}</Link> ·{" "}
-        <Link href={`/${r.region}/deals`} className="underline">Today&rsquo;s deals</Link> · <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="underline">Store savings vs RRP</Link> ·{" "}
-        <Link href={`/${r.region}/stores`} className="underline">Stores we compare</Link> ·{" "}
-        <Link href={`/${r.region}/guides/warhammer-black-friday-2026`} className="underline">Black Friday: the prices to beat</Link>
+      <p className="link-line mt-8">
+        <Link href={`/${r.region}/${event === "black-friday" ? "cyber-monday" : "black-friday"}`} className="art-link">{event === "black-friday" ? "Cyber Monday deals" : "Black Friday deals"}</Link> ·{" "}
+        <Link href={`/${r.region}/deals`} className="art-link">Today&rsquo;s deals</Link> · <Link href={`/${r.region}/guides/discount-stores-vs-rrp`} className="art-link">Store savings vs RRP</Link> ·{" "}
+        <Link href={`/${r.region}/stores`} className="art-link">Stores we compare</Link> ·{" "}
+        <Link href={`/${r.region}/guides/warhammer-black-friday-2026`} className="art-link">Black Friday: the prices to beat</Link>
       </p>
-      <section className="mt-8 max-w-3xl">
-        <h2 className="font-display text-xl font-bold">{event === "black-friday" ? "Black Friday" : "Cyber Monday"} {year}: questions</h2>
+      <section className="mt-14">
+        <h2 className="sec-title">{event === "black-friday" ? "Black Friday" : "Cyber Monday"} {year}: questions</h2>
         {holidayFaq(event, year, r.inName).map((f) => (
-          <div key={f.q} className="mt-3 text-sm">
-            <h3 className="font-semibold">{f.q}</h3>
-            <p className="text-muted">{f.a}</p>
+          <div key={f.q} className="mt-5 max-w-[68ch]">
+            <h3 className="font-semibold leading-snug">{f.q}</h3>
+            <p className="mt-1 text-[15px] leading-7 text-muted">{f.a}</p>
           </div>
         ))}
       </section>
