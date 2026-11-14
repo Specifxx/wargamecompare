@@ -399,9 +399,19 @@ export default function GuidePage({ params }: { params: { region: string; slug: 
       {/* The trail only: this page writes its own BreadcrumbList above. */}
       <PageHead crumbs={[{ path: `/${r.region}`, label: r.name }, { path: `/${r.region}/guides`, label: "Guides" }, { path: `/${r.region}/guides/${g.slug}`, label: h1 }]} title={h1} />
       {g.slug === "warhammer-black-friday-2026" ? <BlackFriday r={r} all={all} /> : g.slug === "cheapest-way-to-start" ? <Start r={r} all={all} /> : g.slug === "discount-stores-vs-rrp" ? <Discounts r={r} all={all} /> : g.slug === "warhammer-gift-guide" ? <Gifts r={r} all={all} /> : <Trajectory r={r} all={all} />}
-      <p className="mt-8 text-sm text-faint">
-        Other guides: {GUIDES.filter((x) => x.slug !== g.slug).map((x) => <Link key={x.slug} className="art-link" href={`/${r.region}/guides/${x.slug}`}>{fill(x.h1, r.inName)}</Link>)}
-      </p>
+      {/* The other guides as a short list of cards (the guides index's card, title only), not one run-on line of links. */}
+      <nav aria-label="Other guides" className="mt-14">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted">Other guides</p>
+        <ul role="list" className="mt-3 grid gap-3 sm:grid-cols-2">
+          {GUIDES.filter((x) => x.slug !== g.slug).map((x) => (
+            <li key={x.slug} className="min-w-0">
+              <Link className="guide-card group px-4 py-3.5" href={`/${r.region}/guides/${x.slug}`}>
+                <span className="text-[15px] font-semibold leading-snug group-hover:text-brand">{fill(x.h1, r.inName)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </article>
   );
 }

@@ -767,6 +767,9 @@ html[data-hr="us"] .hr-us {
 @media (prefers-reduced-motion: reduce) {
   .hc-card { transition: none; }
   .hc-card:hover { transform: none; }
+  /* 2026-11-14: every hover lift and image zoom (product cards, guide cards) stays still for a visitor who asked for less motion. */
+  .card, .guide-card, .pc-img, .card img { transition: none !important; }
+  .card:hover, .guide-card:hover, .card:hover .pc-img, .card:hover img { transform: none !important; }
 }
 /* components/Flag.tsx: a flag image the height of the text beside it. */
 .flag {

@@ -49,7 +49,7 @@ export default function PriceReport() {
             <tbody>
               {regions.map(({ r, stats }) => (
                 <tr key={r.region}>
-                  <td><Link className="underline" href={`/${r.region}`}>{r.name}</Link></td>
+                  <td className="whitespace-nowrap"><Link className="underline" href={`/${r.region}`}>{r.name}</Link></td>
                   <td className="num">{stats.stores}</td>
                   <td className="num">{stats.inStock.toLocaleString("en-GB")}</td>
                   <td className="num">{stats.withRrp ? pctText(stats.underRrp / stats.withRrp) : "—"}</td>
