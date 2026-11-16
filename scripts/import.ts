@@ -11,6 +11,7 @@
 //                                the Actions cache (refresh-prices.yml). Never bundled with the site.
 //
 // Usage: tsx scripts/import.ts [--only key1,key2] [--concurrency 2]
+import { loadDenylist, withoutDenied } from "@/lib/denylist";
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
@@ -94,7 +95,9 @@ async function main() {
   const previous = readJson<Product[]>("products.json", []);
   fs.mkdirSync(CACHE, { recursive: true });
 
-  const todo = STORES.filter((s) => !only || only.includes(s.key) || only.includes(s.market));
+  // The shared scam denylist (TCGEmpire scam sweep, owner 2026-11-16): denied stores are skipped and their cache deleted below.
+  const live = withoutDenied(STORES, await loadDenylist());
+  const todo = live.filter((s) => !only || only.includes(s.key) || only.includes(s.market));
   const health: Record<string, StoreHealth> = { ...prevMeta.stores };
   let next = 0;
   async function worker() {
@@ -115,7 +118,7 @@ async function main() {
   // Every store's last good read, if it is fresh enough.
   const all: StoreListing[] = [];
   const now = Date.now();
-  for (const s of STORES) {
+  for (const s of live) {
     const f = path.join(CACHE, `${s.key}.json.gz`);
     if (!fs.existsSync(f)) continue;
     const c = JSON.parse(zlib.gunzipSync(fs.readFileSync(f)).toString("utf8")) as CacheFile;
@@ -123,7 +126,7 @@ async function main() {
     all.push(...c.listings);
   }
   // Registry entries that were removed leave their cache behind: delete it.
-  const keys = new Set(STORES.map((s) => s.key));
+  const keys = new Set(live.map((s) => s.key));
   for (const f of fs.readdirSync(CACHE)) if (!keys.has(f.replace(/\.json\.gz$/, ""))) fs.rmSync(path.join(CACHE, f));
   for (const k of Object.keys(health)) if (!keys.has(k)) delete health[k];
 
