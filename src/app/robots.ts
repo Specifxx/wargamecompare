@@ -9,10 +9,12 @@ const BLOCKED_BOTS = [
   "MJ12bot", "DotBot", "PetalBot", "DataForSeoBot", "BLEXBot", "Barkrowler", "serpstatbot", "SeekportBot", "ImagesiftBot", "Timpibot",
 ];
 
+// Next's RSC prefetch variants (?_rsc=) are the same page again as a payload, never an index entry (Gemini SEO report, 2026-11-17).
+// /_next/ assets stay crawlable: no rule here blocks them.
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/api/", "/*/search"] },
+      { userAgent: "*", allow: "/", disallow: ["/api/", "/*/search", "/*?_rsc="] },
       { userAgent: BLOCKED_BOTS, disallow: "/" },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
