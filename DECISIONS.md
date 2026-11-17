@@ -1238,3 +1238,7 @@ What it got wrong or left half done, now fixed:
 
 No paid link, ad block, placement name, URL, metadata or `revalidate` changed, so the 19 November clicks-per-placement recheck is
 unaffected.
+
+## 2026-11-17: Quick view always shows the store's name; "Add to cart" is smaller (owner: "you can't even see the store name"; "add to cart seems too big")
+
+From sm up the price row's badges wrap under the name instead of squeezing it (`.or-top` wraps, `.or-name` keeps 4.5rem), and the eBay row uses the same classes (it had its own copy, which let "eBay" and "TCGplayer" shrink to nothing beside the Ad / Best price / Marketplace badges). The cart button is 36px tall at 12px text with a thinner border (`.ce-cart-add.has-label`). Layout and sizing only: no wording, paid-row order or A/B arm changed.
