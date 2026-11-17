@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FAMILY_SITES, NETWORK_PAGE } from "@/lib/family-network";
+import { FAMILY_SITES, sameSide } from "@/lib/family-network";
 
 // The one page that links the owner's other sites (2026-11-08, DECISIONS.md "One Our sites page instead of footer
 // cross-links"): every footer links here once, and this page links each site once, by its plain name, instead of a
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const sites = FAMILY_SITES.filter((s) => s.id !== "wargame");
+  const sites = FAMILY_SITES.filter((s) => s.id !== "wargame" && sameSide("wargame", s.id));
   return (
     <div className="page prose-wg py-8 sm:py-10">
       <h1 className="ph-title mb-2 text-ink">Our other sites</h1>
@@ -23,9 +23,6 @@ export default function Page() {
           </li>
         ))}
       </ul>
-      <p>
-        <a href={NETWORK_PAGE} rel="noopener">Every Compare Empire site →</a>
-      </p>
     </div>
   );
 }
