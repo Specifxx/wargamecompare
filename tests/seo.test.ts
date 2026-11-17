@@ -87,3 +87,9 @@ test("each region's sitemap lists at most SITEMAP_PRODUCTS products, demand firs
   }
   assert.ok(total < 2500, `sitemap has ${total} URLs`);
 });
+
+test("robots.txt keeps Next's ?_rsc= prefetch URLs out of the crawl and never blocks /_next/ (2026-11-17)", () => {
+  const s = readFileSync(join(process.cwd(), "src/app/robots.ts"), "utf8");
+  assert.match(s, /\/\*\?_rsc=/);
+  assert.doesNotMatch(s, /disallow:[^\]]*\/_next/);
+});
