@@ -51,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT + SEASON_BOOT_SCRIPT + REGION_BOOT_SCRIPT + HOME_REGION_SCRIPT }} />
         {/* Product photos are the stores' own, on Shopify's CDN: warming that connection is the cheapest LCP win there is. */}
         <link rel="preconnect" href="https://cdn.shopify.com" />
+        {/* Impact (affiliate network) site check, in the exact form Impact gives: a `value` attribute. */}
+        <meta {...({ name: "impact-site-verification", value: "3825c945-0405-4bea-9090-bbc2ea516717" } as object)} />
       </head>
       <body className="flex min-h-screen flex-col">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-surface focus:px-4 focus:py-2">
