@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import { isAwinLink } from "@/lib/awin";
 import { REL_PAID, storeRel } from "@/lib/affiliate";
 import type { PriceListData, StoreRow } from "@/lib/price-rows";
@@ -39,10 +39,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
   const limit = compact ? stores.length : SHOWN;
   const more = stores.slice(limit);
   const moreOpen = more.filter((o) => o.inStock).length;
-  return (
-    <div className={`divide-y divide-line overflow-hidden ${compact ? "rounded-xl border border-line bg-surface" : "card"}`}>
-      <ul className="divide-y divide-line">
-        {/* eBay and Amazon work like a store row (owner, 2026-11-06): stock pill, thumbs, cart; on top, no outline (2026-11-12). */}
+  const ebayRow = (
         <li className={`${ROW_GRID} ${PIN_OUTLINE.ebay}`} data-row="ebay">
           <div className="or-top">
             <span className="or-name">{ebay.label}</span>
@@ -73,7 +70,8 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
             </OutboundLink>
           </div>
         </li>
-        {amazon && (
+  );
+  const amazonRow = amazon ? (
           <li className={`${ROW_GRID} ${PIN_OUTLINE.amazon}`} data-row="amazon">
             <div className="or-top">
               <span className="or-name">{amazon.label}</span>
@@ -100,19 +98,8 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
               </OutboundLink>
             </div>
           </li>
-        )}
-        {stores.map((o, i) => (i < limit ? <Row key={o.key} o={o} lean={i >= FULL_ROWS} /> : null))}
-      </ul>
-      {amazon?.live && <p className="px-4 py-2 text-[11px] leading-4 text-faint sm:px-5">* {AMAZON_PRICE_DISCLAIMER}</p>}
-      {more.length > 0 && (
-        <MoreRows label={moreOpen > 0 ? `Show ${more.length} more ${more.length === 1 ? "store" : "stores"} (${moreOpen} in stock)` : `Show ${more.length} more sold out`}>
-          {more.map((o, i) => (
-            <Row key={o.key} o={o} lean={limit + i >= FULL_ROWS} />
-          ))}
-        </MoreRows>
-      )}
-      {wayland && (
-        <ul>
+  ) : null;
+  const waylandRow = wayland ? (
           <li className={ROW_GRID} data-row="wayland">
             <div className="or-top">
               <span className="or-name">Wayland Games</span>
@@ -129,7 +116,30 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
               Search <span aria-hidden="true">↗</span>
             </OutboundLink>
           </li>
-        </ul>
+  ) : null;
+  // Owner, 2026-11-17 (final): eBay first, then Amazon, then Wayland (the other affiliated row), all above the stores. Never a paywall.
+  const paidRows = [
+    { k: "ebay", node: ebayRow },
+    { k: "amazon", node: amazonRow },
+    { k: "wayland", node: waylandRow },
+  ].filter((r) => r.node);
+  const byPrice = paidRows;
+  return (
+    <div className={`divide-y divide-line overflow-hidden ${compact ? "rounded-xl border border-line bg-surface" : "card"}`}>
+      <ul className="divide-y divide-line">
+        {/* eBay and Amazon work like a store row (owner, 2026-11-06): stock pill, thumbs, cart; on top, no outline (2026-11-12). */}
+        {byPrice.map((r) => (
+          <Fragment key={r.k}>{r.node}</Fragment>
+        ))}
+        {stores.map((o, i) => (i < limit ? <Row key={o.key} o={o} lean={i >= FULL_ROWS} /> : null))}
+      </ul>
+      {amazon?.live && <p className="px-4 py-2 text-[11px] leading-4 text-faint sm:px-5">* {AMAZON_PRICE_DISCLAIMER}</p>}
+      {more.length > 0 && (
+        <MoreRows label={moreOpen > 0 ? `Show ${more.length} more ${more.length === 1 ? "store" : "stores"} (${moreOpen} in stock)` : `Show ${more.length} more sold out`}>
+          {more.map((o, i) => (
+            <Row key={o.key} o={o} lean={limit + i >= FULL_ROWS} />
+          ))}
+        </MoreRows>
       )}
     </div>
   );
