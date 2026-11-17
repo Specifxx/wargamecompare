@@ -110,7 +110,8 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       ship: ebay ? (ebay.sh ? `Delivered, incl. ${formatPrice(ebay.sh, ebayRegion)} postage` : ebay.sh === 0 ? "Delivered, free postage" : "plus postage") : null,
       vs,
       // The price the row shows (delivered), in the eBay site's currency.
-      ...(ebay ? { cart: { title: p.name, image: p.image ?? null, priceCents: total, currency: REGIONS[ebayRegion].currency, productUrl: ebay.u } } : {}),
+      // Every price row has an Add to cart (owner, 2026-11-17): the search row's line opens this tagged link and says "See today's price".
+      cart: { title: p.name, image: p.image ?? null, priceCents: ebay ? total : 0, currency: REGIONS[ebayRegion].currency, productUrl: ebay ? ebay.u : ebaySearchUrl(p.name, region, at("ebay")) },
     },
     amazon: amazon
       ? {
@@ -119,7 +120,7 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
           placement: at("amazon"),
           found: !!liveHref,
           live: live && liveHref ? { price: formatPrice(live.p, storeFor(region)), at: live.at, timeZone: clock.timeZone, zoneLabel: clock.label } : null,
-          ...(live && liveHref ? { cart: { title: p.name, image: p.image ?? null, priceCents: live.p, currency: REGIONS[storeFor(region)].currency, productUrl: liveHref } } : {}),
+          cart: { title: p.name, image: p.image ?? null, priceCents: live && liveHref ? live.p : 0, currency: REGIONS[storeFor(region)].currency, productUrl: live && liveHref ? liveHref : amazon },
         }
       : null,
     stores: offers.map((o, i) => ({
