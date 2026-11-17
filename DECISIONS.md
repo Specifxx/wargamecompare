@@ -1263,3 +1263,13 @@ The five guides' `Article` JSON-LD had a headline and publisher but no dates or 
 guidance asks for. `GuideInfo.published` is the day each guide first shipped (8 November, from git); `dateModified` is the price
 data the guide is written around (`data/meta.json` `updatedAt`), never "now". No visible text, URL, title, canonical, paid link or
 `revalidate` changed.
+
+## 2026-11-17: Fiverr first-time-shopper review of DexCompare, applied here (owner)
+
+The owner bought a professional first-time-shopper QA review of DexCompare and asked for every finding that generalises to reach every site.
+Applied here (the full reasoning is in DexCompare's DECISIONS.md, same date):
+
+- **Cart hand-off:** the cart drawer opens with "You pay each store on its own site. We never take payment." (normal-size text, first thing in the
+  drawer); "Total before postage" became "Estimated total (before postage)"; the add button's tooltip says you pay at the store. The label stays
+  "Add to cart" (owner, 2026-11-14: a literal "Add to cart" on every row).
+- **The quick view sets the tab title and description while it is open** and restores them on close (the tab used to keep the list's title).
