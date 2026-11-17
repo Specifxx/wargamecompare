@@ -1256,3 +1256,10 @@ on every card page, non-card sisters in `SITE.sisterSites`) it is removed. A con
 DexCompare's links read dexcompare.io (the old host is still accepted in a feed until Dex republishes). Not changed: price alerts,
 `alert-feed.json`, the family feeds and the sister data reads: they are data, not links. Also a "URL freeze" rule in CLAUDE.md:
 no mass path change without a redirect map, agents never flip hosts, no pop-unders or surprise navigation (this repo had none).
+
+## 2026-11-17: Guide Article markup carries datePublished, dateModified and an author
+
+The five guides' `Article` JSON-LD had a headline and publisher but no dates or author, which Google's Article and Top stories
+guidance asks for. `GuideInfo.published` is the day each guide first shipped (8 November, from git); `dateModified` is the price
+data the guide is written around (`data/meta.json` `updatedAt`), never "now". No visible text, URL, title, canonical, paid link or
+`revalidate` changed.

@@ -12,29 +12,35 @@ export interface GuideInfo {
   description: string;
   /** The guide's own link preview (public/guides/<slug>.jpg, 1200×630); absent: the site's share image. */
   image?: string;
+  /** The day the guide first shipped (ISO date), for Article structured data. */
+  published: string;
 }
 
 export const GUIDES: GuideInfo[] = [
   {
     slug: "warhammer-black-friday-2026",
+    published: "2026-11-08",
     title: "Warhammer Black Friday 2026 {in}: the prices to beat",
     h1: "Warhammer Black Friday 2026 in {in}: the prices to beat",
     description: "Warhammer Black Friday and Cyber Monday 2026 in {in}: how far under RRP each store sells today, the cheapest starter boxes, and five checks.",
   },
   {
     slug: "cheapest-way-to-start",
+    published: "2026-11-08",
     title: "Cheapest way to start Warhammer in {in}: starter sets and Combat Patrols priced",
     h1: "The cheapest way to start Warhammer in {in}",
     description: "Starter sets, Combat Patrols, Spearheads and paint sets at today's lowest in-stock prices in {in}, and which one to buy first.",
   },
   {
     slug: "discount-stores-vs-rrp",
+    published: "2026-11-08",
     title: "How much do Warhammer discount stores save in {in}? Every store vs RRP",
     h1: "How much Warhammer discount stores save in {in}",
     description: "Each independent store in {in} measured against RRP today: the typical saving, how many kits it beats RRP on, and the biggest savings.",
   },
   {
     slug: "warhammer-prices-where-they-are-heading",
+    published: "2026-11-08",
     title: "Warhammer prices in {in}: GW's rises, the discount gap and what comes next",
     h1: "Warhammer prices in {in}: GW's rises, the discount gap and where it goes next",
     description: "GW's price rises since 2022, how far under RRP stores in {in} sell today, how other countries compare, and our read on the next rise.",
@@ -42,6 +48,7 @@ export const GUIDES: GuideInfo[] = [
   },
   {
     slug: "warhammer-gift-guide",
+    published: "2026-11-08",
     title: "Warhammer gift guide 2026 {in}: presents at every budget, priced today",
     h1: "Warhammer gift guide 2026: what to buy at every budget in {in}",
     description: "Warhammer gifts at every budget in {in}: paint sets, popular kits, Combat Patrols, Spearheads and starter sets at today's cheapest store price.",
