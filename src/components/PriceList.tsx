@@ -117,14 +117,13 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
             </OutboundLink>
           </li>
   ) : null;
-  // Owner, 2026-11-17: ALL affiliated rows at the top, cheapest price first; an unpriced row (a search) goes after the priced ones
-  // (eBay, then Amazon, then Wayland); then the cheapest store, then the rest. Never a paywall: every price is shown.
+  // Owner, 2026-11-17 (final): eBay first, then Amazon, then Wayland (the other affiliated row), all above the stores. Never a paywall.
   const paidRows = [
-    { k: "ebay", node: ebayRow, cents: ebay.found ? (ebay.cart?.priceCents ?? 0) : 0 },
-    { k: "amazon", node: amazonRow, cents: amazon?.live ? (amazon.cart?.priceCents ?? 0) : 0 },
-    { k: "wayland", node: waylandRow, cents: 0 },
+    { k: "ebay", node: ebayRow },
+    { k: "amazon", node: amazonRow },
+    { k: "wayland", node: waylandRow },
   ].filter((r) => r.node);
-  const byPrice = [...paidRows.filter((r) => r.cents > 0).sort((a, b) => a.cents - b.cents), ...paidRows.filter((r) => r.cents <= 0)];
+  const byPrice = paidRows;
   return (
     <div className={`divide-y divide-line overflow-hidden ${compact ? "rounded-xl border border-line bg-surface" : "card"}`}>
       <ul className="divide-y divide-line">
