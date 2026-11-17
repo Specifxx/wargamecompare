@@ -34,3 +34,11 @@ test("storeSavings: median saving per store, in-stock offers with an RRP only, s
   assert.ok(Math.abs(rows[1].typical - -0.025) < 1e-9);
   assert.equal(rows[1].under, 0);
 });
+
+test("every guide has a real first-published date, and the Article markup carries it", async () => {
+  const { readFileSync } = await import("node:fs");
+  for (const g of GUIDES) assert.match(g.published, /^\d{4}-\d{2}-\d{2}$/, g.slug);
+  const page = readFileSync(new URL("../src/app/[region]/guides/[slug]/page.tsx", import.meta.url), "utf8");
+  assert.match(page, /datePublished: g\.published/);
+  assert.match(page, /dateModified/);
+});

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHead } from "@/components/PageHead";
 import { ProductCard } from "@/components/ProductCard";
-import { offersFor, summariesFor, type Summary } from "@/lib/data";
+import { meta, offersFor, summariesFor, type Summary } from "@/lib/data";
 import { cheapestOfType, fill, GUIDE_BY_SLUG, GUIDES, mostStockedOfType, storeSavings, type GuideInfo } from "@/lib/guides";
 import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGION_LIST, type RegionInfo } from "@/lib/regions";
@@ -391,7 +391,9 @@ export default function GuidePage({ params }: { params: { region: string; slug: 
   const all = summariesFor(r.region);
   const h1 = fill(g.h1, r.inName);
   const url = `${SITE_URL}/${r.region}/guides/${g.slug}`;
-  const ld = { "@context": "https://schema.org", "@type": "Article", headline: h1, description: fill(g.description, r.inName), url, mainEntityOfPage: url, publisher: { "@type": "Organization", name: "WargameCompare", url: SITE_URL } };
+  // datePublished is the day the guide first shipped; dateModified is the day's price data it is written around (data/meta.json).
+  const modified = meta().updatedAt;
+  const ld = { "@context": "https://schema.org", "@type": "Article", headline: h1, description: fill(g.description, r.inName), url, mainEntityOfPage: url, datePublished: g.published, ...(modified ? { dateModified: modified } : {}), author: { "@type": "Organization", name: "WargameCompare", url: SITE_URL }, publisher: { "@type": "Organization", name: "WargameCompare", url: SITE_URL } };
   return (
     <article className="page py-6 sm:py-8">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(ld) }} />
