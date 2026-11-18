@@ -10,6 +10,7 @@ import { STORE_BY_KEY } from "./stores";
 import type { EbayFile, Meta, Offer, OffersFile, Product, RrpFile } from "./types";
 import { firstImportDay, releases } from "./releases";
 import { focusCatalog } from "./focus";
+import { detailIndexed, sitemapProducts } from "./index-tiers";
 
 const DIR = path.join(process.cwd(), "data");
 function load<T>(file: string, fallback: T): T {
@@ -165,4 +166,20 @@ export function releasesFor(region: Region, today: string = new Date().toISOStri
   const out = releases(items, region, today, firstImportDay(data().products));
   releaseLists.set(key, out);
   return out;
+}
+
+const askedIds = new Map<Region, ReadonlySet<string>>();
+/**
+ * Whether a product page in a region asks Google to index it (2026-11-19, core-update quality pass): only the products its
+ * sitemap lists (search demand first, then the most widely stocked, SITEMAP_PRODUCTS a region). Every other product page
+ * stays live for visitors, noindex, follow. Before this ~12,000 three-store pages asked to be indexed for ~1,600 impressions.
+ */
+export function productAsksIndex(id: string, region: Region): boolean {
+  if (!detailIndexed(region)) return false;
+  let ids = askedIds.get(region);
+  if (!ids) {
+    ids = new Set(sitemapProducts(summariesFor(region), demandProductIds()).map((s) => s.product.id));
+    askedIds.set(region, ids);
+  }
+  return ids.has(id);
 }

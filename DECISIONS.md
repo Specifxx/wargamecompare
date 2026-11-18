@@ -1436,3 +1436,21 @@ sitting on top of it.
   `var(--bn-space)` + a small gap up, and the body's bottom padding follows it. Hidden, it slides fully off-screen (transform only, CLS 0).
 - **Measured** (local build, dock stacked): Pixel 7 412×915 nav + dock take 129px (14.1%); iPhone 15 393×852 with a 34px safe area
   143px (16.8%); iPhone SE 375×667 129px (19.3%); the old flush bar took about the same plus the full safe area.
+
+## 2026-11-19: Core-update quality pass: index only what the sitemap lists, fewer links, who runs the site
+
+Google's November 2026 core update took WargameCompare from ~306 impressions a day to ~10 (10-12 Nov). URL Inspection on
+sister sites showed formerly ranking pages "Crawled - currently not indexed" with no technical fault: a quality verdict.
+About 12,000 product pages (every three-store product in four regions) asked to be indexed, for ~1,600 impressions in 56 days.
+
+- A product page asks to be indexed only when its region's sitemap lists it (`productAsksIndex` in `lib/data.ts`:
+  `sitemapProducts`, search demand first, then the most widely stocked, 450 a region, about 1,800 in all). Every other
+  product page stays live, noindex, follow, and out of hreflang. New Zealand's stay noindex.
+- The menu and footer were cut to what a visitor uses: the sidebar from ~42 to ~26 links (6 games, 5 product types, 6
+  armies), the footer from ~35 to ~19 (no seasonal sale pages, forum, widgets, feedback or report links there; the pages
+  stay and are linked from their hubs). The cross-site "cluster" tiles are off (`CROSS_SITE_BLOCKS = false`).
+- The about page says who runs the site (Bill and George, co-founders), that AI tools help write code and guides while
+  prices are read by a program, and what the group costs to run (about A$790 a month, our books to 15 Nov 2026). The
+  price list's "How these prices work" note links to it.
+
+The ad block already sits below each page's content (the region layout), so it is unchanged.
