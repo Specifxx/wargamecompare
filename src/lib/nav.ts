@@ -81,6 +81,7 @@ export function navGroups(region: Region, live?: LiveHubs): NavGroup[] {
         { href: "/forum", label: "Community forum (beta)" },
         { href: "/creators", label: "Creators we feature" },
         { href: "/about", label: "How it works" },
+        { href: "/feedback", label: "Send feedback" },
         { href: "/contact", label: "Add a store" },
       ],
     },
