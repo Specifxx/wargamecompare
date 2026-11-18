@@ -15,6 +15,8 @@ import "@/components/cart/cart.css";
 import "@/components/cart/cart-drawer.css";
 import "@/components/store-vote.css";
 import "@/components/site-reviews/site-reviews.css";
+import { BottomNav } from "@/components/BottomNav";
+import { BOTTOM_NAV } from "@/lib/bottom-nav";
 
 // The engine's two faces (DexCompare and MTG Compare: Bricolage Grotesque for headings, Inter for text), bundled as the latin
 // subsets of the variable fonts (OFL, src/app/fonts): no font request at build or at runtime. Display is optional, not swap:
@@ -68,6 +70,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(siteJsonLd()) }} />
         <VercelPageViews />
         <ShareArrival />
+        {/* The phone bottom nav (components/BottomNav.tsx, lib/bottom-nav.ts): browser only, phones only, BOTTOM_NAV is its switch. */}
+        {BOTTOM_NAV !== "off" && <BottomNav mode={BOTTOM_NAV} />}
       </body>
     </html>
   );
