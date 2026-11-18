@@ -1454,3 +1454,14 @@ About 12,000 product pages (every three-store product in four regions) asked to 
   price list's "How these prices work" note links to it.
 
 The ad block already sits below each page's content (the region layout), so it is unchanged.
+
+## 2026-11-18: eBay ads in the quick view (owner)
+
+Owner, 2026-11-18, while moving every ad that could hurt indexing below the page's own content: "Ads can show in the quick
+view for example". The quick view opens only when a visitor clicks a product, so an ad there comes after engagement and is
+never in a crawled page's HTML. Under the quick view's price list, `QuickEbayAds.tsx` shows up to six live eBay listings
+(photo and delivered price) of other in-stock kits from the same game, widest stocked first. They are picked by `pickTiles`
+from the import's own eBay matches in `/api/quick/<region>/<slug>`, which the CDN already keeps for a day, so there is no
+extra eBay call and no extra function call. It needs at least three tiles to show. It is labelled "Ad", every link is
+`rel` sponsored and tagged under its own placement, `quickview-ebay-more`, and it is never a price row, never "the
+cheapest" and never Amazon. The page's one inline block stays out of the quick view.

@@ -8,6 +8,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "@/components/Link";
 import type { PriceListData } from "@/lib/price-rows";
 import { PriceList } from "./PriceList";
+import { QuickEbayAds, type QuickEbayAdsData } from "./QuickEbayAds";
+import { isRegion, type Region } from "@/lib/regions";
 import { ShareButton } from "./ShareButton";
 import { closeQuickViewUrl, onQuickViewHistory, openQuickViewUrl } from "@/lib/quick-view-url";
 
@@ -27,6 +29,13 @@ interface Data {
   /** the product page's path and the share message (lib/share-link.ts) */
   path?: string;
   share?: string;
+  /** The quick view's eBay ads (owner, 2026-11-18); absent in a response the CDN kept from before, or with fewer than three. */
+  ebayAds?: QuickEbayAdsData;
+}
+
+/** The region in a quick view's API path (/api/quick/<region>/<slug>). */
+function regionOf(api: string): string {
+  return api.split("/")[3] ?? "";
 }
 
 const cache = new Map<string, Promise<Data | null>>();
@@ -173,7 +182,10 @@ export function QuickView() {
           {data === "loading" ? (
             <Skeleton />
           ) : data ? (
-            <PriceList {...data.rows} compact />
+            <>
+              <PriceList {...data.rows} compact />
+              {data.ebayAds && isRegion(regionOf(head.api)) && <QuickEbayAds data={data.ebayAds} region={regionOf(head.api) as Region} />}
+            </>
           ) : (
             <p className="rounded-xl border border-line p-4 text-sm text-muted">Prices did not load. The full page has every store&rsquo;s price.</p>
           )}
