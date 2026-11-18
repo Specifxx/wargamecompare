@@ -123,7 +123,8 @@ async function main() {
     if (!fs.existsSync(f)) continue;
     const c = JSON.parse(zlib.gunzipSync(fs.readFileSync(f)).toString("utf8")) as CacheFile;
     if (now - Date.parse(c.at) > STALE_HOURS * 3_600_000) continue;
-    all.push(...c.listings);
+    // A loop, not a spread: with every store cached the list passes the engine's argument limit (RangeError, 2026-11-18).
+    for (const l of c.listings) all.push(l);
   }
   // Registry entries that were removed leave their cache behind: delete it.
   const keys = new Set(live.map((s) => s.key));
