@@ -1339,3 +1339,9 @@ ten written notes. Rift's own record also holds "too many popups asking for my o
   vote is `votes/<site>/<day>/<time>-up|down-<rand>.json`, counted from its file name by RiftCompare's daily *Reports
   triage*, which now prints a 7-day feedback table per site and flags every note for a look. No email address is asked
   for or kept: the thanks shows the site's inbox for anyone who wants a reply.
+## 2026-11-18: the eBay row may be "Cheapest" (owner)
+
+The owner withdrew "eBay is never the cheapest". `priceRows` (`lib/price-rows.ts`) marks the eBay row `cheapest` when its DELIVERED price is
+strictly under the cheapest in-stock store's price, in the store's own currency, and not more than 25% under it (`EBAY_MAX_UNDER_STORES`: a wrong
+product, not a deal); the import takes new Buy It Now listings only. The store row then loses the badge (one badge), and the order is unchanged.
+Amazon never takes it (its price is licensed for 24 hours). The headline, feed and metadata keep the cheapest store. `tests/ebay-cheapest.test.ts`.

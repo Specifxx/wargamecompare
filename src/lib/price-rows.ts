@@ -61,12 +61,15 @@ export interface PaidCart {
 }
 
 export interface PriceListData {
-  ebay: PaidRow & { title: string | null; price: string | null; ship: string | null; vs: string | null; found: boolean; cart?: PaidCart };
+  ebay: PaidRow & { title: string | null; price: string | null; ship: string | null; vs: string | null; found: boolean; cheapest: boolean; cart?: PaidCart };
   /** `found`: Amazon's own listing of this exact barcode (a /dp/ link), else a tagged search. */
   amazon: (PaidRow & { found: boolean; live: AmazonLiveRow | null; cart?: PaidCart }) | null;
   stores: StoreRow[];
   wayland: PaidRow | null;
 }
+
+/** An eBay price more than 25% under the cheapest store is a wrong product, never the cheapest. */
+export const EBAY_MAX_UNDER_STORES = 0.75;
 
 export function priceRows(p: Product, region: Region, surface: "product" | "quickview"): PriceListData {
   const offers = offersFor(p.id, region);
@@ -84,6 +87,10 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
           ? `${Math.round(((best.p - total) / best.p) * 100)}% under the cheapest store`
           : "same as the cheapest store"
       : null;
+  // The eBay row carries "Cheapest" when its delivered price is genuinely under the cheapest in-stock store (owner, 2026-11-18, withdrawing "eBay is
+  // never the cheapest"): a new listing only (the import takes new Buy It Now), in the store's own currency, and never more than 25% under it
+  // (a wrong product, not a deal). Then the store row loses the badge; the order does not change.
+  const ebayCheapest = !!(ebay && best && ebayRegion === region && total < best.p && total >= best.p * EBAY_MAX_UNDER_STORES);
   const at = <T extends string>(x: T) => `${surface}-${x}` as Placement;
   // The Creators API's own listing when this build fetched one (owner, 2026-11-05), else the tagged search; the price is
   // Amazon's row's alone, never a sort, the cheapest badge, a deal or the feed. The quick view carries the same tagged
@@ -105,6 +112,7 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       href: ebay ? ebayAffiliateUrl(ebay.u, region, at("ebay")) : ebaySearchUrl(p.name, region, at("ebay")),
       placement: at("ebay"),
       found: !!ebay,
+      cheapest: ebayCheapest,
       title: ebay ? ebay.t : null,
       price: ebay ? formatPrice(total, ebayRegion) : null,
       ship: ebay ? (ebay.sh ? `Delivered, incl. ${formatPrice(ebay.sh, ebayRegion)} postage` : ebay.sh === 0 ? "Delivered, free postage" : "plus postage") : null,
@@ -128,7 +136,7 @@ export function priceRows(p: Product, region: Region, surface: "product" | "quic
       name: storeName(o.s),
       title: o.t,
       inStock: o.in,
-      cheapest: o.in && i === 0,
+      cheapest: o.in && i === 0 && !ebayCheapest,
       price: o.in || !isBook ? formatPrice(o.p, region) : null,
       was: o.w && o.w > o.p && (o.in || !isBook) ? formatPrice(o.w, region) : null,
       code: activeStoreCode(o.u),
