@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@/lib/track";
 import { ShareThanks, useShareArm } from "./ShareThanks";
 import { SITE_URL } from "@/lib/site";
-import { shareUrl } from "@/lib/share-link";
+import { type ShareMedium, shareUrl } from "@/lib/share-link";
 
 // Share (owner, 2026-11-02: word of mouth): the phone's own share sheet (navigator.share) where there is one, else the
 // link and message copied, with a short "Link copied" note. No pop-up; the share-for-a-deal test is ShareThanks.tsx (2026-11-18). The link is the page's canonical URL
 // plus utm_source=share (lib/share-link.ts); the message names the real price gap in the region. One Vercel event per
 // tap, share { medium }; RiftCompare's growth report counts them.
-export function ShareButton({ title, path, text, className = "" }: { title: string; path: string; text: string; className?: string }) {
+export function ShareButton({ title, path, text, medium = "product", className = "" }: { title: string; path: string; text: string; medium?: ShareMedium; className?: string }) {
   const [note, setNote] = useState("");
   // Share-for-a-deal (ShareThanks.tsx, 2026-11-18): the arm, and the thank-you card once a share completes.
   const arm = useShareArm();
@@ -18,7 +18,7 @@ export function ShareButton({ title, path, text, className = "" }: { title: stri
   const unlock = () => {
     if (arm !== "reward") return;
     setThanks(true);
-    track("share_unlock", { medium: "product" });
+    track("share_unlock", { medium });
   };
   const timer = useRef<ReturnType<typeof setTimeout>>();
   useEffect(() => () => clearTimeout(timer.current), []);
@@ -28,8 +28,8 @@ export function ShareButton({ title, path, text, className = "" }: { title: stri
     timer.current = setTimeout(() => setNote(""), 2500);
   };
   async function share() {
-    const url = shareUrl(SITE_URL, path, "product");
-    track("share", { medium: "product", arm });
+    const url = shareUrl(SITE_URL, path, medium);
+    track("share", { medium, arm });
     if (typeof navigator.share === "function") {
       try {
         await navigator.share({ title, text, url });
