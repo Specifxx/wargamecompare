@@ -251,9 +251,10 @@ body {
   .btn-ad {
     @apply btn border border-transparent bg-ink text-surface hover:bg-ink/85;
   }
-  /* Never Amazon's own orange (2026-11-02): the Associates Operating Agreement forbids styling that could pass for Amazon's site. */
+  /* Amazon's own action (owner, 2026-11-18, reversing the 2026-11-02 no-Amazon-orange line): a calm amber with DARK ink in both
+     themes, so the Amazon row is never mistaken for the site's brand button or the eBay row's ink one. Fixed hexes. */
   .btn-amazon {
-    @apply btn bg-brand-soft text-brand-strong hover:brightness-105;
+    @apply btn border border-[#e08a00] bg-[#ffa41c] text-[#111111] hover:bg-[#fa8900];
   }
   /* An ad's chips: outlined and cool-toned, so they never pass for the site's internal navigation chips (.chip). */
   .ad-chip {

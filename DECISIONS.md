@@ -1329,3 +1329,12 @@ The owner withdrew "eBay is never the cheapest". `priceRows` (`lib/price-rows.ts
 strictly under the cheapest in-stock store's price, in the store's own currency, and not more than 25% under it (`EBAY_MAX_UNDER_STORES`: a wrong
 product, not a deal); the import takes new Buy It Now listings only. The store row then loses the badge (one badge), and the order is unchanged.
 Amazon never takes it (its price is licensed for 24 hours). The headline, feed and metadata keep the cheapest store. `tests/ebay-cheapest.test.ts`.
+
+## 2026-11-18: Amazon's button is amber, and the quick view's "See full page" says what is on it (owner)
+
+Owner: the Amazon row's button must be visibly its own colour. `.btn-amazon` (`globals.css`) is now amber `#ffa41c` (hover
+`#fa8900`, 1px `#e08a00` border) with dark ink `#111` in both themes, and the product list's Amazon row (priced "View deal" and
+the unpriced "Check Amazon") wears it instead of the ink `.btn-ad`; the sold-out Amazon link already used the class. This reverses
+the 2026-11-02 no-Amazon-orange line for the button only. Rel, tracking, "Ad" label, row order and prices are unchanged. The quick
+view's pinned bottom button (always visible, 44px, full width) now reads "See full page: price history and details" instead of
+"See all details". `tests/amazon-button.test.ts`.
