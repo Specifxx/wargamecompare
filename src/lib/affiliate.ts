@@ -40,6 +40,7 @@ export const PLACEMENTS = [
   "inline-ebay-all", // the ad block: the "All on eBay" link
   "dock-ebay", // the phone dock below 1280px (components/AdDock.tsx, owner 2026-11-06): the ad block's popular kits
   "dock-ebay-deals", // the phone dock: the ad block's deals
+  "quickview-ebay-more", // the quick view (owner, 2026-11-18: "ads can show in the quick view"): live eBay listings of the same game
 ] as const;
 export type Placement = (typeof PLACEMENTS)[number];
 
