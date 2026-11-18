@@ -16,7 +16,7 @@ export default function Page() {
         what="miniatures and hobby supplies"
         stores={STORES.map((s) => s.name)}
         priceRule="A price under 40% of the recommended retail price, or under 45% of what the other stores charge for the same product, is dropped automatically."
-        marketplaces="eBay and Amazon rows are marketplaces, not stores: they are labelled as ads and never counted as a store or as the cheapest. We don't vet the individual sellers there, so check a seller's feedback before you buy."
+        marketplaces="eBay and Amazon rows are marketplaces, not stores: they are labelled as ads and never counted as a store; an eBay row is marked the cheapest only when its delivered price is genuinely below every store's. We don't vet the individual sellers there, so check a seller's feedback before you buy."
         buttonClassName="btn-primary"
         suggestHref="/uk/stores#suggest"
       />

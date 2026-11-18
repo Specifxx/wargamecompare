@@ -40,10 +40,11 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
   const more = stores.slice(limit);
   const moreOpen = more.filter((o) => o.inStock).length;
   const ebayRow = (
-        <li className={`${ROW_GRID} ${PIN_OUTLINE.ebay}`} data-row="ebay">
+        <li className={`${ROW_GRID} ${ebay.cheapest ? PIN_OUTLINE.cheapest : PIN_OUTLINE.ebay}`} data-row="ebay">
           <div className="or-top">
             <span className="or-name">{ebay.label}</span>
             <span className="ad-pill">Ad</span>
+            {ebay.cheapest && <span className={BADGE}>Cheapest</span>}
           </div>
           <div className="or-host" title={ebay.title ?? undefined}>
             <StoreVote url={ebay.cart?.productUrl ?? ebay.href} name="eBay" className="-ml-1 mr-1 text-muted" />
@@ -245,7 +246,7 @@ export function PriceListNote({ children }: { children?: ReactNode }) {
       <summary className="cursor-pointer font-semibold text-ink">How these prices work</summary>
       <div className="mt-2 space-y-2 leading-6">
         <p>Store rows are the stores&rsquo; own listed prices, read from their websites today and sorted by price with in-stock stores first. The cheapest store you can buy from now is marked. Prices are in the country&rsquo;s own currency and never converted.</p>
-        <p>eBay and Amazon are paid links, labelled Ad: they are never counted as a store, never the &ldquo;cheapest&rdquo;, and never change the stores&rsquo; order. Some store links carry a store&rsquo;s own referral code; what we earn never decides the order.</p>
+        <p>eBay and Amazon are paid links, labelled Ad: they are never counted as a store and never change the stores&rsquo; order. An eBay row is marked &ldquo;Cheapest&rdquo; only when its delivered price is genuinely below every store&rsquo;s. Some store links carry a store&rsquo;s own referral code; what we earn never decides the order.</p>
         {children}
       </div>
     </details>
