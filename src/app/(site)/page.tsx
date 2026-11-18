@@ -152,7 +152,7 @@ export default function Landing() {
           <p>
             Every listing is matched to a Games Workshop product by its box code, item number or barcode, never by a guess at the title, so a Combat Patrol is only
             ever compared with the same Combat Patrol. Second-hand, painted, bits and store-made bundles are left out. The stores are sorted by price, in stock first;
-            eBay and Amazon sit above them as labelled ads and are never counted as the cheapest store.
+            eBay and Amazon sit above them as labelled ads and are never counted as a store; an eBay row is marked Cheapest only when its delivered price is genuinely below every store's.
           </p>
           <h2>Guides</h2>
           {REGION_LIST.map((r) => (
