@@ -6,6 +6,8 @@ import { AMAZON_PRICE_DISCLAIMER, AmazonPrice } from "./AmazonPrice";
 import { OutboundLink } from "./OutboundLink";
 import { StockPill } from "./StockPill";
 import { StoreVote } from "./StoreVote";
+import { BestTag } from "./BestTag";
+import { bestPriceHint, isPlainBest } from "@/lib/best-tag";
 import { CartAddButton } from "./cart/CartAddButton";
 
 // The engine's price table rows (from MTG Compare's OfferRows): a grid whose cells are placed by grid-area. On a phone, two columns:
@@ -39,6 +41,8 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
   const limit = compact ? stores.length : SHOWN;
   const more = stores.slice(limit);
   const moreOpen = more.filter((o) => o.inStock).length;
+  // The plain best price's "i" hint names the eBay row, which every list has (lib/best-tag.ts).
+  const hint = bestPriceHint([{ brand: "ebay" }]);
   const ebayRow = (
         <li className={`${ROW_GRID} ${ebay.cheapest ? PIN_OUTLINE.cheapest : PIN_OUTLINE.ebay}`} data-row="ebay">
           <div className="or-top">
@@ -132,13 +136,13 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
         {byPrice.map((r) => (
           <Fragment key={r.k}>{r.node}</Fragment>
         ))}
-        {stores.map((o, i) => (i < limit ? <Row key={o.key} o={o} lean={i >= FULL_ROWS} /> : null))}
+        {stores.map((o, i) => (i < limit ? <Row key={o.key} o={o} lean={i >= FULL_ROWS} hint={hint} /> : null))}
       </ul>
       {amazon?.live && <p className="px-4 py-2 text-[11px] leading-4 text-faint sm:px-5">* {AMAZON_PRICE_DISCLAIMER}</p>}
       {more.length > 0 && (
         <MoreRows label={moreOpen > 0 ? `Show ${more.length} more ${more.length === 1 ? "store" : "stores"} (${moreOpen} in stock)` : `Show ${more.length} more sold out`}>
           {more.map((o, i) => (
-            <Row key={o.key} o={o} lean={limit + i >= FULL_ROWS} />
+            <Row key={o.key} o={o} lean={limit + i >= FULL_ROWS} hint={hint} />
           ))}
         </MoreRows>
       )}
@@ -146,13 +150,17 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
   );
 }
 
-function Row({ o, lean = false }: { o: StoreRow; lean?: boolean }) {
+function Row({ o, lean = false, hint = null }: { o: StoreRow; lean?: boolean; hint?: string | null }) {
   if (lean && !o.cheapest) return <LeanRow o={o} />;
+  // The cheapest row is plain when its store pays us nothing (owner, 2026-11-18): the small "Best price" tag, no highlight, no red button.
+  const plain = o.cheapest && isPlainBest({ paid: isAwinLink(o.href) });
+  const loud = o.cheapest && !plain;
   return (
-    <li data-offer-row="" className={o.cheapest ? "or-row or-hl" : "or-row"}>
+    <li data-offer-row="" className={loud ? "or-row or-hl" : "or-row"}>
       <div className="or-top">
         <span className="or-name">{o.name}</span>
-        {o.cheapest && <span className={BADGE}>Cheapest</span>}
+        {loud && <span className={BADGE}>Cheapest</span>}
+        {plain && <BestTag hint={hint} />}
         {isAwinLink(o.href) && <span className="text-[11px] text-faint">Paid link</span>}
       </div>
       <div className="or-host" title={o.title}>
@@ -180,10 +188,11 @@ function Row({ o, lean = false }: { o: StoreRow; lean?: boolean }) {
         {o.cart && (
           <CartAddButton href={o.href} productUrl={o.vote} storeName={o.name} title={o.cart.title} priceCents={o.cart.priceCents} currency={o.cart.currency} image={o.cart.image} className="text-muted" />
         )}
-        <OutboundLink href={o.href} rel={storeRel(o.href)} retailer={o.name} placement={o.placement} className={`${o.cheapest ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} or-btn`}>
+        <OutboundLink href={o.href} rel={storeRel(o.href)} retailer={o.name} placement={o.placement} className={`${loud ? "btn-primary" : o.inStock ? "btn-soft" : "btn-ghost"} or-btn`}>
           {o.inStock ? "View deal" : "View"} <span aria-hidden="true">↗</span>
         </OutboundLink>
       </div>
+      {plain && hint && <p className="or-hint" role="note">{hint}</p>}
     </li>
   );
 }

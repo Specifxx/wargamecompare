@@ -188,6 +188,13 @@ body {
   .or-name {
     @apply min-w-[4.5rem] max-w-full truncate text-[15px] font-semibold sm:text-base;
   }
+  /* The plain best price's hint (owner, 2026-11-18): hidden until the "i" is tapped, then the row's last line. */
+  .or-hint {
+    @apply hidden pt-1 text-xs text-muted [grid-column:1/-1];
+  }
+  li[data-hint-open] > .or-hint {
+    @apply block;
+  }
   .or-badge {
     @apply shrink-0 rounded-full bg-open px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-surface;
   }
