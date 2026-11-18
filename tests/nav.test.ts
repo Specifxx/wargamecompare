@@ -52,7 +52,7 @@ test("eBay goes first: pinned above the store rows and beside the best price, ne
   for (const s of [page, list]) assert.doesNotMatch(s, /Shown first/); // owner, 2026-10-30: no wording about the order
   assert.match(page, /placement="product-best-ebay"/);
   assert.match(read("src/lib/price-rows.ts"), /cheapest: o\.in && i === 0/);
-  assert.match(list, /o\.cheapest && <span[^>]*>Cheapest</);
+  assert.match(list, /loud && <span[^>]*>Cheapest</);
   assert.match(read("src/components/Search.tsx"), /placement="browse-ebay"/);
 });
 
