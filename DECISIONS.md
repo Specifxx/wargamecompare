@@ -1329,3 +1329,10 @@ The owner withdrew "eBay is never the cheapest". `priceRows` (`lib/price-rows.ts
 strictly under the cheapest in-stock store's price, in the store's own currency, and not more than 25% under it (`EBAY_MAX_UNDER_STORES`: a wrong
 product, not a deal); the import takes new Buy It Now listings only. The store row then loses the badge (one badge), and the order is unchanged.
 Amazon never takes it (its price is licensed for 24 hours). The headline, feed and metadata keep the cheapest store. `tests/ebay-cheapest.test.ts`.
+
+## 2026-11-18: Share for a deal (owner)
+
+Owner: sharing should be easy and rewarded, on every site ("it's all free, but we'll give you something else to look at if you
+share"). `ShareThanks.tsx`: half of browsers (`share_arm` in localStorage) see "Share · get a deal"; after a share completes a
+small card under the button (the visitor's own tap, ✕ to close) points to the region's `/deals`. Nothing is gated; the other half
+is the control. `share { medium, arm }`, and `share_unlock` joins the events `lib/track.ts` lets through.
