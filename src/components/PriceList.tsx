@@ -94,7 +94,7 @@ export function PriceList({ ebay, amazon, stores, wayland, compact = false }: Pr
             </div>
             <div className={ROW_ACTIONS}>
               {amazon.cart && <CartAddButton href={amazon.href} productUrl={amazon.cart.productUrl} storeName="Amazon" title={amazon.cart.title} priceCents={amazon.cart.priceCents} currency={amazon.cart.currency} image={amazon.cart.image} className="text-muted" />}
-              <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-ad ${ROW_LINK}`}>
+              <OutboundLink href={amazon.href} rel={REL_PAID} retailer={amazon.label} placement={amazon.placement} className={`btn-amazon ${ROW_LINK}`}>
                 {amazon.found ? "View deal" : "Check Amazon"} <span aria-hidden="true">↗</span>
               </OutboundLink>
             </div>

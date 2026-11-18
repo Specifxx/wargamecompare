@@ -1,0 +1,28 @@
+// The Amazon row's button is amber (owner, 2026-11-18) and the quick view carries a real "See full page" button.
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+
+const ROOT = path.resolve(__dirname, "..");
+const read = (p: string) => fs.readFileSync(path.join(ROOT, p), "utf8");
+
+test(".btn-amazon is amber with dark ink in both themes", () => {
+  assert.match(read("src/app/globals.css"), /\.btn-amazon \{\s*@apply btn border border-\[#e08a00\] bg-\[#ffa41c\] text-\[#111111\] hover:bg-\[#fa8900\]/);
+});
+
+test("the Amazon row's button (priced and search) uses .btn-amazon and keeps rel and placement", () => {
+  const src = read("src/components/PriceList.tsx");
+  const i = src.indexOf("amazon.href} rel={REL_PAID}");
+  assert.ok(i > 0);
+  const tag = src.slice(i, i + 220);
+  assert.match(tag, /btn-amazon/);
+  assert.match(tag, /placement=\{amazon\.placement\}/);
+  assert.doesNotMatch(tag, /btn-ad/);
+});
+
+test("the quick view has a prominent See full page button", () => {
+  const src = read("src/components/QuickView.tsx");
+  assert.match(src, /data-quickview-fullpage className="btn-primary[^"]*min-h-11[^"]*w-full/);
+  assert.match(src, /See full page: price history and details/);
+});
