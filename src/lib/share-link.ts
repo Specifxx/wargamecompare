@@ -4,7 +4,7 @@
 // growth report counts both for every site. DECISIONS.md, "Share buttons".
 import { SITE_NAME } from "./site";
 
-export type ShareMedium = "product" | "page";
+export type ShareMedium = "product" | "page" | "deals";
 
 /** `path` (its own query string kept) on `origin`, with the share tags. */
 export function shareUrl(origin: string, path: string, medium: ShareMedium): string {

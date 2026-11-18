@@ -9,6 +9,7 @@ import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGION_LIST } from "@/lib/regions";
 import { ogFor, regionAlternates } from "@/lib/seo";
 import { STORE_BY_KEY } from "@/lib/stores";
+import { ShareButton } from "@/components/ShareButton";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,7 @@ export function generateMetadata({ params }: { params: { region: string } }): Me
   const r = regionOr404(params.region);
   const title = `Warhammer deals in ${r.inName} today: biggest savings on RRP`;
   const description = `Warhammer kits, Combat Patrols and paints at least 10% under RRP (or under the median store price) in ${r.inName} today, from the stores we compare.`;
-  return { title: { absolute: title }, description, alternates: regionAlternates(r.region, "/deals", REGION_LIST.map((x) => x.region)), openGraph: ogFor(`/${r.region}/deals`, title, description) };
+  return { title: { absolute: title }, description, alternates: regionAlternates(r.region, "/deals", REGION_LIST.map((x) => x.region)), openGraph: ogFor(`/${r.region}/deals`, title, description, `/${r.region}/deals/opengraph-image`) };
 }
 
 export default function DealsPage({ params }: { params: { region: string } }) {
@@ -34,6 +35,7 @@ export default function DealsPage({ params }: { params: { region: string } }) {
           </p>
         }
       />
+      <ShareButton title={`Warhammer deals in ${r.inName} today`} path={`/${r.region}/deals`} medium="deals" text={`${list.length} Warhammer products under RRP or the median store price in ${r.inName} today`} className="mt-4" />
       <div className="card mt-6 divide-y divide-line overflow-hidden">
         {list.map((d) => (
           <Link key={d.s.product.id} href={`/${r.region}/p/${d.s.product.id}`} className="lr group">
