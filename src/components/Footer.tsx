@@ -6,6 +6,7 @@ import { CONTACT_EMAIL, GW_DISCLAIMER, SITE_NAME } from "@/lib/site";
 import { Flag } from "./Flag";
 import { LogoMark } from "./Logo";
 import { RateUsLink } from "./site-reviews/SiteReviews";
+import { FeedbackAsk } from "@/components/FeedbackAsk";
 
 type FooterLink = { href: string; label: string; pick?: Region };
 
@@ -49,6 +50,7 @@ export function footerColumns(r: Region): { title: string; links: FooterLink[] }
         { href: "/is-this-a-good-price", label: "Is this a good price?" },
         { href: "/embed", label: "Free price widgets" },
         { href: "/forum", label: "Community forum (beta)" },
+        { href: "/feedback", label: "Send feedback" },
         { href: "/contact", label: "Contact and store listings" },
         { href: "/list-your-store", label: "List your store" },
         { href: "/how-we-pick-stores", label: "How we pick stores" },
@@ -69,6 +71,8 @@ export function Footer({ region }: { region: Region | null }) {
   const year = new Date().getUTCFullYear();
   return (
     <footer className="mt-20 border-t border-line bg-surface">
+      {/* "Was this page useful?" (owner, 2026-11-18: more feedback). One inline line, never a pop-up. */}
+      <div className="page pt-8"><FeedbackAsk email={CONTACT_EMAIL} /></div>
       <div className="page grid gap-x-6 gap-y-10 py-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,3fr)]">
         <div className="max-w-sm">
           <Link href={region ? `/${region}` : "/"} className="inline-flex min-h-10 items-center gap-2 font-display text-lg font-extrabold tracking-tight">
