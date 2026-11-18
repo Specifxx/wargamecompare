@@ -11,6 +11,7 @@ import { mediansFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
 import { GUIDES, fill } from "@/lib/guides";
 import { categoryTiles, heroPicks } from "@/lib/home";
+import { rankSummaries } from "@/lib/home-demand";
 import { productIndexable } from "@/lib/index-tiers";
 import { REGION_LIST, REGIONS } from "@/lib/regions";
 import { faqLd, homeAlternates, jsonLd, ogFor } from "@/lib/seo";
@@ -51,7 +52,8 @@ export default function Landing() {
   // lazy, so a visitor downloads only their own region's photos.
   const blocks = REGION_LIST.map((r) => {
     const all = summariesFor(r.region);
-    const top = deals(all, mediansFor(r.region)).map((d) => d.s);
+    // Most likely to earn first (owner, 2026-11-18; lib/home-rank.ts): demand × value, the saving order breaking ties.
+    const top = rankSummaries(deals(all, mediansFor(r.region)).map((d) => d.s));
     const hero = heroPicks(all, top, 2);
     const shown = new Set(hero.map((s) => s.product.id));
     const savings = top.filter((s) => !shown.has(s.product.id) && productIndexable(s)).slice(0, 12);
