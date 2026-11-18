@@ -69,8 +69,20 @@ test("New Zealand product and guide pages are noindex and out of the sitemap; it
   const uk = (sitemapPart("uk") ?? []).map((u) => u.url);
   assert.ok(uk.some((u) => u.includes("/uk/guides/")), "UK guides listed");
   const src = (p: string) => readFileSync(join(process.cwd(), p), "utf8");
-  assert.match(src("src/app/[region]/p/[slug]/page.tsx"), /const indexable = detailIndexed\(r\.region\) && productIndexable\(s\)/);
+  assert.match(src("src/app/[region]/p/[slug]/page.tsx"), /const indexable = productAsksIndex\(p\.id, r\.region\)/);
+  assert.match(src("src/lib/data.ts"), /if \(!detailIndexed\(region\)\) return false;/);
   assert.match(src("src/app/[region]/guides/[slug]/page.tsx"), /robots: detailIndexed\(r\.region\) \? undefined : \{ index: false, follow: true \}/);
+});
+
+test("a product page asks to be indexed only when its region's sitemap lists it (2026-11-19)", async () => {
+  const { productAsksIndex, summariesFor, demandProductIds } = await import("../src/lib/data");
+  const { sitemapProducts, productIndexable } = await import("../src/lib/index-tiers");
+  const all = summariesFor("uk");
+  const listed = new Set(sitemapProducts(all, demandProductIds()).map((s) => s.product.id));
+  for (const s of all.slice(0, 400)) assert.equal(productAsksIndex(s.product.id, "uk"), listed.has(s.product.id), s.product.id);
+  const left = all.find((s) => productIndexable(s) && !listed.has(s.product.id));
+  if (left) assert.equal(productAsksIndex(left.product.id, "uk"), false, "a three-store page outside the sitemap is noindex");
+  if (all[0]) assert.equal(productAsksIndex(all[0].product.id, "nz"), false);
 });
 
 test("each region's sitemap lists at most SITEMAP_PRODUCTS products, demand first (SEO-5, 2026-11-10)", async () => {

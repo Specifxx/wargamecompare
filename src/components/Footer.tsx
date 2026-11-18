@@ -10,14 +10,14 @@ import { FeedbackAsk } from "@/components/FeedbackAsk";
 
 type FooterLink = { href: string; label: string; pick?: Region };
 
-/** The footer's link columns (the same links as before the engine port, so every crawled link set is unchanged). Pure. */
+/** The footer's link columns, cut to what a visitor needs (2026-11-19, core-update quality pass: ~35 links became ~19). Pure. */
 export function footerColumns(r: Region): { title: string; links: FooterLink[] }[] {
   return [
     {
       title: "Browse",
       links: [
         ...SYSTEMS.filter((s) => s.slug !== "citadel")
-          .slice(0, 8)
+          .slice(0, 4)
           .map((s) => ({ href: `/${r}/game/${s.slug}`, label: `${s.name} prices` })),
         { href: `/${r}/game/citadel`, label: "Paint and hobby tool prices" },
       ],
@@ -30,29 +30,17 @@ export function footerColumns(r: Region): { title: string; links: FooterLink[] }
       title: "Deals",
       links: [
         { href: `/${r}/deals`, label: "Today’s deals" },
-        { href: `/${r}/black-friday`, label: "Black Friday deals" },
-        { href: `/${r}/cyber-monday`, label: "Cyber Monday deals" },
-        { href: `/${r}/boxing-day`, label: "Boxing Day deals" },
-        { href: `/${r}/january-sales`, label: "January sales" },
-        { href: `/${r}/lunar-new-year`, label: "Lunar New Year deals" },
         { href: `/${r}/stores`, label: "Stores we compare" },
       ],
     },
     {
       title: SITE_NAME,
       links: [
-        { href: "/about", label: "About and how prices work" },
+        { href: "/about", label: "Who runs it, and how prices work" },
         { href: "/affiliate-disclosure", label: "Affiliate disclosure" },
         { href: "/privacy", label: "Privacy" },
         { href: "/terms", label: "Terms" },
-        { href: "/creators", label: "Creators we feature" },
-        { href: "/price-report", label: "Monthly price report" },
-        { href: "/is-this-a-good-price", label: "Is this a good price?" },
-        { href: "/embed", label: "Free price widgets" },
-        { href: "/forum", label: "Community forum (beta)" },
-        { href: "/feedback", label: "Send feedback" },
         { href: "/contact", label: "Contact and store listings" },
-        { href: "/list-your-store", label: "List your store" },
         { href: "/how-we-pick-stores", label: "How we pick stores" },
       ],
     },

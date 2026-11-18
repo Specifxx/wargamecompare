@@ -91,7 +91,7 @@ test("header: Deals and Guides open dropdowns of real links; no link is lost fro
   const labels = items.map((i) => i.label);
   assert.deepEqual(labels, ["Games", "Armies", "Products", "Deals", "Guides", "Stores"]);
   const hrefs = items.flatMap((i) => i.menu?.flatMap((c) => c.links.map((l) => l.href)) ?? []);
-  for (const h of ["/au/deals", "/au/new-releases", "/au/guides/cheapest-way-to-start", "/forum", "/creators", "/about", "/contact"]) assert.ok(hrefs.includes(h), h);
+  for (const h of ["/au/deals", "/au/new-releases", "/au/guides/cheapest-way-to-start", "/creators", "/about", "/contact"]) assert.ok(hrefs.includes(h), h);
 });
 
 test("NavMenu: hover intent, click toggle, Escape, arrow keys, focus-out and aria, one file for the family", () => {
