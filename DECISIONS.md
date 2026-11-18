@@ -1408,3 +1408,15 @@ eBay row that wins, keep the full highlight and badge exactly as before. Same on
 alternative line, deal badges, JSON-LD, the feed, alerts. `lib/best-tag.ts`, `tests/best-price-tag.test.ts`. Verdict: paid clicks
 per 100 buy clicks before and after (`buy_click` events, paid or not), because the loud highlight on a non-paying store was pulling
 clicks from our paid rows.
+
+## 2026-11-18: The ad-look A/B: half of the visitors see the sponsored units in their brands' colours
+
+The owner (18 Nov): the banner ads "can look more attractive … more decorated and more highlighted so people can actually click on
+them". Since 12 Nov the units have been drawn in the calm palette (ink button, no brand colours). Now half of the visitors
+(`lib/ad-look.ts`, localStorage `ad-look`, 50/50, storage failure is the old look) see look "b": the inline eBay / TCGplayer block
+gets its brand's stripe along the top (eBay's four colours, TCGplayer's blue), a tint, a filled brand-colour button with a slow
+shine, a lift on hover and the price in the brand colour; the phone dock gets the eBay stripe and a filled button; the leave
+nudge gets the stripe and a stronger shadow. Paint only (globals.css, "The ad-look A/B", under `html[data-adlook="b"]`): no size,
+position, timing, label, wording or rule changes, CLS 0, every motion off under reduced motion. `<html data-adlook>` is set when
+a sponsored unit mounts, and buy_click carries `ad_look`. Read on 2 Dec: paid clicks per 100 visitors, "b" against "a"; the
+winner becomes the only look. Not on Dex or MTG (their phone A/B runs to 3 Dec).
