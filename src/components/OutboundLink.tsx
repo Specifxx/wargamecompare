@@ -5,6 +5,7 @@ import type { Placement } from "@/lib/affiliate";
 import { track } from "@/lib/track";
 import { isCheckoutLink } from "@/lib/checkout-link";
 import { cartArmNow } from "@/lib/cart-list";
+import { dockArmNow } from "@/lib/dock-arm";
 
 // Every outbound buy link (a store, eBay, Amazon, Wayland) is one of these: a plain <a target="_blank">, no redirect hop,
 // so the affiliate networks see the click untouched. It records one Vercel event, buy_click {retailer, placement}: exactly
@@ -26,7 +27,7 @@ export function OutboundLink({
   children: ReactNode;
   "aria-label"?: string;
 }) {
-  const record = () => track("buy_click", { cart_arm: cartArmNow(), retailer: retailer.slice(0, 255), placement, link_type: isCheckoutLink(href) ? "checkout" : "product" });
+  const record = () => track("buy_click", { dock_arm: dockArmNow(), cart_arm: cartArmNow(), retailer: retailer.slice(0, 255), placement, link_type: isCheckoutLink(href) ? "checkout" : "product" });
   return (
     <a
       href={href}
