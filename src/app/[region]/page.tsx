@@ -17,6 +17,7 @@ import { regionOr404 } from "@/lib/page";
 import { homeAlternates, ogFor } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
+import { rankSummaries } from "@/lib/home-demand";
 
 export const dynamic = "force-dynamic";
 
@@ -39,12 +40,13 @@ export default function RegionHome({ params }: { params: { region: string } }) {
   const stores = storesInMarket(r.market);
   const inStock = all.filter((s) => s.inStock > 0).length;
   const floor = homeFloor(all);
-  const dealt = dearer(deals(all, mediansFor(r.region)).map((d) => d.s), floor);
+  // Most likely to earn first (owner, 2026-11-18; lib/home-rank.ts): demand × value, the saving order breaking ties.
+  const dealt = rankSummaries(dearer(deals(all, mediansFor(r.region)).map((d) => d.s), floor));
   const hero = heroPicks(dearer(all, floor), dealt, 2);
   const inHero = new Set(hero.map((s) => s.product.id));
   const top = dealt.filter((s) => !inHero.has(s.product.id)).slice(0, 12);
   const tiles = categoryTiles(all, r.region);
-  const popular = dearer(all.filter((s) => s.inStock > 0), floor).slice(0, 12);
+  const popular = rankSummaries(dearer(all.filter((s) => s.inStock > 0), floor)).slice(0, 12);
   const count = (pred: (s: (typeof all)[number]) => boolean) => all.filter(pred).length;
   const systems = SYSTEMS.map((s) => ({ s, n: count((x) => x.product.system === s.slug) })).filter((x) => x.n > 0);
   const factions = FACTIONS.map((f) => ({ f, n: count((x) => x.product.faction === f.slug) }))

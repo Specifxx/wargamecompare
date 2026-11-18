@@ -96,6 +96,13 @@ jobs:
         with:
           path: data/cache
           key: store-reads-${{ github.run_id }}
+      # The home pages' ranking input (src/lib/home-rank.ts, DECISIONS.md 2026-11-18): product page views and buy clicks per
+      # item, last 28 and 7 days, from RiftCompare's /api/demand/wgc, written into the data commit below.
+      #  Never fatal: a failed fetch keeps yesterday's file and the home page keeps its order.
+      - name: Home page demand
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: DEMAND_WRITE_ONLY=1 bash scripts/pull-demand.sh wgc data/demand.json
       - name: Commit the data (this commit is the daily release)
         run: |
           set -euo pipefail
