@@ -11,6 +11,7 @@
 //   • One per page, from the two layouts: below the page's main content and above the footer, never beside a buy button, never above
 //     a price, never in the quick view. Every link is rel sponsored under `inline-ebay`, `inline-ebay-deals` or `inline-ebay-all`.
 import { useEffect, useState } from "react";
+import { applyAdLook } from "@/lib/ad-look";
 import { EBAY_DISCLOSURE, REL_PAID, type Placement } from "@/lib/affiliate";
 import { INLINE_H, inlineReady, pickInline, type AdTiles } from "@/lib/inline-ads";
 import { formatPrice, X_DEFAULT_REGION, type Region } from "@/lib/regions";
@@ -20,6 +21,7 @@ import { useSoftRegion } from "./SoftRegion";
 const TILE = "group flex h-full flex-col rounded-lg border border-line bg-surface p-2 transition-colors hover:border-ink/40";
 
 export function InlineAds({ tiles: data }: { tiles: AdTiles }) {
+  useEffect(() => applyAdLook(), []);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   if (!inlineReady(data)) return null;
@@ -29,6 +31,7 @@ export function InlineAds({ tiles: data }: { tiles: AdTiles }) {
 
 /** The same block on the pages with no region of their own (the home page, About…), in the visitor's suggested or picked region. */
 export function SoftInlineAds({ all }: { all: Record<Region, AdTiles> }) {
+  useEffect(() => applyAdLook(), []);
   const region = useSoftRegion();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
