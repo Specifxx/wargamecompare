@@ -5,6 +5,7 @@ import { detailIndexed, hubIndexable, sitemapProducts } from "@/lib/index-tiers"
 import { REGION_LIST, isRegion, type Region } from "@/lib/regions";
 import { SITE_URL } from "@/lib/site";
 import { storesInMarket } from "@/lib/stores";
+import { withoutOffSeasonSales } from "@/lib/sale-seasons";
 
 // Only pages that pass their index tier (lib/index-tiers.ts): a new domain should spend Google's crawl on real comparisons.
 // One file per region plus one for the site pages, listed by the index at /sitemap.xml (SEO audit 2026-11-03: the single
@@ -39,7 +40,7 @@ export function sitemapPart(part: string): SitemapUrl[] | null {
   at("/new-releases");
   at("/black-friday");
   at("/cyber-monday");
-  for (const p of ["/boxing-day", "/january-sales", "/lunar-new-year"]) at(p);
+  for (const p of withoutOffSeasonSales(["/boxing-day", "/january-sales"], new Date().toISOString().slice(0, 10))) at(p);
   at("/stores");
   at("/guides");
   // Product and guide pages only where they are indexed (INDEXED_DETAIL_REGIONS, 2026-11-08).
