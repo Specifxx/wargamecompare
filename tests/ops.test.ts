@@ -12,7 +12,7 @@ test("import: stale, small or failing reads fail the run", () => {
     stores: Object.fromEntries(Array.from({ length: 10 }, (_, i) => [`s${i}`, { ok: i >= failing, lastOkAt: now.toISOString(), listed: 1, inStock: 1 }])),
   });
   assert.deepEqual(checkImport(meta(2, 5000, 0) as never, 10, now).map((c) => c.status), ["ok", "ok", "ok"]);
-  assert.equal(checkImport(meta(31, 5000, 0) as never, 10, now)[0].status, "fail");
+  assert.equal(checkImport(meta(7 * 24 + 31, 5000, 0) as never, 10, now)[0].status, "fail");
   assert.equal(checkImport(meta(2, 100, 0) as never, 10, now)[1].status, "fail");
   assert.equal(checkImport(meta(2, 5000, 3) as never, 10, now)[2].status, "fail");
 });
@@ -30,6 +30,6 @@ test("family feed: fresh ok, stale only warns, missing unknown", async () => {
   const { checkFamilyFeed } = await import("../src/lib/ops");
   const now = new Date("2026-11-02T12:00:00Z");
   assert.equal(checkFamilyFeed("2026-11-02T06:00:00Z", now).status, "ok");
-  assert.equal(checkFamilyFeed("2026-10-25T06:00:00Z", now).status, "warn");
+  assert.equal(checkFamilyFeed("2026-10-20T06:00:00Z", now).status, "warn");
   assert.equal(checkFamilyFeed(null, now).status, "unknown");
 });

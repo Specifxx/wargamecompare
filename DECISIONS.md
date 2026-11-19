@@ -1578,3 +1578,12 @@ US total at most about 3,600 calls a day (ScentCompare about 61%, ScentCompare a
 8,640 until about 8 Dec 2026 and a revenue-based limit after it (1 a day per US$0.05 of API-referred shipped revenue).
 
 Here the defaults are lowered to this table's numbers. Amazon clicks here were real before 13 Nov, so a small share stays.
+
+## 2026-11-19: Idle: weekly import, no release, weekly health check
+
+The owner approved the boardroom plan's capacity move ("Let's do it", 19 Nov): WargameCompare goes idle, like
+Bandai, Figure, Motor and Cam before it. The site stays live with its hosts and URLs untouched. `refresh-prices.yml`
+runs on Mondays only and its data commit no longer carries `[deploy]`, so nothing builds; the data waits on `main` for
+a release the owner asks for (`release.yml`). The ops monitor runs weekly after the import, and its freshness checks
+allow a week plus the old margin (`WEEK` in `src/lib/ops.ts`). The eBay pass runs inside the weekly import, so it
+spends about a seventh of its old daily calls. Why: the build budget and agent time go to the sites that earn.

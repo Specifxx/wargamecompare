@@ -101,7 +101,7 @@ test("the Amazon ops check is never red: the sales gate is expected, only a sile
   const r = checkAmazon({ us: { at: "2026-11-06T06:00:00Z", state: "refused" }, au: { at: "2026-11-06T06:00:00Z", state: "ok", known: 40, waiting: 3 } }, now);
   assert.equal(r.status, "ok");
   assert.match(r.detail, /US waiting for Amazon API access; AU 40 ASINs/);
-  assert.equal(checkAmazon({ us: { at: "2026-11-03T06:00:00Z", state: "ok" } }, now).status, "warn");
+  assert.equal(checkAmazon({ us: { at: "2026-10-27T06:00:00Z", state: "ok" } }, now).status, "warn");
 });
 
 test("pages never read the ASIN files; the refresh finds ASINs with the credentials as GitHub secrets", () => {

@@ -1,7 +1,8 @@
 name: Refresh prices
 
-# The daily import: every store in src/data/stores.json → data/ → then the eBay pass → one commit to main whose
-# SUBJECT carries [deploy]: the day's one production build (scripts/vercel-ignore-build.sh). No database anywhere.
+# The weekly import (the site is IDLE, owner 2026-11-19): every store in src/data/stores.json → data/ → then the eBay
+# pass → one commit to main WITHOUT [deploy]: idle means no production build (scripts/vercel-ignore-build.sh); the
+# data waits on main for the owner's next release. No database anywhere.
 # 19:20 UTC is early morning in Australia and New Zealand and evening in the UK.
 #
 # Secrets (Settings → Secrets and variables → Actions), all optional until eBay is set up:
@@ -11,7 +12,7 @@ name: Refresh prices
 
 on:
   schedule:
-    - cron: "20 19 * * *"
+    - cron: "20 19 * * 1" # Mondays only: idle since 2026-11-19
   workflow_dispatch:
     inputs:
       only:
@@ -107,21 +108,21 @@ jobs:
         if: ${{ !cancelled() }}
         continue-on-error: true
         run: DEMAND_WRITE_ONLY=1 bash scripts/pull-demand.sh wgc data/demand.json
-      - name: Commit the data (this commit is the daily release)
+      - name: Commit the data (no release: idle since 2026-11-19)
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data
           if git diff --cached --quiet; then echo "No data changes."; exit 0; fi
-          git commit -q -m "data: daily prices $(date -u +%F) [deploy]" -m "Written by refresh-prices.yml run ${{ github.run_id }}. This is the one scheduled production build a day."
+          git commit -q -m "data: weekly prices $(date -u +%F)" -m "Written by refresh-prices.yml run ${{ github.run_id }}. No deploy marker: the site is idle (2026-11-19)."
           for i in 1 2 3 4; do
             git push origin HEAD:main && exit 0
             sleep $((2 ** i)); git pull --rebase origin main
           done
           exit 1
       # Bing, Yandex, Seznam and Naver recrawl the sitemap's URLs now (src/lib/indexnow.ts; the key is public by
-      # design and committed). Logged, never fatal: the release above has already landed.
+      # design and committed). Logged, never fatal: the data commit above has already landed.
       - name: IndexNow
         if: success()
         run: npx tsx scripts/indexnow-submit.ts || true

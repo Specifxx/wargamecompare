@@ -62,7 +62,8 @@ test("previews only with [preview] in the subject", () => {
   assert.equal(gate(repo("Fix"), "development", ""), SKIP);
 });
 
-test("the daily data commit carries the marker and code commits never do", () => {
+test("idle (owner, 2026-11-19): the weekly data commit carries no deploy marker", () => {
   const wf = readFileSync(join(ROOT, ".github/workflows/refresh-prices.yml"), "utf8");
-  assert.match(wf, /git commit[^\n]*\[deploy\]/);
+  assert.match(wf, /git commit/);
+  assert.doesNotMatch(wf, /git commit[^\n]*\[deploy\]/i);
 });

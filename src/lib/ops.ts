@@ -14,12 +14,14 @@ export interface Check {
 }
 
 const H = 3_600_000;
+/** Idle since 2026-11-19 (owner): the import runs weekly, so a check allows a week plus the old daily margin. */
+const WEEK = 7 * 24;
 
 export function checkImport(meta: Meta | null, storeCount: number, now: Date): Check[] {
   if (!meta || !meta.updatedAt) return [{ name: "Price import", status: storeCount ? "fail" : "unknown", detail: "No import has written data/meta.json yet." }];
   const age = (now.getTime() - Date.parse(meta.updatedAt)) / H;
   const out: Check[] = [
-    { name: "Price import", status: age > 30 ? "fail" : "ok", detail: `Last import ${age.toFixed(1)} h ago (daily, refresh-prices.yml).` },
+    { name: "Price import", status: age > WEEK + 30 ? "fail" : "ok", detail: `Last import ${age.toFixed(1)} h ago (weekly, refresh-prices.yml).` },
     { name: "Products", status: meta.products < 300 ? "fail" : "ok", detail: `${meta.products} products in data/products.json.` },
   ];
   const stores = Object.entries(meta.stores);
@@ -42,7 +44,7 @@ export function checkEbay(ebay: EbayFile | null, enabled: boolean, cap: number, 
   const age = (now.getTime() - Date.parse(ebay.updatedAt)) / H;
   const used = ebay.calls?.[pacificToday] ?? 0;
   return [
-    { name: "eBay listings", status: age > 30 ? "fail" : "ok", detail: `Last eBay pass ${age.toFixed(1)} h ago.` },
+    { name: "eBay listings", status: age > WEEK + 30 ? "fail" : "ok", detail: `Last eBay pass ${age.toFixed(1)} h ago.` },
     { name: "eBay calls", status: used > cap ? "fail" : used > cap * 0.95 ? "warn" : "ok", detail: `${used} of ${cap} Browse calls used today (Pacific time).` },
   ];
 }
@@ -67,7 +69,7 @@ export function checkFamilyFeed(generatedAt: string | null, now: Date): Check {
   if (!generatedAt) return { name, status: "unknown", detail: "data/family/family-feed.json not written yet." };
   const h = (now.getTime() - Date.parse(generatedAt)) / H;
   if (!Number.isFinite(h)) return { name, status: "unknown", detail: "family-feed.json has no readable date." };
-  return h > 50
+  return h > WEEK + 50
     ? { name, status: "warn", detail: `Written ${Math.round(h)} hours ago: read the Family feed step of refresh-prices.yml.` }
     : { name, status: "ok", detail: `Written ${Math.round(h)} hours ago.` };
 }
@@ -79,7 +81,7 @@ export function checkAmazon(statuses: Record<string, AsinStatus | null>, now: Da
   const seen = Object.entries(statuses).filter(([, s]) => s) as [string, AsinStatus][];
   const name = "Amazon ASINs";
   if (!seen.length) return { name, status: "ok", detail: "no Amazon ASIN run recorded yet: the Amazon rows are tagged searches" };
-  const stale = seen.filter(([, s]) => (now.getTime() - Date.parse(s.at)) / H > 54).map(([r]) => r.toUpperCase());
+  const stale = seen.filter(([, s]) => (now.getTime() - Date.parse(s.at)) / H > WEEK + 54).map(([r]) => r.toUpperCase());
   const parts = seen.map(([r, s]) =>
     s.state === "ok" ? `${r.toUpperCase()} ${s.known ?? 0} ASINs (${s.waiting ?? 0} waiting)` : s.state === "refused" ? `${r.toUpperCase()} waiting for Amazon API access` : `${r.toUpperCase()} no credential`,
   );
