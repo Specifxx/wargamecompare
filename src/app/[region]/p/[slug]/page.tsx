@@ -7,6 +7,7 @@ import { PriceList, PriceListNote } from "@/components/PriceList";
 import { ReportPrice } from "@/components/ReportForms";
 import { PriceAlertForm } from "@/components/PriceAlertForm";
 import { ALERT_SITE_KEY } from "@/lib/alert-feed";
+import { RestockAlert } from "@/components/premium/RestockAlert";
 import { ProductGrid } from "@/components/ProductCard";
 import { Section } from "@/components/Section";
 import { StickyBuyBar } from "@/components/StickyBuyBar";
@@ -229,6 +230,8 @@ export default function ProductPage({ params }: { params: { region: string; slug
         <div className="pf-tools mt-5 flex flex-wrap items-start gap-2">
           {/* RiftCompare's shared alert service emails when it drops (lib/alert-feed.ts, DECISIONS.md 2026-11-02). */}
           <PriceAlertForm site={ALERT_SITE_KEY} productId={p.id} region={r.market} priceCents={s?.best ?? null} buttonClassName="btn-primary" triggerClassName="tool-btn" />
+          {/* Back in stock (accounts, 2026-11-19, as MTG Compare): members tap once, everyone else gives an email. */}
+          {s?.best == null && <RestockAlert site={ALERT_SITE_KEY} productId={p.id} region={r.market} />}
           <ReportPrice product={`${p.name}${p.code ? ` (${p.code})` : ""}`} region={r.short} buttonClassName="btn-ghost" summaryClassName="tool-btn" stores={rows.stores.map((x) => ({ name: x.name, price: x.price ?? "sold out" }))} />
         </div>
         <p className="mt-3 text-xs text-faint">

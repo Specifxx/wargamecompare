@@ -13,6 +13,7 @@ import { HeaderNavItems, SoftHeaderNavItems, SoftRegionSwitcher, SoftSearchBox, 
 import { ThemeToggle } from "./ThemeToggle";
 import { SearchBox } from "./SearchBox";
 import { CartHeaderLink } from "@/components/cart/CartHeaderLink";
+import { AccountHeaderLink } from "@/components/premium/AccountHeaderLink";
 
 /**
  * The desktop nav (lg and up), in order: Games, Armies and Products (each a dropdown of real links, lib/nav.ts: the way a Games
@@ -40,7 +41,8 @@ export function headerNavItems(region: Region, today = new Date().toISOString().
     // Deals and Guides open dropdowns too (owner, 2026-11-09); the "Deals & more" group of lib/nav.ts is split between them.
     { href: `/${region}/deals`, label: "Deals", also: [`/${region}/new-releases`, `/${region}/black-friday`, `/${region}/cyber-monday`, `/${region}/boxing-day`, `/${region}/january-sales`, `/${region}/lunar-new-year`], menu: [dealsColumn] },
     { href: `/${region}/guides`, label: "Guides", also: ["/forum", "/creators", "/about"], menu: [guidesColumn] },
-    { href: `/${region}/stores`, label: "Stores" },
+    // From xl, as the comment above says (the footer carries it below): the row overflowed 1024-1280px once the sale item led it.
+    { href: `/${region}/stores`, label: "Stores", xl: true },
   ];
 }
 
@@ -77,11 +79,15 @@ export function Header({ region }: { region: Region | null }) {
             </OutboundLink>
           }
         </nav>
-        <div className="hdr-search min-w-0 flex-1 lg:ml-auto lg:w-56 lg:flex-none xl:w-64">{region ? <SearchBox region={region} size="sm" /> : <SoftSearchBox />}</div>
-        <ThemeToggle />
+        <div className="hdr-search min-w-0 flex-1 lg:ml-auto lg:w-44 lg:flex-none xl:w-48 2xl:w-64">{region ? <SearchBox region={region} size="sm" /> : <SoftSearchBox />}</div>
+        {/* Below sm the theme switch moves into the menu (MenuAccount), giving its place to Sign in. */}
+        <ThemeToggle className="hidden sm:inline-flex" />
         {region ? <RegionSwitcher region={region} compact /> : <SoftRegionSwitcher />}
         {/* The cart list (components/cart, owner 2026-11-06): every width, with its count. */}
         <CartHeaderLink />
+        {/* The desktop row is full (seven sections, eBay, search): the person icon alone from lg to 2xl, "Sign in" beside it on phones
+            and from 2xl. Premium is on /account, in the phone menu and in the footer. */}
+        <AccountHeaderLink labelClassName="hidden whitespace-nowrap min-[400px]:inline lg:hidden" />
         <MobileMenu region={region} groups={groups} built={built} className="lg:hidden" />
       </div>
     </header>

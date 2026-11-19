@@ -994,3 +994,11 @@ html[data-adlook="b"] [data-leave-nudge]::before {
   .phone-rail::-webkit-scrollbar { display: none; }
   .phone-rail > * { flex: 0 0 44%; min-width: 0; scroll-snap-align: start; }
 }
+
+/* Premium members (lib/premium-member.ts, owner 2026-11-19): no banner ads. The ad blocks only; price rows (eBay and Amazon
+   included) are never hidden. */
+html[data-adfree] [data-ad="inline"],
+html[data-adfree] [data-ad="quickview"],
+html[data-adfree] [data-dock] {
+  display: none !important;
+}

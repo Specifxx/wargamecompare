@@ -16,6 +16,8 @@ import "@/components/cart/cart-drawer.css";
 import "@/components/store-vote.css";
 import "@/components/site-reviews/site-reviews.css";
 import { BottomNav } from "@/components/BottomNav";
+import { AdFreeSync } from "@/components/premium/AdFreeSync";
+import { ADFREE_BOOT_SCRIPT } from "@/lib/premium-member";
 import { BOTTOM_NAV } from "@/lib/bottom-nav";
 
 // The engine's two faces (DexCompare and MTG Compare: Bricolage Grotesque for headings, Inter for text), bundled as the latin
@@ -51,6 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${sans.variable}`} data-festive={CHRISTMAS_FESTIVE_LAYER ? "" : undefined} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT + SEASON_BOOT_SCRIPT + REGION_BOOT_SCRIPT + HOME_REGION_SCRIPT }} />
+        {/* Premium members see no ads (lib/premium-member.ts): data-adfree on <html> before first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: ADFREE_BOOT_SCRIPT }} />
         {/* Product photos are the stores' own, on Shopify's CDN: warming that connection is the cheapest LCP win there is. */}
         <link rel="preconnect" href="https://cdn.shopify.com" />
         {/* Impact (affiliate network) site check, in the exact form Impact gives: a `value` attribute. */}
@@ -70,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(siteJsonLd()) }} />
         <VercelPageViews />
         <ShareArrival />
+        <AdFreeSync />
         {/* The phone bottom nav (components/BottomNav.tsx, lib/bottom-nav.ts): browser only, phones only, BOTTOM_NAV is its switch. */}
         {BOTTOM_NAV !== "off" && <BottomNav mode={BOTTOM_NAV} />}
       </body>

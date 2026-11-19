@@ -31,6 +31,8 @@ export function footerColumns(r: Region): { title: string; links: FooterLink[] }
       links: [
         { href: `/${r}/deals`, label: "Today’s deals" },
         { href: `/${r}/stores`, label: "Stores we compare" },
+        { href: "/account", label: "Sign in or create a free account" },
+        { href: "/premium", label: "Premium: 14 days free" },
       ],
     },
     {
