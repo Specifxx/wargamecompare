@@ -57,6 +57,10 @@ jobs:
         # Two stores at a time: Shopify throttles by IP across all of its storefronts.
         run: |
           if [ -n "$ONLY" ]; then npx tsx scripts/import.ts --concurrency 2 --only "$ONLY"; else npx tsx scripts/import.ts --concurrency 2; fi
+      # The day's cheapest in-stock store price per product into data/history.json (src/lib/price-history.ts): the product
+      # page's price history. A day already recorded is left alone.
+      - name: Price history
+        run: npx tsx scripts/record-history.ts
       - name: eBay listings
         if: github.event_name == 'schedule' || inputs.ebay
         env:

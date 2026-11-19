@@ -1505,3 +1505,15 @@ TCGplayer, which kept its own blue button, rose (DexCompare 545 to 779, MTG Comp
 blue again (#3665f3, white ink, fixed in both themes) on every site; nothing else about the rows changes (no outline, tint, order or
 label), and the cheapest row keeps its mark. RiftCompare and OP Compare had started a 50/50 the same morning; it ended for
 everyone. Read: eBay buy clicks per 100 visitors, the week after release vs 12-18 Nov.
+
+## 2026-11-19: Price history on every product page, from our own daily records
+
+Agent reassignment job C (price history gaps on the top pages): the product page had no history, while every card site now
+shows one. `scripts/record-history.ts` runs in `refresh-prices.yml` after the import and writes, per market and product, the
+day's cheapest IN-STOCK store price (Summary.best: never eBay, Amazon or Wayland, never converted; 0 = nobody had it in stock)
+into `data/history.json`, keeping only the days the price changed (`lib/price-history.ts`). The first 19 import days
+(28 Oct to 19 Nov) were filled from the committed `data/offers.json` of each day's import (`scripts/backfill-history.ts`,
+one-off): our own records, no outside source. A day the import did not run keeps the day before's price, and the chart's note
+says so. 970 KB for 19,700 series; it rides with every function like the other `data/*.json`; if it nears 5 MB, cut the stored
+window rather than the record. The page's "<product> price history in <country>" section (`PriceHistory.tsx`, plain SVG, no
+client JS) shows only with two or more priced days. Read: buy clicks per product-page view, the week after release vs 12-18 Nov.
