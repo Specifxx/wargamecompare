@@ -1472,3 +1472,13 @@ The owner, 2026-11-19: "I want it for all the sites, so people have like an ad o
 2026-11-18 (`lib/dock-arm.ts`) ends early with its "on" arm for every visitor: the eBay (and, where the site has it, TCGplayer) dock is
 stacked just above the phone bottom nav whenever it shows, instead of taking turns with the nav. Its own rules are unchanged: after a
 scroll, labelled "Ad", ✕ for the visit, never Amazon. `dock_arm` on buy_click now always reads "on".
+
+## 2026-11-19 — A calmer home page on a phone
+
+Owner, 2026-11-19: "way too much going on in the mobile version of the home page" (KaeYoung first; the same pass on every
+site). Below sm the hero is the words and the search (the two featured products show from sm up); the biggest savings are
+ONE sideways row (`rail` on `ProductGrid`, `.phone-rail` in globals.css) instead of a grid six rows deep; the creators
+teaser, the country cards and the "Why compare / How it works / Guides" text show from sm up, and the questions stay.
+Measured on a 390px phone: 9,265 px tall before, 4,948 after. Layout only: URLs, titles, headings, links, metadata and
+JSON-LD are the same, the server HTML is the same at every width, and the desktop page is unchanged. Before adding a
+block to the phone home page, say what it replaces.
