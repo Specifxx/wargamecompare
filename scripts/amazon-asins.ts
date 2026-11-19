@@ -7,7 +7,7 @@
  * are never searched. Products with the most in-stock stores go first. Found ASINs and misses go in
  * data/amazon/asins-<store>.json; a miss is retried after 30 days. Without credentials it does nothing; a refusal
  * (that store's account has no API access yet: 10 qualifying sales in 30 days) ends that store quietly.
- *   npx tsx scripts/amazon-asins.ts            AMAZON_SEARCH_BUDGET=300 calls a store by default
+ *   npx tsx scripts/amazon-asins.ts            AMAZON_SEARCH_BUDGET=100 (owner, 2026-11-19: the network's Amazon API allowance is shared, mostly ScentCompare's) calls a store by default
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -45,7 +45,7 @@ async function store(code: AmazonStore, products: Product[], offers: OffersFile)
     return null;
   });
   if (!api) return;
-  const budget = Number(process.env.AMAZON_SEARCH_BUDGET || 300);
+  const budget = Math.min(100, Number(process.env.AMAZON_SEARCH_BUDGET || 100));
   let found = 0, searched = 0, refused = "";
   for (const { p } of todo) {
     if (api.calls() >= budget) break;

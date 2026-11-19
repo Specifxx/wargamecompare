@@ -3,7 +3,7 @@
 // the ASINs the daily refresh matched to our EANs (scripts/amazon-asins.ts, data/amazon/; getItems takes no EAN), and written to data/amazon-live/<store>.json (git-ignored). Amazon's licence
 // lets a price be kept for 24 hours and shown with its time, so prices are fetched by each build and never
 // committed; the product page shows one only while under 24 hours old (lib/amazon-live.ts). Products with
-// the most in-stock stores first, AMAZON_BUILD_CALLS calls a store (30 by default: 300 products, about 35
+// the most in-stock stores first, AMAZON_BUILD_CALLS calls a store (20 by default, owner, 2026-11-19: the network's Amazon API allowance is shared, mostly ScentCompare's: 300 products, about 35
 // seconds of build each). A price far from the store median (under 60% or over 160%) is dropped: a different
 // product behind the barcode, or a marketplace seller's fantasy. Without credentials, or on any error, it
 // writes nothing and never fails the build; a store whose account has no API access yet (403) is skipped and
@@ -40,7 +40,7 @@ async function store(code: AmazonStore, products: Product[], offers: OffersFile)
     .map((p) => ({ p, asin: asins[p.ean]?.[0], offers: (byId[p.id] ?? []).filter((o) => o.in) }))
     .filter((x): x is typeof x & { asin: string } => !!x.asin && x.offers.length > 0)
     .sort((a, b) => b.offers.length - a.offers.length || b.offers[0].p - a.offers[0].p);
-  const cap = Number(process.env.AMAZON_BUILD_CALLS || 30) * 10;
+  const cap = Math.min(20, Number(process.env.AMAZON_BUILD_CALLS || 20)) * 10;
   const todo = inRegion.slice(0, cap);
   if (!todo.length) return console.log(`Amazon prices ${code}: no ASINs found yet (scripts/amazon-asins.ts), skipped.`);
   const api = await creatorsClient(code, tag, creds);
