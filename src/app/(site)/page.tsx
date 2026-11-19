@@ -77,7 +77,9 @@ export default function Landing() {
               <RegionSuggest />
             </div>
           </div>
-          <aside aria-label="Top savings today">
+          {/* Phone hero, 2026-11-19 (owner: "way too much going on in the mobile version of the home page"): the words and the
+              search; the two featured products show from sm up, and the savings row follows straight after. */}
+          <aside aria-label="Top savings today" className="hidden sm:block">
             {blocks.map(({ r, hero }) =>
               hero.length ? (
                 <div key={r.region} className={`hr hr-${r.region}`}>
@@ -107,7 +109,7 @@ export default function Landing() {
           savings.length ? (
             <div key={r.region} className={`hr hr-${r.region}`}>
               <Section title={`Biggest savings in ${r.inName} today`} kicker="In stock now, furthest under RRP, every store's own price" href={`/${r.region}/deals`} linkLabel="All deals">
-                <ProductGrid items={savings} region={r.region} />
+                <ProductGrid items={savings} region={r.region} rail />
               </Section>
             </div>
           ) : null,
@@ -121,6 +123,9 @@ export default function Landing() {
           ))}
         </Section>
 
+        {/* The creators teaser, the country cards and the explainer with its guide links show from sm up (2026-11-19): on a
+            phone the header picks the country and the menu and footer reach the rest. */}
+        <div className="hidden sm:block">
         <CreatorsTeaser />
 
         <Section title="Prices in your country" kicker="Each country compares only the stores that charge in its own currency">
@@ -141,8 +146,10 @@ export default function Landing() {
             })}
           </div>
         </Section>
+        </div>
 
         <section className="prose-wg mt-14 max-w-3xl">
+          <div className="hidden sm:block">
           <h2>Why compare?</h2>
           <p>
             Independent stockists sell the same boxes for 10 to 25% under RRP, and which one is cheapest changes from kit to kit. We read their catalogues every day so
@@ -176,6 +183,7 @@ export default function Landing() {
               </li>
             </ul>
           ))}
+          </div>
           <h2>Questions</h2>
           {FAQ.map(([q, a]) => (
             <div key={q}>

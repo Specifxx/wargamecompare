@@ -972,3 +972,22 @@ html[data-adlook="b"] [data-leave-nudge]::before {
   html[data-adlook="b"] aside[aria-label^="Sponsored"] li > a { transition: none; }
   html[data-adlook="b"] aside[aria-label^="Sponsored"] li > a:hover { transform: none; }
 }
+
+/* Phone rails (2026-11-19, owner: "way too much going on in the mobile version of the home page"). Below sm the home
+   page's savings are ONE sideways row instead of a grid six rows deep. Same HTML at every width; from sm up the grid. */
+@media (max-width: 639.98px) {
+  .phone-rail {
+    position: relative;
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    scroll-padding-inline: 1rem;
+    padding-bottom: 2px;
+  }
+  .phone-rail::-webkit-scrollbar { display: none; }
+  .phone-rail > * { flex: 0 0 44%; min-width: 0; scroll-snap-align: start; }
+}

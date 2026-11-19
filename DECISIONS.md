@@ -1465,3 +1465,13 @@ from the import's own eBay matches in `/api/quick/<region>/<slug>`, which the CD
 extra eBay call and no extra function call. It needs at least three tiles to show. It is labelled "Ad", every link is
 `rel` sponsored and tagged under its own placement, `quickview-ebay-more`, and it is never a price row, never "the
 cheapest" and never Amazon. The page's one inline block stays out of the quick view.
+
+## 2026-11-19 — A calmer home page on a phone
+
+Owner, 2026-11-19: "way too much going on in the mobile version of the home page" (KaeYoung first; the same pass on every
+site). Below sm the hero is the words and the search (the two featured products show from sm up); the biggest savings are
+ONE sideways row (`rail` on `ProductGrid`, `.phone-rail` in globals.css) instead of a grid six rows deep; the creators
+teaser, the country cards and the "Why compare / How it works / Guides" text show from sm up, and the questions stay.
+Measured on a 390px phone: 9,265 px tall before, 4,948 after. Layout only: URLs, titles, headings, links, metadata and
+JSON-LD are the same, the server HTML is the same at every width, and the desktop page is unchanged. Before adding a
+block to the phone home page, say what it replaces.
