@@ -1465,3 +1465,10 @@ from the import's own eBay matches in `/api/quick/<region>/<slug>`, which the CD
 extra eBay call and no extra function call. It needs at least three tiles to show. It is labelled "Ad", every link is
 `rel` sponsored and tagged under its own placement, `quickview-ebay-more`, and it is never a price row, never "the
 cheapest" and never Amazon. The page's one inline block stays out of the quick view.
+
+## 2026-11-19: The dock A/B ends: the phone ad strip sits above the bottom nav for everyone (owner)
+
+The owner, 2026-11-19: "I want it for all the sites, so people have like an ad on their phone right there." The dock A/B of
+2026-11-18 (`lib/dock-arm.ts`) ends early with its "on" arm for every visitor: the eBay (and, where the site has it, TCGplayer) dock is
+stacked just above the phone bottom nav whenever it shows, instead of taking turns with the nav. Its own rules are unchanged: after a
+scroll, labelled "Ad", ✕ for the visit, never Amazon. `dock_arm` on buy_click now always reads "on".
