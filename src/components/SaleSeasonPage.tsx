@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { meta, mediansFor, summariesFor } from "@/lib/data";
 import { deals } from "@/lib/deals";
-import { saleIntro, saleYear, SALE_SEASONS, type SaleSlug } from "@/lib/sale-seasons";
+import { saleIntro, saleYear, SALE_SEASONS, type SaleSlug, saleIndexable } from "@/lib/sale-seasons";
 import { thumb } from "@/lib/images";
 import { regionOr404 } from "@/lib/page";
 import { formatPrice, REGION_LIST } from "@/lib/regions";
@@ -21,7 +21,7 @@ export function saleMetadata(slug: SaleSlug, { params }: { params: { region: str
   const name = SALE_SEASONS[slug].name;
   const title = `Warhammer ${name} deals ${year} in ${r.inName}: store prices under RRP`;
   const description = `${name} ${year} Warhammer deals in ${r.inName}: kits, Combat Patrols and paints at least 10% under RRP or the median store price today, updated every day.`;
-  return { title: { absolute: title }, description, alternates: regionAlternates(r.region, `/${slug}`, REGION_LIST.map((x) => x.region)), openGraph: ogFor(`/${r.region}/${slug}`, title, description) };
+  return { title: { absolute: title }, description, alternates: regionAlternates(r.region, `/${slug}`, REGION_LIST.map((x) => x.region)), openGraph: ogFor(`/${r.region}/${slug}`, title, description), ...(saleIndexable(slug, new Date().toISOString().slice(0, 10)) ? {} : { robots: { index: false, follow: true } }) };
 }
 
 export function SaleSeasonPage({ slug, params }: { slug: SaleSlug; params: { region: string } }) {
