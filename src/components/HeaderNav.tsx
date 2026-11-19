@@ -52,7 +52,7 @@ export function HeaderNavItems({ items }: { items: HeaderNavItem[] }) {
     <>
       {items.map((n, i) => {
         const link = (
-          <NavLink key={n.label} href={n.href} also={n.also} className={`${n.xl ? "hidden xl:inline-flex" : ""} ${n.menu ? "pr-6" : ""} whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-colors`}>
+          <NavLink key={n.label} href={n.href} also={n.also} className={`${n.xl ? "hidden 2xl:inline-flex" : ""} ${n.menu ? "pr-6" : ""} whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-colors`}>
             {n.label}
           </NavLink>
         );

@@ -18,7 +18,7 @@ const TILES: { icon: string; title: string; body: string; free?: boolean }[] = [
   { icon: "🔔", title: "200 price alerts", body: "An email when a kit drops to your price or a sold-out box is back. Free accounts get 25; Premium gets 200 and sets each with one tap." },
   { icon: "👁", title: "A watch list", body: "Every alert you've set in one place, with today's lowest in-stock price beside it and a button to stop each." },
   { icon: "✦", title: "A calmer site", body: "No sponsored banners or phone ad dock while you're signed in. Price lists, the stores in them and their order never change." },
-  { icon: "⇄", title: "One account, our sites", body: "The same sign-in and membership work on WargameCompare, RiftCompare, DexCompare and MTG Compare." },
+  { icon: "⇄", title: "One account, all our sites", body: "The same sign-in and membership work across all our price comparison sites." },
   { icon: "%", title: "Every price, free", body: "Every store price, the cheapest row and today's deals stay free for everyone, members included.", free: true },
 ];
 

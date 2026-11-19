@@ -65,30 +65,31 @@ export function Header({ region }: { region: Region | null }) {
   const groups = navGroups(built, liveHubs(region));
   return (
     <header className="sticky top-0 z-40 h-[var(--hdr)] border-b border-line bg-surface/90 backdrop-blur-md">
-      <div className="page flex h-full items-center gap-2 sm:gap-3 lg:gap-4 xl:max-w-shell">
+      <div className="page flex h-full items-center gap-2 sm:gap-3 xl:max-w-shell 2xl:gap-4">
         <Link href={home} className="flex h-11 shrink-0 items-center rounded-lg" aria-label={`WargameCompare${region ? ` ${REGIONS[region].name}` : ""} home`}>
-          <Logo wordmark="hidden sm:inline" />
+          <Logo wordmark="hidden sm:inline xl:hidden 2xl:inline" />
         </Link>
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Main">
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Main">
           {region ? <HeaderNavItems items={items} /> : <SoftHeaderNavItems items={items} />}
           {/* A discreet, labelled sponsored item (xl and up only): eBay's search, tagged. Not a section of the site. */}
           {/* On a page with no region of its own it is built for the US, as the old header was (the server HTML is one CDN copy). */}
           {
-            <OutboundLink href={ebaySearchUrl("Warhammer", built, "header")} rel={REL_PAID} retailer={ebayLabel(built)} placement="header" className="hidden items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:bg-raised hover:text-ink xl:inline-flex">
+            <OutboundLink href={ebaySearchUrl("Warhammer", built, "header")} rel={REL_PAID} retailer={ebayLabel(built)} placement="header" className="hidden items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:bg-raised hover:text-ink 2xl:inline-flex">
               <span className="ad-pill">Ad</span> eBay
             </OutboundLink>
           }
         </nav>
-        <div className="hdr-search min-w-0 flex-1 lg:ml-auto lg:w-44 lg:flex-none xl:w-48 2xl:w-64">{region ? <SearchBox region={region} size="sm" /> : <SoftSearchBox />}</div>
+        <div className="hdr-search min-w-0 flex-1 xl:ml-auto xl:w-40 xl:flex-none 2xl:w-64">{region ? <SearchBox region={region} size="sm" /> : <SoftSearchBox />}</div>
         {/* Below sm the theme switch moves into the menu (MenuAccount), giving its place to Sign in. */}
         <ThemeToggle className="hidden sm:inline-flex" />
         {region ? <RegionSwitcher region={region} compact /> : <SoftRegionSwitcher />}
         {/* The cart list (components/cart, owner 2026-11-06): every width, with its count. */}
         <CartHeaderLink />
-        {/* The desktop row is full (seven sections, eBay, search): the person icon alone from lg to 2xl, "Sign in" beside it on phones
-            and from 2xl. Premium is on /account, in the phone menu and in the footer. */}
-        <AccountHeaderLink labelClassName="hidden whitespace-nowrap min-[400px]:inline lg:hidden" />
-        <MobileMenu region={region} groups={groups} built={built} className="lg:hidden" />
+        {/* "Sign in" at every width (owner, 2026-11-19: very visible for new visitors). The row was full, so the sections row starts at
+            xl (the menu button keeps them below it), the word mark and the eBay link above wait for 2xl, and Premium is on /account, in
+            the menu and in the footer. */}
+        <AccountHeaderLink />
+        <MobileMenu region={region} groups={groups} built={built} className="xl:hidden" />
       </div>
     </header>
   );
