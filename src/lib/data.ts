@@ -11,6 +11,7 @@ import type { EbayFile, Meta, Offer, OffersFile, Product, RrpFile } from "./type
 import { firstImportDay, releases } from "./releases";
 import { focusCatalog } from "./focus";
 import { detailIndexed, sitemapProducts } from "./index-tiers";
+import { emptyHistory, seriesFor, type HistoryFile, type HistoryPoint } from "./price-history";
 
 const DIR = path.join(process.cwd(), "data");
 function load<T>(file: string, fallback: T): T {
@@ -88,6 +89,13 @@ export function ebayFor(id: string, region: Region) {
 }
 export function ebayUpdatedAt(): string | null {
   return data().ebay.updatedAt;
+}
+
+let history: HistoryFile | null = null;
+/** A product's daily cheapest in-stock store price in a market (data/history.json, lib/price-history.ts); [] when none. */
+export function historyFor(id: string, region: Region): HistoryPoint[] {
+  history ??= load<HistoryFile>("history.json", emptyHistory());
+  return seriesFor(history, REGIONS[region].market, id);
 }
 
 export interface Summary {

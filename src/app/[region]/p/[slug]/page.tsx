@@ -26,7 +26,7 @@ import {
   storeUrl,
 } from "@/lib/affiliate";
 import { FACTION_BY_SLUG, SYSTEM_BY_SLUG, TYPE_BY_SLUG } from "@/lib/catalog";
-import { culledType, ebayFor, meta, offersFor, product, productAsksIndex, regionsListing, rrpFor, summariesFor, summaryOf } from "@/lib/data";
+import { culledType, ebayFor, historyFor, meta, offersFor, product, productAsksIndex, regionsListing, rrpFor, summariesFor, summaryOf } from "@/lib/data";
 import { thumb } from "@/lib/images";
 import { productIndexable } from "@/lib/index-tiers";
 import { paidAlternativeFor, priceRows } from "@/lib/price-rows";
@@ -39,6 +39,8 @@ import { SITE_URL } from "@/lib/site";
 import { productShareText } from "@/lib/share-link";
 import { ShareButton } from "@/components/ShareButton";
 import { Flag } from "@/components/Flag";
+import { PriceHistory } from "@/components/PriceHistory";
+import { historyStats } from "@/lib/price-history";
 
 export const dynamic = "force-dynamic";
 
@@ -96,6 +98,7 @@ export default function ProductPage({ params }: { params: { region: string; slug
   const rows = priceRows(p, region, "product");
   const bestHref = best ? storeUrl(best.u, dealForHost(new URL(best.u).hostname)?.ref, { checkout: best.in }) : null;
   const inStock = offers.filter((o) => o.in).length;
+  const history = historyFor(p.id, region);
   const ld =
     productIndexable(s) && offers.some((o) => o.in)
       ? {
@@ -232,6 +235,12 @@ export default function ProductPage({ params }: { params: { region: string; slug
           eBay and Amazon are pinned first as labelled ads; the stores under them are sorted by price, in stock first, never by what we earn. {EBAY_DISCLOSURE} {amazon ? AMAZON_DISCLOSURE : ""}
         </p>
       </Section>
+
+      {historyStats(history) && (
+        <Section title={`${p.name} price history in ${r.inName}`}>
+          <PriceHistory points={history} region={region} />
+        </Section>
+      )}
 
       {others.length > 0 && (
         <Section title="In other countries">
