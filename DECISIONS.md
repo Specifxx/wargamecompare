@@ -1517,3 +1517,18 @@ one-off): our own records, no outside source. A day the import did not run keeps
 says so. 970 KB for 19,700 series; it rides with every function like the other `data/*.json`; if it nears 5 MB, cut the stored
 window rather than the record. The page's "<product> price history in <country>" section (`PriceHistory.tsx`, plain SVG, no
 client JS) shows only with two or more priced days. Read: buy clicks per product-page view, the week after release vs 12-18 Nov.
+
+## Accounts and Premium (2026-11-19)
+
+Owner, 2026-11-19: "we want accounts for every single one of our compare sites now", copying how RiftCompare does it. Ported from MTG
+Compare: sign in with Google, Discord or an emailed link (`/account`), Premium (`/premium`, US$4.99 a month or US$39.99 a year, 14
+days free), a back-in-stock alert on a product with no store in stock, `/watches`, and no banner ads for members
+(`ADFREE_BOOT_SCRIPT` stamps `html[data-adfree]`; the inline eBay block, the quick view's eBay strip and the phone dock hide; price rows,
+eBay and Amazon included, never do). The account, alerts and billing live on RiftCompare's shared service under the site key `wargame`.
+This site has no collection, so Premium promises none: 200 alerts, one-tap restock, the watch list and no banners. The cheapest price
+is never behind Premium.
+
+The header row was already wider than the screen from 1024 to 1280px once the Black Friday item led it. Adding the account link,
+Stores now shows from xl (as the header's own comment always said; the footer carries it below), the search box is narrower at xl,
+the account link is the person icon alone from lg, and Premium is not in the desktop header (it is in the phone menu, on /account and
+in the footer). From 1440px nothing overflows; 1024 to 1280px still overflows by the sale item, as before, until the sale ends.

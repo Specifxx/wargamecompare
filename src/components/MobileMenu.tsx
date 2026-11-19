@@ -1,5 +1,6 @@
 "use client";
 
+import { MenuAccount } from "@/components/premium/MenuAccount";
 import Link from "@/components/Link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -103,6 +104,9 @@ export function MenuSheet({ region, groups, pathname, onClose: close, soft = fal
           <Icon name="close" size={20} />
         </button>
       </div>
+
+      {/* Sign in and Premium (owner, 2026-11-19: visible on every site), with the theme switch below sm. */}
+      <MenuAccount onNavigate={close} />
 
       <nav aria-label="Sections" className="mt-1">
         {groups.map((g) => (
