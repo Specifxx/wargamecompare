@@ -1,10 +1,10 @@
 name: Ops monitor
 
-# Every six hours: is the import fresh, are the stores being read, is eBay within its budget, is the live site up?
+# Weekly (Mondays, after the import; idle since 2026-11-19): is the import fresh, are the stores being read, is eBay within its budget, is the live site up?
 # A failing check fails this run and GitHub emails the owner (src/lib/ops.ts, docs in DEPLOY.md "Monitoring").
 on:
   schedule:
-    - cron: "40 */6 * * *"
+    - cron: "40 21 * * 1"
   workflow_dispatch:
 
 permissions:

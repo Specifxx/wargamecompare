@@ -13,7 +13,8 @@ so. `vercel.json` disables every branch except production (`"**": false`), so no
 Never dispatch a manual release just to ship a merge. DECISIONS.md, 2026-11-02.
 
 Production builds only a commit whose SUBJECT carries `[deploy]` (`scripts/vercel-ignore-build.sh`,
-`tests/vercel-ignore-build.test.ts`). The daily data commit from `refresh-prices.yml` carries it: one build a day.
+`tests/vercel-ignore-build.test.ts`). **IDLE since 2026-11-19 (owner):** `refresh-prices.yml` runs weekly (Mondays) and its data commit carries NO marker, so the
+site does not rebuild; the ops monitor runs weekly. No agent work here except a fix for something broken live.
 Never put `[deploy]` in a code commit's subject on your own initiative; "ship it" means land on `main`. Use
 `release.yml` only when the owner says it is urgent, and say so. Previews build only with `[preview]` in the subject,
 when the owner asks. `claude/*` and `ccr-*` branches never deploy (`vercel.json`).
@@ -86,7 +87,7 @@ deployed while the keyset exists.
 
 ## The site watches itself
 
-`ops-monitor.yml` runs `scripts/ops-monitor.ts` every six hours (checks in `src/lib/ops.ts`, tests in
+`ops-monitor.yml` runs `scripts/ops-monitor.ts` weekly since the site went idle (2026-11-19; checks in `src/lib/ops.ts`, tests in
 `tests/ops.test.ts`). A new scheduled job, external API or limit gets a check there.
 
 ## URL freeze, and no surprise navigation (owner, 2026-11-17; Grok growth report, items 5 and 9)
