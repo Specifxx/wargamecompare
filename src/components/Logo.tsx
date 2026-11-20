@@ -4,7 +4,7 @@ import { Pumpkin } from "./Pumpkin";
 // resembles any Games Workshop mark or artwork; the name is plain text, and never contains their trademarks.
 export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
-    <span className="relative inline-flex shrink-0">
+    <span className="relative inline-flex shrink-0 xmas-cap">
       <svg viewBox="0 0 64 64" aria-hidden="true" className={`shrink-0 text-brand ${className}`}>
         <path d="M32 6 54.5 19v26L32 58 9.5 45V19z" fill="none" stroke="currentColor" strokeWidth="5" strokeLinejoin="round" />
         <path d="M21 27h17l-5-5M43 37H26l5 5" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
