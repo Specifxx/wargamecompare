@@ -27,7 +27,7 @@ export const REGIONS: Record<Region, RegionInfo> = {
   us: { region: "us", market: "US", name: "United States", inName: "the US", short: "US", currency: "USD", locale: "en-US", shopifyCountry: "US", hreflang: "en-US", taxNote: "US prices exclude sales tax, added at checkout." },
 };
 
-export const REGION_LIST: RegionInfo[] = (["uk", "au", "nz", "ca", "us"] as Region[]).map((r) => REGIONS[r]);
+export const REGION_LIST: RegionInfo[] = (["us", "uk", "au", "ca", "nz"] as Region[]).map((r) => REGIONS[r]);
 /** The region of pages that have none (landing, About, legal) and the hreflang x-default: the US (owner, 2026-11-01). */
 export const X_DEFAULT_REGION: Region = "us";
 
