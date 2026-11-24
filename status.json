@@ -1,0 +1,53 @@
+{
+ "v": 1,
+ "site": "wargamecompare.com",
+ "at": "2026-11-24T05:29:10.746Z",
+ "overall": "warn",
+ "checks": [
+  {
+   "name": "Price import",
+   "status": "ok",
+   "detail": "Last import 0.8 h ago (weekly, refresh-prices.yml)."
+  },
+  {
+   "name": "Products",
+   "status": "ok",
+   "detail": "6637 products in data/products.json."
+  },
+  {
+   "name": "Store reads",
+   "status": "warn",
+   "detail": "4 of 405 stores failed: goblingaming (page 1 of /collections/games-workshop/products.json unreadable); millenniumcomics (429 from millenniumcomics.com.au); playntradewpg (page 1 of /collections/games-workshop/products.json unreadable); southtexastcg (page 1 of /collections/warhammer/products.json unreadable)"
+  },
+  {
+   "name": "eBay listings",
+   "status": "ok",
+   "detail": "Last eBay pass 0.8 h ago."
+  },
+  {
+   "name": "eBay calls",
+   "status": "ok",
+   "detail": "2200 of 2500 Browse calls used today (Pacific time)."
+  },
+  {
+   "name": "Live site",
+   "status": "ok",
+   "detail": "GET /uk answered 200."
+  },
+  {
+   "name": "Amazon ASINs",
+   "status": "ok",
+   "detail": "US 2268 ASINs (389 waiting); UK 822 ASINs (1817 waiting); CA 247 ASINs (3053 waiting); AU 273 ASINs (2241 waiting)"
+  },
+  {
+   "name": "Store partner codes",
+   "status": "ok",
+   "detail": "No code needs a re-check this week."
+  },
+  {
+   "name": "Family feed (sister sites)",
+   "status": "ok",
+   "detail": "Written 0 hours ago."
+  }
+ ]
+}
