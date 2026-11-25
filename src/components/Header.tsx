@@ -64,7 +64,7 @@ export function Header({ region }: { region: Region | null }) {
   const items = headerNavItems(built);
   const groups = navGroups(built, liveHubs(region));
   return (
-    <header className="sticky top-0 z-40 h-[var(--hdr)] border-b border-line bg-surface/90 backdrop-blur-md xmas-garland">
+    <header className="sticky top-0 z-40 h-[var(--hdr)] border-b border-line bg-surface/90 backdrop-blur-md">
       <div className="page flex h-full items-center gap-2 sm:gap-3 xl:max-w-shell 2xl:gap-4">
         <Link href={home} className="flex h-11 shrink-0 items-center rounded-lg" aria-label={`WargameCompare${region ? ` ${REGIONS[region].name}` : ""} home`}>
           <Logo wordmark="hidden sm:inline xl:hidden 2xl:inline" />
