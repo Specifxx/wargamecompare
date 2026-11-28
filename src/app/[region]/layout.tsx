@@ -8,6 +8,8 @@ import { SideNav } from "@/components/SideNav";
 import { navGroups } from "@/lib/nav";
 import { liveHubs } from "@/lib/nav-live";
 import { adTilesFor } from "@/lib/inline-tiles";
+import { DealsPopup } from "@/components/DealsPopup";
+import { dealPicksFor } from "@/lib/deal-picks";
 import { isRegion } from "@/lib/regions";
 
 export default function RegionLayout({ children, params }: { children: React.ReactNode; params: { region: string } }) {
@@ -32,6 +34,8 @@ export default function RegionLayout({ children, params }: { children: React.Rea
       <Footer region={region} />
       {/* The phone dock (the side rails are gone, owner 2026-11-13): eBay tiles along the foot of a narrow screen, after a scroll. */}
       <DockAds tiles={tiles} />
+      {/* Black Friday and after: real Amazon and eBay products in a corner card, once a visit (owner, 2026-11-28). */}
+      <DealsPopup data={dealPicksFor(region)} dealsHref={`/${region}/deals`} />
     </>
   );
 }
