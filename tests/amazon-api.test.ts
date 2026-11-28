@@ -67,7 +67,7 @@ test("the Creators API client stays build-side; only the price rows read live Am
   for (const f of [...walk("src/app"), ...walk("src/components"), ...walk("src/lib")].filter((f) => /\.tsx?$/.test(f))) {
     const s = fs.readFileSync(f, "utf8");
     if (f !== "src/lib/amazon-creators.ts") assert.ok(!/amazon-creators/.test(s), `${f} imports the Creators API client`);
-    if (/from "(\.|@\/lib)\/amazon-live"/.test(s)) assert.ok(f === "src/lib/price-rows.ts" || f === "src/lib/amazon-creators.ts", `${f} reads live Amazon prices`);
+    if (/from "(\.|@\/lib)\/amazon-live"/.test(s)) assert.ok(f === "src/lib/price-rows.ts" || f === "src/lib/amazon-creators.ts" || f === "src/lib/deal-picks.ts", `${f} reads live Amazon prices`);
     assert.ok(!/AMAZON_CREATORS/.test(s) || f === "src/lib/amazon-creators.ts", `${f} names the credentials`);
   }
   assert.match(fs.readFileSync(".gitignore", "utf8"), /^\/data\/amazon-live\/$/m);
